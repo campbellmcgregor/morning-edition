@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Edition — 15 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:18px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;color:#1a1a1a;background:#f5f0eb}
+h1,h2,h3,.numeral,.kicker{font-family:'Fraunces',serif}
+a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+a:hover{opacity:.8}
+
+/* COVER */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:3rem 2rem;background:linear-gradient(160deg,#0d0d0d 0%,#1a1128 40%,#2d1b4e 100%);color:#f5f0eb;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(139,92,246,.15) 0%,transparent 50%);animation:drift 20s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(10%,5%)}}
+.cover .edition-label{font-family:'Inter',sans-serif;font-weight:600;font-size:0.85rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.6;margin-bottom:1rem}
+.cover h1{font-size:clamp(3.5rem,8vw,7rem);font-weight:900;line-height:1;letter-spacing:-0.03em;margin-bottom:0.5rem}
+.cover .date{font-family:'Inter',sans-serif;font-size:1.1rem;font-weight:300;opacity:0.7;margin-top:1rem}
+.cover .tagline{font-family:'Fraunces',serif;font-style:italic;font-size:1.3rem;opacity:0.5;margin-top:0.5rem}
+.cover .scroll-hint{position:absolute;bottom:2rem;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.4;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.8}}
+
+/* TOC */
+.toc{padding:4rem 2rem;max-width:900px;margin:0 auto}
+.toc h2{font-size:1.4rem;font-weight:700;margin-bottom:2rem;text-transform:uppercase;letter-spacing:0.15em;color:#666}
+.toc-item{display:flex;align-items:baseline;gap:1rem;padding:0.8rem 0;border-bottom:1px solid #ddd;text-decoration:none;transition:background .2s}
+.toc-item:hover{background:rgba(0,0,0,.03)}
+.toc-num{font-family:'Fraunces',serif;font-weight:900;font-size:1.6rem;color:#8b5cf6;min-width:2.5rem}
+.toc-title{font-size:1.1rem;font-weight:500}
+.toc-tag{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;border-radius:3px;background:#f0e6ff;color:#6b21a8;margin-left:auto;white-space:nowrap}
+.toc-tag.applies{background:#fecdd3;color:#9f1239}
+
+/* SHARED SPREAD */
+.spread{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:4rem 2rem;position:relative;overflow:hidden}
+.spread-inner{max-width:900px;margin:0 auto;width:100%}
+.kicker{font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:0.5rem}
+.spread h2{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem}
+.spread .lede{font-size:1.25rem;line-height:1.7;margin-bottom:1.5rem}
+.spread .body{font-size:1.05rem;line-height:1.8}
+.spread .body p+p{margin-top:1rem}
+.spread .meta{display:flex;gap:1.5rem;align-items:center;margin-top:2rem;font-size:0.8rem;opacity:0.6}
+.spread .meta a{font-weight:500}
+.tag-pill{display:inline-block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:4px 12px;border-radius:99px;margin-right:0.5rem}
+.applies-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:6px 14px;border-radius:4px;background:#dc2626;color:#fff;margin-bottom:1rem}
+.applies-badge::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* 1 — HERO: red/black */
+.spread-hero{background:linear-gradient(135deg,#0a0a0a 0%,#1a0000 50%,#2d0000 100%);color:#f5f0eb}
+.spread-hero .numeral{font-size:clamp(8rem,20vw,16rem);font-weight:900;color:rgba(220,38,38,.15);position:absolute;top:-2rem;right:2rem;line-height:1;pointer-events:none}
+.spread-hero .kicker{color:#ef4444}
+.spread-hero h2{color:#fff}
+.spread-hero .lede{color:rgba(245,240,235,.85)}
+.spread-hero .body{color:rgba(245,240,235,.7)}
+.spread-hero .tag-pill{background:rgba(220,38,38,.2);color:#fca5a5}
+
+/* 2 — MIDNIGHT: deep navy */
+.spread-midnight{background:#0c1222;color:#c8d6e5}
+.spread-midnight .numeral{font-size:clamp(8rem,20vw,14rem);font-weight:900;color:rgba(99,102,241,.1);position:absolute;bottom:-1rem;left:2rem;line-height:1;pointer-events:none}
+.spread-midnight .kicker{color:#818cf8}
+.spread-midnight h2{color:#e0e7ff}
+.spread-midnight .lede{color:rgba(200,214,229,.85)}
+.spread-midnight .body{color:rgba(200,214,229,.65)}
+.spread-midnight .tag-pill{background:rgba(99,102,241,.15);color:#a5b4fc}
+
+/* 3 — ROSE ALERT */
+.spread-rose{background:#fff1f2;color:#1a1a1a;border-left:8px solid #e11d48}
+.spread-rose .numeral{font-size:clamp(8rem,20vw,14rem);font-weight:900;color:rgba(225,29,72,.08);position:absolute;top:50%;right:2rem;transform:translateY(-50%);line-height:1;pointer-events:none}
+.spread-rose .kicker{color:#e11d48}
+.spread-rose h2{color:#1a1a1a}
+.spread-rose .stamp{position:absolute;top:3rem;right:3rem;font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:#e11d48;border:4px solid #e11d48;padding:0.3rem 1rem;transform:rotate(12deg);opacity:0.25;pointer-events:none}
+.spread-rose .tag-pill{background:rgba(225,29,72,.1);color:#be123c}
+
+/* 4 — TERMINAL: green on black */
+.spread-terminal{background:#0a0a0a;color:#22c55e;font-family:'Courier New',monospace}
+.spread-terminal .numeral{font-size:clamp(8rem,20vw,14rem);font-weight:900;color:rgba(34,197,94,.06);position:absolute;top:-1rem;left:2rem;line-height:1;pointer-events:none;font-family:'Fraunces',serif}
+.spread-terminal .kicker{color:#4ade80;font-family:'Inter',sans-serif}
+.spread-terminal h2{color:#22c55e;font-family:'Fraunces',serif}
+.spread-terminal .lede{color:rgba(34,197,94,.85)}
+.spread-terminal .body{color:rgba(34,197,94,.65)}
+.spread-terminal .body code{background:rgba(34,197,94,.1);padding:2px 6px;border-radius:3px}
+.spread-terminal .tag-pill{background:rgba(34,197,94,.15);color:#4ade80;font-family:'Inter',sans-serif}
+.spread-terminal::before{content:'$ cat /var/log/openssl-release.log';position:absolute;top:2rem;left:2rem;font-size:0.75rem;opacity:0.3}
+
+/* 5 — ACADEMIC: cream with drop-cap */
+.spread-academic{background:#faf7f2;color:#2d2418}
+.spread-academic .numeral{font-size:clamp(8rem,20vw,14rem);font-weight:900;color:rgba(120,80,30,.06);position:absolute;top:-2rem;right:2rem;line-height:1;pointer-events:none}
+.spread-academic .kicker{color:#92400e}
+.spread-academic h2{color:#1c1917}
+.spread-academic .lede::first-letter{font-family:'Fraunces',serif;font-size:4rem;font-weight:900;float:left;line-height:0.8;margin:0.1em 0.15em 0 0;color:#92400e}
+.spread-academic .body{columns:2;column-gap:2.5rem}
+.spread-academic .tag-pill{background:rgba(146,64,14,.1);color:#92400e}
+@media(max-width:700px){.spread-academic .body{columns:1}}
+
+/* 6 — GRADIENT: purple/blue modern */
+.spread-gradient{background:linear-gradient(160deg,#1e1b4b 0%,#312e81 40%,#4338ca 100%);color:#e0e7ff}
+.spread-gradient .numeral{font-size:clamp(8rem,20vw,14rem);font-weight:900;color:rgba(255,255,255,.04);position:absolute;bottom:0;right:2rem;line-height:1;pointer-events:none}
+.spread-gradient .kicker{color:#a5b4fc}
+.spread-gradient h2{color:#fff}
+.spread-gradient .lede{color:rgba(224,231,255,.85)}
+.spread-gradient .body{color:rgba(224,231,255,.7)}
+.spread-gradient .tag-pill{background:rgba(165,180,252,.15);color:#c7d2fe}
+
+/* 7 — NEWSPAPER: black/white/red */
+.spread-newspaper{background:#fff;color:#111;border-top:6px double #111;border-bottom:6px double #111}
+.spread-newspaper .numeral{font-size:clamp(8rem,20vw,14rem);font-weight:900;color:rgba(0,0,0,.04);position:absolute;top:-2rem;left:2rem;line-height:1;pointer-events:none}
+.spread-newspaper .kicker{color:#dc2626}
+.spread-newspaper h2{color:#111;border-bottom:3px solid #111;padding-bottom:0.5rem}
+.spread-newspaper .body{columns:2;column-gap:2.5rem;column-rule:1px solid #ddd}
+.spread-newspaper .tag-pill{background:#fee2e2;color:#991b1b}
+@media(max-width:700px){.spread-newspaper .body{columns:1}}
+
+/* 8 — CLEAN: minimal white */
+.spread-clean{background:#fff;color:#111}
+.spread-clean .numeral{font-size:clamp(8rem,20vw,16rem);font-weight:900;color:rgba(0,0,0,.03);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1;pointer-events:none}
+.spread-clean .kicker{color:#6366f1}
+.spread-clean h2 span{background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.spread-clean .tag-pill{background:#eef2ff;color:#4338ca}
+
+/* 9 — EDITORIAL: warm amber */
+.spread-editorial{background:linear-gradient(180deg,#fef3c7 0%,#fde68a 100%);color:#1c1917}
+.spread-editorial .numeral{font-size:clamp(8rem,20vw,14rem);font-weight:900;color:rgba(146,64,14,.06);position:absolute;top:-1rem;right:2rem;line-height:1;pointer-events:none}
+.spread-editorial .kicker{color:#b45309}
+.spread-editorial h2{color:#1c1917}
+.spread-editorial .tag-pill{background:rgba(180,83,9,.1);color:#92400e}
+
+/* 10 — MEMORIAL: dark muted */
+.spread-memorial{background:linear-gradient(180deg,#1c1917 0%,#292524 100%);color:#d6d3d1}
+.spread-memorial .numeral{font-size:clamp(8rem,20vw,16rem);font-weight:900;color:rgba(255,255,255,.03);position:absolute;top:50%;right:2rem;transform:translateY(-50%);line-height:1;pointer-events:none}
+.spread-memorial .kicker{color:#a8a29e}
+.spread-memorial h2{color:#fafaf9}
+.spread-memorial .lede{color:rgba(214,211,209,.85)}
+.spread-memorial .body{color:rgba(214,211,209,.65)}
+.spread-memorial .tag-pill{background:rgba(168,162,158,.15);color:#a8a29e}
+
+/* FOOTER */
+.footer{padding:3rem 2rem;text-align:center;background:#0d0d0d;color:#666;font-size:0.8rem}
+.footer a{color:#8b5cf6}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .spread{padding:3rem 1.5rem}
+  .cover h1{font-size:3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<section class="cover">
+  <div class="edition-label">Curated from Hacker News</div>
+  <h1>Morning<br>Edition</h1>
+  <div class="date">Tuesday 15 April 2026</div>
+  <div class="tagline">Cybersecurity, AI tools, privacy and what matters today</div>
+  <div class="scroll-hint">Scroll to begin</div>
+</section>
+
+<!-- ==================== TOC ==================== -->
+<nav class="toc">
+  <h2>Today's Stories</h2>
+  <a class="toc-item" href="#s1"><span class="toc-num">01</span><span class="toc-title">30 WordPress Plugins Backdoored in Supply Chain Attack</span><span class="toc-tag applies">Applies to you</span></a>
+  <a class="toc-item" href="#s2"><span class="toc-num">02</span><span class="toc-title">Stop Flock: The Fight Against Warrantless Mass Surveillance</span><span class="toc-tag">Privacy</span></a>
+  <a class="toc-item" href="#s3"><span class="toc-num">03</span><span class="toc-title">Backblaze Silently Stops Backing Up Cloud Folders</span><span class="toc-tag applies">Applies to you</span></a>
+  <a class="toc-item" href="#s4"><span class="toc-num">04</span><span class="toc-title">OpenSSL 4.0.0 Released</span><span class="toc-tag applies">Applies to you</span></a>
+  <a class="toc-item" href="#s5"><span class="toc-num">05</span><span class="toc-title">OpenAI Scales Trusted Access for Cyber Defence</span><span class="toc-tag">AI + Security</span></a>
+  <a class="toc-item" href="#s6"><span class="toc-num">06</span><span class="toc-title">Claude Code Routines: Automating Your AI Workflows</span><span class="toc-tag applies">Applies to you</span></a>
+  <a class="toc-item" href="#s7"><span class="toc-num">07</span><span class="toc-title">Fiverr Left Customer Files Public and Searchable</span><span class="toc-tag">Breach</span></a>
+  <a class="toc-item" href="#s8"><span class="toc-num">08</span><span class="toc-title">Google Gemma 4 Runs Fully Offline on iPhone</span><span class="toc-tag">AI Tools</span></a>
+  <a class="toc-item" href="#s9"><span class="toc-num">09</span><span class="toc-title">Apple Threatened to Remove Grok Over Deepfake Images</span><span class="toc-tag">AI Governance</span></a>
+  <a class="toc-item" href="#s10"><span class="toc-num">10</span><span class="toc-title">The Death of an AI Whistleblower</span><span class="toc-tag">AI Ethics</span></a>
+</nav>
+
+<!-- ==================== SPREAD 1: HERO ==================== -->
+<section class="spread spread-hero" id="s1">
+  <div class="numeral">01</div>
+  <div class="spread-inner">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">Supply Chain Security</div>
+    <h2>Someone Bought 30 WordPress Plugins and Planted a Backdoor in Every One</h2>
+    <p class="lede">An unknown threat actor acquired 30 legitimate WordPress plugins from their original developers, then pushed malicious updates to every site running them. Over 30,000 active installations received the backdoor automatically through WordPress's built-in update mechanism.</p>
+    <div class="body">
+      <p>This is the supply chain attack pattern that keeps CISOs awake. The plugins were established, trusted, and reviewed. The new owner simply pushed an update containing obfuscated code that phones home to an external server and creates a hidden admin account. Because WordPress auto-updates plugins by default, most site owners had no idea anything changed.</p>
+      <p>The attack exploits a gap no technical control fully covers: the trust chain between a plugin marketplace, original authors, and the organisations that depend on them. For any organisation running WordPress (even for marketing microsites), this demands an immediate audit of installed plugins and their current ownership.</p>
+      <p><strong>What to do:</strong> Audit all WordPress plugin ownership across your estate. Review auto-update policies. Consider tools that alert on plugin ownership changes. Add plugin supply chain risk to your third-party risk register.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">Cybersecurity</span>
+      <span class="tag-pill">Actionable</span>
+      <span>1,167 points</span>
+      <a href="https://anchor.host/someone-bought-30-wordpress-plugins-and-planted-a-backdoor-in-all-of-them/" target="_blank">Read full story</a>
+      <a href="https://news.ycombinator.com/item?id=47755629" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 2: MIDNIGHT ==================== -->
+<section class="spread spread-midnight" id="s2">
+  <div class="numeral">02</div>
+  <div class="spread-inner">
+    <div class="kicker">Privacy &amp; Surveillance</div>
+    <h2>Stop Flock: The Campaign Against Warrantless Mass Surveillance</h2>
+    <p class="lede">Flock Safety's AI-powered licence plate cameras are now deployed at over 100,000 locations across the US, creating a searchable nationwide database of vehicle movements accessible to police without a warrant. Two HN front-page stories today push back hard.</p>
+    <div class="body">
+      <p>The system goes far beyond reading plates. Flock's "Vehicle Fingerprint" technology identifies cars by colour, make, damage, bumper stickers and wheel type. Its "Convoy Analysis" feature detects vehicles that frequently travel near each other, mapping social associations without anyone's knowledge or consent.</p>
+      <p>A Kansas police chief used the system 228 times to stalk an ex-girlfriend. In Oak Park, Illinois, 84% of drivers stopped via Flock alerts were Black in a town that is 21% Black. A federal judge ruled the network functioned as a "dragnet over the entire city" and equated it to warrantless GPS tracking.</p>
+      <p>The Stop Flock campaign and a companion post from a privacy researcher who formally opted out of Flock's data collection both gained significant traction. This is the surveillance infrastructure debate that every democracy is going to have to settle.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">Privacy</span>
+      <span class="tag-pill">Civil Liberties</span>
+      <span>795 + 627 points (two stories)</span>
+      <a href="https://stopflock.com" target="_blank">Stop Flock</a>
+      <a href="https://honeypot.net/2026/04/14/i-wrote-to-flocks-privacy.html" target="_blank">Opt-out letter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 3: ROSE ALERT ==================== -->
+<section class="spread spread-rose" id="s3">
+  <div class="numeral">03</div>
+  <div class="stamp">ALERT</div>
+  <div class="spread-inner">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">Data Protection</div>
+    <h2>Backblaze Silently Stops Backing Up OneDrive and Dropbox Folders</h2>
+    <p class="lede">Backblaze has quietly stopped including OneDrive and Dropbox sync folders in its backup scope. Users are discovering the gap only when they need to restore. No announcement. No notification. Just silent data loss.</p>
+    <div class="body">
+      <p>The original report from a Backblaze customer documents what happened: files stored in OneDrive and Dropbox directories simply stopped being backed up. The Backblaze interface continued to show "all files backed up" with no warnings or errors. The change appears to have been made server-side without user consent.</p>
+      <p>For organisations that layer Backblaze as a secondary backup behind cloud sync, this breaks assumptions about data resilience. The 3-2-1 backup rule only works if you verify all three copies actually exist.</p>
+      <p><strong>What to do:</strong> Verify your backup scope today. Don't trust status dashboards. Run a test restore of files from cloud sync directories. If you're in a CISO role, add backup scope verification to your operational resilience checks.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">Data Protection</span>
+      <span class="tag-pill">Actionable</span>
+      <span>1,078 points</span>
+      <a href="https://rareese.com/posts/backblaze/" target="_blank">Read full story</a>
+      <a href="https://news.ycombinator.com/item?id=47762864" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 4: TERMINAL ==================== -->
+<section class="spread spread-terminal" id="s4">
+  <div class="numeral">04</div>
+  <div class="spread-inner">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">Security Infrastructure</div>
+    <h2>OpenSSL 4.0.0 Released</h2>
+    <p class="lede">The first major version bump since OpenSSL 3.0 in 2021. Version 4.0.0 brings a significant API and ABI break, updated algorithm defaults, and removes long-deprecated functions. Every team running OpenSSL needs to plan their migration.</p>
+    <div class="body">
+      <p>This is not a drop-in upgrade. The release includes breaking changes to the provider architecture, removes the legacy provider by default, and changes several default algorithm parameters. Applications compiled against OpenSSL 3.x will need recompilation and likely code changes.</p>
+      <p>The good news: the security defaults are stronger out of the box. The bad news: any custom integrations, embedded devices, or legacy applications will need testing. For a CISO, this means coordinating with engineering teams to plan a migration timeline before the 3.x branch reaches end-of-life.</p>
+      <p><strong>What to do:</strong> Inventory all OpenSSL dependencies across your estate. Start compatibility testing in non-production environments. Track the 3.x end-of-life date and build a migration plan.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">Actionable</span>
+      <span class="tag-pill">Infrastructure</span>
+      <span>264 points</span>
+      <a href="https://github.com/openssl/openssl/releases/tag/openssl-4.0.0" target="_blank">Release notes</a>
+      <a href="https://news.ycombinator.com/item?id=47768788" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 5: ACADEMIC ==================== -->
+<section class="spread spread-academic" id="s5">
+  <div class="numeral">05</div>
+  <div class="spread-inner">
+    <div class="kicker">AI + Cybersecurity</div>
+    <h2>OpenAI Scales Trusted Access for Cyber Defence</h2>
+    <p class="lede">OpenAI announced an expansion of its programme to give vetted cybersecurity researchers and defenders elevated access to its models. The goal: make AI a practical tool for the defence side of the asymmetric security equation, not just an advantage for attackers.</p>
+    <div class="body">
+      <p>The programme provides approved security teams with higher rate limits, specialised fine-tuning access, and the ability to use models for tasks that would normally trigger safety filters: analysing malware samples, reverse-engineering exploit code, and stress-testing defences.</p>
+      <p>This is a significant shift in how AI labs approach the security community. Rather than blanket-restricting security-related queries, OpenAI is creating a tiered trust model. The implication for security leaders: AI-assisted threat analysis is becoming a legitimate, supported workflow rather than a grey-area workaround.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">AI + Security</span>
+      <span>84 points</span>
+      <a href="https://openai.com/index/scaling-trusted-access-for-cyber-defense/" target="_blank">Read full story</a>
+      <a href="https://news.ycombinator.com/item?id=47770770" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 6: GRADIENT ==================== -->
+<section class="spread spread-gradient" id="s6">
+  <div class="numeral">06</div>
+  <div class="spread-inner">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">AI Tools</div>
+    <h2>Claude Code Routines: Automate Your AI Workflows</h2>
+    <p class="lede">Anthropic shipped "Routines" for Claude Code: repeatable, parameterised task templates that run as autonomous agents. Think of them as cron jobs for AI workflows, triggered manually or on schedule.</p>
+    <div class="body">
+      <p>Routines let you define a task once (with variables, file paths, and success criteria) and re-run it on demand. They support chaining multiple steps, passing context between them, and running against different inputs each time. The feature sits on top of Claude Code's existing agent infrastructure.</p>
+      <p>For anyone already building skills and scheduled tasks in Cowork, this is a native complement. Routines handle the code-side automation (CI checks, codebase audits, dependency reviews) while Cowork skills handle the document and workflow side. Combined, they cover most of what a solo operator or small team needs for AI-assisted operations.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">AI Tools</span>
+      <span class="tag-pill">Workflow</span>
+      <span>664 points</span>
+      <a href="https://code.claude.com/docs/en/routines" target="_blank">Documentation</a>
+      <a href="https://news.ycombinator.com/item?id=47768133" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 7: NEWSPAPER ==================== -->
+<section class="spread spread-newspaper" id="s7">
+  <div class="numeral">07</div>
+  <div class="spread-inner">
+    <div class="kicker">Data Breach</div>
+    <h2>Fiverr Left Customer Files Public and Searchable</h2>
+    <p class="lede">A Hacker News user discovered that Fiverr's file storage allowed public access to customer deliverables, project files, and communications. The files were indexed and searchable through the platform's own URLs with no authentication required.</p>
+    <div class="body">
+      <p>The disclosure (posted as a "Tell HN") details how changing parameters in file URLs exposed other customers' data. Deliverables from freelancers, client briefs, source files, and private messages were all accessible. The vulnerability appears to stem from predictable or enumerable file identifiers combined with missing access controls.</p>
+      <p>This is a textbook IDOR (Insecure Direct Object Reference) vulnerability at scale. Fiverr handles work for millions of businesses, including design assets, code, marketing materials, and sensitive internal documents. The exposure window and scope of affected data remain unclear.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">Breach</span>
+      <span class="tag-pill">Web Security</span>
+      <span>741 points</span>
+      <a href="https://news.ycombinator.com/item?id=47769796" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 8: CLEAN ==================== -->
+<section class="spread spread-clean" id="s8">
+  <div class="numeral">08</div>
+  <div class="spread-inner">
+    <div class="kicker">AI Tools &amp; Privacy</div>
+    <h2><span>Google Gemma 4 Runs Fully Offline on iPhone</span></h2>
+    <p class="lede">Google's Gemma 4 model can now run natively on iPhone hardware with full offline inference. No network connection needed, no data leaving the device. This is the privacy-preserving AI deployment model that security-conscious organisations have been waiting for.</p>
+    <div class="body">
+      <p>The model runs via Apple's Core ML framework with optimisations that make it practical on current iPhone hardware. Response quality sits below cloud models but above what most people expected from on-device inference a year ago. For tasks like summarisation, classification, and simple Q&A, it's usable.</p>
+      <p>The privacy implications are significant. On-device AI means sensitive data never leaves the user's control. For regulated industries, for air-gapped environments, and for anyone concerned about data residency, this is a meaningful step. The trade-off is capability: you won't get Claude-level reasoning, but you'll get basic AI assistance with zero data exposure.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">AI Tools</span>
+      <span class="tag-pill">Privacy</span>
+      <span>107 points</span>
+      <a href="https://www.gizmoweek.com/gemma-4-runs-iphone/" target="_blank">Read full story</a>
+      <a href="https://news.ycombinator.com/item?id=47774971" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 9: EDITORIAL ==================== -->
+<section class="spread spread-editorial" id="s9">
+  <div class="numeral">09</div>
+  <div class="spread-inner">
+    <div class="kicker">AI Governance</div>
+    <h2>Apple Threatened to Remove Grok from the App Store Over Deepfakes</h2>
+    <p class="lede">Apple sent xAI a formal letter warning that Grok would be removed from the App Store if it continued generating realistic deepfake images of public figures. The letter, obtained by NBC News, signals that platform gatekeepers are starting to enforce AI content standards.</p>
+    <div class="body">
+      <p>Grok's image generation had been producing photorealistic images of politicians, celebrities, and other public figures in fabricated scenarios. Apple's intervention is notable because it uses App Store distribution as the enforcement mechanism rather than relying on regulation.</p>
+      <p>This sets a precedent for how AI governance may actually work in practice: not through legislation (which moves slowly) but through platform economics. If Apple and Google enforce content standards through their app stores, AI companies have a strong financial incentive to comply regardless of the regulatory landscape.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">AI Governance</span>
+      <span class="tag-pill">Policy</span>
+      <span>91 points</span>
+      <a href="https://www.nbcnews.com/tech/tech-news/apple-threat-remove-grok-app-store-deepfake-letter-musk-x-ai-rcna331677" target="_blank">Read full story</a>
+      <a href="https://news.ycombinator.com/item?id=47772906" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPREAD 10: MEMORIAL ==================== -->
+<section class="spread spread-memorial" id="s10">
+  <div class="numeral">10</div>
+  <div class="spread-inner">
+    <div class="kicker">AI Ethics</div>
+    <h2>The Death of an AI Whistleblower</h2>
+    <p class="lede">The Nation published a deep investigation into the death of Suchir Balaji, the former OpenAI researcher who publicly raised concerns about the company's training data practices and copyright violations before his death in late 2024.</p>
+    <div class="body">
+      <p>Balaji was one of the first insiders to publicly challenge the assumption that AI training on copyrighted data constitutes fair use. His disclosures contributed to multiple ongoing lawsuits against OpenAI. The article examines the pressures faced by AI whistleblowers, the legal grey areas around training data, and the broader culture of secrecy at frontier AI labs.</p>
+      <p>For anyone working at the intersection of AI and governance, this piece is a sobering reminder that the people who raise uncomfortable questions about these technologies face real consequences. The whistleblower protection frameworks that exist for financial and government sectors have no equivalent in the AI industry.</p>
+    </div>
+    <div class="meta">
+      <span class="tag-pill">AI Ethics</span>
+      <span class="tag-pill">Long Read</span>
+      <span>28 points</span>
+      <a href="https://www.thenation.com/article/society/open-ai-suchir-balaji-whistleblowers/" target="_blank">Read full story</a>
+      <a href="https://news.ycombinator.com/item?id=47775593" target="_blank">HN discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <p>Morning Edition is auto-generated from the <a href="https://news.ycombinator.com" target="_blank">Hacker News</a> front page.</p>
+  <p>Curated for cybersecurity, AI tools, privacy and actionable intelligence. Skips: vendor marketing, routine patch advisories without context, CVE database drama, crypto/web3 hype.</p>
+  <p style="margin-top:0.5rem;opacity:0.5">Built with Claude. 15 April 2026.</p>
+</footer>
+
+</body>
+</html>
