@@ -6,605 +6,646 @@
 <title>Morning Edition — 15 April 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 18px; }
-body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #0a0a0a; line-height: 1.7; }
-h1, h2, h3, .kicker { font-family: 'Fraunces', Georgia, serif; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.65; background: #0a0a0a; color: #f0f0f0; overflow-x: hidden; }
+  
+  a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { opacity: 0.75; }
 
-/* COVER */
-.cover {
-  min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-  background: linear-gradient(160deg, #0a0a0a 0%, #1a0a0a 30%, #2a0f0f 60%, #0a0a0a 100%);
-  text-align: center; padding: 2rem; position: relative; overflow: hidden;
-}
-.cover::before {
-  content: ''; position: absolute; top: 50%; left: 50%; width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(180,40,40,0.08) 0%, transparent 70%);
-  transform: translate(-50%, -50%); pointer-events: none;
-}
-.cover h1 {
-  font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; color: #fff;
-  letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 0.3em;
-}
-.cover .date {
-  font-size: 1.3rem; color: rgba(255,255,255,0.5); font-weight: 400;
-  letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5em;
-}
-.cover .tagline {
-  font-size: 1.1rem; color: rgba(255,255,255,0.35); max-width: 500px;
-  font-style: italic; font-family: 'Fraunces', Georgia, serif;
-}
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0a0a0a 0%, #1a0a1a 40%, #0a0a2a 70%, #1a0510 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden;
+  }
+  .cover::before {
+    content: 'ME';
+    position: absolute; font-family: 'Fraunces', serif; font-size: clamp(20rem, 40vw, 50rem);
+    font-weight: 900; color: rgba(255,255,255,0.02); top: 50%; left: 50%;
+    transform: translate(-50%, -50%); line-height: 1; pointer-events: none; user-select: none;
+  }
+  .cover-eyebrow { font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; }
+  .cover-title { font-family: 'Fraunces', serif; font-size: clamp(3.5rem, 12vw, 9rem); font-weight: 900; line-height: 0.95; color: #fff; margin-bottom: 0.5rem; }
+  .cover-subtitle { font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 300; color: rgba(255,255,255,0.6); margin-bottom: 3rem; }
+  .cover-date { font-size: 1rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+  .cover-divider { width: 80px; height: 1px; background: rgba(255,255,255,0.2); margin: 2rem auto; }
+  .cover-tagline { font-size: 1.1rem; color: rgba(255,255,255,0.5); max-width: 500px; font-style: italic; }
+  .cover-scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
-/* TABLE OF CONTENTS */
-.toc {
-  min-height: 100vh; background: #fafaf8; padding: 4rem 2rem; display: flex;
-  flex-direction: column; justify-content: center; align-items: center;
-}
-.toc h2 {
-  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 2rem;
-  color: #1a1a1a; letter-spacing: -0.02em;
-}
-.toc-list { list-style: none; max-width: 700px; width: 100%; }
-.toc-item {
-  padding: 1rem 0; border-bottom: 1px solid #e0e0e0; display: flex;
-  align-items: baseline; gap: 1rem;
-}
-.toc-item:last-child { border-bottom: none; }
-.toc-num { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.1rem; color: #999; min-width: 2rem; }
-.toc-title { font-size: 1.1rem; font-weight: 600; color: #1a1a1a; flex: 1; }
-.toc-title a { color: inherit; text-decoration: none; }
-.toc-title a:hover { color: #b42828; }
-.toc-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.tag {
-  font-size: 0.65rem; padding: 0.2em 0.6em; border-radius: 3px;
-  font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
-  background: #e8e8e8; color: #666;
-}
-.tag--alert { background: #b42828; color: #fff; }
+  /* TOC */
+  .toc {
+    min-height: 100vh; background: #0f0f0f;
+    padding: 5rem 2rem; display: flex; flex-direction: column; justify-content: center;
+  }
+  .toc-inner { max-width: 900px; margin: 0 auto; width: 100%; }
+  .toc-label { font-size: 0.8rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.5rem; }
+  .toc-heading { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; color: #fff; margin-bottom: 3rem; line-height: 1.1; }
+  .toc-item { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 900; color: rgba(255,255,255,0.15); min-width: 2.5rem; line-height: 1.2; }
+  .toc-content { flex: 1; }
+  .toc-story-title { font-family: 'Fraunces', serif; font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 0.4rem; }
+  .toc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+  .tag { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2em 0.7em; border-radius: 100px; font-weight: 600; }
+  .tag-cat { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+  .tag-applies { background: #c0392b; color: #fff; }
 
-/* SPREAD BASE */
-.spread {
-  min-height: 100vh; padding: 4rem 2rem; display: flex; flex-direction: column;
-  justify-content: center; position: relative; overflow: hidden;
-}
-.spread-inner { max-width: 800px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
-.watermark {
-  position: absolute; font-family: 'Fraunces', serif; font-weight: 900;
-  font-size: clamp(15rem, 30vw, 30rem); line-height: 1; opacity: 0.04;
-  pointer-events: none; z-index: 1; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-}
-.kicker {
-  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
-  text-transform: uppercase; margin-bottom: 0.8rem; display: inline-block;
-}
-.spread h2 {
-  font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900;
-  line-height: 1.08; margin-bottom: 1.2rem; letter-spacing: -0.02em;
-}
-.lede { font-size: 1.25rem; line-height: 1.6; margin-bottom: 1.8rem; font-weight: 400; }
-.body-text { font-size: 1rem; line-height: 1.8; }
-.body-text p { margin-bottom: 1.2rem; }
-.body-text em { font-style: italic; }
+  /* SHARED SPREAD STYLES */
+  .spread {
+    min-height: 100vh; position: relative; overflow: hidden;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .spread-watermark {
+    position: absolute; font-family: 'Fraunces', serif; font-weight: 900;
+    font-size: clamp(18rem, 35vw, 40rem); line-height: 1; pointer-events: none; user-select: none;
+    right: -0.1em; top: 50%; transform: translateY(-50%);
+  }
+  .spread-inner { position: relative; z-index: 2; max-width: 800px; }
+  .kicker { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; margin-bottom: 1rem; }
+  .spread-headline { font-family: 'Fraunces', serif; font-weight: 900; line-height: 1.0; margin-bottom: 1.5rem; }
+  .spread-lede { font-size: 1.25rem; line-height: 1.6; margin-bottom: 2rem; font-weight: 400; max-width: 680px; }
+  .spread-body { font-size: 1.05rem; line-height: 1.75; max-width: 680px; }
+  .spread-body p { margin-bottom: 1.2rem; }
+  .applies-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: #c0392b; color: #fff; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4em 1em; border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  .action-box { border: 2px solid #c0392b; padding: 1.5rem; margin-top: 2rem; border-radius: 4px; max-width: 680px; }
+  .action-box-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #c0392b; font-weight: 700; margin-bottom: 0.75rem; }
+  .action-box p { font-size: 1rem; line-height: 1.65; margin: 0; }
+  .meta-bar { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.85rem; }
+  .meta-score { font-weight: 700; }
+  .meta-links { display: flex; gap: 1rem; margin-left: auto; }
+  .meta-link { padding: 0.3em 1em; border: 1px solid currentColor; border-radius: 100px; font-size: 0.8rem; font-weight: 600; text-decoration: none; letter-spacing: 0.05em; }
+  .meta-link:hover { opacity: 0.7; }
 
-/* FLAG BADGE */
-.flag-badge {
-  background: #b42828; color: #fff; padding: 0.8rem 1.2rem; border-radius: 6px;
-  margin: 2rem 0; display: flex; align-items: flex-start; gap: 0.8rem;
-}
-.flag-badge .flag-icon {
-  font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem;
-}
-.flag-badge .flag-content { font-size: 0.95rem; line-height: 1.6; }
-.flag-badge strong { display: block; margin-bottom: 0.3rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  /* SPREAD 1: HERO — dark red/black */
+  .spread-hero { background: linear-gradient(145deg, #0d0000 0%, #1a0000 40%, #0a0505 100%); color: #f5d5c0; }
+  .spread-hero .spread-watermark { color: rgba(180,20,0,0.08); }
+  .spread-hero .kicker { color: #e8553a; }
+  .spread-hero .spread-headline { font-size: clamp(2.8rem, 7vw, 5.5rem); color: #fff; }
+  .spread-hero .spread-lede { color: rgba(245,213,192,0.85); }
+  .spread-hero .spread-body { color: rgba(245,213,192,0.7); }
+  .spread-hero .meta-bar { border-color: rgba(232,85,58,0.3); color: rgba(245,213,192,0.5); }
+  .spread-hero .meta-link { color: #e8553a; border-color: #e8553a; }
+  .spread-hero .tag-cat { background: rgba(232,85,58,0.15); color: #e8553a; }
 
-/* META BAR */
-.meta-bar {
-  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(128,128,128,0.2);
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; font-size: 0.8rem;
-}
-.meta-bar .pill {
-  padding: 0.25em 0.7em; border-radius: 20px; font-weight: 600;
-  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;
-}
-.meta-bar .score { color: rgba(128,128,128,0.7); font-weight: 600; }
-.meta-bar a { text-decoration: none; font-weight: 600; }
-.meta-bar .sep { color: rgba(128,128,128,0.3); }
+  /* SPREAD 2: MIDNIGHT — deep navy */
+  .spread-midnight { background: linear-gradient(160deg, #03080f 0%, #060e1c 50%, #020810 100%); color: #a8c8e8; }
+  .spread-midnight .spread-watermark { color: rgba(40,80,150,0.07); }
+  .spread-midnight .kicker { color: #4a9eda; }
+  .spread-midnight .spread-headline { font-size: clamp(2.5rem, 6vw, 5rem); color: #e0f0ff; }
+  .spread-midnight .spread-lede { color: rgba(168,200,232,0.9); }
+  .spread-midnight .spread-body { color: rgba(168,200,232,0.65); }
+  .spread-midnight .meta-bar { border-color: rgba(74,158,218,0.25); color: rgba(168,200,232,0.5); }
+  .spread-midnight .meta-link { color: #4a9eda; border-color: #4a9eda; }
 
-/* HERO - dark red/black */
-.spread--hero { background: linear-gradient(170deg, #1a0505 0%, #0a0a0a 50%, #1a0808 100%); color: #f0e8e8; }
-.spread--hero .watermark { color: #b42828; }
-.spread--hero .kicker { color: #e05050; }
-.spread--hero h2 { color: #fff; }
-.spread--hero .lede { color: rgba(255,255,255,0.75); }
-.spread--hero .body-text { color: rgba(255,255,255,0.65); }
-.spread--hero .meta-bar { border-color: rgba(255,255,255,0.1); }
-.spread--hero .pill { background: rgba(180,40,40,0.3); color: #e88; }
-.spread--hero .meta-bar a { color: #e88; }
+  /* SPREAD 3: ROSE ALERT — pink/white with red stamp */
+  .spread-rose { background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%); color: #2a0a0a; border-left: 8px solid #c0392b; }
+  .spread-rose .spread-watermark { color: rgba(192,57,43,0.05); }
+  .spread-rose .kicker { color: #c0392b; }
+  .spread-rose .spread-headline { font-size: clamp(2.5rem, 6vw, 5rem); color: #1a0505; }
+  .spread-rose .spread-lede { color: rgba(42,10,10,0.8); }
+  .spread-rose .spread-body { color: rgba(42,10,10,0.65); }
+  .spread-rose .meta-bar { border-color: rgba(192,57,43,0.2); color: rgba(42,10,10,0.4); }
+  .spread-rose .meta-link { color: #c0392b; border-color: #c0392b; }
+  .spread-rose .action-box { border-color: #c0392b; background: rgba(192,57,43,0.07); }
+  .spread-rose .action-box p { color: #2a0a0a; }
+  .spread-rose .alert-stamp {
+    display: inline-block; border: 3px solid #c0392b; color: #c0392b; font-weight: 900;
+    font-size: 1.2rem; letter-spacing: 0.3em; padding: 0.3em 0.8em; transform: rotate(-3deg);
+    margin-bottom: 1rem; text-transform: uppercase;
+  }
+  .spread-rose .applies-badge { background: #c0392b; }
+  .spread-rose .tag-applies { background: #c0392b; }
+  .spread-rose .tag-cat { background: rgba(192,57,43,0.1); color: #c0392b; }
 
-/* MIDNIGHT - deep navy */
-.spread--midnight { background: linear-gradient(170deg, #050a1a 0%, #0a0f2a 50%, #080c1a 100%); color: #d8dce8; }
-.spread--midnight .watermark { color: #2244aa; }
-.spread--midnight .kicker { color: #6688dd; }
-.spread--midnight h2 { color: #e0e4f0; }
-.spread--midnight .lede { color: rgba(200,210,240,0.75); }
-.spread--midnight .body-text { color: rgba(200,210,240,0.65); }
-.spread--midnight .meta-bar { border-color: rgba(100,130,200,0.15); }
-.spread--midnight .pill { background: rgba(40,60,140,0.3); color: #88aaee; }
-.spread--midnight .meta-bar a { color: #88aaee; }
+  /* SPREAD 4: TERMINAL — green on black */
+  .spread-terminal { background: #050f05; color: #00e040; font-family: 'Courier New', monospace; }
+  .spread-terminal .spread-watermark { color: rgba(0,180,40,0.04); }
+  .spread-terminal .kicker { color: #00c030; font-family: 'Courier New', monospace; }
+  .spread-terminal .spread-headline { font-size: clamp(2.2rem, 5.5vw, 4.5rem); color: #00ff50; font-family: 'Courier New', monospace; font-weight: 700; }
+  .spread-terminal .spread-lede { color: rgba(0,220,60,0.85); font-family: 'Courier New', monospace; }
+  .spread-terminal .spread-body { color: rgba(0,200,50,0.65); font-family: 'Courier New', monospace; }
+  .spread-terminal .meta-bar { border-color: rgba(0,180,40,0.3); color: rgba(0,200,50,0.4); }
+  .spread-terminal .meta-link { color: #00c030; border-color: #00c030; font-family: 'Courier New', monospace; }
+  .spread-terminal .action-box { border-color: #00c030; }
+  .spread-terminal .action-box-label { color: #00ff50; }
+  .spread-terminal .action-box p { color: rgba(0,220,60,0.8); font-family: 'Courier New', monospace; font-size: 0.95rem; }
+  .spread-terminal .applies-badge { background: #004010; border: 1px solid #00c030; color: #00ff50; }
+  .spread-terminal .tag-cat { background: rgba(0,200,50,0.1); color: #00c030; }
 
-/* ROSE ALERT - pink/white with red */
-.spread--rose_alert { background: #fff5f5; color: #2a1a1a; border-left: 6px solid #b42828; }
-.spread--rose_alert .watermark { color: #b42828; opacity: 0.05; }
-.spread--rose_alert .kicker { color: #b42828; }
-.spread--rose_alert h2 { color: #1a0a0a; }
-.spread--rose_alert .lede { color: #4a2a2a; }
-.spread--rose_alert .body-text { color: #3a2020; }
-.spread--rose_alert .pill { background: rgba(180,40,40,0.1); color: #b42828; }
-.spread--rose_alert .meta-bar a { color: #b42828; }
-.alert-stamp {
-  position: absolute; top: 3rem; right: 3rem; font-family: 'Fraunces', serif;
-  font-size: 2.5rem; font-weight: 900; color: rgba(180,40,40,0.12);
-  transform: rotate(12deg); letter-spacing: 0.1em; z-index: 1;
-}
+  /* SPREAD 5: ACADEMIC — cream, drop-cap, two-column */
+  .spread-academic { background: #f8f5e8; color: #2a2416; }
+  .spread-academic .spread-watermark { color: rgba(60,50,20,0.05); }
+  .spread-academic .kicker { color: #8a6c30; }
+  .spread-academic .spread-headline { font-size: clamp(2.2rem, 5.5vw, 4.5rem); color: #1a1408; }
+  .spread-academic .spread-lede { color: #3a3020; }
+  .spread-academic .spread-body { color: #4a4030; }
+  .spread-academic .meta-bar { border-color: rgba(60,50,20,0.2); color: rgba(42,36,22,0.45); }
+  .spread-academic .meta-link { color: #8a6c30; border-color: #8a6c30; }
+  .spread-academic .tag-cat { background: rgba(138,108,48,0.12); color: #8a6c30; }
+  .spread-academic-cols { columns: 2; column-gap: 3rem; }
+  .spread-academic-cols::first-letter { float: left; font-family: 'Fraunces', serif; font-size: 4.5rem; font-weight: 900; line-height: 0.8; margin: 0.15em 0.1em 0 0; color: #8a6c30; }
+  @media (max-width: 700px) { .spread-academic-cols { columns: 1; } }
 
-/* TERMINAL - green on black */
-.spread--terminal { background: #0a0a0a; color: #33ff33; font-family: 'Courier New', monospace; }
-.spread--terminal .watermark { color: #33ff33; }
-.spread--terminal .kicker { color: #33ff33; font-family: 'Courier New', monospace; }
-.spread--terminal h2 { color: #33ff33; font-family: 'Courier New', monospace; font-size: clamp(1.8rem, 4vw, 3rem); }
-.spread--terminal .lede { color: rgba(51,255,51,0.7); font-family: 'Courier New', monospace; font-size: 1.1rem; }
-.spread--terminal .body-text { color: rgba(51,255,51,0.6); font-family: 'Courier New', monospace; font-size: 0.95rem; }
-.spread--terminal .pill { background: rgba(51,255,51,0.15); color: #33ff33; }
-.spread--terminal .meta-bar { border-color: rgba(51,255,51,0.15); }
-.spread--terminal .meta-bar a { color: #33ff33; }
-.spread--terminal .flag-badge { background: #1a3a1a; color: #33ff33; }
-.spread--terminal .flag-badge strong { color: #66ff66; }
+  /* SPREAD 6: GRADIENT — purple/blue */
+  .spread-gradient { background: linear-gradient(145deg, #0d0020 0%, #0a0535 40%, #060028 70%, #150040 100%); color: #c8b0f0; }
+  .spread-gradient .spread-watermark { color: rgba(120,60,220,0.07); }
+  .spread-gradient .kicker { color: #9060e0; }
+  .spread-gradient .spread-headline {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    background: linear-gradient(120deg, #b080ff 0%, #80c0ff 60%, #c0a0ff 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .spread-gradient .spread-lede { color: rgba(200,176,240,0.9); }
+  .spread-gradient .spread-body { color: rgba(200,176,240,0.65); }
+  .spread-gradient .meta-bar { border-color: rgba(144,96,224,0.25); color: rgba(200,176,240,0.4); }
+  .spread-gradient .meta-link { color: #9060e0; border-color: #9060e0; }
+  .spread-gradient .action-box { border-color: #9060e0; }
+  .spread-gradient .action-box-label { color: #b080ff; }
+  .spread-gradient .action-box p { color: rgba(200,176,240,0.8); }
+  .spread-gradient .applies-badge { background: #9060e0; }
+  .spread-gradient .tag-cat { background: rgba(144,96,224,0.15); color: #9060e0; }
 
-/* ACADEMIC - cream, drop cap */
-.spread--academic { background: #f8f4ec; color: #2a2520; }
-.spread--academic .watermark { color: #8b7355; opacity: 0.06; }
-.spread--academic .kicker { color: #8b7355; }
-.spread--academic h2 { color: #2a1f15; }
-.spread--academic .lede { color: #5a4a3a; }
-.spread--academic .body-text { color: #3a3025; column-count: 2; column-gap: 2.5rem; }
-.spread--academic .body-text p:first-child::first-letter {
-  font-family: 'Fraunces', serif; font-size: 4rem; font-weight: 900;
-  float: left; line-height: 0.8; margin-right: 0.1em; margin-top: 0.1em; color: #8b7355;
-}
-.spread--academic .pill { background: rgba(139,115,85,0.15); color: #8b7355; }
-.spread--academic .meta-bar a { color: #8b7355; }
+  /* SPREAD 7: NEWSPAPER — black/white two-column */
+  .spread-newspaper { background: #f5f0e8; color: #1a1a1a; border-top: 6px solid #1a1a1a; }
+  .spread-newspaper .spread-watermark { color: rgba(20,20,20,0.04); }
+  .spread-newspaper .kicker { color: #1a1a1a; border-bottom: 2px solid #1a1a1a; padding-bottom: 0.3rem; display: inline-block; }
+  .spread-newspaper .spread-headline { font-size: clamp(2.2rem, 5.5vw, 4.5rem); color: #0a0a0a; border-top: 2px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 0.5rem 0; margin-bottom: 1.5rem; }
+  .spread-newspaper .spread-lede { color: #1a1a1a; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.2); padding-bottom: 1rem; }
+  .spread-newspaper .spread-body { color: #333; }
+  .spread-newspaper .meta-bar { border-color: rgba(0,0,0,0.2); color: rgba(0,0,0,0.5); }
+  .spread-newspaper .meta-link { color: #1a1a1a; border-color: #1a1a1a; }
+  .spread-newspaper .tag-cat { background: rgba(0,0,0,0.08); color: #1a1a1a; }
+  .spread-newspaper .action-box { border-color: #1a1a1a; }
+  .spread-newspaper-cols { columns: 2; column-gap: 3rem; }
+  @media (max-width: 700px) { .spread-newspaper-cols { columns: 1; } }
 
-/* GRADIENT - purple/blue */
-.spread--gradient { background: linear-gradient(135deg, #1a0a3a 0%, #0a1a4a 50%, #2a0a5a 100%); color: #e0d8f0; }
-.spread--gradient .watermark { color: #8844ee; }
-.spread--gradient .kicker { color: #aa88ff; }
-.spread--gradient h2 { color: #fff; }
-.spread--gradient .lede { color: rgba(220,210,245,0.75); }
-.spread--gradient .body-text { color: rgba(220,210,245,0.65); }
-.spread--gradient .pill { background: rgba(136,68,238,0.25); color: #bb99ff; }
-.spread--gradient .meta-bar { border-color: rgba(136,68,238,0.2); }
-.spread--gradient .meta-bar a { color: #bb99ff; }
+  /* SPREAD 8: CLEAN — minimal white */
+  .spread-clean { background: #ffffff; color: #1a1a2e; }
+  .spread-clean .spread-watermark { color: rgba(26,26,46,0.03); }
+  .spread-clean .kicker { color: #5050a0; }
+  .spread-clean .spread-headline {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    background: linear-gradient(135deg, #1a1a4e 0%, #5050c0 50%, #2a2a6e 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .spread-clean .spread-lede { color: rgba(26,26,46,0.75); }
+  .spread-clean .spread-body { color: rgba(26,26,46,0.6); }
+  .spread-clean .meta-bar { border-color: rgba(26,26,46,0.12); color: rgba(26,26,46,0.4); }
+  .spread-clean .meta-link { color: #5050a0; border-color: #5050a0; }
+  .spread-clean .tag-cat { background: rgba(80,80,160,0.08); color: #5050a0; }
 
-/* NEWSPAPER - black/white, double borders */
-.spread--newspaper { background: #ffffff; color: #1a1a1a; border-top: 4px double #1a1a1a; border-bottom: 4px double #1a1a1a; }
-.spread--newspaper .watermark { color: #1a1a1a; opacity: 0.03; }
-.spread--newspaper .kicker { color: #666; }
-.spread--newspaper h2 { color: #0a0a0a; border-bottom: 2px solid #1a1a1a; padding-bottom: 0.5rem; }
-.spread--newspaper .lede { color: #333; font-style: italic; }
-.spread--newspaper .body-text { color: #2a2a2a; column-count: 2; column-gap: 2.5rem; }
-.spread--newspaper .pill { background: #1a1a1a; color: #fff; }
-.spread--newspaper .meta-bar a { color: #1a1a1a; }
+  /* SPREAD 9: EDITORIAL — warm amber */
+  .spread-editorial { background: linear-gradient(150deg, #1a1000 0%, #2a1800 50%, #1a0c00 100%); color: #e8c870; }
+  .spread-editorial .spread-watermark { color: rgba(200,140,20,0.06); }
+  .spread-editorial .kicker { color: #c89030; }
+  .spread-editorial .spread-headline { font-size: clamp(2.5rem, 6.5vw, 5.5rem); color: #f5e0a0; }
+  .spread-editorial .spread-lede { color: rgba(232,200,112,0.9); }
+  .spread-editorial .spread-body { color: rgba(232,200,112,0.65); }
+  .spread-editorial .meta-bar { border-color: rgba(200,140,30,0.25); color: rgba(232,200,112,0.4); }
+  .spread-editorial .meta-link { color: #c89030; border-color: #c89030; }
+  .spread-editorial .action-box { border-color: #c89030; }
+  .spread-editorial .action-box-label { color: #e8b840; }
+  .spread-editorial .action-box p { color: rgba(232,200,112,0.8); }
+  .spread-editorial .applies-badge { background: #c0392b; }
+  .spread-editorial .tag-cat { background: rgba(200,140,30,0.12); color: #c89030; }
 
-/* CLEAN - minimal white, gradient text */
-.spread--clean { background: #ffffff; color: #333; }
-.spread--clean .watermark { color: #0066ff; opacity: 0.04; }
-.spread--clean .kicker { color: #0066ff; }
-.spread--clean h2 { background: linear-gradient(135deg, #0066ff, #00ccaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.spread--clean .lede { color: #555; }
-.spread--clean .body-text { color: #444; }
-.spread--clean .pill { background: rgba(0,102,255,0.1); color: #0066ff; }
-.spread--clean .meta-bar a { color: #0066ff; }
+  /* SPREAD 10: MEMORIAL — dark muted */
+  .spread-memorial { background: linear-gradient(155deg, #0a0a0a 0%, #141014 50%, #0e0c0e 100%); color: #a09890; }
+  .spread-memorial .spread-watermark { color: rgba(100,90,80,0.05); }
+  .spread-memorial .kicker { color: #807870; }
+  .spread-memorial .spread-headline { font-size: clamp(2.5rem, 6.5vw, 5rem); color: #d0c8c0; }
+  .spread-memorial .spread-lede { color: rgba(160,152,144,0.9); }
+  .spread-memorial .spread-body { color: rgba(160,152,144,0.6); }
+  .spread-memorial .meta-bar { border-color: rgba(120,110,100,0.2); color: rgba(160,152,144,0.35); }
+  .spread-memorial .meta-link { color: #807870; border-color: #807870; }
+  .spread-memorial .tag-cat { background: rgba(120,110,100,0.1); color: #807870; }
 
-/* EDITORIAL - warm amber */
-.spread--editorial { background: linear-gradient(170deg, #2a1a08 0%, #1a1208 50%, #2a1808 100%); color: #e8d8c0; }
-.spread--editorial .watermark { color: #cc8833; }
-.spread--editorial .kicker { color: #eebb55; }
-.spread--editorial h2 { color: #fff0d8; }
-.spread--editorial .lede { color: rgba(240,220,180,0.75); }
-.spread--editorial .body-text { color: rgba(240,220,180,0.65); }
-.spread--editorial .pill { background: rgba(204,136,51,0.25); color: #eebb55; }
-.spread--editorial .meta-bar { border-color: rgba(204,136,51,0.2); }
-.spread--editorial .meta-bar a { color: #eebb55; }
-
-/* MEMORIAL - dark muted */
-.spread--memorial { background: linear-gradient(170deg, #1a1a1a 0%, #141418 50%, #18181c 100%); color: #a0a0a8; }
-.spread--memorial .watermark { color: #555; }
-.spread--memorial .kicker { color: #888; }
-.spread--memorial h2 { color: #c8c8d0; }
-.spread--memorial .lede { color: rgba(180,180,190,0.75); }
-.spread--memorial .body-text { color: rgba(160,160,170,0.65); }
-.spread--memorial .pill { background: rgba(128,128,140,0.2); color: #999; }
-.spread--memorial .meta-bar { border-color: rgba(128,128,140,0.15); }
-.spread--memorial .meta-bar a { color: #aaa; }
-.spread--memorial .flag-badge { background: rgba(180,40,40,0.2); }
-
-/* FOOTER */
-.footer {
-  padding: 3rem 2rem; text-align: center; background: #0a0a0a; color: rgba(255,255,255,0.3);
-  font-size: 0.85rem; line-height: 1.8;
-}
-.footer a { color: rgba(255,255,255,0.5); }
-
-@media (max-width: 700px) {
-  .spread--academic .body-text, .spread--newspaper .body-text { column-count: 1; }
-  .alert-stamp { font-size: 1.5rem; top: 1.5rem; right: 1.5rem; }
-}
+  /* FOOTER */
+  .footer { background: #050505; padding: 4rem 2rem; text-align: center; color: rgba(255,255,255,0.25); font-size: 0.85rem; line-height: 1.8; }
+  .footer strong { color: rgba(255,255,255,0.4); }
+  
+  @media (max-width: 600px) {
+    .spread { padding: 2.5rem 1.25rem; }
+    .meta-links { margin-left: 0; }
+  }
 </style>
 </head>
 <body>
 
 <!-- COVER -->
 <section class="cover">
-  <h1>Morning Edition</h1>
-  <div class="date">15 April 2026</div>
-  <div class="tagline">A curated briefing for security leaders, built from the Hacker News front page.</div>
+  <div class="cover-eyebrow">Hacker News · Curated for Euan McGregor</div>
+  <div class="cover-title">Morning<br>Edition</div>
+  <div class="cover-divider"></div>
+  <div class="cover-subtitle">Today's 10 stories worth reading</div>
+  <div class="cover-date">Wednesday, 15 April 2026</div>
+  <div class="cover-scroll">Scroll to read ↓</div>
 </section>
 
 <!-- TABLE OF CONTENTS -->
 <section class="toc">
-  <h2>Today's Stories</h2>
-  <ol class="toc-list">
-    <li class="toc-item">
-      <span class="toc-num">01</span>
-      <span class="toc-title"><a href="#story-01">Stop Flock: The Fight Against AI-Powered Mass Surveillance</a></span>
-      <span class="toc-tags"><span class="tag">Surveillance</span><span class="tag">Privacy</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">02</span>
-      <span class="toc-title"><a href="#story-02">US Proposes OS-Level Age Verification Nationwide</a></span>
-      <span class="toc-tags"><span class="tag">Privacy</span><span class="tag">Legislation</span><span class="tag tag--alert">Applies to you</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">03</span>
-      <span class="toc-title"><a href="#story-03">US Court Rules AI Chats Have No Attorney-Client Privilege</a></span>
-      <span class="toc-tags"><span class="tag">Data Protection</span><span class="tag">Legal</span><span class="tag tag--alert">Applies to you</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">04</span>
-      <span class="toc-title"><a href="#story-04">Claude Code Routines: Automating Multi-Step AI Workflows</a></span>
-      <span class="toc-tags"><span class="tag">AI Tools</span><span class="tag">Claude</span><span class="tag tag--alert">Applies to you</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">05</span>
-      <span class="toc-title"><a href="#story-05">Dependency Cooldowns Turn You Into a Free-Rider</a></span>
-      <span class="toc-tags"><span class="tag">Supply Chain</span><span class="tag">Security</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">06</span>
-      <span class="toc-title"><a href="#story-06">Google Chrome Skills: Turn Your Best AI Prompts Into One-Click Tools</a></span>
-      <span class="toc-tags"><span class="tag">AI Tools</span><span class="tag">Google</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">07</span>
-      <span class="toc-title"><a href="#story-07">Pseudonymising Sensitive Data for LLMs Without Losing Context</a></span>
-      <span class="toc-tags"><span class="tag">Data Protection</span><span class="tag">AI Security</span><span class="tag tag--alert">Applies to you</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">08</span>
-      <span class="toc-title"><a href="#story-08">Google Gemma 4 Runs Natively on iPhone With Full Offline Inference</a></span>
-      <span class="toc-tags"><span class="tag">AI Models</span><span class="tag">Privacy</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">09</span>
-      <span class="toc-title"><a href="#story-09">The Dangers of California's Legislation to Censor 3D Printing</a></span>
-      <span class="toc-tags"><span class="tag">Policy</span><span class="tag">Civil Liberties</span></span>
-    </li>
-    <li class="toc-item">
-      <span class="toc-num">10</span>
-      <span class="toc-title"><a href="#story-10">What Claude Code's Source Revealed About AI Engineering Culture</a></span>
-      <span class="toc-tags"><span class="tag">AI Engineering</span><span class="tag">Claude</span><span class="tag tag--alert">Applies to you</span></span>
-    </li>
-  </ol>
-</section>
-
-<section class="spread spread--hero" id="story-01">
-  
-  <div class="watermark">01</div>
-  <div class="spread-inner">
-    <div class="kicker">SURVEILLANCE</div>
-    <h2>Stop Flock: The Fight Against AI-Powered Mass Surveillance</h2>
-    <div class="lede">A grassroots campaign is pushing back against Flock Safety's network of over 100,000 AI cameras that track vehicles across the United States — building detailed profiles of everyone's movements without a warrant.</div>
-    <div class="body-text">
-      <p>Flock Safety markets its devices as "precision policing technology" but the reality goes far beyond license plates. The system creates a "Vehicle Fingerprint" — identifying cars by colour, make, model, roof racks, dents and even bumper sticker placement. Its "Convoy Analysis" feature detects vehicles that frequently appear near each other, mapping associations between drivers.</p>
-<p>The data is logged and searchable across a nationwide law enforcement network — accessible without a warrant. A journalist who drove 300 miles across rural Virginia discovered he'd been captured by nearly 50 cameras operated by 15 different agencies. Police could reconstruct his patterns better than he could remember them himself.</p>
-<p>The system has already been abused: a Kansas police chief used Flock cameras 228 times to stalk an ex-girlfriend. In Oak Park, Illinois, 84% of drivers stopped using Flock alerts were Black — despite the town being only 21% Black. A trial court found the network functioned as a "dragnet over the entire city," equivalent to placing GPS trackers on every vehicle.</p>
-<p>The stopflock.com campaign argues that real public safety comes from investing in communities, not surveilling them. The site documents how these systems are expanding rapidly with little public debate, often installed by HOAs on public roads without residents' knowledge.</p>
-    </div>
-    
-    <div class="meta-bar">
-      <span class="pill">Surveillance</span><span class="pill">Privacy</span><span class="pill">Civil Liberties</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 853</span>
-      <span class="sep">|</span>
-      <a href="https://stopflock.com" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47772012" target="_blank">HN Discussion</a>
-    </div>
-  </div>
-</section>
-
-<section class="spread spread--midnight" id="story-02">
-  
-  <div class="watermark">02</div>
-  <div class="spread-inner">
-    <div class="kicker">PRIVACY LEGISLATION</div>
-    <h2>US Proposes OS-Level Age Verification Nationwide</h2>
-    <div class="lede">A new US bill would mandate operating system-level age verification — pushing surveillance infrastructure directly into the devices of every user, with far-reaching implications for privacy worldwide.</div>
-    <div class="body-text">
-      <p>The proposed legislation would require operating systems to implement age verification at the system level, fundamentally changing how devices interact with their users. Rather than website-by-website checks, this approach bakes identity verification into the OS itself — creating a persistent authentication layer that knows who is using the device at all times.</p>
-<p>Privacy advocates are raising alarms. OS-level verification means a single point of failure for identity data, creating an extraordinarily attractive target for attackers. It also establishes infrastructure that could easily be repurposed for broader surveillance or content restriction beyond its stated child-safety goals.</p>
-<p>The international precedent matters enormously. When the US mandates a technical architecture, device manufacturers implement it globally. The UK's Online Safety Act already pushes in this direction, and EU regulators are watching closely. What starts as age verification could become the scaffolding for general-purpose digital identity requirements.</p>
-<p>The technical community on Hacker News noted the parallels with the UK's attempts at age verification for adult content — which were eventually abandoned after years of failed implementation. The fundamental tension remains: you cannot verify age without identifying people, and you cannot identify people without surveilling them.</p>
-    </div>
-    <div class="flag-badge">
-        <span class="flag-icon">&#9888;</span>
-        <div class="flag-content">
-          <strong>Directly applies to you</strong>
-          UK/EU regulatory precedent — the Online Safety Act is already pushing similar measures. Monitor for GDPR implications and prepare your organisation's position on device-level identity verification.
+  <div class="toc-inner">
+    <div class="toc-label">Contents</div>
+    <div class="toc-heading">Today's Edition</div>
+    <div class="toc-item">
+      <div class="toc-num">01</div>
+      <div class="toc-content">
+        <div class="toc-story-title">Stop Flock</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">Surveillance / Civil Liberties</span>
+          <span class="tag tag-applies">Directly applies to you</span>
         </div>
       </div>
-    <div class="meta-bar">
-      <span class="pill">Privacy</span><span class="pill">Legislation</span><span class="pill">Age Verification</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 78</span>
-      <span class="sep">|</span>
-      <a href="https://social.coop/@cwebber/116408556882122186" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47778366" target="_blank">HN Discussion</a>
     </div>
-  </div>
-</section>
-
-<section class="spread spread--rose_alert" id="story-03">
-  <div class="alert-stamp">ALERT</div>
-  <div class="watermark">03</div>
-  <div class="spread-inner">
-    <div class="kicker">DATA PROTECTION</div>
-    <h2>US Court Rules AI Chats Have No Attorney-Client Privilege</h2>
-    <div class="lede">A federal judge has ruled that conversations with AI chatbots are not protected by attorney-client privilege — meaning anything you type into ChatGPT, Claude or other AI tools could be compelled as evidence in legal proceedings.</div>
-    <div class="body-text">
-      <p>In <em>US v. Heppner</em>, Judge Jed Rakoff of the Southern District of New York ruled that communications with AI systems do not qualify for attorney-client privilege. The reasoning: privilege protects communications with human attorneys made for the purpose of obtaining legal advice. An AI is not an attorney, and the conversation is not confidential — it's processed by a third-party company.</p>
-<p>The ruling has immediate implications for anyone using AI tools to explore legal questions, draft contracts, or seek guidance on compliance matters. Reuters reports that US lawyers are now actively warning clients: your AI chats could be used against you in litigation or regulatory proceedings.</p>
-<p>This dovetails with a separate ruling allowing courts to order AI companies to preserve all user conversations indefinitely. The combination creates a new attack surface: adversaries in litigation can potentially subpoena your AI conversation history, which may contain sensitive strategic thinking, half-formed legal theories, or candid assessments you'd never put in a formal document.</p>
-<p>For organisations using AI tools in any capacity touching legal, compliance, or strategic decision-making, this ruling demands an immediate review of AI usage policies and data handling procedures.</p>
-    </div>
-    <div class="flag-badge">
-        <span class="flag-icon">&#9888;</span>
-        <div class="flag-content">
-          <strong>Directly applies to you</strong>
-          Immediate policy review needed. Audit how your organisation uses AI tools for anything touching legal, compliance, or strategic matters. Update acceptable use policies. Consider whether AI tool conversations could create discoverable records that expose the organisation.
+    <div class="toc-item">
+      <div class="toc-num">02</div>
+      <div class="toc-content">
+        <div class="toc-story-title">I Wrote to Flock's Privacy Contact to Opt Out of Their Domestic Spying Program</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">Privacy / Consumer Rights</span>
+          <span class="tag tag-applies">Directly applies to you</span>
         </div>
       </div>
-    <div class="meta-bar">
-      <span class="pill">Data Protection</span><span class="pill">Legal</span><span class="pill">AI Policy</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 40</span>
-      <span class="sep">|</span>
-      <a href="https://www.reuters.com/legal/government/ai-ruling-prompts-warnings-us-lawyers-your-chats-could-be-used-against-you-2026-04-15/" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47778308" target="_blank">HN Discussion</a>
     </div>
-  </div>
-</section>
-
-<section class="spread spread--terminal" id="story-04">
-  
-  <div class="watermark">04</div>
-  <div class="spread-inner">
-    <div class="kicker">DEVELOPER TOOLS</div>
-    <h2>Claude Code Routines: Automating Multi-Step AI Workflows</h2>
-    <div class="lede">Anthropic has launched Claude Code Routines — a system for defining repeatable, multi-step workflows that Claude Code executes autonomously, turning complex manual processes into one-command operations.</div>
-    <div class="body-text">
-      <p>Claude Code Routines let developers define structured sequences of actions — fetch data, transform it, make decisions, generate outputs — as reusable templates. Once defined, a routine runs end-to-end with minimal human intervention, handling branching logic and error recovery along the way.</p>
-<p>The feature directly addresses one of the biggest friction points in AI-assisted development: the gap between "Claude can do this if I prompt it right" and "Claude does this reliably every time I need it." Routines bridge that gap by encoding the prompt engineering, tool selection, and decision logic into a portable, shareable format.</p>
-<p>The HN discussion (380+ comments) focused on practical applications: CI/CD pipeline management, automated code review workflows, morning briefing generation, and documentation maintenance. Several commenters noted this moves Claude Code from "smart assistant" territory toward "autonomous agent" — with the attendant questions about oversight and control.</p>
-<p>For teams already building AI-assisted workflows, Routines offer a significant productivity multiplier. The key architectural choice — routines are defined as structured data rather than imperative code — means they're inspectable, version-controllable, and auditable.</p>
-    </div>
-    <div class="flag-badge">
-        <span class="flag-icon">&#9888;</span>
-        <div class="flag-content">
-          <strong>Directly applies to you</strong>
-          You use Claude Code and Cowork daily. Routines could automate several of your recurring workflows (like this morning briefing). Evaluate how Routines fit into your existing automation stack and whether they can replace manual multi-step processes.
+    <div class="toc-item">
+      <div class="toc-num">03</div>
+      <div class="toc-content">
+        <div class="toc-story-title">US National OS-Level Age Verification Bill</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">Privacy / Regulation</span>
+          <span class="tag tag-applies">Directly applies to you</span>
         </div>
       </div>
-    <div class="meta-bar">
-      <span class="pill">AI Tools</span><span class="pill">Claude</span><span class="pill">Automation</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 682</span>
-      <span class="sep">|</span>
-      <a href="https://code.claude.com/docs/en/routines" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47768133" target="_blank">HN Discussion</a>
     </div>
-  </div>
-</section>
-
-<section class="spread spread--academic" id="story-05">
-  
-  <div class="watermark">05</div>
-  <div class="spread-inner">
-    <div class="kicker">SUPPLY CHAIN</div>
-    <h2>Dependency Cooldowns Turn You Into a Free-Rider</h2>
-    <div class="lede">Cal Paterson argues that the common practice of pinning dependencies and delaying updates doesn't reduce risk — it shifts the cost of maintenance onto the open-source maintainers while making your eventual upgrade more painful.</div>
-    <div class="body-text">
-      <p>The essay challenges the widespread "if it ain't broke, don't update it" philosophy that dominates enterprise dependency management. Paterson's core argument: when you delay updating a dependency, you're not eliminating risk — you're accumulating it as technical debt while simultaneously free-riding on the maintainer's ongoing work.</p>
-<p>The security implications are direct. Delayed updates mean delayed security patches. The "cooldown" period — waiting weeks or months before adopting a new version — creates a window where known vulnerabilities exist in your stack. Worse, when you do finally update, the larger version jump means more changes to audit, more potential breaking changes, and more pressure to skip thorough review.</p>
-<p>Paterson advocates for a "stay close to HEAD" strategy: update dependencies frequently in small increments rather than infrequently in large jumps. This approach distributes the integration cost over time, catches breaking changes early, and keeps the security patch gap narrow.</p>
-<p>The HN discussion (108 comments) was divided. Some argued that frequent updates introduce instability; others pointed to the Log4Shell incident as proof that dependency neglect creates catastrophic risk. The truth likely depends on your threat model and testing infrastructure — but the essay makes a compelling case that the default "wait and see" approach is riskier than most organisations acknowledge.</p>
-    </div>
-    
-    <div class="meta-bar">
-      <span class="pill">Supply Chain</span><span class="pill">Security</span><span class="pill">Open Source</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 159</span>
-      <span class="sep">|</span>
-      <a href="https://calpaterson.com/deps.html" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47773812" target="_blank">HN Discussion</a>
-    </div>
-  </div>
-</section>
-
-<section class="spread spread--gradient" id="story-06">
-  
-  <div class="watermark">06</div>
-  <div class="spread-inner">
-    <div class="kicker">AI TOOLS</div>
-    <h2>Google Chrome Skills: Turn Your Best AI Prompts Into One-Click Tools</h2>
-    <div class="lede">Google is shipping 'Skills' in Chrome — letting users save effective AI prompts as reusable one-click tools directly in the browser, blurring the line between AI assistant and personalised automation platform.</div>
-    <div class="body-text">
-      <p>Chrome Skills allows users to take a prompt that works well — say, "summarise this page for a security briefing" or "extract action items from this email thread" — and save it as a named, one-click action in the browser toolbar. The feature builds on Gemini's integration into Chrome, turning ad-hoc AI interactions into a personal library of reusable tools.</p>
-<p>The strategic significance goes beyond convenience. Google is positioning the browser itself as an AI agent platform — one where the user's accumulated Skills become a form of lock-in. Your carefully tuned prompts, your workflow automations, your domain-specific tools: all tied to Chrome and Gemini.</p>
-<p>For the AI tools ecosystem, this represents a shift from "chat with AI" to "build with AI" at the consumer level. The 100+ comments on HN debated whether this makes Chrome more indispensable or more concerning — a browser that not only sees everything you do online but now actively processes it through AI on your behalf.</p>
-<p>The privacy implications are worth noting: Skills that process page content send that content through Google's AI infrastructure. For anyone handling sensitive data in the browser, this creates a new data flow to assess and govern.</p>
-    </div>
-    
-    <div class="meta-bar">
-      <span class="pill">AI Tools</span><span class="pill">Google</span><span class="pill">Browser</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 183</span>
-      <span class="sep">|</span>
-      <a href="https://blog.google/products-and-platform/products/chrome/skills-in-chrome/" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47768339" target="_blank">HN Discussion</a>
-    </div>
-  </div>
-</section>
-
-<section class="spread spread--newspaper" id="story-07">
-  
-  <div class="watermark">07</div>
-  <div class="spread-inner">
-    <div class="kicker">DATA PROTECTION</div>
-    <h2>Pseudonymising Sensitive Data for LLMs Without Losing Context</h2>
-    <div class="lede">Attic Security presents a 'token proxy' approach to sending sensitive data to LLMs — replacing real identifiers with consistent pseudonyms that preserve analytical context while keeping actual data out of third-party AI systems.</div>
-    <div class="body-text">
-      <p>The core problem is familiar to any security team dealing with AI adoption: business users want to feed real data into LLMs for analysis, but that data often contains PII, financial details, or other sensitive information that shouldn't leave the organisation's control.</p>
-<p>Attic Security's approach — which they call a "token proxy" — sits between the user and the LLM. It intercepts outgoing requests, identifies sensitive tokens (names, account numbers, addresses), replaces them with consistent pseudonyms, sends the sanitised request to the LLM, then maps the pseudonyms back to real values in the response. The key insight: LLMs don't need real data to perform useful analysis. They need <em>consistent</em> data — and pseudonyms provide that.</p>
-<p>The article explains why naive approaches fail. Simply replacing "John Smith" with "Person A" works for single queries but breaks down in multi-turn conversations or when the LLM needs to reason about relationships between entities. The token proxy maintains a session-level mapping that preserves these relationships while keeping real identifiers out of the AI provider's infrastructure.</p>
-<p>This is a practical, deployable pattern for organisations that want to use AI tools without creating new data exposure vectors — exactly the kind of control a CISO needs to enable AI adoption safely.</p>
-    </div>
-    <div class="flag-badge">
-        <span class="flag-icon">&#9888;</span>
-        <div class="flag-content">
-          <strong>Directly applies to you</strong>
-          Directly actionable. This token proxy pattern addresses one of the core tensions in enterprise AI adoption: enabling productivity while controlling data exposure. Evaluate whether this approach fits your organisation's AI data handling requirements.
+    <div class="toc-item">
+      <div class="toc-num">04</div>
+      <div class="toc-content">
+        <div class="toc-story-title">Daily Claude Outage Is Upon Us. Waiting for Status Update.</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">AI Reliability / Operational Risk</span>
+          <span class="tag tag-applies">Directly applies to you</span>
         </div>
       </div>
-    <div class="meta-bar">
-      <span class="pill">Data Protection</span><span class="pill">AI Security</span><span class="pill">Privacy Engineering</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 3</span>
-      <span class="sep">|</span>
-      <a href="https://atticsecurity.com/en/blog/why-llms-hate-fake-data-token-proxy/" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47778087" target="_blank">HN Discussion</a>
     </div>
-  </div>
-</section>
-
-<section class="spread spread--clean" id="story-08">
-  
-  <div class="watermark">08</div>
-  <div class="spread-inner">
-    <div class="kicker">AI MODELS</div>
-    <h2>Google Gemma 4 Runs Natively on iPhone With Full Offline Inference</h2>
-    <div class="lede">Google's Gemma 4 model now runs entirely on-device on iPhones — no cloud connection required — marking a significant step toward AI capabilities that don't require sending data to external servers.</div>
-    <div class="body-text">
-      <p>Gemma 4, Google's open-weights model family, has been optimised to run natively on Apple's A-series and M-series chips. The model performs full inference locally, meaning queries and responses never leave the device. For privacy-conscious use cases, this eliminates the data exposure inherent in cloud-based AI.</p>
-<p>The performance benchmarks are notable: the model handles reasoning, summarisation, and code generation tasks at usable speeds on recent iPhones. It's not matching cloud-hosted frontier models on complex tasks, but for everyday AI assistance — drafting messages, answering questions, processing documents — it's competitive enough to be genuinely useful.</p>
-<p>The 100 comments on HN focused heavily on the implications for privacy and data sovereignty. On-device AI means no Terms of Service governing your data, no retention policies to worry about, no third-party access. Several commenters noted this is particularly relevant in regulated industries where data cannot leave certain boundaries.</p>
-<p>The broader trend matters: as on-device AI becomes more capable, the argument for sending sensitive data to cloud AI providers weakens. This shifts the security calculus — instead of governing data flows to AI providers, you're managing the security of AI models on endpoints.</p>
-    </div>
-    
-    <div class="meta-bar">
-      <span class="pill">AI Models</span><span class="pill">Privacy</span><span class="pill">On-Device AI</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 159</span>
-      <span class="sep">|</span>
-      <a href="https://www.gizmoweek.com/gemma-4-runs-iphone/" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47774971" target="_blank">HN Discussion</a>
-    </div>
-  </div>
-</section>
-
-<section class="spread spread--editorial" id="story-09">
-  
-  <div class="watermark">09</div>
-  <div class="spread-inner">
-    <div class="kicker">POLICY</div>
-    <h2>The Dangers of California's Legislation to Censor 3D Printing</h2>
-    <div class="lede">The EFF warns that California's proposed 3D printing restrictions would mandate DRM-style controls on manufacturing equipment, setting a precedent for government-controlled digital fabrication that extends far beyond firearms.</div>
-    <div class="body-text">
-      <p>California legislators have introduced a bill requiring 3D printers to include content-filtering systems that would prevent printing of certain objects — ostensibly targeting firearms components. The Electronic Frontier Foundation argues this approach is both technically unworkable and constitutionally dangerous.</p>
-<p>The technical problems are fundamental: 3D printing works from geometric data, and there's no reliable way to determine what a shape will be "used for" from its geometry alone. A cylinder could be a pipe fitting, a pen holder, or a weapon component. Any filtering system would either be trivially circumvented or would block vast quantities of legitimate manufacturing.</p>
-<p>The EFF's deeper concern is the precedent. If you can mandate content filtering on 3D printers, you can mandate it on CNC mills, laser cutters, and eventually general-purpose computers. The bill essentially asks manufacturers to build censorship infrastructure into fabrication tools — infrastructure that, once built, can be expanded to restrict whatever future legislators decide is dangerous.</p>
-<p>The 410-comment HN discussion drew parallels to the crypto wars of the 1990s, when the US government tried to restrict encryption exports. The consensus: technical mandates that require devices to police their users tend to fail at their stated goals while succeeding at expanding government control over technology.</p>
-    </div>
-    
-    <div class="meta-bar">
-      <span class="pill">Policy</span><span class="pill">Civil Liberties</span><span class="pill">Digital Rights</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 466</span>
-      <span class="sep">|</span>
-      <a href="https://www.eff.org/deeplinks/2026/04/dangers-californias-legislation-censor-3d-printing" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47759420" target="_blank">HN Discussion</a>
-    </div>
-  </div>
-</section>
-
-<section class="spread spread--memorial" id="story-10">
-  
-  <div class="watermark">10</div>
-  <div class="spread-inner">
-    <div class="kicker">AI ENGINEERING</div>
-    <h2>What Claude Code's Source Revealed About AI Engineering Culture</h2>
-    <div class="lede">An analysis of Claude Code's recently visible source code reveals how Anthropic builds AI-powered developer tools — and what the engineering patterns tell us about the emerging culture of AI-assisted software development.</div>
-    <div class="body-text">
-      <p>The article dissects Claude Code's architecture as revealed through its source, examining how Anthropic structures an AI agent that writes, tests, and deploys code. The patterns are instructive: heavy use of system prompts as "personality" and capability boundaries, careful sandboxing of code execution, and a layered approach to tool use that gives the AI graduated access to dangerous operations.</p>
-<p>The author argues that Claude Code represents a new kind of software — one where the engineering challenge isn't primarily about algorithms or data structures, but about prompt design, capability boundaries, and managing an AI system's tendency toward confident mistakes. The codebase reveals extensive guardrails, fallback patterns, and "self-awareness" mechanisms that try to keep the AI honest about what it doesn't know.</p>
-<p>The 29-comment HN discussion raised questions about the sustainability of this approach. As AI capabilities grow, do the guardrails scale? Several commenters noted a tension between making AI tools more autonomous (which users want) and keeping them predictable and safe (which engineers need).</p>
-<p>For anyone building AI-assisted workflows, the architectural patterns — particularly around sandboxing, capability escalation, and error recovery — offer practical lessons applicable well beyond Anthropic's specific implementation.</p>
-    </div>
-    <div class="flag-badge">
-        <span class="flag-icon">&#9888;</span>
-        <div class="flag-content">
-          <strong>Directly applies to you</strong>
-          You build AI-assisted workflows with Claude Code daily. The architectural patterns discussed — sandboxing, capability boundaries, prompt engineering for reliability — are directly relevant to how you design and govern your own AI automation.
+    <div class="toc-item">
+      <div class="toc-num">05</div>
+      <div class="toc-content">
+        <div class="toc-story-title">The Dangers of California's Legislation to Censor 3D Printing</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">Civil Liberties / Technology Policy</span>
+          
         </div>
       </div>
-    <div class="meta-bar">
-      <span class="pill">AI Engineering</span><span class="pill">Claude</span><span class="pill">Software Architecture</span>
-      <span class="sep">|</span>
-      <span class="score">&#9650; 49</span>
-      <span class="sep">|</span>
-      <a href="https://techtrenches.dev/p/the-snake-that-ate-itself-what-claude" target="_blank">Source</a>
-      <span class="sep">|</span>
-      <a href="https://news.ycombinator.com/item?id=47772282" target="_blank">HN Discussion</a>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">06</div>
+      <div class="toc-content">
+        <div class="toc-story-title">Claude Code Routines</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">AI Tools / Workflow Automation</span>
+          <span class="tag tag-applies">Directly applies to you</span>
+        </div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">07</div>
+      <div class="toc-content">
+        <div class="toc-story-title">A New Spam Policy for Back Button Hijacking</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">Google / Web Standards</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">08</div>
+      <div class="toc-content">
+        <div class="toc-story-title">DaVinci Resolve — Photo</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">Tools / Product Launch</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">09</div>
+      <div class="toc-content">
+        <div class="toc-story-title">AI Ruling Prompts Warnings: Your AI Chats Could Be Used Against You</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">Legal / AI Risk</span>
+          <span class="tag tag-applies">Directly applies to you</span>
+        </div>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">010</div>
+      <div class="toc-content">
+        <div class="toc-story-title">The Deepfake Nudes Crisis in Schools Is Worse Than You Thought</div>
+        <div class="toc-tags">
+          <span class="tag tag-cat">AI Harms / Child Safety</span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 1: HERO -->
+<section class="spread spread-hero" id="story-1">
+  <div class="spread-watermark">01</div>
+  <div class="spread-inner">
+    
+    <div class="applies-badge">⚑ Directly applies to you</div>
+    <div class="kicker">Surveillance / Civil Liberties</div>
+    <div class="spread-headline">Stop Flock</div>
+    <p class="spread-lede">A coalition is demanding an end to Flock Safety's automated licence plate reader network — one of the most pervasive private surveillance grids in the United States, quietly expanding into HOAs, schools, and police departments across the country.</p>
+    <div class="spread-body"><p>Flock Safety sells automated licence plate readers (ALPRs) that photograph every passing vehicle, extracting make, model, colour, and identifying features alongside plate numbers. The data feeds into a searchable network shared between law enforcement agencies, homeowner associations, and private property owners.</p>
+<p>The scale is remarkable. Flock claims its cameras capture over 4 billion reads per month. Unlike traditional CCTV, the system doesn't just store footage — it indexes vehicles, enabling retrospective tracking of any car's movements across participating zones. A vehicle spotted near your home in Edinburgh triggers no record. The same vehicle driven through a Florida HOA with Flock hardware is now in a queryable database accessible to hundreds of agencies.</p>
+<p>The Stop Flock campaign argues this constitutes mass surveillance without meaningful consent or oversight. There is no opt-in. The privacy contact opt-out process (see Story 2) is largely theatrical — the data stays, shared with law enforcement regardless.</p>
+<p>For security leaders, this is a model for what unchecked vendor surveillance looks like. The architecture is familiar: a private company builds a data collection layer, sells access to institutions, and the aggregated result is surveillance infrastructure no single actor could have built alone. Understanding Flock is understanding a template.</p></div><div class="action-box">
+          <div class="action-box-label">What to do</div>
+          <p>Review your organisation's physical security vendors for data-sharing agreements. If you operate car parks, entry systems, or ALPR hardware, audit what data leaves your site and under what retention policy. For UK/EU organisations: any vehicle tracking system processing staff or visitor data requires a DPIA.</p>
+        </div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">SURVEILLANCE</span>
+    </div>
+    <span class="meta-score">↑ 871</span>
+    <div class="meta-links">
+      <a href="https://stopflock.com" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47772012" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 2: MIDNIGHT -->
+<section class="spread spread-midnight" id="story-2">
+  <div class="spread-watermark">02</div>
+  <div class="spread-inner">
+    
+    <div class="applies-badge">⚑ Directly applies to you</div>
+    <div class="kicker">Privacy / Consumer Rights</div>
+    <div class="spread-headline">I Wrote to Flock's Privacy Contact to Opt Out of Their Domestic Spying Program</div>
+    <p class="spread-lede">A journalist documents the experience of exercising CCPA rights against Flock Safety's licence plate database — and discovers what privacy opt-outs look like when the collector's primary customer is law enforcement.</p>
+    <div class="spread-body"><p>The right to opt out exists on paper. The reality documented here is instructive: Flock Safety will remove your data from their own portal, but continues sharing with law enforcement partners under a separate data-processing agreement that consumer privacy rights don't reach.</p>
+<p>This is not unique to Flock. It's the architecture of the surveillance-as-a-service model: consumer-facing privacy controls exist for regulatory compliance, while the actual data flows to institutional customers under B2B contracts with different legal frameworks.</p>
+<p>The UK GDPR equivalent would be a SAR (Subject Access Request) under Article 15. But when the data controller is US-based and the data subjects are US residents, CCPA is the operative framework. The article shows that even CCPA — widely considered one of the stronger US privacy laws — has structural gaps when the data processor's primary customer is law enforcement.</p>
+<p>For organisations processing employee or customer location data: this case is a useful reminder that your privacy policy and your actual data architecture need to align. If you share data with third parties whose own obligations differ from yours, your data subjects' rights may be meaningfully weaker than your policy implies.</p></div><div class="action-box">
+          <div class="action-box-label">What to do</div>
+          <p>Audit your own privacy policy against your actual data-sharing arrangements. Any third-party sharing agreement where the recipient's data obligations differ materially from yours should be disclosed in your privacy notice. UK ICO guidance on Article 26 joint controller arrangements is worth reviewing.</p>
+        </div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">PRIVACY</span>
+    </div>
+    <span class="meta-score">↑ 638</span>
+    <div class="meta-links">
+      <a href="https://honeypot.net/2026/04/14/i-wrote-to-flocks-privacy.html" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47768813" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 3: ROSE_ALERT -->
+<section class="spread spread-rose" id="story-3">
+  <div class="spread-watermark">03</div>
+  <div class="spread-inner">
+    <div class="alert-stamp">Alert</div>
+    <div class="applies-badge">⚑ Directly applies to you</div>
+    <div class="kicker">Privacy / Regulation</div>
+    <div class="spread-headline">US National OS-Level Age Verification Bill</div>
+    <p class="spread-lede">A proposed US federal bill would mandate OS-level age verification — requiring Apple and Google to gate app store access behind identity checks tied to the operating system itself, creating a national biometric ID layer for internet access.</p>
+    <div class="spread-body"><p>OS-level age verification is a category jump from the site-level verification already required in several US states and under the UK's Online Safety Act. Moving verification to the OS layer means Apple and Google become gatekeepers of internet access for an entire age demographic, with ID data flowing through a handful of centralised chokepoints.</p>
+<p>The civil liberties objection is structural: there is no OS-level age check that doesn't also become a de facto identity registry. Every app access event becomes traceable to a verified identity. The security objection is adjacent: centralised identity databases are high-value targets, and OS-level verification creates a single breach that exposes usage patterns across every app on a device.</p>
+<p>For UK and EU organisations: the Online Safety Act's age verification requirements already apply if you operate services accessed by UK users. OFCOM's enforcement posture is hardening. This US debate is a preview of the technical and legal pressures that will land on your platforms regardless of where you're incorporated.</p>
+<p>The Fediverse thread linked in this HN item (from Christopher Webber, a core ActivityPub author) focuses on the open web implications — but the CISO angle is the infrastructure risk of centralised biometric identity at the OS layer.</p></div><div class="action-box">
+          <div class="action-box-label">What to do</div>
+          <p>If your platform is accessible to UK users and hosts user-generated content or social features, OFCOM's Online Safety Act age assurance guidance is now mandatory reading. The UK framework is already live — the US debate is directionally similar but later in the timeline.</p>
+        </div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">REGULATION</span>
+    </div>
+    <span class="meta-score">↑ 93</span>
+    <div class="meta-links">
+      <a href="https://social.coop/@cwebber/116408556882122186" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47778366" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 4: TERMINAL -->
+<section class="spread spread-terminal" id="story-4">
+  <div class="spread-watermark">04</div>
+  <div class="spread-inner">
+    
+    <div class="applies-badge">⚑ Directly applies to you</div>
+    <div class="kicker">AI Reliability / Operational Risk</div>
+    <div class="spread-headline">Daily Claude Outage Is Upon Us. Waiting for Status Update.</div>
+    <p class="spread-lede">A Hacker News thread documents what appears to be a recurring pattern of Claude service degradation — with 136 upvotes suggesting the disruption is widely felt and the community has started treating daily outages as a predictable operational fact.</p>
+    <div class="spread-body"><p>The thread title alone is the signal: not 'Claude is down' but 'Daily Claude outage is upon us' — phrased as a recurring, expected event. 115 comments, 136 upvotes. This is the HN community reaching a consensus that Claude's availability is operationally unreliable at the cadence teams actually depend on it.</p>
+<p>For organisations integrating Claude into workflows (agentic pipelines, document processing, security tooling), this matters differently than it does for casual users. A frustrated individual can wait 20 minutes. An automated pipeline fails, queues back up, alerts fire, and someone gets paged.</p>
+<p>Anthropics's status page (claudestatus.com) provides incident tracking, but the HN thread suggests the pattern of degradation doesn't always reach the status page promptly.</p>
+<p>This is not unusual for AI infrastructure at scale — the demand growth is extraordinary, and capacity provisioning for neural inference is harder than for traditional web services. But it is a risk that operational teams need to account for explicitly: circuit breakers, fallback models, graceful degradation, and SLA expectations that acknowledge P99 availability rather than just headline uptime numbers.</p></div><div class="action-box">
+          <div class="action-box-label">What to do</div>
+          <p>If Claude is in any production or semi-production workflow, build a fallback path now. Whether that's a secondary model (GPT-4o, Gemini), a graceful queue, or a human-in-the-loop bypass, the operational assumption should be 'Claude will be unavailable some mornings.' Review your AI vendor SLAs — most do not carry the financial penalties of enterprise infrastructure contracts.</p>
+        </div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">AI INFRASTRUCTURE</span>
+    </div>
+    <span class="meta-score">↑ 136</span>
+    <div class="meta-links">
+      <a href="https://claudestatus.com/" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47779730" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 5: ACADEMIC -->
+<section class="spread spread-academic" id="story-5">
+  <div class="spread-watermark">05</div>
+  <div class="spread-inner">
+    
+    
+    <div class="kicker">Civil Liberties / Technology Policy</div>
+    <div class="spread-headline">The Dangers of California's Legislation to Censor 3D Printing</div>
+    <p class="spread-lede">The Electronic Frontier Foundation argues that California's proposed 3D printing regulations — framed as gun control measures — set a precedent for controlling any digital fabrication file, with implications that reach far beyond firearms.</p>
+    <div class="spread-academic-cols"><p>The EFF's case is structural: legislation that restricts what CAD files can be shared or printed doesn't stay narrowly targeted at its original intent. The legal architecture of 'controlled digital files' could apply equally to medical devices, security research tools, industrial parts, and anything else a regulator decides warrants pre-approval before fabrication.</p>
+<p>The second-order concern is international portability. A file legal in the UK may become illegal to share with Californian users. If this kind of jurisdiction-based content restriction normalises across manufacturing file formats, the global engineering commons — GitHub repositories full of printable parts — becomes a patchwork of territorial legality.</p>
+<p>The EFF frames this primarily as a First Amendment issue (digital files as speech). The security research angle is quieter but real: proof-of-concept hardware, physical penetration testing tools, and lock mechanism research are all in the same category of 'potentially dangerous fabrication files.'</p>
+<p>For security teams: this is worth watching as a regulatory pattern, not just a guns story. The logic of 'this digital file enables physical harm, therefore restrict it' is applicable to a wide category of security research artefacts.</p></div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">POLICY</span>
+    </div>
+    <span class="meta-score">↑ 468</span>
+    <div class="meta-links">
+      <a href="https://www.eff.org/deeplinks/2026/04/dangers-californias-legislation-censor-3d-printing" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47759420" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 6: GRADIENT -->
+<section class="spread spread-gradient" id="story-6">
+  <div class="spread-watermark">06</div>
+  <div class="spread-inner">
+    
+    <div class="applies-badge">⚑ Directly applies to you</div>
+    <div class="kicker">AI Tools / Workflow Automation</div>
+    <div class="spread-headline">Claude Code Routines</div>
+    <p class="spread-lede">Anthropic has shipped Routines in Claude Code — a native way to define recurring, automated workflows that Claude executes on a schedule or trigger, without requiring a separate orchestration layer.</p>
+    <div class="spread-body"><p>Routines are Claude Code's answer to cron jobs for AI workflows. Instead of building a wrapper script that invokes Claude Code on a timer, you define the routine within Claude Code itself — the schedule, the task, the tools it can use, and how it should report back.</p>
+<p>The HN thread (381 comments, 684 upvotes) shows strong developer uptake. The most interesting use cases in the comments are monitoring workflows (check a URL, summarise changes, alert if thresholds crossed), digest generation (morning briefings, competitive intelligence), and maintenance tasks (clean up files, rotate logs, check for dependency updates).</p>
+<p>The architectural implication is significant: if Claude Code is the runtime for routine agentic tasks, the boundary between 'AI assistant' and 'autonomous agent with scheduled execution rights' collapses. That's powerful. It also means the security posture of a Claude Code install is meaningfully different from a conversational interface — it can act autonomously, on a schedule, with whatever tools you've given it access to.</p>
+<p>For security leaders building AI-assisted workflows: Routines reduces the friction of automation to near-zero. That's the upside. The downside is that it also reduces the friction of accidentally giving an AI agent persistent, scheduled access to sensitive systems without treating it with the same rigour as any other service account.</p></div><div class="action-box">
+          <div class="action-box-label">What to do</div>
+          <p>If you use Claude Code professionally: explore Routines for morning digest, threat intel summaries, or log monitoring. Apply the same least-privilege principles you'd apply to any service account — scope what tools the routine can invoke, and log its actions. The Morning Edition you're reading right now runs as a Routine.</p>
+        </div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">AI TOOLS</span>
+    </div>
+    <span class="meta-score">↑ 684</span>
+    <div class="meta-links">
+      <a href="https://code.claude.com/docs/en/routines" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47768133" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 7: NEWSPAPER -->
+<section class="spread spread-newspaper" id="story-7">
+  <div class="spread-watermark">07</div>
+  <div class="spread-inner">
+    
+    
+    <div class="kicker">Google / Web Standards</div>
+    <div class="spread-headline">A New Spam Policy for Back Button Hijacking</div>
+    <p class="spread-lede">Google Search is treating 'back button hijacking' — where sites intercept the browser back navigation to trap users in a redirect loop — as a spam signal, effective immediately, with ranking consequences for sites that deploy it.</p>
+    <div class="spread-newspaper-cols"><p>Back button hijacking is old: sites detect the back navigation event and immediately redirect the user forward again, trapping them in a loop that requires closing the tab to escape. It's primarily a dark pattern used by ad-heavy publishers, affiliate sites, and browser notification spammers to inflate session time.</p>
+<p>Google elevating it to a spam policy — rather than just a UX quality signal — is significant. 'Spam policy' violations trigger manual action reviewable in Search Console, not just algorithmic demotion. That's a harder enforcement lever.</p>
+<p>The HN thread (499 comments) is mostly developers relieved and ad-tech people anxious. The broader pattern is Google increasingly using search ranking as a behaviour modification tool for the web: Core Web Vitals, interstitial penalties, link spam, and now navigation hijacking.</p>
+<p>For security teams: the relevance is indirect but real. Phishing sites routinely use back-button trapping to keep victims on fake login pages. If Google's crawler is now flagging this pattern, phishing page longevity in search results may decrease. A minor win, but a win.</p></div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">WEB PLATFORM</span>
+    </div>
+    <span class="meta-score">↑ 889</span>
+    <div class="meta-links">
+      <a href="https://developers.google.com/search/blog/2026/04/back-button-hijacking" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47760764" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 8: CLEAN -->
+<section class="spread spread-clean" id="story-8">
+  <div class="spread-watermark">08</div>
+  <div class="spread-inner">
+    
+    
+    <div class="kicker">Tools / Product Launch</div>
+    <div class="spread-headline">DaVinci Resolve — Photo</div>
+    <p class="spread-lede">Blackmagic Design has launched DaVinci Resolve Photo — a dedicated still photography application built on the same colour science and node-based processing engine that made Resolve the professional standard in video post-production.</p>
+    <div class="spread-body"><p>DaVinci Resolve Photo is Blackmagic's entry into the Lightroom/Capture One market, and it arrives with the full weight of Resolve's colour science behind it. The node-based workflow that video colorists swear by is now available for RAW processing and still image editing.</p>
+<p>This is the top story on Hacker News today with 1,111 points — remarkable for a photography application. The signal is the pent-up demand for a serious Lightroom alternative that isn't subscription-priced and isn't Adobe.</p>
+<p>The strategic read: Blackmagic has spent a decade giving Resolve away free (with paid Studio tier for advanced features). The same model applies here — free for most users, which immediately makes it competitive with Lightroom's subscription model on price. Adobe's subscription lock-in has been a persistent frustration; this is a direct answer.</p>
+<p>For teams that produce visual content: worth trialling. The HN thread has extensive RAW processing comparisons. The consensus is that colour fidelity is exceptional, the learning curve is steeper than Lightroom for non-video users, and the DAM (digital asset management) functionality is early-stage.</p></div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">CREATIVE TOOLS</span>
+    </div>
+    <span class="meta-score">↑ 1111</span>
+    <div class="meta-links">
+      <a href="https://www.blackmagicdesign.com/products/davinciresolve/photo" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47760529" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 9: EDITORIAL -->
+<section class="spread spread-editorial" id="story-9">
+  <div class="spread-watermark">09</div>
+  <div class="spread-inner">
+    
+    <div class="applies-badge">⚑ Directly applies to you</div>
+    <div class="kicker">Legal / AI Risk</div>
+    <div class="spread-headline">AI Ruling Prompts Warnings: Your AI Chats Could Be Used Against You</div>
+    <p class="spread-lede">A federal court ruling in US v. Heppner has found that conversations with AI assistants do not attract attorney-client privilege — lawyers and clients who discussed legal strategy through AI chat tools had those logs admitted as evidence.</p>
+    <div class="spread-body"><p>The court's reasoning is direct: attorney-client privilege protects communications between a lawyer and client in the context of seeking legal advice. When that communication passes through a third-party AI system (ChatGPT, Claude, Gemini, Copilot), the confidential nature of the communication is broken — the same way it would be if a third party sat in on the meeting.</p>
+<p>The ruling has immediate practical implications. Law firms that have built AI-assisted workflows for legal research, draft document generation, or client communication need to review what data flows through those systems. Any conversation where legally privileged material was shared with an AI tool may now be discoverable.</p>
+<p>For CISOs and security leaders: the privilege question is one strand of a broader issue. Conversations with AI tools about security incidents, vulnerabilities, or legal exposure are potentially discoverable in litigation or regulatory investigation. The logs exist. The provider has them. Your legal privilege doesn't attach.</p>
+<p>This isn't an argument against using AI tools — it's an argument for understanding the data architecture. Anthropic, Google, and Microsoft all have enterprise data processing agreements that affect retention and disclosure. Your team's AI chat logs should be scoped, retained, and treated with the same care as email archives in regulated industries.</p></div><div class="action-box">
+          <div class="action-box-label">What to do</div>
+          <p>Brief your legal and security teams on this ruling. Establish a policy on what categories of information should not be discussed with AI assistants without additional controls (e.g., legal strategy, M&A information, incident details pre-disclosure). Review your AI provider's enterprise DPA — specifically the clauses on legal process and law enforcement requests.</p>
+        </div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">AI & LAW</span>
+    </div>
+    <span class="meta-score">↑ 56</span>
+    <div class="meta-links">
+      <a href="https://www.reuters.com/legal/government/ai-ruling-prompts-warnings-attorneys-ai-chats-could-be-used-against-clients-2026-04-14/" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47778308" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 10: MEMORIAL -->
+<section class="spread spread-memorial" id="story-10">
+  <div class="spread-watermark">010</div>
+  <div class="spread-inner">
+    
+    
+    <div class="kicker">AI Harms / Child Safety</div>
+    <div class="spread-headline">The Deepfake Nudes Crisis in Schools Is Worse Than You Thought</div>
+    <p class="spread-lede">Wired's investigation finds that AI-generated non-consensual intimate imagery (NCII) targeting minors in schools is not a handful of isolated incidents — it is a global, systematic problem affecting tens of thousands of students, with inadequate legal frameworks and near-zero enforcement.</p>
+    <div class="spread-body"><p>The tools required to generate synthetic NCII from a single clothed photo are free, accessible, and produce results that are legally and forensically indistinguishable from real imagery in many jurisdictions. The article documents cases across the US, UK, Spain, and Australia — with victims predominantly female, and perpetrators predominantly male classmates.</p>
+<p>The enforcement gap is structural. In most jurisdictions, generating NCII of a minor is covered under child sexual abuse material (CSAM) legislation — but the prosecution rate is near zero because law enforcement resources are directed at commercial CSAM distribution networks, and the school-level incidents are treated as disciplinary matters rather than crimes.</p>
+<p>For UK organisations: the Online Safety Act 2023 created a new offence of sharing intimate images without consent, and the Criminal Justice Bill currently in Parliament proposes to make generating NCII (not just sharing it) a criminal offence. The legal framework is moving. The technology moves faster.</p>
+<p>For CISOs in education or organisations with young employees: this is a safeguarding risk with a technical vector. Your AUP (acceptable use policy) and safeguarding training need to address AI-generated NCII explicitly. The tools are on consumer devices, not your network — but the harm lands in your institution.</p></div>
+  </div>
+  <div class="meta-bar">
+    <div class="toc-tags">
+      <span class="tag tag-cat">TECHNOLOGY & SOCIETY</span>
+    </div>
+    <span class="meta-score">↑ 21</span>
+    <div class="meta-links">
+      <a href="https://www.wired.com/story/deepfake-nudify-schools-global-crisis/" target="_blank" rel="noopener" class="meta-link">Read Story →</a>
+      <a href="https://news.ycombinator.com/item?id=47779856" target="_blank" rel="noopener" class="meta-link">HN Discussion</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <p>Morning Edition — 15 April 2026</p>
-  <p>Curated from <a href="https://news.ycombinator.com" target="_blank">Hacker News</a> front page. Stories prioritised for cybersecurity, AI tools, privacy and actionable intelligence.</p>
-  <p style="margin-top:0.8rem; font-size:0.75rem; color: rgba(255,255,255,0.2);">Skipped: Vendor marketing (Allbirds AI pivot, PCBWay sponsorship), routine tech (DaVinci Resolve Photo, Orange Pi review), non-security general interest (space toilets, Guernica gigapixel, road flares, ancient Rome metro, solar panels bill, communist Apple II, backpack design, Enlightenment bug, compiler papers, Clojure vectors, 5NF database design, Win32 API, academic fraud), cultural (concert recordings on Internet Archive, Sam Vimes boots theory), and developer tools without security relevance (Pretty Fish, WhatsApp CLI, OpenBSD on Pomera, API key design).</p>
+  <p><strong>Morning Edition — 15 April 2026</strong></p>
+  <p>Curated from the Hacker News front page. Top 50 stories fetched; 10 selected.<br>
+  Stories skipped: vendor marketing, routine patch advisories without CISO context, crypto/web3 speculation,<br>
+  pure entertainment, language/compiler theory, hardware reviews without security relevance.</p>
+  <p style="margin-top:1rem;">Source: <a href="https://news.ycombinator.com" target="_blank">Hacker News</a> via Firebase API &bull; Generated autonomously by Claude<br>
+  <strong>6 of 10 stories flagged as directly relevant to Euan McGregor</strong></p>
 </footer>
 
 </body>
