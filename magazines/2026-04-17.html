@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Edition — 17 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
+body { font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.7; color: #1a1a1a; background: #0a0a0a; }
+h1, h2, h3, .headline { font-family: 'Fraunces', serif; }
+
+/* Cover */
+.cover {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 30%, #2a0f0f 60%, #0a0a1a 100%);
+  text-align: center; padding: 2rem; position: relative; overflow: hidden;
+}
+.cover::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(180,40,40,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(40,40,180,0.06) 0%, transparent 60%);
+}
+.cover-title { font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; color: #fff; letter-spacing: -0.03em; position: relative; z-index: 1; }
+.cover-date { font-size: 1.3rem; color: rgba(255,255,255,0.5); margin-top: 1rem; font-weight: 300; position: relative; z-index: 1; letter-spacing: 0.15em; text-transform: uppercase; }
+.cover-tagline { font-size: 1.1rem; color: rgba(255,255,255,0.35); margin-top: 2rem; max-width: 500px; position: relative; z-index: 1; font-style: italic; }
+.cover-rule { width: 60px; height: 2px; background: rgba(180,40,40,0.6); margin: 2rem auto 0; position: relative; z-index: 1; }
+
+/* TOC */
+.toc {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  background: #fafaf8; padding: 4rem 2rem;
+}
+.toc-inner { max-width: 700px; margin: 0 auto; width: 100%; }
+.toc h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.2em; color: #999; margin-bottom: 2.5rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+.toc-item { display: flex; align-items: baseline; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #e8e8e8; text-decoration: none; color: inherit; transition: background 0.2s; }
+.toc-item:hover { background: rgba(0,0,0,0.02); }
+.toc-num { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: #bbb; min-width: 2.2rem; }
+.toc-title { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 600; flex: 1; }
+.toc-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; border-radius: 3px; background: #eee; color: #666; white-space: nowrap; font-weight: 600; }
+.toc-tag.alert { background: #c0392b; color: #fff; }
+
+/* Spread base */
+.spread {
+  min-height: 100vh; padding: 5rem 2rem; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; scroll-snap-align: start;
+}
+.spread-inner { max-width: 760px; width: 100%; position: relative; z-index: 2; }
+.watermark {
+  position: absolute; font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(15rem, 30vw, 35rem);
+  opacity: 0.04; z-index: 1; line-height: 1; pointer-events: none; user-select: none;
+}
+.kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; margin-bottom: 1rem; }
+.headline { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+.lede { font-size: 1.25rem; line-height: 1.6; margin-bottom: 2rem; font-weight: 300; }
+.body-text { font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; }
+.body-text p { margin-bottom: 1.2rem; }
+.applies-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem; background: #c0392b; color: #fff;
+  padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;
+}
+.applies-badge::before { content: '⚠'; }
+.action-box {
+  background: rgba(192,57,43,0.08); border-left: 4px solid #c0392b; padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0; border-radius: 0 6px 6px 0;
+}
+.action-box h4 { color: #c0392b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.7rem; font-family: 'Inter', sans-serif; }
+.meta-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; padding-top: 2rem;
+  border-top: 1px solid rgba(128,128,128,0.2); margin-top: 2rem; font-size: 0.8rem;
+}
+.meta-pill { padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.meta-score { font-weight: 700; }
+.meta-link { text-decoration: none; font-weight: 500; }
+.meta-link:hover { text-decoration: underline; }
+
+/* 1. HERO */
+.spread-hero { background: linear-gradient(160deg, #1a0000 0%, #0a0a0a 40%, #1a0505 100%); color: #f0e8e8; }
+.spread-hero .watermark { color: #ff2020; top: -5%; right: -5%; }
+.spread-hero .kicker { color: #ff4444; }
+.spread-hero .headline { color: #fff; }
+.spread-hero .lede { color: rgba(255,255,255,0.75); }
+.spread-hero .body-text { color: rgba(255,255,255,0.65); }
+.spread-hero .meta-bar { border-color: rgba(255,68,68,0.2); }
+.spread-hero .meta-pill { background: rgba(255,68,68,0.15); color: #ff6666; }
+.spread-hero .meta-link { color: #ff8888; }
+.spread-hero .action-box { background: rgba(255,68,68,0.08); border-color: #ff4444; }
+.spread-hero .action-box h4 { color: #ff6666; }
+
+/* 2. MIDNIGHT */
+.spread-midnight { background: linear-gradient(170deg, #0a0e1a 0%, #0d1426 50%, #0a1020 100%); color: #c8d0e0; }
+.spread-midnight .watermark { color: #3366cc; top: 5%; left: -8%; }
+.spread-midnight .kicker { color: #5588dd; }
+.spread-midnight .headline { color: #e8eef8; }
+.spread-midnight .lede { color: rgba(200,210,230,0.8); }
+.spread-midnight .body-text { color: rgba(200,210,230,0.65); }
+.spread-midnight .meta-bar { border-color: rgba(85,136,221,0.2); }
+.spread-midnight .meta-pill { background: rgba(85,136,221,0.15); color: #7799ee; }
+.spread-midnight .meta-link { color: #88aaee; }
+
+/* 3. ROSE ALERT */
+.spread-rose { background: #fdf2f2; color: #2a1a1a; border: 6px solid #c0392b; position: relative; }
+.spread-rose::after {
+  content: 'ALERT'; position: absolute; top: 2rem; right: 2rem; background: #c0392b; color: #fff;
+  font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.85rem; padding: 0.4rem 1.2rem;
+  letter-spacing: 0.15em; transform: rotate(3deg); z-index: 3;
+}
+.spread-rose .watermark { color: #c0392b; top: -5%; right: -3%; }
+.spread-rose .kicker { color: #c0392b; }
+.spread-rose .headline { color: #1a0a0a; }
+.spread-rose .lede { color: #4a2a2a; }
+.spread-rose .body-text { color: #3a2020; }
+.spread-rose .meta-bar { border-color: rgba(192,57,43,0.2); }
+.spread-rose .meta-pill { background: rgba(192,57,43,0.1); color: #a03020; }
+.spread-rose .meta-link { color: #c0392b; }
+
+/* 4. TERMINAL */
+.spread-terminal { background: #0a0a0a; color: #33ff33; font-family: 'Courier New', monospace; }
+.spread-terminal .watermark { color: #33ff33; bottom: -5%; right: -5%; }
+.spread-terminal .kicker { color: #33ff33; font-family: 'Courier New', monospace; }
+.spread-terminal .headline { color: #33ff33; font-family: 'Courier New', monospace; font-size: clamp(1.8rem, 4vw, 3rem); }
+.spread-terminal .lede { color: rgba(51,255,51,0.7); font-family: 'Courier New', monospace; }
+.spread-terminal .body-text { color: rgba(51,255,51,0.6); font-family: 'Courier New', monospace; font-size: 1rem; }
+.spread-terminal .meta-bar { border-color: rgba(51,255,51,0.2); }
+.spread-terminal .meta-pill { background: rgba(51,255,51,0.1); color: #33ff33; border: 1px solid rgba(51,255,51,0.3); }
+.spread-terminal .meta-link { color: #66ff66; }
+
+/* 5. ACADEMIC */
+.spread-academic { background: #f8f4ec; color: #2a2520; }
+.spread-academic .spread-inner { max-width: 800px; }
+.spread-academic .watermark { color: #8b7355; top: -5%; left: -5%; }
+.spread-academic .kicker { color: #8b7355; }
+.spread-academic .headline { color: #2a2015; }
+.spread-academic .lede { color: #4a4035; font-style: italic; }
+.spread-academic .body-text { column-count: 2; column-gap: 2.5rem; }
+.spread-academic .body-text .dropcap { float: left; font-family: 'Fraunces', serif; font-size: 4.5rem; line-height: 0.8; padding-right: 0.15em; color: #8b7355; font-weight: 700; }
+.spread-academic .meta-bar { border-color: rgba(139,115,85,0.3); }
+.spread-academic .meta-pill { background: rgba(139,115,85,0.1); color: #8b7355; }
+.spread-academic .meta-link { color: #8b7355; }
+
+/* 6. GRADIENT */
+.spread-gradient { background: linear-gradient(135deg, #2d1b69 0%, #1a3a8a 50%, #1a6b8a 100%); color: #e0e8ff; }
+.spread-gradient .watermark { color: #fff; top: 0; right: -5%; opacity: 0.03; }
+.spread-gradient .kicker { color: #a0c0ff; }
+.spread-gradient .headline { color: #fff; }
+.spread-gradient .lede { color: rgba(224,232,255,0.8); }
+.spread-gradient .body-text { color: rgba(224,232,255,0.7); }
+.spread-gradient .meta-bar { border-color: rgba(160,192,255,0.2); }
+.spread-gradient .meta-pill { background: rgba(255,255,255,0.1); color: #c0d8ff; }
+.spread-gradient .meta-link { color: #a0c0ff; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper { background: #fafafa; color: #111; border-top: 4px double #111; border-bottom: 4px double #111; }
+.spread-newspaper .spread-inner { max-width: 800px; border: 2px solid #111; padding: 3rem; }
+.spread-newspaper .watermark { color: #111; top: -5%; right: -3%; }
+.spread-newspaper .kicker { color: #666; border-bottom: 1px solid #ccc; padding-bottom: 0.5rem; }
+.spread-newspaper .headline { color: #111; font-size: clamp(2rem, 4.5vw, 3.5rem); }
+.spread-newspaper .lede { color: #333; border-left: 3px solid #111; padding-left: 1rem; }
+.spread-newspaper .body-text { column-count: 2; column-gap: 2.5rem; column-rule: 1px solid #ddd; }
+.spread-newspaper .meta-bar { border-color: #ccc; }
+.spread-newspaper .meta-pill { background: #111; color: #fff; }
+.spread-newspaper .meta-link { color: #111; }
+
+/* 8. CLEAN */
+.spread-clean { background: #fff; color: #333; }
+.spread-clean .watermark { color: #eee; top: -5%; right: -5%; opacity: 0.06; }
+.spread-clean .kicker { color: #999; }
+.spread-clean .headline {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.spread-clean .lede { color: #555; }
+.spread-clean .body-text { color: #444; }
+.spread-clean .meta-bar { border-color: #eee; }
+.spread-clean .meta-pill { background: #f0f0f0; color: #666; }
+.spread-clean .meta-link { color: #667eea; }
+
+/* 9. EDITORIAL */
+.spread-editorial { background: linear-gradient(160deg, #f5e6c8 0%, #e8d4a8 50%, #f0dbb8 100%); color: #3a2a10; }
+.spread-editorial .watermark { color: #c8a060; top: -5%; left: -5%; }
+.spread-editorial .kicker { color: #a07830; }
+.spread-editorial .headline { color: #2a1a00; }
+.spread-editorial .lede { color: #5a4020; }
+.spread-editorial .body-text { color: #4a3518; }
+.spread-editorial .meta-bar { border-color: rgba(160,120,48,0.3); }
+.spread-editorial .meta-pill { background: rgba(160,120,48,0.15); color: #8a6020; }
+.spread-editorial .meta-link { color: #8a6020; }
+
+/* 10. MEMORIAL */
+.spread-memorial { background: linear-gradient(170deg, #1a1a1f 0%, #252530 50%, #1f1f28 100%); color: #a0a0b0; }
+.spread-memorial .watermark { color: #555; top: -5%; right: -5%; }
+.spread-memorial .kicker { color: #7070a0; }
+.spread-memorial .headline { color: #d0d0e0; }
+.spread-memorial .lede { color: rgba(180,180,200,0.8); }
+.spread-memorial .body-text { color: rgba(160,160,180,0.7); }
+.spread-memorial .meta-bar { border-color: rgba(112,112,160,0.2); }
+.spread-memorial .meta-pill { background: rgba(112,112,160,0.1); color: #8888b0; }
+.spread-memorial .meta-link { color: #8888cc; }
+
+/* Footer */
+.footer {
+  background: #0a0a0a; color: rgba(255,255,255,0.3); text-align: center;
+  padding: 4rem 2rem; font-size: 0.85rem; line-height: 1.8;
+}
+.footer a { color: rgba(255,255,255,0.5); }
+
+@media (max-width: 700px) {
+  .spread-academic .body-text, .spread-newspaper .body-text { column-count: 1; }
+  .spread-newspaper .spread-inner { padding: 1.5rem; }
+  .spread { padding: 3rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <h1 class="cover-title">Morning Edition</h1>
+  <div class="cover-date">Thursday 17 April 2026</div>
+  <div class="cover-rule"></div>
+  <p class="cover-tagline">Ten stories from the front page of Hacker News, curated for a cybersecurity leader building with AI.</p>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="toc">
+  <div class="toc-inner">
+    <h2>Today's Stories</h2>
+    <a href="#s1" class="toc-item"><span class="toc-num">01</span><span class="toc-title">RedSun: System-Level Access on Windows via April 2026 Update</span><span class="toc-tag alert">Applies to you</span><span class="toc-tag">Cybersecurity</span></a>
+    <a href="#s2" class="toc-item"><span class="toc-num">02</span><span class="toc-title">Bluesky Under DDoS Attack for Nearly a Full Day</span><span class="toc-tag">Incident</span></a>
+    <a href="#s3" class="toc-item"><span class="toc-num">03</span><span class="toc-title">Claude Opus 4.7</span><span class="toc-tag alert">Applies to you</span><span class="toc-tag">AI Tools</span></a>
+    <a href="#s4" class="toc-item"><span class="toc-num">04</span><span class="toc-title">Codex for Almost Everything</span><span class="toc-tag">AI Tools</span></a>
+    <a href="#s5" class="toc-item"><span class="toc-num">05</span><span class="toc-title">AI Cybersecurity Is Not Proof of Work</span><span class="toc-tag">Cybersecurity</span></a>
+    <a href="#s6" class="toc-item"><span class="toc-num">06</span><span class="toc-title">Qwen3.6-35B-A3B: Agentic Coding Power, Now Open to All</span><span class="toc-tag">AI Tools</span></a>
+    <a href="#s7" class="toc-item"><span class="toc-num">07</span><span class="toc-title">Codex Hacked a Samsung TV</span><span class="toc-tag">Cybersecurity</span></a>
+    <a href="#s8" class="toc-item"><span class="toc-num">08</span><span class="toc-title">Darkbloom: Private Inference on Idle Macs</span><span class="toc-tag">Privacy</span></a>
+    <a href="#s9" class="toc-item"><span class="toc-num">09</span><span class="toc-title">US Bill Mandates On-Device Age Verification</span><span class="toc-tag">Privacy</span></a>
+    <a href="#s10" class="toc-item"><span class="toc-num">10</span><span class="toc-title">The Future of Everything Is Lies, I Guess</span><span class="toc-tag">Trust</span></a>
+  </div>
+</section>
+
+<!-- STORY 01: HERO -->
+<section id="s1" class="spread spread-hero">
+  <div class="watermark">01</div>
+  <div class="spread-inner">
+    <div class="kicker">Cybersecurity / Privilege Escalation</div>
+    <h2 class="headline">RedSun: System-Level Access on Windows via the April 2026 Update</h2>
+    <div class="applies-badge">Directly applies to you</div>
+    <p class="lede">A new open-source tool called RedSun exploits a flaw introduced in the April 2026 Windows update to gain SYSTEM-level user access on Windows 10, Windows 11 and Windows Server.</p>
+    <div class="body-text">
+      <p>The tool, published on GitHub by Nightmare-Eclipse, demonstrates a privilege escalation path that gives attackers the highest level of access on affected Windows systems. This is not a theoretical proof-of-concept buried in an academic paper. The exploit code is live, public and trivially executable.</p>
+      <p>What makes this particularly dangerous is the timing. The vulnerability was introduced in Microsoft's own April 2026 cumulative update, meaning organisations that patched promptly may have inadvertently introduced the flaw. Systems running Windows 10, Windows 11 and all current Windows Server editions are affected.</p>
+      <p>For any environment running Active Directory, this is a critical-severity issue. SYSTEM-level access means full control: credential dumping, lateral movement, persistence. Red teams will be using this within days if they are not already.</p>
+    </div>
+    <div class="action-box">
+      <h4>What to do</h4>
+      <p>Check whether your estate has applied the April 2026 cumulative update. Monitor Microsoft's advisory channels for an out-of-band patch. Brief your SOC team on the RedSun tool and ensure detection rules are updated for SYSTEM-level privilege escalation indicators. Consider temporarily delaying the April update rollout on critical servers until a fix is confirmed.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Cybersecurity</span>
+      <span class="meta-pill">Windows</span>
+      <span class="meta-score">Score: 175</span>
+      <a href="https://github.com/Nightmare-Eclipse/RedSun" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47788473" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 02: MIDNIGHT -->
+<section id="s2" class="spread spread-midnight">
+  <div class="watermark">02</div>
+  <div class="spread-inner">
+    <div class="kicker">Incident / DDoS</div>
+    <h2 class="headline">Bluesky Under DDoS Attack for Nearly a Full Day</h2>
+    <p class="lede">The decentralised social network Bluesky has been battling a sustained distributed denial-of-service attack lasting close to 24 hours, causing intermittent outages for its growing user base.</p>
+    <div class="body-text">
+      <p>The Verge reports that Bluesky's infrastructure has been under sustained volumetric attack since early on the 16th. While the platform has remained partially accessible, performance has degraded significantly and some users have been unable to connect at all.</p>
+      <p>This is notable for two reasons. First, Bluesky has been growing rapidly as a Twitter/X alternative, which makes it an increasingly attractive target. Second, the AT Protocol's federated architecture was supposed to offer resilience against exactly this kind of centralised failure. The fact that the attack has been this effective suggests the protocol's practical resilience may not yet match its theoretical design.</p>
+      <p>For security leaders, this is a useful case study in how decentralised platforms handle availability attacks. If your organisation uses Bluesky for communications or brand presence, have a fallback plan. More broadly, any platform migration strategy should account for the target platform's DDoS resilience track record.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Incident</span>
+      <span class="meta-pill">DDoS</span>
+      <span class="meta-score">Score: 35</span>
+      <a href="https://www.theverge.com/tech/913638/bluesky-has-been-dealing-with-a-ddos-attack-for-nearly-a-full-day" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47802330" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 03: ROSE ALERT -->
+<section id="s3" class="spread spread-rose">
+  <div class="watermark">03</div>
+  <div class="spread-inner">
+    <div class="kicker">AI Tools / Anthropic</div>
+    <h2 class="headline">Claude Opus 4.7</h2>
+    <div class="applies-badge">Directly applies to you</div>
+    <p class="lede">Anthropic has released Claude Opus 4.7, the latest flagship model in the Claude family. With 1,639 upvotes, it is the top story on Hacker News today.</p>
+    <div class="body-text">
+      <p>The new model represents Anthropic's continued push on capability and reasoning. The HN discussion (1,100+ comments) suggests significant improvements in coding, analysis and extended thinking tasks. Early benchmarks from the community indicate strong performance on agentic workflows, which matters directly for anyone building automated pipelines with Claude.</p>
+      <p>For your Claude Code and Cowork workflows, this is worth evaluating immediately. Model upgrades can change the behaviour of prompts, tool-use patterns and output quality. If you are running scheduled tasks or skills that depend on specific model behaviour, test them against 4.7 before switching over.</p>
+      <p>The broader competitive picture: this lands the same day as OpenAI's Codex expansion and Qwen's open-source model release. The AI tooling landscape is moving fast enough that weekly evaluations may be warranted.</p>
+    </div>
+    <div class="action-box">
+      <h4>What to do</h4>
+      <p>Review the Anthropic release notes for breaking changes. Test your existing Claude Code skills and Cowork workflows against the new model. Evaluate whether 4.7's improvements justify updating your model pinning. Check if any API changes affect your scheduled tasks.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">AI Tools</span>
+      <span class="meta-pill">Anthropic</span>
+      <span class="meta-score">Score: 1639</span>
+      <a href="https://www.anthropic.com/news/claude-opus-4-7" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47793411" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 04: TERMINAL -->
+<section id="s4" class="spread spread-terminal">
+  <div class="watermark">04</div>
+  <div class="spread-inner">
+    <div class="kicker">$ AI_TOOLS / OPENAI</div>
+    <h2 class="headline">> Codex for Almost Everything_</h2>
+    <p class="lede">OpenAI is expanding Codex beyond code generation into a general-purpose agent platform, positioning it as an AI layer for virtually any software task.</p>
+    <div class="body-text">
+      <p>The "almost everything" framing signals OpenAI's intent to make Codex the default interface between humans and software automation. The 800-point HN score reflects both excitement and scepticism from the developer community.</p>
+      <p>This is a competitive move against Claude Code, GitHub Copilot Workspace and the growing ecosystem of agentic coding tools. For anyone building AI-assisted workflows, the key question is whether Codex's breadth comes at the cost of depth and reliability.</p>
+      <p>The practical takeaway: the agentic coding space is consolidating around a few major platforms. Choosing which to invest in is becoming a meaningful strategic decision rather than just a developer preference.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">AI Tools</span>
+      <span class="meta-pill">OpenAI</span>
+      <span class="meta-score">Score: 800</span>
+      <a href="https://openai.com/index/codex-for-almost-everything/" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47796469" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 05: ACADEMIC -->
+<section id="s5" class="spread spread-academic">
+  <div class="watermark">05</div>
+  <div class="spread-inner">
+    <div class="kicker">Cybersecurity / Analysis</div>
+    <h2 class="headline">AI Cybersecurity Is Not Proof of Work</h2>
+    <p class="lede">Antirez, the creator of Redis, argues that AI-generated security measures create a false sense of safety because they lack the deep understanding that comes from doing the work yourself.</p>
+    <div class="body-text">
+      <p><span class="dropcap">T</span>his essay cuts at something uncomfortable for anyone relying on AI tools for security work. Antirez draws a parallel to proof-of-work in cryptocurrency: the value of security measures comes partly from the effort invested in understanding the threat model, not just from the output itself.</p>
+      <p>The argument is that when AI generates security configurations, vulnerability assessments or incident response playbooks, the human operator may not understand why specific choices were made. This creates brittleness. When something unexpected happens, you cannot adapt a plan you do not understand.</p>
+      <p>This does not mean AI has no place in cybersecurity. But it suggests that the right model is AI-assisted rather than AI-delegated. The security professional needs to remain the one who understands the "why" behind every control, even if AI accelerates the "how."</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Cybersecurity</span>
+      <span class="meta-pill">Analysis</span>
+      <span class="meta-score">Score: 218</span>
+      <a href="https://antirez.com/news/163" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47791236" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 06: GRADIENT -->
+<section id="s6" class="spread spread-gradient">
+  <div class="watermark">06</div>
+  <div class="spread-inner">
+    <div class="kicker">AI Tools / Open Source</div>
+    <h2 class="headline">Qwen3.6-35B-A3B: Agentic Coding Power, Now Open to All</h2>
+    <p class="lede">Alibaba's Qwen team releases a 35-billion parameter mixture-of-experts model that activates only 3 billion parameters at inference time, making serious agentic coding accessible on consumer hardware.</p>
+    <div class="body-text">
+      <p>This is significant for the open-source AI ecosystem. A model that can run on a laptop while delivering competitive agentic coding performance changes the economics of AI-assisted development. Simon Willison's companion post (also on HN today) demonstrates the model outperforming Claude Opus 4.7 on at least one visual generation task.</p>
+      <p>The mixture-of-experts architecture is the key enabler. By activating only a fraction of its parameters per query, the model achieves a much better performance-to-compute ratio than dense models of similar capability.</p>
+      <p>For organisations evaluating AI deployment strategies, this represents the ongoing democratisation of capable models. The gap between proprietary and open-source is narrowing in specific domains, particularly code generation. This has implications for data sovereignty, cost management and vendor lock-in decisions.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">AI Tools</span>
+      <span class="meta-pill">Open Source</span>
+      <span class="meta-score">Score: 1015</span>
+      <a href="https://qwen.ai/blog?id=qwen3.6-35b-a3b" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47792764" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 07: NEWSPAPER -->
+<section id="s7" class="spread spread-newspaper">
+  <div class="watermark">07</div>
+  <div class="spread-inner">
+    <div class="kicker">Cybersecurity / AI-Assisted Hacking</div>
+    <h2 class="headline">Codex Hacked a Samsung TV</h2>
+    <p class="lede">A researcher used OpenAI's Codex agent to autonomously discover and exploit vulnerabilities in a Samsung smart TV, demonstrating how AI lowers the barrier to hardware hacking.</p>
+    <div class="body-text">
+      <p>The blog post from calif.io describes a workflow where Codex was given access to the TV's network interface and tasked with finding exploitable weaknesses. The agent identified vulnerabilities, crafted payloads and achieved remote code execution with minimal human guidance.</p>
+      <p>This is the kind of capability shift that should concern every CISO. The researcher is not a hardware exploitation specialist. The AI handled the domain-specific knowledge. This pattern, where AI bridges the gap between "knows what to attack" and "knows how to attack," is going to accelerate. Consumer IoT, industrial control systems and medical devices are all in scope.</p>
+      <p>The defensive implication is clear: assume your adversaries have access to these tools. Asset inventories, network segmentation and firmware update cadences matter more than ever. If a smart TV in a conference room is on your corporate network, that is now a higher-priority risk than it was last week.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Cybersecurity</span>
+      <span class="meta-pill">IoT</span>
+      <span class="meta-score">Score: 234</span>
+      <a href="https://blog.calif.io/p/codex-hacked-a-samsung-tv" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47791212" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 08: CLEAN -->
+<section id="s8" class="spread spread-clean">
+  <div class="watermark">08</div>
+  <div class="spread-inner">
+    <div class="kicker">Privacy / AI Infrastructure</div>
+    <h2 class="headline">Darkbloom: Private Inference on Idle Macs</h2>
+    <p class="lede">Darkbloom is a new platform that uses idle Mac hardware to run AI inference locally, keeping data on-device and offering an alternative to cloud-based AI processing.</p>
+    <div class="body-text">
+      <p>The pitch is straightforward: instead of sending sensitive data to cloud APIs for AI processing, run inference on spare Mac compute that is already sitting in your office. The project uses Apple Silicon's unified memory architecture to run capable models without dedicated GPU infrastructure.</p>
+      <p>For organisations with data residency requirements or sensitivity concerns about sending proprietary data to third-party APIs, this is an interesting middle ground. You get AI capabilities without the data leaving your physical premises.</p>
+      <p>The 479-point HN score suggests the developer community sees real potential here. The practical limitations will be throughput and model size, but for many enterprise use cases, the trade-off between capability and data control may be worthwhile. Combined with the Qwen open-source model release, the toolkit for on-premises AI is getting meaningfully better.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Privacy</span>
+      <span class="meta-pill">AI Infrastructure</span>
+      <span class="meta-score">Score: 479</span>
+      <a href="https://darkbloom.dev" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47788542" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 09: EDITORIAL -->
+<section id="s9" class="spread spread-editorial">
+  <div class="watermark">09</div>
+  <div class="spread-inner">
+    <div class="kicker">Privacy / Policy</div>
+    <h2 class="headline">US Bill Mandates On-Device Age Verification</h2>
+    <p class="lede">A new US bill would require on-device age verification, raising concerns about surveillance infrastructure being built into consumer devices under the banner of child safety.</p>
+    <div class="body-text">
+      <p>The bill, reported by Reclaim The Net, would mandate that device manufacturers implement age verification mechanisms directly in hardware or operating systems. The stated goal is protecting minors from harmful content. The practical effect would be a government-mandated identity verification layer on every device sold in the US.</p>
+      <p>The privacy implications are significant regardless of intent. On-device age verification requires either biometric scanning, government ID integration or behavioural analysis. Each approach creates data that could be repurposed for broader surveillance. Once the infrastructure exists, the scope of what it verifies tends to expand.</p>
+      <p>For UK and EU organisations, this matters because US regulatory precedent often influences transatlantic policy. The UK's Online Safety Act already includes age verification requirements. If the US mandates on-device implementation, hardware manufacturers may roll it out globally rather than maintaining region-specific firmware. Watch this space.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Privacy</span>
+      <span class="meta-pill">Policy</span>
+      <span class="meta-score">Score: 75</span>
+      <a href="https://reclaimthenet.org/us-bill-mandates-on-device-age-verification" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47801991" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 10: MEMORIAL -->
+<section id="s10" class="spread spread-memorial">
+  <div class="watermark">10</div>
+  <div class="spread-inner">
+    <div class="kicker">Trust / Misinformation</div>
+    <h2 class="headline">The Future of Everything Is Lies, I Guess</h2>
+    <p class="lede">Aphyr (Kyle Kingsbury, known for the Jepsen distributed systems testing series) writes a sombre reflection on the erosion of trust in information, technology and institutions.</p>
+    <div class="body-text">
+      <p>This is not a technical post. It is a 575-upvote essay from one of the most respected voices in systems engineering, grappling with what happens when the infrastructure of truth itself becomes unreliable. Aphyr connects the dots between AI-generated content, institutional decay and the practical impossibility of verifying anything at scale.</p>
+      <p>The relevance to cybersecurity is direct. Trust is the foundation of every security model. Certificate authorities, identity providers, software supply chains, threat intelligence feeds: all of these depend on the assumption that some sources can be trusted. When that assumption weakens, the entire security stack becomes harder to maintain.</p>
+      <p>The 613-comment discussion on HN reflects how deeply this resonates across the technical community. There are no easy answers here, but the piece is worth reading as a framing document for the environment in which security professionals now operate. The threat landscape is not just technical. It is epistemic.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Trust</span>
+      <span class="meta-pill">Misinformation</span>
+      <span class="meta-score">Score: 575</span>
+      <a href="https://aphyr.com/posts/420-the-future-of-everything-is-lies-i-guess-where-do-we-go-from-here" class="meta-link" target="_blank">Original &rarr;</a>
+      <a href="https://news.ycombinator.com/item?id=47792718" class="meta-link" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Morning Edition is curated from the <a href="https://news.ycombinator.com" target="_blank">Hacker News</a> front page.<br>
+  Skipped today: Cloudflare product launches (vendor marketing), routine language/framework updates (PHP closures, R tree-sitter), CadQuery CAD library, Amazon price-fixing lawsuit, Clojure documentary, Playdate education piece, assorted Show HN projects without security or AI relevance, IPv6 milestone, dialect maps and German dog commands.<br>
+  Built automatically on 17 April 2026.</p>
+</footer>
+
+</body>
+</html>
