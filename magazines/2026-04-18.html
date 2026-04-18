@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Edition — 18 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 18px; }
+body { font-family: 'Inter', sans-serif; color: #1a1a1a; line-height: 1.7; background: #0a0a0a; }
+
+/* Cover */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(160deg, #0a0a0a 0%, #1a0a0a 30%, #0a0a1a 70%, #0a0a0a 100%);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 40%, rgba(180,40,40,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(40,40,180,0.06) 0%, transparent 50%);
+  animation: coverPulse 12s ease-in-out infinite alternate;
+}
+@keyframes coverPulse {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.05) rotate(2deg); }
+}
+.cover h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+.cover .edition-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 1.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+.cover .tagline {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 1rem;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+.cover .scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  z-index: 1;
+}
+
+/* TOC */
+.toc {
+  min-height: 100vh;
+  background: #fafaf8;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 100%;
+}
+.toc-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+.toc h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: #1a1a1a;
+}
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+  gap: 1rem;
+}
+.toc-item:hover { background: rgba(0,0,0,0.02); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #999;
+  min-width: 2.5rem;
+}
+.toc-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  flex: 1;
+  line-height: 1.4;
+}
+.toc-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  background: #eee;
+  color: #666;
+  white-space: nowrap;
+}
+.toc-tag.alert {
+  background: #c0392b;
+  color: #fff;
+}
+
+/* Spread base */
+.spread {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.spread-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+.watermark {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(12rem, 30vw, 28rem);
+  opacity: 0.04;
+  z-index: 1;
+  line-height: 1;
+  pointer-events: none;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+.spread h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.lede {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+.body-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.applies-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #c0392b;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.action-box {
+  border-left: 4px solid #c0392b;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(192,57,43,0.06);
+  border-radius: 0 6px 6px 0;
+}
+.action-box h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #c0392b;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(128,128,128,0.2);
+  font-size: 0.8rem;
+}
+.meta-pill {
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.meta-link {
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-score {
+  font-weight: 700;
+}
+
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(160deg, #1a0505 0%, #2d0a0a 40%, #0a0a0a 100%);
+  color: #f0e8e8;
+}
+.spread-hero .watermark { color: #ff2222; opacity: 0.06; }
+.spread-hero .kicker { color: #ff4444; }
+.spread-hero h2 { color: #fff; }
+.spread-hero .lede { color: rgba(255,255,255,0.8); }
+.spread-hero .body-text { color: rgba(255,255,255,0.7); }
+.spread-hero .meta-bar { border-top-color: rgba(255,68,68,0.2); }
+.spread-hero .meta-pill { background: rgba(255,68,68,0.15); color: #ff6666; }
+.spread-hero .meta-link { color: #ff8888; }
+.spread-hero .meta-score { color: #ff6666; }
+.spread-hero .action-box { background: rgba(192,57,43,0.15); border-left-color: #ff4444; }
+.spread-hero .action-box h4 { color: #ff6666; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #050a1a 0%, #0a1a3d 40%, #051025 100%);
+  color: #c8d4e8;
+}
+.spread-midnight .watermark { color: #3366cc; opacity: 0.05; }
+.spread-midnight .kicker { color: #6699ff; }
+.spread-midnight h2 { color: #e0e8ff; }
+.spread-midnight .lede { color: rgba(200,212,232,0.85); }
+.spread-midnight .body-text { color: rgba(200,212,232,0.7); }
+.spread-midnight .meta-pill { background: rgba(102,153,255,0.15); color: #6699ff; }
+.spread-midnight .meta-link { color: #88aaff; }
+.spread-midnight .meta-score { color: #6699ff; }
+.spread-midnight .action-box { background: rgba(102,153,255,0.1); border-left-color: #6699ff; }
+.spread-midnight .action-box h4 { color: #88aaff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fff5f5;
+  color: #2a1a1a;
+  border: 6px solid #c0392b;
+}
+.spread-rose .watermark { color: #c0392b; opacity: 0.04; }
+.spread-rose .kicker { color: #c0392b; }
+.spread-rose h2 { color: #1a0a0a; }
+.spread-rose .alert-stamp {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #c0392b;
+  opacity: 0.25;
+  transform: rotate(12deg);
+  letter-spacing: 0.1em;
+  z-index: 3;
+}
+.spread-rose .meta-pill { background: rgba(192,57,43,0.1); color: #c0392b; }
+.spread-rose .meta-link { color: #c0392b; }
+.spread-rose .meta-score { color: #c0392b; }
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #33ff33;
+  font-family: 'Courier New', monospace;
+}
+.spread-terminal .watermark { color: #33ff33; opacity: 0.04; }
+.spread-terminal .kicker { color: #66ff66; font-family: 'Courier New', monospace; }
+.spread-terminal h2 { color: #44ff44; font-family: 'Fraunces', serif; }
+.spread-terminal .lede { color: rgba(51,255,51,0.8); font-family: 'Courier New', monospace; font-size: 1.1rem; }
+.spread-terminal .body-text { color: rgba(51,255,51,0.65); font-family: 'Courier New', monospace; font-size: 0.95rem; }
+.spread-terminal .meta-pill { background: rgba(51,255,51,0.1); color: #33ff33; font-family: 'Courier New', monospace; }
+.spread-terminal .meta-link { color: #66ff66; }
+.spread-terminal .meta-score { color: #33ff33; }
+.spread-terminal .applies-badge { background: #33ff33; color: #0a0f0a; }
+.spread-terminal .action-box { border-left-color: #33ff33; background: rgba(51,255,51,0.05); }
+.spread-terminal .action-box h4 { color: #44ff44; }
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f8f4eb;
+  color: #2a2520;
+}
+.spread-academic .watermark { color: #8b7355; opacity: 0.04; }
+.spread-academic .kicker { color: #8b7355; }
+.spread-academic h2 { color: #1a1510; }
+.spread-academic .lede { font-style: italic; }
+.spread-academic .body-text-cols {
+  column-count: 2;
+  column-gap: 2.5rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #3a352a;
+}
+.spread-academic .drop-cap::first-letter {
+  font-family: 'Fraunces', serif;
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  padding-right: 0.5rem;
+  padding-top: 0.2rem;
+  font-weight: 700;
+  color: #8b7355;
+}
+.spread-academic .meta-pill { background: rgba(139,115,85,0.12); color: #8b7355; }
+.spread-academic .meta-link { color: #8b7355; }
+.spread-academic .meta-score { color: #8b7355; }
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #1a0a3a 0%, #0a2a5a 50%, #1a0a3a 100%);
+  color: #d0c8f0;
+}
+.spread-gradient .watermark { color: #8855ff; opacity: 0.05; }
+.spread-gradient .kicker { color: #aa88ff; }
+.spread-gradient h2 { color: #fff; }
+.spread-gradient .lede { color: rgba(208,200,240,0.85); }
+.spread-gradient .body-text { color: rgba(208,200,240,0.7); }
+.spread-gradient .meta-pill { background: rgba(136,85,255,0.15); color: #aa88ff; }
+.spread-gradient .meta-link { color: #bb99ff; }
+.spread-gradient .meta-score { color: #aa88ff; }
+.spread-gradient .applies-badge { background: #8855ff; }
+.spread-gradient .action-box { border-left-color: #8855ff; background: rgba(136,85,255,0.1); }
+.spread-gradient .action-box h4 { color: #aa88ff; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #ffffff;
+  color: #1a1a1a;
+  border-top: 4px double #1a1a1a;
+  border-bottom: 4px double #1a1a1a;
+}
+.spread-newspaper .watermark { color: #000; opacity: 0.03; }
+.spread-newspaper .kicker { color: #555; }
+.spread-newspaper h2 { color: #000; border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+.spread-newspaper .body-text-cols {
+  column-count: 2;
+  column-gap: 2rem;
+  column-rule: 1px solid #ddd;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.spread-newspaper .meta-pill { background: #f0f0f0; color: #555; }
+.spread-newspaper .meta-link { color: #333; }
+.spread-newspaper .meta-score { color: #333; }
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #333;
+}
+.spread-clean .watermark { color: #0066cc; opacity: 0.03; }
+.spread-clean .kicker { color: #0088cc; }
+.spread-clean h2 {
+  background: linear-gradient(135deg, #0066cc, #00aa88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.spread-clean .meta-pill { background: rgba(0,102,204,0.08); color: #0066cc; }
+.spread-clean .meta-link { color: #0066cc; }
+.spread-clean .meta-score { color: #0088cc; }
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(160deg, #2a1a05 0%, #3d2a0a 40%, #1a1205 100%);
+  color: #e8d8c0;
+}
+.spread-editorial .watermark { color: #cc8833; opacity: 0.05; }
+.spread-editorial .kicker { color: #ddaa55; }
+.spread-editorial h2 { color: #fff0d0; }
+.spread-editorial .lede { color: rgba(232,216,192,0.85); }
+.spread-editorial .body-text { color: rgba(232,216,192,0.7); }
+.spread-editorial .meta-pill { background: rgba(204,136,51,0.15); color: #ddaa55; }
+.spread-editorial .meta-link { color: #ddbb77; }
+.spread-editorial .meta-score { color: #ddaa55; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: linear-gradient(160deg, #1a1a1a 0%, #252020 40%, #1a1a1a 100%);
+  color: #a89888;
+}
+.spread-memorial .watermark { color: #887766; opacity: 0.04; }
+.spread-memorial .kicker { color: #aa9988; }
+.spread-memorial h2 { color: #d0c0b0; }
+.spread-memorial .lede { color: rgba(168,152,136,0.85); }
+.spread-memorial .body-text { color: rgba(168,152,136,0.7); }
+.spread-memorial .meta-pill { background: rgba(136,119,102,0.15); color: #aa9988; }
+.spread-memorial .meta-link { color: #bbaa99; }
+.spread-memorial .meta-score { color: #aa9988; }
+
+/* Footer */
+.footer {
+  padding: 3rem 2rem;
+  background: #0a0a0a;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+.footer a { color: rgba(255,255,255,0.5); }
+
+@media (max-width: 600px) {
+  .spread { padding: 3rem 1.25rem; }
+  .spread-academic .body-text-cols,
+  .spread-newspaper .body-text-cols { column-count: 1; }
+  .toc-item { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <h1>Morning Edition</h1>
+  <div class="edition-date">Saturday 18 April 2026</div>
+  <div class="tagline">Ten stories a security leader should read before coffee</div>
+  <div class="scroll-hint">SCROLL TO BEGIN</div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="toc">
+  <div class="toc-inner">
+    <h2>Today's Stories</h2>
+    <a class="toc-item" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-title">NIST Gives Up Enriching Most CVEs</span>
+      <span class="toc-tag alert">Applies to you</span>
+      <span class="toc-tag">Cybersecurity</span>
+    </a>
+    <a class="toc-item" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-title">It Is Time to Ban the Sale of Precise Geolocation</span>
+      <span class="toc-tag alert">Applies to you</span>
+      <span class="toc-tag">Privacy</span>
+    </a>
+    <a class="toc-item" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-title">"cat readme.txt" Is Not Safe If You Use iTerm2</span>
+      <span class="toc-tag alert">Applies to you</span>
+      <span class="toc-tag">Vulnerability</span>
+    </a>
+    <a class="toc-item" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-title">Claude Design — Anthropic Labs</span>
+      <span class="toc-tag alert">Applies to you</span>
+      <span class="toc-tag">AI Tools</span>
+    </a>
+    <a class="toc-item" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-title">Are the Costs of AI Agents Also Rising Exponentially?</span>
+      <span class="toc-tag">AI Analysis</span>
+    </a>
+    <a class="toc-item" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-title">Measuring Claude 4.7's Tokenizer Costs</span>
+      <span class="toc-tag alert">Applies to you</span>
+      <span class="toc-tag">AI Tools</span>
+    </a>
+    <a class="toc-item" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-title">Penlink's Ad-Based Geolocation Surveillance Tech Exposed</span>
+      <span class="toc-tag">Surveillance</span>
+    </a>
+    <a class="toc-item" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-title">Smol Machines: Subsecond Cold-Start Portable VMs</span>
+      <span class="toc-tag">Infrastructure</span>
+    </a>
+    <a class="toc-item" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-title">PanicLock: Emergency MacBook Lockdown Tool</span>
+      <span class="toc-tag">Security Tools</span>
+    </a>
+    <a class="toc-item" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-title">Slop Cop: Detecting AI-Generated Content</span>
+      <span class="toc-tag">AI Ethics</span>
+    </a>
+  </div>
+</section>
+
+<!-- STORY 1: HERO -->
+<section class="spread spread-hero" id="story-1">
+  <div class="watermark">01</div>
+  <div class="spread-inner">
+    <div class="kicker">Cybersecurity Governance</div>
+    <h2>NIST Gives Up Enriching Most CVEs</h2>
+    <div class="applies-badge">&#9888; Directly applies to you</div>
+    <p class="lede">The US National Institute of Standards and Technology has effectively conceded it can no longer keep up with the flood of vulnerability disclosures, announcing it will stop enriching the majority of CVE entries in the National Vulnerability Database.</p>
+    <p class="body-text">This is a seismic shift for vulnerability management programmes worldwide. The NVD has been the backbone of how security teams prioritise patching - CVSS scores, CPE matching, and reference links all flow from NIST's enrichment process. Without it, organisations relying on NVD as their primary source of vulnerability intelligence are flying partially blind.</p>
+    <p class="body-text">The backlog has been building for over two years. NIST tried contract surge staffing and automated tooling, but the volume of CVEs published - now exceeding 30,000 per year - has outpaced capacity. The practical effect: CVEs will exist as bare identifiers without the metadata that makes them actionable.</p>
+    <div class="action-box">
+      <h4>What to do</h4>
+      <p class="body-text">Audit your vulnerability management pipeline today. If your scanners or SIEM rely on NVD enrichment data for prioritisation, you need alternative feeds. Consider commercial vulnerability intelligence providers (VulnDB, Snyk, etc.) or CISA's KEV catalogue for known-exploited prioritisation. Do not wait - the enrichment gap is already affecting coverage.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Cybersecurity</span>
+      <span class="meta-pill">Governance</span>
+      <span class="meta-score">190 points</span>
+      <a class="meta-link" href="https://risky.biz/risky-bulletin-nist-gives-up-enriching-most-cves/" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43723105" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 2: MIDNIGHT -->
+<section class="spread spread-midnight" id="story-2">
+  <div class="watermark">02</div>
+  <div class="spread-inner">
+    <div class="kicker">Privacy &amp; Surveillance</div>
+    <h2>It Is Time to Ban the Sale of Precise Geolocation</h2>
+    <div class="applies-badge">&#9888; Directly applies to you</div>
+    <p class="lede">A Lawfare analysis argues that the commercial sale of precise geolocation data represents one of the most significant and underregulated threats to civil liberties, and that an outright ban is the only workable solution.</p>
+    <p class="body-text">The data broker industry routinely sells location data accurate to within metres, harvested from mobile apps, advertising SDKs, and connected devices. This data has been used to track military personnel, identify intelligence officers, monitor protesters, and stalk individuals. The existing patchwork of regulations - GDPR in Europe, state-level laws in the US - has proven insufficient to stem the tide.</p>
+    <p class="body-text">For UK and EU organisations, the intersection with GDPR's "special category" data rules is murky. Location data combined with temporal patterns can reveal religious practice, political affiliation, and health conditions - all protected categories. The article makes a compelling case that consent frameworks are inadequate because users cannot meaningfully understand or control the downstream uses of their data.</p>
+    <div class="action-box">
+      <h4>What to do</h4>
+      <p class="body-text">Review what location data your organisation collects, stores, or purchases. If you have any third-party data feeds that include geolocation, verify the legal basis under UK GDPR. This area is moving toward stricter regulation - getting ahead of it now avoids scrambling later. Brief your DPO on the regulatory trajectory.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Privacy</span>
+      <span class="meta-pill">Regulation</span>
+      <span class="meta-score">673 points</span>
+      <a class="meta-link" href="https://www.lawfaremedia.org/article/it-is-time-to-ban-the-sale-of-precise-geolocation" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43720295" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 3: ROSE ALERT -->
+<section class="spread spread-rose" id="story-3">
+  <div class="watermark">03</div>
+  <div class="alert-stamp">ALERT</div>
+  <div class="spread-inner">
+    <div class="kicker">Terminal Vulnerability</div>
+    <h2>"cat readme.txt" Is Not Safe If You Use iTerm2</h2>
+    <div class="applies-badge">&#9888; Directly applies to you</div>
+    <p class="lede">A security researcher has demonstrated that simply displaying a file's contents with <code>cat</code> in iTerm2 on macOS can trigger arbitrary command execution - no interaction required beyond reading a file.</p>
+    <p class="body-text">The vulnerability exploits iTerm2's handling of terminal escape sequences. A malicious text file can embed control characters that, when rendered by iTerm2, cause the terminal to execute commands, open URLs, or exfiltrate data. The attack requires no special privileges - if a developer cats a README, a log file, or any text file containing crafted escape sequences, the payload fires.</p>
+    <p class="body-text">This is particularly dangerous in development and security workflows where inspecting untrusted files is routine. Incident responders examining suspicious files, developers reviewing cloned repos, and sysadmins checking logs are all in the blast radius. The fix involves updating iTerm2 and reviewing its security settings for escape sequence handling.</p>
+    <div class="action-box">
+      <h4>What to do</h4>
+      <p class="body-text">If your team uses iTerm2 on macOS, push an update immediately. In iTerm2 preferences, review the "Terminal" settings for escape sequence permissions. Consider whether your IR procedures need updating - examining suspicious files in a terminal emulator that executes escape sequences is a risk. Alternatively, pipe untrusted files through <code>cat -v</code> to neutralise control characters.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Vulnerability</span>
+      <span class="meta-pill">macOS</span>
+      <span class="meta-score">156 points</span>
+      <a class="meta-link" href="https://blog.calif.io/p/mad-bugs-even-cat-readmetxt-is-not" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43723281" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 4: TERMINAL -->
+<section class="spread spread-terminal" id="story-4">
+  <div class="watermark">04</div>
+  <div class="spread-inner">
+    <div class="kicker">$ anthropic --release</div>
+    <h2>Claude Design - Anthropic Labs</h2>
+    <div class="applies-badge">&#9888; Directly applies to you</div>
+    <p class="lede">Anthropic has launched Claude Design, a new product from their Labs division that extends Claude's capabilities into visual design and creative workflows.</p>
+    <p class="body-text">Claude Design represents Anthropic's push beyond text into multimodal creation. The product lets users generate, iterate on, and refine visual designs through natural language conversation. For anyone already embedded in the Claude ecosystem - using Claude Code, Cowork, or the API - this adds a significant new capability to the toolkit.</p>
+    <p class="body-text">The launch scored nearly 1,000 points on Hacker News, making it today's highest-scoring story. The discussion centres on how this compares to existing design tools, whether it can produce production-ready assets, and what it means for the broader AI tool landscape. For security teams, the question is whether design outputs introduce new vectors for social engineering or brand impersonation.</p>
+    <div class="action-box">
+      <h4>What to do</h4>
+      <p class="body-text">As a Claude power user, explore Claude Design to understand what it can produce. Consider the security implications: AI-generated design assets could lower the barrier for convincing phishing pages and brand impersonation. Update your security awareness training to reflect that AI can now produce polished visual assets, not just text.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">AI Tools</span>
+      <span class="meta-pill">Anthropic</span>
+      <span class="meta-score">974 points</span>
+      <a class="meta-link" href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43718740" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 5: ACADEMIC -->
+<section class="spread spread-academic" id="story-5">
+  <div class="watermark">05</div>
+  <div class="spread-inner">
+    <div class="kicker">Research &amp; Analysis</div>
+    <h2>Are the Costs of AI Agents Also Rising Exponentially?</h2>
+    <p class="lede">Toby Ord examines whether the operational costs of AI agents are scaling at the same exponential rate as their capabilities, with implications for every organisation betting on agentic automation.</p>
+    <div class="body-text-cols drop-cap">
+      <p>The analysis tracks hourly costs for running AI agents across various providers and use cases, finding that while per-token costs have dropped, the total cost of agentic workflows - which consume far more tokens through tool use, chain-of-thought reasoning, and retry loops - is rising significantly. An agent that reasons for 30 minutes can easily burn through what a simple API call would have cost for a full day.</p>
+      <p>This matters for organisations scaling AI-assisted workflows. The economics of agentic AI are not the same as the economics of simple inference. Context windows are larger, tool calls multiply token consumption, and complex tasks require multiple rounds of reasoning. The paper argues that cost projections based on simple API pricing are dangerously misleading.</p>
+      <p>For anyone running Claude Code, Cowork, or similar agentic systems at scale, the takeaway is clear: monitor your actual spend, not your projected spend. The gap between "tokens are getting cheaper" and "my AI bill is getting bigger" is the agent tax.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">AI Analysis</span>
+      <span class="meta-pill">Economics</span>
+      <span class="meta-score">171 points</span>
+      <a class="meta-link" href="https://www.tobyord.com/writing/hourly-costs-for-ai-agents" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43721850" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 6: GRADIENT -->
+<section class="spread spread-gradient" id="story-6">
+  <div class="watermark">06</div>
+  <div class="spread-inner">
+    <div class="kicker">AI Tools &amp; Cost</div>
+    <h2>Measuring Claude 4.7's New Tokenizer Costs</h2>
+    <div class="applies-badge">&#9888; Directly applies to you</div>
+    <p class="lede">A deep dive into Claude 4.7's updated tokenizer reveals meaningful changes in how text is tokenised, with direct implications for costs, context window utilisation, and performance in production workflows.</p>
+    <p class="body-text">The analysis benchmarks the new tokenizer against previous versions, measuring token counts across different content types - code, prose, structured data, and mixed-format inputs. The results show that while some content types see modest efficiency gains, others (particularly code with long variable names and structured JSON) consume more tokens than before.</p>
+    <p class="body-text">For heavy Claude users, the practical impact depends on your workload profile. If you're running agentic workflows that pass large code files and JSON payloads through the context window, your effective costs may have shifted. The article provides concrete before/after comparisons that let you estimate the impact on your specific use case.</p>
+    <div class="action-box">
+      <h4>What to do</h4>
+      <p class="body-text">Review your Claude usage patterns against the benchmarks in this article. If you're using Claude Code or Cowork for heavy automation, spot-check a few representative tasks to see how token consumption has changed. Adjust budget projections if needed.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">AI Tools</span>
+      <span class="meta-pill">Claude</span>
+      <span class="meta-score">578 points</span>
+      <a class="meta-link" href="https://www.claudecodecamp.com/p/i-measured-claude-4-7-s-new-tokenizer-here-s-what-it-costs-you" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43719490" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 7: NEWSPAPER -->
+<section class="spread spread-newspaper" id="story-7">
+  <div class="watermark">07</div>
+  <div class="spread-inner">
+    <div class="kicker">Investigation</div>
+    <h2>Penlink's Ad-Based Geolocation Surveillance Tech Exposed</h2>
+    <p class="lede">Citizen Lab has published a detailed technical analysis of Penlink's "Webloc" product, which exploits the advertising ecosystem to conduct real-time geolocation surveillance of individuals.</p>
+    <div class="body-text-cols">
+      <p>The research reveals how Webloc integrates with real-time bidding (RTB) infrastructure to intercept location data from mobile advertising requests. When a person's phone sends an ad request, the bid stream includes precise GPS coordinates, device identifiers, and app context. Penlink's system ingests this data to track targets without requiring any legal process beyond what's needed to access the ad exchange.</p>
+      <p>The implications are stark: any organisation with access to RTB data can conduct surveillance at scale. The ad-tech supply chain has created a parallel surveillance infrastructure that operates outside traditional law enforcement channels. Citizen Lab's analysis shows how this undermines not just individual privacy but organisational security - employee movements, executive travel patterns, and facility usage can all be reconstructed.</p>
+      <p>This pairs with today's earlier story on banning geolocation sales. The technical mechanism described here is precisely what that policy proposal aims to shut down. The two stories together paint a picture of an industry that has outrun its regulatory constraints.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="meta-pill">Surveillance</span>
+      <span class="meta-pill">Ad-Tech</span>
+      <span class="meta-score">63 points</span>
+      <a class="meta-link" href="https://citizenlab.ca/research/analysis-of-penlinks-ad-based-geolocation-surveillance-tech/" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43724140" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 8: CLEAN -->
+<section class="spread spread-clean" id="story-8">
+  <div class="watermark">08</div>
+  <div class="spread-inner">
+    <div class="kicker">Infrastructure</div>
+    <h2>Smol Machines: Subsecond Cold-Start Portable VMs</h2>
+    <p class="lede">A new open-source project delivers virtual machines that boot in under a second, aiming to combine the isolation guarantees of VMs with the startup speed of containers.</p>
+    <p class="body-text">Smol Machines uses a stripped-down hypervisor approach to create lightweight VMs that can cold-start faster than most containers spin up. The project targets use cases where container isolation isn't sufficient but traditional VM startup times are too slow - serverless functions, CI/CD runners, and security-sensitive workloads.</p>
+    <p class="body-text">For security teams, the appeal is genuine VM-level isolation without the performance penalty. Containers share a kernel, and kernel exploits remain a real attack surface. Smol VMs offer a stronger isolation boundary while maintaining the developer experience of containers. The project is early-stage but already showing impressive benchmarks on GitHub, with 300 points on HN suggesting strong community interest.</p>
+    <div class="meta-bar">
+      <span class="meta-pill">Infrastructure</span>
+      <span class="meta-pill">Open Source</span>
+      <span class="meta-score">300 points</span>
+      <a class="meta-link" href="https://github.com/smol-machines/smolvm" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43720840" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 9: EDITORIAL -->
+<section class="spread spread-editorial" id="story-9">
+  <div class="watermark">09</div>
+  <div class="spread-inner">
+    <div class="kicker">Security Tools</div>
+    <h2>PanicLock: Emergency MacBook Lockdown</h2>
+    <p class="lede">An open-source tool that lets you instantly lock your MacBook by closing the lid, forcing a password unlock and disabling TouchID - designed for situations where biometric unlock is a liability.</p>
+    <p class="body-text">PanicLock addresses a specific threat model: coerced biometric authentication. If your MacBook uses TouchID, anyone who can physically compel you to place your finger on the sensor can unlock your device. PanicLock lets you close the lid to trigger a state where only your password - which cannot be compelled without your cooperation - will unlock the machine.</p>
+    <p class="body-text">The tool has obvious relevance for journalists, activists, and anyone crossing borders with sensitive data. But it also raises a practical question for enterprise security: should endpoint security policies mandate the ability to force password-only unlock? For organisations operating in jurisdictions where device searches are routine, this is worth considering as part of travel security procedures.</p>
+    <div class="meta-bar">
+      <span class="meta-pill">Security Tools</span>
+      <span class="meta-pill">Endpoint</span>
+      <span class="meta-score">173 points</span>
+      <a class="meta-link" href="https://github.com/paniclock/paniclock/" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43720980" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY 10: MEMORIAL -->
+<section class="spread spread-memorial" id="story-10">
+  <div class="watermark">10</div>
+  <div class="spread-inner">
+    <div class="kicker">AI &amp; Ethics</div>
+    <h2>Slop Cop: Policing AI-Generated Content</h2>
+    <p class="lede">A new tool aims to identify and flag AI-generated "slop" - the low-quality, high-volume content flooding the web - with implications for content trust and information security.</p>
+    <p class="body-text">Slop Cop scans content for the telltale patterns of AI-generated text: the hedging phrases, the formulaic structures, the particular flavour of confident vagueness that characterises bulk LLM output. It's positioned as a browser extension and API that can score content on a slop-probability scale.</p>
+    <p class="body-text">The security angle here is underappreciated. AI-generated slop isn't just an aesthetic problem - it's a trust problem. When your threat intelligence feeds, vendor reports, and industry analysis are increasingly padded with AI-generated filler, the signal-to-noise ratio degrades. For CISOs who rely on open-source intelligence, the ability to distinguish human-authored analysis from auto-generated summaries is becoming a practical necessity. Slop Cop is one answer, though the cat-and-mouse dynamic between generation and detection will only accelerate.</p>
+    <div class="meta-bar">
+      <span class="meta-pill">AI Ethics</span>
+      <span class="meta-pill">Content Trust</span>
+      <span class="meta-score">143 points</span>
+      <a class="meta-link" href="https://awnist.com/slop-cop" target="_blank">Original &rarr;</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=43722660" target="_blank">HN Discussion &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="footer">
+  <p>Curated from <a href="https://news.ycombinator.com" target="_blank">Hacker News</a> front page &middot; 18 April 2026</p>
+  <p>44 stories scanned. Skipped: moonwalker hay fever, Asimov short fiction, medieval coin finds, Ada programming language history, hyperscaler capex charts, hand-coding diaries, coding-by-hand reflections, GNU libc math proofs, Gregorian chant typesetting, survival bunkers, and other stories outside the cybersecurity/AI/privacy brief.</p>
+</section>
+
+</body>
+</html>
