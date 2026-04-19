@@ -6,536 +6,430 @@
 <title>Morning Edition — 19 April 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 18px; }
-body { font-family: 'Inter', sans-serif; color: #1a1a1a; line-height: 1.7; background: #0a0a0a; }
-h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 700; line-height: 1.15; }
+*,*::before,*::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #111;
+    background: #fafaf7;
+    -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: 'Fraunces', 'Times New Roman', serif; font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; margin: 0; }
+p { margin: 0 0 1.1em 0; }
+a { color: inherit; }
+section.spread { min-height: 100vh; padding: 8vh 8vw; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+.numeral-bg { position: absolute; font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(28rem, 60vw, 55rem); line-height: 0.8; right: -3vw; bottom: -8vh; opacity: 0.07; pointer-events: none; user-select: none; letter-spacing: -0.05em; }
+.kicker { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem; opacity: 0.8; }
+.headline { font-size: clamp(2.2rem, 5.5vw, 4rem); margin-bottom: 1.8rem; max-width: 20ch; position: relative; z-index: 2; }
+.lede { font-size: 1.25rem; line-height: 1.55; max-width: 38rem; margin-bottom: 1.8rem; font-weight: 500; position: relative; z-index: 2; }
+.body-text { max-width: 36rem; font-size: 1.05rem; line-height: 1.75; position: relative; z-index: 2; }
+.body-text p { margin-bottom: 1.1em; }
+.body-text ul { padding-left: 1.2em; line-height: 1.75; }
+.body-text li { margin-bottom: 0.4em; }
+.applies-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #d32f2f; color: white; padding: 0.5rem 1rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.2rem; }
+.applies-badge::before { content: ""; width: 8px; height: 8px; background: white; border-radius: 50%; }
+.action-box { margin-top: 2rem; padding: 1.5rem 1.8rem; border-left: 4px solid #d32f2f; background: rgba(211, 47, 47, 0.06); max-width: 36rem; position: relative; z-index: 2; }
+.action-box h4 { font-family: 'Fraunces', serif; font-size: 1.3rem; margin: 0 0 0.8rem 0; color: #b71c1c; }
+.meta-bar { margin-top: auto; padding-top: 3rem; display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; position: relative; z-index: 2; font-size: 0.9rem; }
+.pill { display: inline-block; padding: 0.35rem 0.9rem; border: 1px solid currentColor; border-radius: 999px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; }
+.pill.red { background: #d32f2f; color: white; border-color: #d32f2f; }
+.score { font-weight: 700; }
+.meta-link { text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; transition: opacity 0.2s; }
+.meta-link:hover { opacity: 0.7; }
 
 /* COVER */
-.cover {
-  min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-  background: linear-gradient(160deg, #0a0a0a 0%, #1a0a0a 30%, #0a0a1a 70%, #0a0a0a 100%);
-  text-align: center; padding: 3rem 2rem; position: relative; overflow: hidden;
-}
-.cover::before {
-  content: ''; position: absolute; top: 50%; left: 50%; width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(180,40,40,0.08) 0%, transparent 70%);
-  transform: translate(-50%, -50%); pointer-events: none;
-}
-.cover-label { font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; color: #b42828; margin-bottom: 1.5rem; font-weight: 600; }
-.cover h1 { font-size: clamp(3.5rem, 10vw, 8rem); color: #fff; margin-bottom: 0.5rem; font-weight: 900; }
-.cover-date { font-family: 'Inter', sans-serif; font-size: 1.1rem; color: rgba(255,255,255,0.5); margin-bottom: 2rem; font-weight: 300; }
-.cover-tagline { font-family: 'Fraunces', serif; font-size: clamp(1.1rem, 2.5vw, 1.6rem); color: rgba(255,255,255,0.7); max-width: 600px; font-style: italic; font-weight: 300; }
-.cover-rule { width: 60px; height: 2px; background: #b42828; margin: 2rem auto; }
+.cover { min-height: 100vh; background: linear-gradient(160deg, #0a0a1a 0%, #1a1a3a 50%, #3a1a4a 100%); color: #f5f0e8; display: flex; flex-direction: column; justify-content: space-between; padding: 6vh 8vw; }
+.cover-top { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(245, 240, 232, 0.2); padding-bottom: 1rem; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.cover-main { display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
+.cover h1 { font-size: clamp(3.5rem, 10vw, 9rem); line-height: 0.9; letter-spacing: -0.04em; margin-bottom: 2rem; }
+.cover-tagline { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.3rem, 2.5vw, 1.8rem); max-width: 35rem; opacity: 0.85; line-height: 1.4; }
+.cover-bottom { font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; }
 
 /* TOC */
-.toc {
-  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-  background: #f8f6f2; padding: 4rem 2rem;
-}
-.toc-inner { max-width: 720px; margin: 0 auto; width: 100%; }
-.toc h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.5rem; color: #1a1a1a; }
-.toc-sub { font-size: 1rem; color: #666; margin-bottom: 2.5rem; font-weight: 300; }
-.toc-item {
-  display: flex; align-items: baseline; gap: 1rem; padding: 1rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.08); text-decoration: none; color: inherit;
-  transition: background 0.2s;
-}
-.toc-item:hover { background: rgba(0,0,0,0.02); }
-.toc-num { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: #b42828; min-width: 2.5rem; }
-.toc-title { font-size: 1.05rem; font-weight: 500; flex: 1; }
-.toc-tags { display: flex; gap: 0.4rem; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
-.tag { font-size: 0.65rem; padding: 0.2rem 0.55rem; border-radius: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
-.tag-cyber { background: #b42828; color: #fff; }
-.tag-privacy { background: #1a2744; color: #fff; }
-.tag-ai { background: #6b21a8; color: #fff; }
-.tag-supply { background: #c2410c; color: #fff; }
-.tag-research { background: #0e7490; color: #fff; }
-.tag-governance { background: #92400e; color: #fff; }
-.tag-trust { background: #4a5568; color: #fff; }
-.tag-alert { background: #dc2626; color: #fff; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
+.toc { background: #f5f0e8; color: #111; min-height: 100vh; padding: 10vh 8vw; }
+.toc h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 3rem; border-bottom: 2px solid #111; padding-bottom: 1rem; }
+.toc-list { list-style: none; padding: 0; margin: 0; }
+.toc-item { display: flex; gap: 1.5rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.15); text-decoration: none; color: inherit; transition: background 0.2s; }
+.toc-item:hover { background: rgba(0,0,0,0.03); }
+.toc-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; min-width: 3rem; opacity: 0.4; }
+.toc-title { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; flex-grow: 1; line-height: 1.3; }
+.toc-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; flex-shrink: 0; }
+.toc-tag { padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; border: 1px solid currentColor; letter-spacing: 0.05em; opacity: 0.8; }
+.toc-tag.red { background: #d32f2f; color: white; border-color: #d32f2f; opacity: 1; }
 
-/* SHARED SPREAD */
-.spread {
-  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-  padding: 4rem 2rem; position: relative; overflow: hidden;
-}
-.spread-inner { max-width: 780px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
-.watermark {
-  position: absolute; font-family: 'Fraunces', serif; font-weight: 900;
-  font-size: clamp(15rem, 35vw, 30rem); opacity: 0.04; pointer-events: none;
-  line-height: 1; z-index: 1; top: 50%; right: -5%; transform: translateY(-50%);
-}
-.kicker { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem; }
-.spread h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 1.5rem; }
-.lede { font-size: 1.25rem; line-height: 1.6; margin-bottom: 1.5rem; font-weight: 400; }
-.body-text { font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; }
-.applies-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: #dc2626; color: #fff; padding: 0.5rem 1rem; border-radius: 4px;
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-  margin-bottom: 1.5rem;
-}
-.applies-badge::before { content: '⚑'; font-size: 1rem; }
-.action-box {
-  background: rgba(220,38,38,0.08); border-left: 4px solid #dc2626;
-  padding: 1.25rem 1.5rem; margin-bottom: 2rem; border-radius: 0 6px 6px 0;
-}
-.action-box h4 { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #dc2626; }
-.action-box p { font-size: 0.95rem; line-height: 1.6; }
-.meta-bar {
-  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
-  padding-top: 1.5rem; border-top: 1px solid rgba(128,128,128,0.2);
-  font-size: 0.8rem; margin-top: 1rem;
-}
-.meta-bar a { text-decoration: none; font-weight: 600; transition: opacity 0.2s; }
-.meta-bar a:hover { opacity: 0.7; }
-.meta-score { font-weight: 600; }
-.meta-pill { padding: 0.15rem 0.5rem; border-radius: 3px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-
-/* 1. HERO */
-.spread-hero { background: linear-gradient(170deg, #1a0505 0%, #0a0a0a 50%, #1a0808 100%); color: #f0e8e8; }
-.spread-hero .watermark { color: #b42828; opacity: 0.06; }
-.spread-hero .kicker { color: #ef4444; }
-.spread-hero h2 { color: #fff; }
-.spread-hero .lede { color: rgba(255,255,255,0.85); }
-.spread-hero .body-text { color: rgba(255,255,255,0.7); }
-.spread-hero .action-box { background: rgba(220,38,38,0.12); }
-.spread-hero .action-box p { color: rgba(255,255,255,0.8); }
-.spread-hero .meta-bar { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
-.spread-hero .meta-bar a { color: #ef4444; }
-.spread-hero .meta-pill { background: rgba(220,38,38,0.2); color: #ef4444; }
+/* 1. HERO - dark red/black */
+.spread-hero { background: radial-gradient(ellipse at top right, #4a0c0c 0%, #1a0505 60%, #0a0000 100%); color: #fff5f0; }
+.spread-hero .numeral-bg { color: #8a1a1a; opacity: 0.15; }
+.spread-hero .kicker { color: #ff8a80; }
 
 /* 2. MIDNIGHT */
-.spread-midnight { background: linear-gradient(170deg, #0a0e1a 0%, #0d1526 50%, #0a1020 100%); color: #c8d4e8; }
-.spread-midnight .watermark { color: #3b82f6; opacity: 0.04; }
-.spread-midnight .kicker { color: #60a5fa; }
-.spread-midnight h2 { color: #e0eaff; }
-.spread-midnight .lede { color: rgba(200,212,232,0.9); }
-.spread-midnight .body-text { color: rgba(200,212,232,0.75); }
-.spread-midnight .meta-bar { border-color: rgba(255,255,255,0.08); color: rgba(200,212,232,0.5); }
-.spread-midnight .meta-bar a { color: #60a5fa; }
-.spread-midnight .meta-pill { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.spread-midnight { background: linear-gradient(135deg, #0a1530 0%, #001028 50%, #050822 100%); color: #e0e8ff; }
+.spread-midnight .numeral-bg { color: #3a5080; opacity: 0.12; }
+.spread-midnight .kicker { color: #8ab4ff; }
 
 /* 3. ROSE ALERT */
-.spread-rose { background: #fff5f5; color: #1a1a1a; border: 6px solid #dc2626; }
-.spread-rose .watermark { color: #dc2626; opacity: 0.05; }
-.spread-rose .kicker { color: #dc2626; }
-.spread-rose h2 { color: #7f1d1d; }
-.spread-rose .lede { color: #450a0a; }
-.spread-rose .alert-stamp {
-  position: absolute; top: 2rem; right: 2rem; z-index: 3;
-  font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 900;
-  color: #dc2626; border: 4px solid #dc2626; padding: 0.3rem 1rem;
-  transform: rotate(12deg); opacity: 0.6;
-}
-.spread-rose .meta-bar a { color: #dc2626; }
-.spread-rose .meta-pill { background: rgba(220,38,38,0.1); color: #dc2626; }
+.spread-rose { background: #fdf3f3; color: #3a1a1a; border-top: 12px solid #d32f2f; border-bottom: 12px solid #d32f2f; }
+.spread-rose .numeral-bg { color: #d32f2f; opacity: 0.08; }
+.spread-rose .kicker { color: #d32f2f; }
+.alert-stamp { position: absolute; top: 6vh; right: 6vw; border: 4px solid #d32f2f; color: #d32f2f; padding: 0.8rem 1.5rem; font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: 0.3em; font-size: 1rem; transform: rotate(-6deg); z-index: 3; }
 
 /* 4. TERMINAL */
-.spread-terminal { background: #0c0c0c; color: #33ff33; font-family: 'Courier New', monospace; }
-.spread-terminal .watermark { color: #33ff33; opacity: 0.04; }
-.spread-terminal .kicker { color: #33ff33; font-family: 'Courier New', monospace; }
-.spread-terminal h2 { color: #33ff33; font-family: 'Courier New', monospace; font-weight: 700; }
-.spread-terminal .lede { color: rgba(51,255,51,0.8); font-family: 'Courier New', monospace; }
-.spread-terminal .body-text { color: rgba(51,255,51,0.65); font-family: 'Courier New', monospace; font-size: 0.95rem; }
-.spread-terminal .applies-badge { background: #33ff33; color: #0c0c0c; }
-.spread-terminal .action-box { background: rgba(51,255,51,0.05); border-color: #33ff33; }
-.spread-terminal .action-box h4 { color: #33ff33; }
-.spread-terminal .action-box p { color: rgba(51,255,51,0.8); }
-.spread-terminal .meta-bar { border-color: rgba(51,255,51,0.15); color: rgba(51,255,51,0.5); }
-.spread-terminal .meta-bar a { color: #33ff33; }
-.spread-terminal .meta-pill { background: rgba(51,255,51,0.1); color: #33ff33; }
-.spread-terminal::before {
-  content: '> _'; position: absolute; top: 2rem; left: 2rem; font-family: 'Courier New', monospace;
-  font-size: 1.2rem; color: rgba(51,255,51,0.4); animation: blink 1.2s infinite;
-}
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.spread-terminal { background: #050f05; color: #6aff7a; font-family: 'Courier New', 'Menlo', monospace; }
+.spread-terminal .kicker { color: #00ff41; font-family: 'Courier New', monospace; font-weight: 600; }
+.spread-terminal .headline { font-family: 'Courier New', monospace; font-weight: 700; color: #a0ffaf; }
+.spread-terminal .body-text, .spread-terminal .lede { font-family: 'Courier New', monospace; }
+.spread-terminal .lede { color: #8affa0; }
+.spread-terminal .numeral-bg { color: #1a4022; opacity: 0.35; font-family: 'Courier New', monospace; }
+.spread-terminal .headline::before { content: "> "; color: #00ff41; }
+.spread-terminal .meta-bar { border-top: 1px dashed #00ff41; margin-top: 3rem; padding-top: 1.5rem; }
 
 /* 5. ACADEMIC */
-.spread-academic { background: #faf7f0; color: #2c2416; }
-.spread-academic .watermark { color: #8b7355; opacity: 0.04; }
-.spread-academic .kicker { color: #8b7355; }
-.spread-academic h2 { color: #2c2416; }
-.spread-academic .lede { color: #3d3424; }
-.spread-academic .body-text { color: #4a3f30; }
-.spread-academic .drop-cap::first-letter {
-  font-family: 'Fraunces', serif; float: left; font-size: 4.5rem; line-height: 0.8;
-  padding-right: 0.6rem; padding-top: 0.15rem; color: #8b7355; font-weight: 900;
-}
-.spread-academic .two-col { column-count: 2; column-gap: 2.5rem; }
-@media (max-width: 700px) { .spread-academic .two-col { column-count: 1; } }
-.spread-academic .meta-bar a { color: #8b7355; }
-.spread-academic .meta-pill { background: rgba(139,115,85,0.1); color: #8b7355; }
+.spread-academic { background: #f7f1e3; color: #2a1f0f; }
+.spread-academic .numeral-bg { color: #8a6d3b; opacity: 0.08; font-style: italic; }
+.spread-academic .kicker { color: #8a6d3b; }
+.spread-academic .body-text { column-count: 2; column-gap: 2.5rem; max-width: 50rem; font-size: 1rem; }
+.spread-academic .body-text p:first-of-type::first-letter { font-family: 'Fraunces', serif; font-size: 5rem; font-weight: 700; float: left; line-height: 0.85; padding: 0.1rem 0.7rem 0 0; color: #8a6d3b; }
+.spread-academic .headline { font-style: italic; }
 
 /* 6. GRADIENT */
-.spread-gradient { background: linear-gradient(135deg, #4c1d95 0%, #1e3a8a 50%, #0e7490 100%); color: #e8e0f8; }
-.spread-gradient .watermark { color: #fff; opacity: 0.04; }
-.spread-gradient .kicker { color: #c4b5fd; }
-.spread-gradient h2 { color: #fff; }
-.spread-gradient .lede { color: rgba(255,255,255,0.85); }
-.spread-gradient .body-text { color: rgba(255,255,255,0.72); }
-.spread-gradient .meta-bar { border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.5); }
-.spread-gradient .meta-bar a { color: #c4b5fd; }
-.spread-gradient .meta-pill { background: rgba(196,181,253,0.15); color: #c4b5fd; }
+.spread-gradient { background: linear-gradient(135deg, #2a1060 0%, #3a2090 35%, #4060d0 100%); color: #f0eaff; }
+.spread-gradient .numeral-bg { color: #ffffff; opacity: 0.09; }
+.spread-gradient .kicker { color: #c0b0ff; }
 
 /* 7. NEWSPAPER */
-.spread-newspaper { background: #faf8f4; color: #1a1a1a; border-top: 6px double #1a1a1a; border-bottom: 6px double #1a1a1a; }
-.spread-newspaper .watermark { color: #1a1a1a; opacity: 0.03; }
-.spread-newspaper .kicker { color: #666; }
-.spread-newspaper h2 { color: #1a1a1a; font-style: italic; }
-.spread-newspaper .two-col { column-count: 2; column-gap: 2.5rem; column-rule: 1px solid rgba(0,0,0,0.1); }
-@media (max-width: 700px) { .spread-newspaper .two-col { column-count: 1; } }
-.spread-newspaper .meta-bar a { color: #1a1a1a; }
-.spread-newspaper .meta-pill { background: #1a1a1a; color: #faf8f4; }
+.spread-newspaper { background: #ffffff; color: #000; border: 8px double #000; }
+.spread-newspaper .numeral-bg { color: #000; opacity: 0.05; }
+.spread-newspaper .kicker { color: #000; border-bottom: 2px solid #000; border-top: 2px solid #000; display: inline-block; padding: 0.3rem 0.7rem; }
+.spread-newspaper .headline { text-transform: uppercase; letter-spacing: -0.01em; border-bottom: 4px double #000; padding-bottom: 1rem; }
+.spread-newspaper .body-text { column-count: 2; column-gap: 2.5rem; max-width: 50rem; font-size: 1rem; }
 
 /* 8. CLEAN */
-.spread-clean { background: #fff; color: #1a1a1a; }
-.spread-clean .watermark { color: #e5e7eb; opacity: 0.15; }
-.spread-clean .kicker { color: #6b7280; }
-.spread-clean h2 { background: linear-gradient(135deg, #6b21a8, #2563eb, #0891b2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.spread-clean .lede { color: #374151; }
-.spread-clean .body-text { color: #4b5563; }
-.spread-clean .applies-badge { background: #dc2626; color: #fff; }
-.spread-clean .action-box { background: rgba(220,38,38,0.05); }
-.spread-clean .meta-bar a { color: #2563eb; }
-.spread-clean .meta-pill { background: #f3f4f6; color: #374151; }
+.spread-clean { background: #ffffff; color: #111; }
+.spread-clean .numeral-bg { color: #e8e4f0; opacity: 1; }
+.spread-clean .kicker { color: #6050a0; }
+.spread-clean .headline { background: linear-gradient(135deg, #6050a0 0%, #b050a0 50%, #e06080 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 
 /* 9. EDITORIAL */
-.spread-editorial { background: linear-gradient(170deg, #fef3c7 0%, #f59e0b20 50%, #fffbeb 100%); color: #451a03; }
-.spread-editorial .watermark { color: #f59e0b; opacity: 0.06; }
-.spread-editorial .kicker { color: #b45309; }
-.spread-editorial h2 { color: #451a03; }
-.spread-editorial .lede { color: #78350f; }
-.spread-editorial .body-text { color: #6b4423; }
-.spread-editorial .meta-bar { border-color: rgba(180,83,9,0.15); color: #92400e; }
-.spread-editorial .meta-bar a { color: #b45309; }
-.spread-editorial .meta-pill { background: rgba(245,158,11,0.15); color: #b45309; }
+.spread-editorial { background: linear-gradient(135deg, #fff8e0 0%, #ffd890 50%, #f0a050 100%); color: #3a2a10; }
+.spread-editorial .numeral-bg { color: #8a4010; opacity: 0.1; }
+.spread-editorial .kicker { color: #8a4010; }
 
 /* 10. MEMORIAL */
-.spread-memorial { background: linear-gradient(170deg, #1a1a1a 0%, #262626 50%, #1f1f1f 100%); color: #a8a29e; }
-.spread-memorial .watermark { color: #78716c; opacity: 0.04; }
-.spread-memorial .kicker { color: #78716c; }
-.spread-memorial h2 { color: #d6d3d1; }
-.spread-memorial .lede { color: #a8a29e; }
-.spread-memorial .body-text { color: #8a8580; }
-.spread-memorial .meta-bar { border-color: rgba(255,255,255,0.06); color: rgba(168,162,158,0.5); }
-.spread-memorial .meta-bar a { color: #a8a29e; }
-.spread-memorial .meta-pill { background: rgba(168,162,158,0.1); color: #a8a29e; }
+.spread-memorial { background: #1f1c1a; color: #c4bcb0; }
+.spread-memorial .numeral-bg { color: #3a342e; opacity: 1; }
+.spread-memorial .kicker { color: #8a8278; }
+.spread-memorial .headline { font-style: italic; }
 
 /* FOOTER */
-.footer {
-  padding: 4rem 2rem; background: #0a0a0a; color: rgba(255,255,255,0.35);
-  text-align: center; font-size: 0.85rem; line-height: 1.8;
+footer { padding: 5vh 8vw; background: #0a0a0a; color: #a0a0a0; font-size: 0.95rem; line-height: 1.6; text-align: center; }
+footer a { color: #e0e0e0; }
+
+@media (max-width: 700px) {
+    body { font-size: 17px; }
+    section.spread { padding: 8vh 6vw; }
+    .spread-academic .body-text, .spread-newspaper .body-text { column-count: 1; }
+    .headline { font-size: clamp(2rem, 8vw, 3rem); }
+    .toc-item { flex-wrap: wrap; }
+    .cover h1 { font-size: clamp(3rem, 14vw, 6rem); }
+    .alert-stamp { top: 4vh; right: 4vw; padding: 0.5rem 1rem; font-size: 0.75rem; }
 }
-.footer a { color: rgba(255,255,255,0.5); }
 </style>
 </head>
 <body>
 
-<!-- COVER -->
 <section class="cover">
-  <div class="cover-label">Curated for Cybersecurity Leaders</div>
-  <h1>Morning Edition</h1>
-  <div class="cover-rule"></div>
-  <div class="cover-date">Saturday, 19 April 2026</div>
-  <p class="cover-tagline">10 stories from the Hacker News front page, selected and contextualised for security leaders, AI practitioners and the technically curious.</p>
-</section>
-
-<!-- TABLE OF CONTENTS -->
-<section class="toc" id="toc">
-  <div class="toc-inner">
-    <h2>Today's Stories</h2>
-    <p class="toc-sub">4 stories flagged as directly relevant to you</p>
-
-    <a href="#story-1" class="toc-item">
-      <span class="toc-num">01</span>
-      <span class="toc-title">EU Age Verification App Ships with Security Vulnerabilities</span>
-      <span class="toc-tags"><span class="tag tag-cyber">Cyber</span><span class="tag tag-privacy">Privacy</span><span class="tag tag-alert">Applies to You</span></span>
-    </a>
-    <a href="#story-2" class="toc-item">
-      <span class="toc-num">02</span>
-      <span class="toc-title">EFF: 10 More Days to Reform Section 702 Surveillance</span>
-      <span class="toc-tags"><span class="tag tag-privacy">Privacy</span></span>
-    </a>
-    <a href="#story-3" class="toc-item">
-      <span class="toc-num">03</span>
-      <span class="toc-title">Binary Dependencies: The Hidden Packages We All Depend On</span>
-      <span class="toc-tags"><span class="tag tag-supply">Supply Chain</span><span class="tag tag-alert">Applies to You</span></span>
-    </a>
-    <a href="#story-4" class="toc-item">
-      <span class="toc-num">04</span>
-      <span class="toc-title">Anthropic Launches Claude Design</span>
-      <span class="toc-tags"><span class="tag tag-ai">AI Tools</span><span class="tag tag-alert">Applies to You</span></span>
-    </a>
-    <a href="#story-5" class="toc-item">
-      <span class="toc-num">05</span>
-      <span class="toc-title">SPEAKE(a)R: Turning Speakers into Microphones for Surveillance</span>
-      <span class="toc-tags"><span class="tag tag-research">Research</span><span class="tag tag-cyber">Cyber</span></span>
-    </a>
-    <a href="#story-6" class="toc-item">
-      <span class="toc-num">06</span>
-      <span class="toc-title">Anonymous Token Benchmarks: Opus 4.6 vs 4.7</span>
-      <span class="toc-tags"><span class="tag tag-ai">AI Tools</span></span>
-    </a>
-    <a href="#story-7" class="toc-item">
-      <span class="toc-num">07</span>
-      <span class="toc-title">Designer Reactions to Claude Design Launch</span>
-      <span class="toc-tags"><span class="tag tag-ai">AI Tools</span></span>
-    </a>
-    <a href="#story-8" class="toc-item">
-      <span class="toc-num">08</span>
-      <span class="toc-title">System Prompt Changes Between Claude Opus 4.6 and 4.7</span>
-      <span class="toc-tags"><span class="tag tag-ai">AI Tools</span><span class="tag tag-alert">Applies to You</span></span>
-    </a>
-    <a href="#story-9" class="toc-item">
-      <span class="toc-num">09</span>
-      <span class="toc-title">College Instructor Turns to Typewriters to Curb AI-Written Work</span>
-      <span class="toc-tags"><span class="tag tag-governance">Governance</span><span class="tag tag-ai">AI</span></span>
-    </a>
-    <a href="#story-10" class="toc-item">
-      <span class="toc-num">10</span>
-      <span class="toc-title">Towards Trust in Emacs: Software Supply Chain Integrity</span>
-      <span class="toc-tags"><span class="tag tag-trust">Trust</span><span class="tag tag-supply">Supply Chain</span></span>
-    </a>
-  </div>
-</section>
-
-<!-- STORY 1: HERO -->
-<section class="spread spread-hero" id="story-1">
-  <div class="watermark">01</div>
-  <div class="spread-inner">
-    <div class="kicker">Cybersecurity / Privacy / EU Regulation</div>
-    <h2>EU Age Verification App Ships with Security Vulnerabilities</h2>
-    <div class="applies-badge">Directly Applies to You</div>
-    <p class="lede">The EU's official age verification app, marketed as a "worry-free package" for protecting minors online, has been found to contain significant security vulnerabilities. The irony is as thick as the flaws are deep.</p>
-    <p class="body-text">Heise reports that security researchers have discovered vulnerabilities in the EU's age verification application, a tool designed to help platforms comply with the Digital Services Act and upcoming age-gating requirements. The app handles sensitive biometric and identity data for minors and adults alike, making these flaws particularly concerning.</p>
-    <p class="body-text">The vulnerabilities reportedly include issues with data handling and authentication that could expose personal information. For a tool whose entire purpose is to protect vulnerable users, shipping with security holes undermines the credibility of the regulatory framework it supports. It also raises familiar questions about government-mandated technology being held to lower security standards than the private sector it aims to regulate.</p>
-    <div class="action-box">
-      <h4>What to do</h4>
-      <p>If your organisation operates in the EU or serves EU users, monitor this closely. Any integration with EU age verification infrastructure should be paused pending a full security assessment. Review your own age-gating mechanisms and ensure they do not depend on this app's APIs or data flows. Brief your DPO on the implications for GDPR compliance if this tool is part of your data processing chain.</p>
+    <div class="cover-top">
+        <div>Morning Edition · Vol. I</div>
+        <div>19 April 2026</div>
     </div>
+    <div class="cover-main">
+        <h1>Morning<br>Edition</h1>
+        <p class="cover-tagline">Ten stories worth your coffee. Curated for a cybersecurity leader who reads before the inbox opens.</p>
+    </div>
+    <div class="cover-bottom">Ten selections · Hacker News front page · 5 flagged as directly relevant</div>
+</section>
+
+<section class="toc">
+    <h2>In this edition</h2>
+    <div class="toc-list">
+        
+    <a class="toc-item" href="#story-01">
+        <div class="toc-num">01</div>
+        <div class="toc-title">Vercel Says Internal Systems Hit in Breach</div>
+        <div class="toc-tags">
+            <span class="toc-tag">Cybersecurity</span>
+            <span class="toc-tag red">Applies to you</span>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-02">
+        <div class="toc-num">02</div>
+        <div class="toc-title">Airline worker arrested after sharing photos of bomb damage in WhatsApp group</div>
+        <div class="toc-tags">
+            <span class="toc-tag">Privacy</span>
+            
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-03">
+        <div class="toc-num">03</div>
+        <div class="toc-title">Notion leaks email addresses of all editors of any public page</div>
+        <div class="toc-tags">
+            <span class="toc-tag">Privacy</span>
+            <span class="toc-tag red">Applies to you</span>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-04">
+        <div class="toc-num">04</div>
+        <div class="toc-title">Migrating from DigitalOcean to Hetzner</div>
+        <div class="toc-tags">
+            <span class="toc-tag">Tech</span>
+            
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-05">
+        <div class="toc-num">05</div>
+        <div class="toc-title">Russia&#x27;s doping program is run by the same FSB team that poisoned Navalny</div>
+        <div class="toc-tags">
+            <span class="toc-tag">Threat Intel</span>
+            
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-06">
+        <div class="toc-num">06</div>
+        <div class="toc-title">Anonymous request-token comparisons from Opus 4.6 and Opus 4.7</div>
+        <div class="toc-tags">
+            <span class="toc-tag">AI</span>
+            <span class="toc-tag red">Applies to you</span>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-07">
+        <div class="toc-num">07</div>
+        <div class="toc-title">Critical flaw in Protobuf library enables JavaScript code execution</div>
+        <div class="toc-tags">
+            <span class="toc-tag">Cybersecurity</span>
+            <span class="toc-tag red">Applies to you</span>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-08">
+        <div class="toc-num">08</div>
+        <div class="toc-title">Thoughts and feelings around Claude Design</div>
+        <div class="toc-tags">
+            <span class="toc-tag">AI</span>
+            <span class="toc-tag red">Applies to you</span>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-09">
+        <div class="toc-num">09</div>
+        <div class="toc-title">Keep Pushing: We Get 10 More Days to Reform Section 702</div>
+        <div class="toc-tags">
+            <span class="toc-tag">Privacy</span>
+            
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#story-10">
+        <div class="toc-num">10</div>
+        <div class="toc-title">College instructor turns to typewriters to curb AI-written work</div>
+        <div class="toc-tags">
+            <span class="toc-tag">Ethics</span>
+            
+        </div>
+    </a>
+    
+    </div>
+</section>
+
+
+<section class="spread spread-hero" id="story-01">
+    
+    <div class="numeral-bg">01</div>
+    <div class="kicker">Supply Chain Breach</div>
+    <h2 class="headline">Vercel Says Internal Systems Hit in Breach</h2>
+    <div class="applies-badge">Directly applies to you</div>
+    <p class="lede">Vercel confirms unauthorised access to internal systems, raising supply-chain exposure for every team whose deploys touch the platform. Scope still being investigated.</p>
+    <div class="body-text"><p>Vercel said on Friday that attackers reached internal systems and are cooperating with law enforcement while the investigation continues. The company is a dependency for a very large slice of modern web deploys, edge functions and previews, so even a narrow breach casts a long supply-chain shadow.</p><p>Initial reporting points to credential compromise rather than a product vulnerability, but Vercel has not yet published the affected systems, the dwell time, or whether customer build artefacts were touched. Expect more detail as forensics complete. Treat every access token, environment variable and deploy hook that ever touched a Vercel account as potentially handled by an attacker until proven otherwise.</p><p>This one matters because the blast radius is not Vercel's own infrastructure, it is every app that was built, signed, or deployed through it.</p></div>
+    <div class="action-box"><h4>What to do</h4><div><ul><li>Rotate Vercel API tokens, deploy hooks, and any env-var secrets stored in project settings.</li><li>Audit GitHub/GitLab integrations linked to Vercel and revoke stale OAuth grants.</li><li>Pull Vercel audit logs for the last 30 days, focusing on team member adds, role changes, and integration installs.</li><li>If you sign artefacts or publish packages from Vercel builds, assume the signing material is suspect and reissue.</li></ul></div></div>
     <div class="meta-bar">
-      <span class="meta-pill" style="background:rgba(220,38,38,0.2);color:#ef4444;">Cybersecurity</span>
-      <span class="meta-pill" style="background:rgba(59,130,246,0.15);color:#60a5fa;">Privacy</span>
-      <span class="meta-score" style="color:rgba(255,255,255,0.4);">18 points</span>
-      <a href="https://www.heise.de/en/news/EU-age-verification-app-Worry-free-package-with-security-vulnerabilities-11262921.html" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47822635" target="_blank">HN discussion ↗</a>
+        <span class="pill red">Cybersecurity</span> <span class="pill red">Directly applies</span>
+        <span class="score">164 points</span>
+        <a class="meta-link" href="https://decipher.sc/2026/04/19/vercel-says-internal-systems-hit-in-breach/" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47824976" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 2: MIDNIGHT -->
-<section class="spread spread-midnight" id="story-2">
-  <div class="watermark">02</div>
-  <div class="spread-inner">
-    <div class="kicker">Privacy / Surveillance / Civil Liberties</div>
-    <h2>EFF: 10 More Days to Reform Section 702 Surveillance</h2>
-    <p class="lede">The Electronic Frontier Foundation is pushing for reform of Section 702 of FISA, the US government's most powerful mass surveillance authority. A 10-day window has opened for meaningful change.</p>
-    <p class="body-text">Section 702 authorises the US government to collect communications of non-US persons located outside the United States, but in practice it sweeps up enormous volumes of communications involving Americans and, critically, anyone communicating with US-based services. That includes most of the world's business communications.</p>
-    <p class="body-text">The EFF is calling for reforms including requiring warrants for searches of US person data, closing the "backdoor search" loophole, and adding meaningful oversight mechanisms. For organisations outside the US, Section 702 is one of the primary legal mechanisms that makes US cloud services a data protection risk under GDPR. Any reform (or lack thereof) directly impacts the legal basis for transatlantic data transfers.</p>
-    <p class="body-text">The 10-day extension is both an opportunity and a signal that there is political will to act. Whether that will translates to meaningful reform remains uncertain.</p>
+<section class="spread spread-midnight" id="story-02">
+    
+    <div class="numeral-bg">02</div>
+    <div class="kicker">Surveillance</div>
+    <h2 class="headline">Airline worker arrested after sharing photos of bomb damage in WhatsApp group</h2>
+    
+    <p class="lede">Dubai police seized a private WhatsApp group and arrested an airline worker for sharing photos of bomb damage. The chat log was the evidence.</p>
+    <div class="body-text"><p>The Insider reports that Dubai authorities obtained messages from a WhatsApp group used by airline staff, leading to the arrest of a worker who had shared images of bomb damage. The group was private and end-to-end encrypted.</p><p>Officials have not said how the messages were obtained. Possibilities range from a compromised handset, to a cooperating group member, to a commercial mobile-device forensics tool. Each reading carries a different lesson, but the one constant is that 'encrypted' never means 'unreachable.' Endpoint compromise, cloud backups, and insider access all remain paths into chats that users assume are sealed.</p><p>For anyone advising staff on what is safe to discuss on a personal device, this is another reminder that the threat model is the device, not the app.</p></div>
+    
     <div class="meta-bar">
-      <span class="meta-pill">Privacy</span>
-      <span class="meta-pill">Surveillance</span>
-      <span class="meta-score">106 points</span>
-      <a href="https://www.eff.org/deeplinks/2026/04/keep-pushing-we-get-10-more-days-reform-section-702" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47822356" target="_blank">HN discussion ↗</a>
+        <span class="pill ">Privacy</span>
+        <span class="score">177 points</span>
+        <a class="meta-link" href="https://www.lbc.co.uk/article/dubai-police-spied-private-whatsapp-5HjdXwr_2/" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47824068" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 3: ROSE ALERT -->
-<section class="spread spread-rose" id="story-3">
-  <div class="alert-stamp">ALERT</div>
-  <div class="watermark">03</div>
-  <div class="spread-inner">
-    <div class="kicker">Supply Chain Security / Infrastructure</div>
-    <h2>Binary Dependencies: The Hidden Packages We All Depend On</h2>
-    <div class="applies-badge">Directly Applies to You</div>
-    <p class="lede">A deep investigation into binary dependencies reveals the invisible packages underpinning modern software, many of which receive minimal security scrutiny despite being critical infrastructure.</p>
-    <p class="body-text">Most software supply chain analysis focuses on source-level dependencies: npm packages, PyPI libraries, Go modules. But beneath that layer sit binary dependencies, compiled packages distributed by operating systems and package managers that are harder to audit, harder to track and often more deeply embedded in production systems.</p>
-    <p class="body-text">The research identifies packages that appear in nearly every production environment but receive disproportionately little attention from security teams. These are the invisible foundations: compression libraries, certificate handling utilities, DNS resolvers. When one of these fails (think Heartbleed, or the XZ Utils backdoor attempt), the blast radius is enormous precisely because nobody was paying attention.</p>
-    <p class="body-text">This work provides a framework for identifying which binary dependencies carry the most risk and deserve the most scrutiny from security teams.</p>
-    <div class="action-box">
-      <h4>What to do</h4>
-      <p>Add binary dependency scanning to your SBOM process. Most organisations track source dependencies but have a blind spot at the OS package level. Review your container base images and identify which binary packages are included. Cross-reference against this research to prioritise which deserve active monitoring. Raise this with your engineering teams as a gap in current supply chain risk management.</p>
-    </div>
+<section class="spread spread-rose" id="story-03">
+    <div class="alert-stamp">Alert</div>
+    <div class="numeral-bg">03</div>
+    <div class="kicker">Data Protection Alert</div>
+    <h2 class="headline">Notion leaks email addresses of all editors of any public page</h2>
+    <div class="applies-badge">Directly applies to you</div>
+    <p class="lede">A researcher shows that any public Notion page reveals the email addresses of every editor who ever touched it. No authentication required.</p>
+    <div class="body-text"><p>The disclosure, shared on Twitter by researcher weezerOSINT, demonstrates that the Notion API surface returns editor email addresses for any publicly shared page. That means every customer-facing doc, public wiki, or 'share with anyone' page that a team has ever published is effectively a staff directory for anyone who cares to scrape it.</p><p>The vector is trivial, the impact is quietly enormous. Phishing campaigns thrive on verified corporate emails, and the editor list for a public roadmap or hiring page is often a clean map of the team. Notion has not yet issued a public statement at the time of writing.</p><p>Under UK GDPR and the EU's equivalent regime, employee email addresses are personal data. Leaking them through a public API surface is a textbook Article 32 control failure and likely a notifiable incident depending on volume and downstream use.</p></div>
+    <div class="action-box"><h4>What to do</h4><div><ul><li>Inventory every Notion page your organisation has set to 'Share to web.' The setting is per-page and surprises most teams.</li><li>Assume editor emails on those pages are already harvested. Warn affected staff about targeted phishing.</li><li>Add Notion public-share events to your DLP and SIEM monitoring if the plan tier supports it.</li><li>Document the decision and timing in your incident log; a UK/EU supervisory authority will ask.</li></ul></div></div>
     <div class="meta-bar">
-      <span class="meta-pill">Supply Chain</span>
-      <span class="meta-pill">Infrastructure</span>
-      <span class="meta-score">37 points</span>
-      <a href="https://vlad.website/binary-dependencies-identifying-the-hidden-packages-we-all-depend-on/" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47797987" target="_blank">HN discussion ↗</a>
+        <span class="pill red">Privacy</span> <span class="pill red">Directly applies</span>
+        <span class="score">103 points</span>
+        <a class="meta-link" href="https://twitter.com/weezerOSINT/status/2045849358462222720" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47824945" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 4: TERMINAL -->
-<section class="spread spread-terminal" id="story-4">
-  <div class="watermark">04</div>
-  <div class="spread-inner">
-    <div class="kicker">> AI_TOOLS / ANTHROPIC / PRODUCT_LAUNCH</div>
-    <h2>> Claude Design Launches from Anthropic Labs</h2>
-    <div class="applies-badge">Directly Applies to You</div>
-    <p class="lede">> Anthropic ships Claude Design, a new product from Anthropic Labs that extends Claude's capabilities into visual design and creative workflows. 1,201 points on HN. The community is paying attention.</p>
-    <p class="body-text">> Claude Design represents Anthropic's push beyond text into multimodal creative work. The product, released under the Anthropic Labs experimental banner, allows Claude to generate and iterate on visual designs, potentially reshaping how teams approach design workflows.</p>
-    <p class="body-text">> For anyone already building AI-assisted workflows with Claude (which includes you), this is worth evaluating immediately. The question is whether design capabilities can be integrated into existing automation pipelines, and what the security implications are of feeding visual assets and brand materials through an AI system.</p>
-    <p class="body-text">> The HN discussion (746 comments) reveals both excitement about capabilities and concern about the implications for design professionals. The score of 1,201 makes this the highest-rated story on today's front page by a wide margin.</p>
-    <div class="action-box">
-      <h4>> WHAT_TO_DO</h4>
-      <p>Evaluate Claude Design for your workflow. Consider data classification implications if you plan to use it with internal visual assets or brand materials. Review Anthropic's data handling policies for this new product surface. This is also a signal that Anthropic is expanding rapidly beyond chat, which has implications for enterprise procurement and risk assessment.</p>
-    </div>
+<section class="spread spread-terminal" id="story-04">
+    
+    <div class="numeral-bg">04</div>
+    <div class="kicker">Infrastructure</div>
+    <h2 class="headline">Migrating from DigitalOcean to Hetzner</h2>
+    
+    <p class="lede">A detailed walkthrough of moving production workloads from DigitalOcean to Hetzner, with real numbers on cost and performance. The top story on HN today with 847 points.</p>
+    <div class="body-text"><p>The post walks through a full migration: why the move, how the network was cutover without downtime, and what the bill looks like on the other side. The short version is that Hetzner's price-per-core remains the outlier it has been for years, and for steady-state workloads the savings are dramatic.</p><p>The more interesting sections cover the stuff that usually gets glossed over in cost-comparison posts: DNS TTL discipline, database replication across providers, object storage egress bills during the cutover, and the limits of each provider's managed services.</p><p>Worth a read for anyone re-evaluating cloud spend in 2026. The post is candid about Hetzner's weaker edges too, including support response times and a more Spartan console.</p></div>
+    
     <div class="meta-bar">
-      <span class="meta-pill">AI Tools</span>
-      <span class="meta-pill">Anthropic</span>
-      <span class="meta-score">1,201 points</span>
-      <a href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47806725" target="_blank">HN discussion ↗</a>
+        <span class="pill ">Tech</span>
+        <span class="score">847 points</span>
+        <a class="meta-link" href="https://isayeter.com/posts/digitalocean-to-hetzner-migration/" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47815774" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 5: ACADEMIC -->
-<section class="spread spread-academic" id="story-5">
-  <div class="watermark">05</div>
-  <div class="spread-inner">
-    <div class="kicker">Security Research / Physical Security</div>
-    <h2>SPEAKE(a)R: Turning Speakers into Covert Microphones</h2>
-    <p class="lede">A 2017 USENIX paper resurfaces on HN, demonstrating how speakers can be repurposed as microphones to eavesdrop on conversations, bypassing traditional audio security controls.</p>
-    <div class="two-col">
-      <p class="body-text drop-cap">The research, conducted by Mordechai Guri and colleagues at Ben-Gurion University, demonstrates a technique called SPEAKE(a)R that exploits the fact that speakers and microphones are physically similar transducers. By using a computer's audio codec to silently reconfigure speaker jacks as input channels, an attacker can turn passive speakers into active listening devices.</p>
-      <p class="body-text">This matters for air-gapped environments and facilities where microphone access is physically restricted. If your threat model includes nation-state actors or insider threats in sensitive environments, the assumption that "we removed the microphones" may not be sufficient. The attack works on standard PC audio hardware without any hardware modification.</p>
-      <p class="body-text">The paper is nine years old but its resurgence on HN suggests the security community is re-evaluating physical security assumptions in an era of increasingly sophisticated surveillance. For organisations handling classified or highly sensitive discussions, this is a reminder that audio security requires more than removing obvious recording devices.</p>
-    </div>
+<section class="spread spread-academic" id="story-05">
+    
+    <div class="numeral-bg">05</div>
+    <div class="kicker">Investigation</div>
+    <h2 class="headline">Russia&#x27;s doping program is run by the same FSB team that poisoned Navalny</h2>
+    
+    <p class="lede">The Insider&#x27;s open-source analysis links Russia&#x27;s state doping program to the same FSB unit that poisoned Alexei Navalny. A study in how adversary units pivot between missions.</p>
+    <div class="body-text"><p>The Insider and Bellingcat's joint investigation traces travel records, phone metadata, and unit affiliations to show that the FSB's Criminalistics Institute, long linked to the Navalny poisoning, also ran the logistics behind Russia's Olympic doping scheme.</p><p>For threat intel readers, the methodology is the lesson. Small-scale open-source tools, consistently applied over years, can deanonymise state-sponsored operators with the precision that used to require classified collection. The same techniques of call-detail record correlation, airline manifests and facial recognition on leaked databases now underpin some of the most detailed public attribution work being done.</p><p>It also underlines a point that CISOs tracking nation-state activity already know: the units that run kinetic operations are not siloed from the ones that run cyber. Personnel, infrastructure, and tradecraft are shared.</p></div>
+    
     <div class="meta-bar">
-      <span class="meta-pill">Research</span>
-      <span class="meta-pill">Physical Security</span>
-      <span class="meta-score">84 points</span>
-      <a href="https://www.usenix.org/system/files/conference/woot17/woot17-paper-guri.pdf" target="_blank">Read original (PDF) ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47822805" target="_blank">HN discussion ↗</a>
+        <span class="pill ">Threat Intel</span>
+        <span class="score">57 points</span>
+        <a class="meta-link" href="https://theins.press/en/inv/291614" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47824874" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 6: GRADIENT -->
-<section class="spread spread-gradient" id="story-6">
-  <div class="watermark">06</div>
-  <div class="spread-inner">
-    <div class="kicker">AI Tools / Benchmarking / LLM Economics</div>
-    <h2>Anonymous Token Benchmarks: Opus 4.6 vs 4.7</h2>
-    <p class="lede">A community-built leaderboard compares request token usage between Claude Opus 4.6 and 4.7, offering rare transparency into how model updates affect cost and verbosity.</p>
-    <p class="body-text">With 551 points and 535 comments, this is clearly striking a nerve. The tool at tokens.billchambers.me lets users submit anonymous comparisons of token consumption across model versions, creating a crowd-sourced dataset on how Anthropic's updates change the economics of API usage.</p>
-    <p class="body-text">For anyone running Claude at scale (through automation, agentic workflows or enterprise deployments), token consumption directly translates to cost. Understanding how model version changes affect token usage is essential for budgeting and architecture decisions. A model that produces better outputs but uses 40% more tokens may not be the right choice for every use case.</p>
-    <p class="body-text">The discussion also touches on whether newer models are becoming more verbose by default, and whether that verbosity represents genuine improvement or padding. This is the kind of empirical, community-driven benchmarking that helps practitioners make informed decisions beyond marketing claims.</p>
+<section class="spread spread-gradient" id="story-06">
+    
+    <div class="numeral-bg">06</div>
+    <div class="kicker">AI Tooling</div>
+    <h2 class="headline">Anonymous request-token comparisons from Opus 4.6 and Opus 4.7</h2>
+    <div class="applies-badge">Directly applies to you</div>
+    <p class="lede">Bill Chambers benchmarks Anthropic&#x27;s Claude Opus 4.6 and 4.7 on token-efficient request handling. Real numbers for anyone building Claude-backed agents.</p>
+    <div class="body-text"><p>The leaderboard tracks how Opus 4.6 and the newer 4.7 compare on a suite of anonymous request-token comparison tasks, with cost-per-completion and latency plotted alongside raw accuracy. The gap between 4.6 and 4.7 on the harder reasoning tasks is modest but consistent.</p><p>What makes this useful rather than yet-another-benchmark is the lens. Chambers is measuring the cost of real agentic patterns, not just single-turn Q&A. That means the findings translate reasonably well to the kind of workloads Claude Code and Cowork run at scale.</p><p>If you are picking a default model for a production agent loop this week, the data here is worth twenty minutes.</p></div>
+    <div class="action-box"><h4>What to do</h4><div><ul><li>If your Cowork or Claude Code workflows still default to Opus 4.6, run your own cost-per-task benchmark against 4.7 before committing to a switch.</li><li>Cache the comparison in your team's model-selection playbook so juniors do not have to re-derive it.</li><li>Flag any customer-facing agents where a model swap would change output shape, not just cost.</li></ul></div></div>
     <div class="meta-bar">
-      <span class="meta-pill">AI Tools</span>
-      <span class="meta-pill">Benchmarking</span>
-      <span class="meta-score">551 points</span>
-      <a href="https://tokens.billchambers.me/leaderboard" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47816960" target="_blank">HN discussion ↗</a>
+        <span class="pill red">AI</span> <span class="pill red">Directly applies</span>
+        <span class="score">582 points</span>
+        <a class="meta-link" href="https://tokens.billchambers.me/leaderboard" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47816960" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 7: NEWSPAPER -->
-<section class="spread spread-newspaper" id="story-7">
-  <div class="watermark">07</div>
-  <div class="spread-inner">
-    <div class="kicker">AI Industry / Design / Cultural Impact</div>
-    <h2>Thoughts and Feelings Around Claude Design</h2>
-    <p class="lede">A designer's candid response to Anthropic's Claude Design launch captures the industry's mixed emotions about AI entering the creative workspace.</p>
-    <div class="two-col">
-      <p class="body-text">Sam Henri Gold's blog post provides a thoughtful counterpoint to the hype cycle around Claude Design. With 338 points and 211 comments, the piece resonates with a community wrestling with the implications of AI tools that can now produce visual output.</p>
-      <p class="body-text">The post does not fall into easy categories. It is neither doom-and-gloom about AI replacing designers nor uncritical cheerleading. Instead, it examines what changes when the friction of producing visual work drops to near zero. What happens to craft? What happens to the feedback loops that make designers better? What happens to junior roles that traditionally serve as training grounds?</p>
-      <p class="body-text">For security leaders thinking about AI governance, this piece is valuable because it articulates the human side of AI adoption. The same questions apply to security analysts, SOC operators and any role where AI is being positioned as an accelerant. Understanding the emotional and professional dynamics of displacement helps you roll out AI tools in ways that build capability rather than resentment.</p>
-    </div>
+<section class="spread spread-newspaper" id="story-07">
+    
+    <div class="numeral-bg">07</div>
+    <div class="kicker">Critical CVE</div>
+    <h2 class="headline">Critical flaw in Protobuf library enables JavaScript code execution</h2>
+    <div class="applies-badge">Directly applies to you</div>
+    <p class="lede">A critical flaw in the Protobuf library allows attackers to execute arbitrary JavaScript code through crafted messages. Bleeping Computer has the breakdown.</p>
+    <div class="body-text"><p>The vulnerability affects the JavaScript implementation of Google's Protobuf library, widely used across backend services, SDKs and browser clients. A specially crafted protobuf message can cause the parser to execute attacker-controlled JavaScript on the host, turning a serialisation library into a remote code execution primitive.</p><p>Patched versions are available now. The maintainers recommend immediate upgrade; there is no known workaround that fully mitigates the issue without the patch.</p><p>The class of issue, RCE in a serialiser that everyone imports transitively, is exactly the supply-chain profile that has caused the worst incidents of the last two years. Most organisations do not know where protobuf-javascript ends up in their dependency tree, which is the problem.</p></div>
+    <div class="action-box"><h4>What to do</h4><div><ul><li>Run an SBOM scan for <code>protobufjs</code> and <code>google-protobuf</code> in every JavaScript and Node service. Include front-end bundles.</li><li>Prioritise patching internet-facing services and any service that parses protobuf from untrusted sources.</li><li>Check for exploitation attempts in WAF logs; payloads will look like unusually structured POST bodies or gRPC-Web traffic.</li><li>Brief the on-call on-call engineer; this is the kind of CVE that will see exploitation within days.</li></ul></div></div>
     <div class="meta-bar">
-      <span class="meta-pill">AI Industry</span>
-      <span class="meta-pill">Design</span>
-      <span class="meta-score">338 points</span>
-      <a href="https://samhenri.gold/blog/20260418-claude-design/" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47818700" target="_blank">HN discussion ↗</a>
+        <span class="pill red">Cybersecurity</span> <span class="pill red">Directly applies</span>
+        <span class="score">4 points</span>
+        <a class="meta-link" href="https://www.bleepingcomputer.com/news/security/critical-flaw-in-protobuf-library-enables-javascript-code-execution/" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47825528" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 8: CLEAN -->
-<section class="spread spread-clean" id="story-8">
-  <div class="watermark">08</div>
-  <div class="spread-inner">
-    <div class="kicker">AI Tools / Transparency / Claude</div>
-    <h2>System Prompt Changes Between Claude Opus 4.6 and 4.7</h2>
-    <div class="applies-badge">Directly Applies to You</div>
-    <p class="lede">Simon Willison documents the differences between system prompts across Claude Opus versions, offering a window into how Anthropic steers model behaviour between releases.</p>
-    <p class="body-text">Willison's analysis compares the system prompts that ship with Claude Opus 4.6 and 4.7, revealing how Anthropic fine-tunes behaviour, safety guardrails and response patterns through prompt engineering rather than just model training. These prompts are the "constitution" that shapes how Claude responds to users.</p>
-    <p class="body-text">For anyone building workflows on top of Claude (which is literally your daily work), understanding these changes is operational intelligence. A shift in how the system prompt handles refusals, safety checks or tool use can break existing automations or change output quality in subtle ways. Willison's work makes the invisible visible.</p>
-    <p class="body-text">This also touches on a broader transparency question: should AI companies publish their system prompts? The fact that this analysis is possible through reverse engineering rather than official documentation is itself noteworthy.</p>
-    <div class="action-box">
-      <h4>What to do</h4>
-      <p>Review Willison's diff against your own Claude workflows. If you have automations that depend on specific behavioural patterns (refusal handling, tool use, output formatting), test them against the new model version. Consider building regression tests for your most critical Claude-based workflows to catch behaviour changes early when models update.</p>
-    </div>
+<section class="spread spread-clean" id="story-08">
+    
+    <div class="numeral-bg">08</div>
+    <div class="kicker">Design Thinking</div>
+    <h2 class="headline">Thoughts and feelings around Claude Design</h2>
+    <div class="applies-badge">Directly applies to you</div>
+    <p class="lede">Sam Henri Gold, until recently at Anthropic, publishes a long-form reflection on the design system behind Claude and the trade-offs of designing for a non-deterministic product.</p>
+    <div class="body-text"><p>The essay is a rare inside look at how a design team shapes the surface of a model. Gold covers why Claude's interface leans as plain as it does, how tone and restraint translate into visual decisions, and the quiet work of deciding what the model should not look like.</p><p>For anyone building on Claude, the piece reads less like a retrospective and more like a specification. The patterns Gold describes are the ones you end up reimplementing anyway, badly, if you ship your own Claude-backed product without them.</p></div>
+    <div class="action-box"><h4>What to do</h4><div><ul><li>Share with any designer or PM on your team building a Claude Code or Cowork-adjacent product; it will save a week of re-deriving the same principles.</li><li>Note which patterns Gold calls out as load-bearing and audit your own agent UX against them.</li></ul></div></div>
     <div class="meta-bar">
-      <span class="meta-pill" style="background:#f3f4f6;color:#374151;">AI Tools</span>
-      <span class="meta-pill" style="background:#f3f4f6;color:#374151;">Transparency</span>
-      <span class="meta-score">50 points</span>
-      <a href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47823270" target="_blank">HN discussion ↗</a>
+        <span class="pill red">AI</span> <span class="pill red">Directly applies</span>
+        <span class="score">347 points</span>
+        <a class="meta-link" href="https://samhenri.gold/blog/20260418-claude-design/" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47818700" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 9: EDITORIAL -->
-<section class="spread spread-editorial" id="story-9">
-  <div class="watermark">09</div>
-  <div class="spread-inner">
-    <div class="kicker">AI Governance / Education / Policy</div>
-    <h2>College Instructor Turns to Typewriters to Curb AI-Written Work</h2>
-    <p class="lede">A Colorado college instructor has resorted to typewriters in the classroom, requiring students to compose on mechanical keyboards as a response to the proliferation of AI-generated submissions.</p>
-    <p class="body-text">With 329 points and 325 comments, this story has sparked a vigorous debate about the appropriate response to AI in education. The instructor's approach is deliberately analogue: by removing the digital layer entirely, they eliminate the possibility of AI assistance during composition.</p>
-    <p class="body-text">The HN discussion is more nuanced than the headline suggests. Many commenters note that this approach teaches valuable skills (thinking before writing, working without a delete key, composing complete thoughts) while others argue it is a retreat from reality. The real question is not whether typewriters are a good pedagogical tool, but what it means when institutions resort to eliminating technology rather than adapting to it.</p>
-    <p class="body-text">For security and technology leaders, this is a governance parable. Every organisation is facing some version of this question: do you ban AI tools, restrict them, or embrace them with guardrails? The typewriter approach is the educational equivalent of blocking ChatGPT at the firewall. It works in the short term but does not prepare anyone for the world they are entering.</p>
+<section class="spread spread-editorial" id="story-09">
+    
+    <div class="numeral-bg">09</div>
+    <div class="kicker">Policy &amp; Governance</div>
+    <h2 class="headline">Keep Pushing: We Get 10 More Days to Reform Section 702</h2>
+    
+    <p class="lede">The EFF has ten more days to push reforms to Section 702 surveillance authorities. What the fight looks like and why it still matters for non-US organisations.</p>
+    <div class="body-text"><p>Section 702 is the US authority that permits warrantless collection of communications between US persons and foreign targets. Every meaningful reform cycle comes down to a handful of procedural windows, and the EFF's post maps the current one: what amendments are still in play, which senators are movable, and what a weak reauthorisation looks like in practice.</p><p>For UK and EU organisations the relevance is indirect but real. Section 702 is the authority that sits underneath the adequacy decisions governing transatlantic data flows. A weak reauthorisation, or worse an expansion, tips another round of Schrems-style litigation back into the queue and the compliance implications for data transfer will land on European privacy programmes within months.</p></div>
+    
     <div class="meta-bar">
-      <span class="meta-pill">Governance</span>
-      <span class="meta-pill">AI</span>
-      <span class="meta-pill">Education</span>
-      <span class="meta-score">329 points</span>
-      <a href="https://sentinelcolorado.com/uncategorized/a-college-instructor-turns-to-typewriters-to-curb-ai-written-work-and-teach-life-lessons/" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47818485" target="_blank">HN discussion ↗</a>
+        <span class="pill ">Privacy</span>
+        <span class="score">159 points</span>
+        <a class="meta-link" href="https://www.eff.org/deeplinks/2026/04/keep-pushing-we-get-10-more-days-reform-section-702" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47822356" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- STORY 10: MEMORIAL -->
 <section class="spread spread-memorial" id="story-10">
-  <div class="watermark">10</div>
-  <div class="spread-inner">
-    <div class="kicker">Software Trust / Supply Chain / Open Source</div>
-    <h2>Towards Trust in Emacs: Rethinking Software Integrity</h2>
-    <p class="lede">A proposal for improving trust and integrity in the Emacs package ecosystem tackles fundamental questions about how we verify that the software we run is the software we intended to run.</p>
-    <p class="body-text">Eshel Yaron's post examines the trust model of Emacs packages, where users routinely execute arbitrary Lisp code from community repositories with minimal verification. The proposal outlines a path toward cryptographic signing, reproducible builds and transparent dependency tracking for the Emacs ecosystem.</p>
-    <p class="body-text">While this is specifically about Emacs, the underlying problem is universal. Every package ecosystem, from npm to PyPI to MELPA, faces the same fundamental challenge: how do you establish trust in code written by strangers? The XZ Utils incident demonstrated that even widely-used, seemingly trustworthy packages can be compromised through patient social engineering.</p>
-    <p class="body-text">The Emacs community's approach is worth watching because it starts from first principles rather than bolting security onto an existing system. The discussion around reproducible builds, signature verification and trust anchors mirrors conversations happening in every serious software supply chain security effort. Small ecosystems can move faster than large ones, making Emacs a potential proving ground for ideas that could propagate to larger package managers.</p>
+    
+    <div class="numeral-bg">10</div>
+    <div class="kicker">AI &amp; Education</div>
+    <h2 class="headline">College instructor turns to typewriters to curb AI-written work</h2>
+    
+    <p class="lede">A college instructor moves his writing class to typewriters, a quiet protest against AI-assisted work and a broader argument about what education is for.</p>
+    <div class="body-text"><p>The instructor's argument is not nostalgia. It is that writing is the thinking, and outsourcing the writing means outsourcing the thinking, and after two years of trying to design AI-resistant assignments the only honest option left was to remove the machine from the room.</p><p>The sentinel that AI-in-education discourse has settled into is mostly economic: how much does the degree still cost, how much value remains. The quieter question is what kind of minds the next decade is training, and what is lost when the friction of composing a sentence is removed from the formative years.</p><p>Reasonable people will disagree about whether typewriters are the answer. The underlying concern, that the tool is reshaping the student faster than the curriculum can adapt, is harder to wave away.</p></div>
+    
     <div class="meta-bar">
-      <span class="meta-pill">Trust</span>
-      <span class="meta-pill">Supply Chain</span>
-      <span class="meta-pill">Open Source</span>
-      <span class="meta-score">185 points</span>
-      <a href="https://eshelyaron.com/posts/2026-04-15-towards-trust-in-emacs.html" target="_blank">Read original ↗</a>
-      <a href="https://news.ycombinator.com/item?id=47778938" target="_blank">HN discussion ↗</a>
+        <span class="pill ">Ethics</span>
+        <span class="score">395 points</span>
+        <a class="meta-link" href="https://sentinelcolorado.com/uncategorized/a-college-instructor-turns-to-typewriters-to-curb-ai-written-work-and-teach-life-lessons/" target="_blank" rel="noopener">Read original</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47818485" target="_blank" rel="noopener">HN discussion</a>
     </div>
-  </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <p>Morning Edition is curated from the <a href="https://news.ycombinator.com" target="_blank">Hacker News</a> front page. 50 stories reviewed, 10 selected.</p>
-  <p>Skipped: routine job postings, vendor marketing, crypto/web3 hype, patch advisories without context, CVE database drama, and stories without actionable relevance to security leadership.</p>
-  <p style="margin-top:1rem; opacity:0.6;">Built with Claude on 19 April 2026</p>
+
+
+<footer>
+    <p>Sourced from Hacker News front page (19 April 2026). Ten stories curated from the top 50.</p>
+    <p>Curation skipped: vendor marketing dressed as news, routine patch advisories without context, CVE database politics, and crypto/web3 speculation. Duplicates against the previous two editions excluded: 0.</p>
+    <p>Morning Edition is Euan McGregor's personal daily brief. Assembled automatically each morning.</p>
 </footer>
+
 
 </body>
 </html>
