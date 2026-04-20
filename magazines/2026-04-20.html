@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morning Edition — Monday, 20 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 18px;
+    line-height: 1.65;
+    color: #1a1a1a;
+    background: #0b0b0f;
+    -webkit-font-smoothing: antialiased;
+}
+p { margin-bottom: 1em; font-size: 1.125rem; }
+a { color: inherit; }
+
+.cover {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at top left, #2a1b4a 0%, #0b0b0f 45%),
+                linear-gradient(135deg, #14021d 0%, #0b0b0f 70%);
+    color: #f4f1ea;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5vh 6vw;
+    position: relative;
+    overflow: hidden;
+}
+.cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(225, 52, 79, 0.18), transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(94, 106, 210, 0.22), transparent 50%);
+    pointer-events: none;
+}
+.cover-top { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; font-family: 'Inter'; letter-spacing: 0.25em; font-size: 0.95rem; text-transform: uppercase; opacity: 0.75; }
+.cover-main { position: relative; z-index: 1; }
+.cover-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(3.8rem, 11vw, 10rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-bottom: 0.4em;
+}
+.cover-title .sub-line { display: block; font-style: italic; font-weight: 400; color: #e1344f; }
+.cover-tagline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 48ch;
+    color: rgba(244, 241, 234, 0.82);
+    line-height: 1.35;
+}
+.cover-bottom { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; }
+.cover-date {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    font-weight: 500;
+}
+.cover-issue {
+    font-family: 'Inter';
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.toc {
+    background: #f4f1ea;
+    color: #1a1a1a;
+    padding: 10vh 6vw;
+    min-height: 100vh;
+}
+.toc-eyebrow { font-size: 0.95rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.55; margin-bottom: 1rem; }
+.toc-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 3rem;
+}
+.toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
+.toc-item a {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 1.6rem 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+    color: inherit;
+    align-items: baseline;
+    transition: background 0.2s;
+}
+.toc-item a:hover { background: rgba(0,0,0,0.03); }
+.toc-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 2.4rem;
+    color: #1a1a1a;
+    opacity: 0.5;
+    letter-spacing: -0.02em;
+}
+.toc-body { display: flex; flex-direction: column; gap: 0.5rem; }
+.toc-hd {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+}
+.toc-meta { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.toc-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.3em 0.8em;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 2px;
+    background: transparent;
+    font-weight: 500;
+}
+.toc-tag-red {
+    background: #e1344f;
+    color: #fff;
+    border-color: #e1344f;
+}
+
+.spread {
+    min-height: 100vh;
+    padding: 9vh 7vw;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.spread-inner { position: relative; z-index: 2; max-width: 980px; width: 100%; margin: 0 auto; }
+.watermark {
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(22rem, 45vw, 52rem);
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    top: 50%;
+    right: -4vw;
+    transform: translateY(-50%);
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+}
+.spread-top {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.num-tag, .kicker {
+    font-family: 'Inter';
+    font-size: 0.85rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.4em 0.9em;
+    border-radius: 2px;
+}
+.num-tag { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); }
+.kicker { border: 1px solid currentColor; opacity: 0.85; }
+.applies-badge {
+    font-family: 'Inter';
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0.42em 1em;
+    background: #e1344f;
+    color: #fff;
+    border-radius: 2px;
+}
+.headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.2rem, 5.8vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin-bottom: 1.5rem;
+    max-width: 20ch;
+}
+.lede {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.45rem;
+    line-height: 1.4;
+    max-width: 42ch;
+    margin-bottom: 2rem;
+    opacity: 0.92;
+}
+.body-copy p { font-size: 1.125rem; line-height: 1.7; max-width: 62ch; }
+.body-copy p + p { margin-top: 0.1em; }
+.action-box {
+    margin-top: 2.4rem;
+    padding: 1.8rem 2rem;
+    border-left: 4px solid #e1344f;
+    background: rgba(225, 52, 79, 0.08);
+    max-width: 62ch;
+}
+.action-label {
+    font-family: 'Inter';
+    font-size: 0.85rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #e1344f;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+.action-box p { font-size: 1.08rem; line-height: 1.6; }
+.meta-bar {
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid currentColor;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter';
+    opacity: 0.85;
+}
+.pills { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.pill {
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.35em 0.85em;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+}
+.pill-score { opacity: 0.8; }
+.links { display: flex; gap: 1.4rem; font-size: 0.95rem; }
+.meta-link { text-decoration: underline; text-underline-offset: 4px; }
+.meta-link:hover { opacity: 0.7; }
+
+.spread-hero {
+    background: radial-gradient(ellipse at 30% 20%, #3d0a14 0%, #110406 70%);
+    color: #f5e4df;
+}
+.spread-hero .watermark { color: #e1344f; opacity: 0.14; }
+.spread-hero .headline { color: #fff; }
+.spread-hero .kicker { background: rgba(225,52,79,0.18); border-color: #e1344f; color: #ffb8c2; }
+
+.spread-midnight {
+    background: linear-gradient(165deg, #0a1430 0%, #050712 90%);
+    color: #d4dff5;
+}
+.spread-midnight .watermark { color: #4a5ea0; opacity: 0.09; }
+.spread-midnight .headline { color: #fff; }
+.spread-midnight .kicker { color: #7a9eff; border-color: #7a9eff; }
+
+.spread-rose-alert {
+    background: #fff0f3;
+    color: #2b0812;
+    border: 10px solid #e1344f;
+}
+.spread-rose-alert .watermark { color: #e1344f; opacity: 0.1; }
+.spread-rose-alert .headline { color: #2b0812; }
+.spread-rose-alert .kicker { color: #e1344f; border-color: #e1344f; }
+.spread-rose-alert::before {
+    content: 'ALERT';
+    position: absolute;
+    top: 3rem; right: 3rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: 0.3em;
+    color: #e1344f;
+    border: 4px solid #e1344f;
+    padding: 0.4em 1em;
+    transform: rotate(8deg);
+    z-index: 3;
+}
+
+.spread-terminal {
+    background: #0a140b;
+    color: #4aff8a;
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+}
+.spread-terminal .watermark { color: #4aff8a; opacity: 0.1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .headline {
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    font-weight: 700;
+    color: #cfffd8;
+}
+.spread-terminal .lede { font-family: 'JetBrains Mono', monospace; font-style: normal; color: #9effb4; font-size: 1.2rem; }
+.spread-terminal .body-copy p { font-family: 'JetBrains Mono', monospace; font-size: 1.02rem; color: #b8f5c2; }
+.spread-terminal .kicker { color: #4aff8a; border-color: #4aff8a; }
+.spread-terminal .num-tag { background: rgba(74,255,138,0.12); border-color: #4aff8a; }
+.spread-terminal .headline::before { content: '$ '; color: #4aff8a; opacity: 0.6; }
+.spread-terminal .action-box { border-color: #4aff8a; background: rgba(74,255,138,0.08); }
+.spread-terminal .action-label { color: #4aff8a; }
+
+.spread-academic {
+    background: #f7f1e1;
+    color: #2a1f14;
+}
+.spread-academic .watermark { color: #2a1f14; opacity: 0.06; font-family: 'Fraunces', serif; }
+.spread-academic .headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+.spread-academic .lede { font-style: italic; font-weight: 400; }
+.spread-academic .body-copy {
+    column-count: 2;
+    column-gap: 2.5rem;
+    max-width: none;
+}
+@media (max-width: 900px) { .spread-academic .body-copy { column-count: 1; } }
+.spread-academic .body-copy p { max-width: none; font-family: 'Fraunces', serif; font-size: 1.1rem; line-height: 1.65; }
+.spread-academic .body-copy p:first-of-type::first-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 5.2rem;
+    font-weight: 700;
+    float: left;
+    line-height: 0.85;
+    padding: 0.1em 0.1em 0 0;
+    margin-right: 0.1em;
+    color: #8b2a1f;
+}
+.spread-academic .kicker { color: #8b2a1f; border-color: #8b2a1f; }
+
+.spread-gradient {
+    background: linear-gradient(135deg, #4527a0 0%, #1e3c72 60%, #0f1c47 100%);
+    color: #e8e2ff;
+}
+.spread-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 75% 30%, rgba(236,72,153,0.35), transparent 55%);
+    pointer-events: none;
+}
+.spread-gradient .watermark { color: #fff; opacity: 0.08; }
+.spread-gradient .headline {
+    background: linear-gradient(90deg, #fff, #ffc2e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.spread-gradient .kicker { color: #ffc2e0; border-color: #ffc2e0; }
+.spread-gradient .action-box { border-color: #ffc2e0; background: rgba(255,194,224,0.1); }
+.spread-gradient .action-label { color: #ffc2e0; }
+
+.spread-newspaper {
+    background: #f5f1e8;
+    color: #111;
+    border-top: 8px double #111;
+    border-bottom: 8px double #111;
+}
+.spread-newspaper .watermark { color: #111; opacity: 0.04; }
+.spread-newspaper .headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+.spread-newspaper .lede { border-bottom: 2px solid #111; padding-bottom: 1.5rem; font-style: italic; }
+.spread-newspaper .body-copy {
+    column-count: 2;
+    column-gap: 2.4rem;
+    max-width: none;
+    border-top: 1px solid #111;
+    padding-top: 1.5rem;
+}
+@media (max-width: 900px) { .spread-newspaper .body-copy { column-count: 1; } }
+.spread-newspaper .body-copy p { max-width: none; }
+.spread-newspaper .kicker { color: #111; border-color: #111; }
+
+.spread-clean {
+    background: #ffffff;
+    color: #111;
+}
+.spread-clean .watermark { color: #111; opacity: 0.04; }
+.spread-clean .headline {
+    background: linear-gradient(120deg, #1a1a1a 0%, #666 50%, #b388ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 600;
+}
+.spread-clean .kicker { color: #6b44c4; border-color: #6b44c4; }
+.spread-clean .action-box { border-color: #6b44c4; background: rgba(107,68,196,0.06); }
+.spread-clean .action-label { color: #6b44c4; }
+
+.spread-editorial {
+    background: linear-gradient(160deg, #f3c97c 0%, #d98f3b 60%, #8a4b18 100%);
+    color: #271405;
+}
+.spread-editorial .watermark { color: #271405; opacity: 0.1; }
+.spread-editorial .headline { color: #271405; font-family: 'Fraunces', serif; }
+.spread-editorial .kicker { color: #271405; border-color: #271405; background: rgba(255,255,255,0.2); }
+.spread-editorial .lede { color: #3d1f0a; }
+
+.spread-memorial {
+    background: linear-gradient(180deg, #1c1c1e 0%, #0a0a0b 100%);
+    color: #b8b4ab;
+}
+.spread-memorial .watermark { color: #b8b4ab; opacity: 0.06; font-weight: 300; }
+.spread-memorial .headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    color: #e8e2d5;
+}
+.spread-memorial .kicker { color: #8d8375; border-color: #8d8375; }
+.spread-memorial .lede { color: #d0c9bb; }
+
+.footer {
+    background: #0b0b0f;
+    color: rgba(244,241,234,0.7);
+    padding: 10vh 6vw;
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+.footer-inner { max-width: 800px; margin: 0 auto; }
+.footer-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #f4f1ea;
+}
+.footer p { margin-bottom: 1.1em; font-family: 'Fraunces', serif; font-size: 1.08rem; }
+.footer .colophon {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-family: 'Inter';
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.55;
+}
+
+@media (max-width: 760px) {
+    body { font-size: 17px; }
+    .spread { padding: 7vh 7vw; }
+    .watermark { font-size: 20rem; }
+    .cover { padding: 4vh 7vw; }
+    .toc-item a { grid-template-columns: 60px 1fr; gap: 1rem; }
+    .toc-num { font-size: 1.8rem; }
+    .spread-rose-alert::before { font-size: 1.2rem; top: 1rem; right: 1rem; }
+}
+
+</style>
+</head>
+<body>
+
+<section class="cover">
+    <div class="cover-top">
+        <span>Morning Edition</span>
+        <span>Issue for Euan McGregor</span>
+    </div>
+    <div class="cover-main">
+        <h1 class="cover-title">Morning<span class="sub-line">Edition.</span></h1>
+        <p class="cover-tagline">Cybersecurity, AI, and the decisions a CISO has to make before breakfast.</p>
+    </div>
+    <div class="cover-bottom">
+        <div class="cover-date">Monday, 20 April 2026</div>
+        <div class="cover-issue">Vol. 1 · No. 2026-04-20</div>
+    </div>
+</section>
+
+<section class="toc">
+    <div class="toc-eyebrow">On this morning's desk</div>
+    <h2 class="toc-title">Contents</h2>
+    <ol class="toc-list">
+    
+    <li class="toc-item">
+        <a href="#story-1">
+            <span class="toc-num">01</span>
+            <span class="toc-body">
+                <span class="toc-hd">Vercel confirms breach as attackers shop stolen data</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">Cybersecurity</span>
+                    <span class="toc-tag toc-tag-red">Applies to you</span>
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-2">
+            <span class="toc-num">02</span>
+            <span class="toc-body">
+                <span class="toc-hd">The speakers on your desk can hear you</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">Surveillance</span>
+                    
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-3">
+            <span class="toc-num">03</span>
+            <span class="toc-body">
+                <span class="toc-hd">Every Swiss town&#x27;s email host is now on one map</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">Privacy</span>
+                    
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-4">
+            <span class="toc-num">04</span>
+            <span class="toc-body">
+                <span class="toc-hd">Claude token counter gains cross-model comparison</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">AI Tools</span>
+                    <span class="toc-tag toc-tag-red">Applies to you</span>
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-5">
+            <span class="toc-num">05</span>
+            <span class="toc-body">
+                <span class="toc-hd">The web needs a way to tell good robots from bad ones</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">AI &amp; Identity</span>
+                    
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-6">
+            <span class="toc-num">06</span>
+            <span class="toc-body">
+                <span class="toc-hd">Opus 4.7 quietly rewrote its own rules</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">AI Tools</span>
+                    <span class="toc-tag toc-tag-red">Applies to you</span>
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-7">
+            <span class="toc-num">07</span>
+            <span class="toc-body">
+                <span class="toc-hd">The RAM shortage is going to outlast your budget cycle</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">Cybersecurity</span>
+                    
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-8">
+            <span class="toc-num">08</span>
+            <span class="toc-body">
+                <span class="toc-hd">A reference implementation for context engineering</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">AI Tools</span>
+                    <span class="toc-tag toc-tag-red">Applies to you</span>
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-9">
+            <span class="toc-num">09</span>
+            <span class="toc-body">
+                <span class="toc-hd">Brominated flame retardants and the coming chip bottleneck</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">Policy</span>
+                    
+                </span>
+            </span>
+        </a>
+    </li>
+    
+
+    <li class="toc-item">
+        <a href="#story-10">
+            <span class="toc-num">10</span>
+            <span class="toc-body">
+                <span class="toc-hd">The quiet rot in scientific datasets</span>
+                <span class="toc-meta">
+                    <span class="toc-tag">Research</span>
+                    
+                </span>
+            </span>
+        </a>
+    </li>
+    
+    </ol>
+</section>
+
+
+    <section class="spread spread-hero" id="story-1">
+        <div class="watermark">01</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 01</span>
+                <span class="kicker">Breaking / Supply chain</span>
+                <div class="applies-badge">Directly applies to you</div>
+            </div>
+            <h2 class="headline">Vercel confirms breach as attackers shop stolen data</h2>
+            <p class="lede">The frontend hosting giant behind a huge slice of the modern web has admitted unauthorised access to internal systems. Attackers claim to be selling data tied to customer deployments.</p>
+            <div class="body-copy">
+                <p>Vercel sits beneath a lot of the JavaScript-heavy web. When a provider at that layer is compromised, the blast radius is the customer list, not the provider. Deployment tokens, environment variables, build logs and source archives all sit in that orbit. Any one of those can be repurposed into a further intrusion further down the supply chain. What is known: unauthorised access occurred in April 2026, Vercel has acknowledged a security incident, and a threat actor is publicly offering what they claim is stolen data. Vercel&#x27;s own communications point at a limited-scope incident; the sellers are painting something broader. Treat both framings as provisional until the forensics land. For every organisation whose Vercel project was live during the window, the conservative response is to rotate anything that was accessible from a Vercel build: third-party API keys, database credentials, deployment tokens, and any secret wired through environment variables.</p>
+            </div>
+            <div class="action-box"><div class="action-label">What to do</div><p>Rotate every secret that sits inside a Vercel project&#x27;s environment variables today, not after the forensics report. Pull the Vercel audit log for the last 30 days. Look for deployments, token creation and team-member changes you cannot account for. Check downstream: any CI/CD pipeline, third-party API or database credential visible to a Vercel build is in scope. Brief execs in two sentences: our hosting provider has confirmed a breach, we are rotating credentials and reviewing logs, no evidence of customer impact at this hour.</p></div>
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">Cybersecurity</span>
+            <span class="pill pill-score">672 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://www.bleepingcomputer.com/news/security/vercel-confirms-breach-as-hackers-claim-to-be-selling-stolen-data/" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47824463" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-midnight" id="story-2">
+        <div class="watermark">02</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 02</span>
+                <span class="kicker">Side channel / Hardware</span>
+                
+            </div>
+            <h2 class="headline">The speakers on your desk can hear you</h2>
+            <p class="lede">A 2017 USENIX paper resurfacing on the front page reminds us that output-only devices are a polite fiction. The same hardware that pushes air can read it.</p>
+            <div class="body-copy">
+                <p>Guri and colleagues showed that a cheap pair of passive speakers, rewired by software through the audio codec, will capture intelligible speech several metres away. The trick is acoustic reciprocity: a driver that moves air in response to voltage will, by symmetry, produce voltage in response to moving air. Most sound cards expose enough register control to flip the direction of the audio jack from output to input. The operational lesson is older than 2017 and still ignored in 2026. An air-gapped PC with no microphone is not a PC with no microphone. It is a PC with a microphone that has not yet been asked. Defences are blunt and mostly physical: headphone removal in sensitive rooms, disabling audio subsystems in BIOS on classified endpoints, or the acoustic equivalent of a camera sticker. Policy controls mean nothing against a driver-level reconfiguration.</p>
+            </div>
+            
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">Surveillance</span>
+            <span class="pill pill-score">173 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://www.usenix.org/system/files/conference/woot17/woot17-paper-guri.pdf" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47822805" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-rose-alert" id="story-3">
+        <div class="watermark">03</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 03</span>
+                <span class="kicker">Data visibility / Public sector</span>
+                
+            </div>
+            <h2 class="headline">Every Swiss town&#x27;s email host is now on one map</h2>
+            <p class="lede">A volunteer crawl of 2,100 Swiss municipal domains has produced a colour-coded atlas of who reads their mail. It is also a rather good reconnaissance tool.</p>
+            <div class="body-copy">
+                <p>The author pulled MX records for every municipality and plotted the results. Microsoft dominates, Google has a visible minority share, a surprising number of small communes still host their own Exchange boxes, and a long tail runs on Infomaniak and smaller Swiss ISPs. For a citizen it is a transparency tool. For an attacker running phishing infrastructure it is a ready-made targeting list, segmented by likely mail-filter vendor. The same exercise against any other country&#x27;s public sector would produce the same map and the same ambiguity. Data that looks like open government also looks like a spreadsheet of weakness. The interesting question for CISOs is not whether to publish your own MX record (it is already public) but how confidently you can detect lookalike-domain phishing shaped to fit your specific mail provider.</p>
+            </div>
+            
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">Privacy</span>
+            <span class="pill pill-score">129 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://mxmap.ch/" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47828420" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-terminal" id="story-4">
+        <div class="watermark">04</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 04</span>
+                <span class="kicker">Tooling / Release</span>
+                <div class="applies-badge">Directly applies to you</div>
+            </div>
+            <h2 class="headline">Claude token counter gains cross-model comparison</h2>
+            <p class="lede">Simon Willison has shipped an update to his Claude token counter: paste a prompt, see token counts across every Anthropic model side by side.</p>
+            <div class="body-copy">
+                <p>The update answers a dull but expensive question: how many tokens does this prompt actually cost under Haiku 4.5 versus Sonnet 4.6 versus Opus 4.6? The tool runs Anthropic&#x27;s token-counting API against each model and prints the delta. For anyone operating a Claude Code or Cowork agent stack at scale, token counts translate directly into monthly spend and context-window headroom. The cross-model view matters because tokenisation differs subtly between model families, and the cheap assumption that one token count fits all is wrong often enough to hurt. Practical uses: sizing system prompts before you commit them to a skill, estimating the cost of a batch job, and finding the sweet spot between Haiku&#x27;s price and Sonnet&#x27;s reasoning for a given workflow.</p>
+            </div>
+            <div class="action-box"><div class="action-label">What to do</div><p>If you run any Claude-Code or Cowork agent with a long system prompt, paste it into the counter and check Haiku vs Sonnet vs Opus. Look for cases where a skill is paying Opus token prices for work Haiku can do.</p></div>
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">AI Tools</span>
+            <span class="pill pill-score">54 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://simonwillison.net/2026/Apr/20/claude-token-counts/" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47829178" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-academic" id="story-5">
+        <div class="watermark">05</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 05</span>
+                <span class="kicker">Research / Agentic web</span>
+                
+            </div>
+            <h2 class="headline">The web needs a way to tell good robots from bad ones</h2>
+            <p class="lede">Browser-Use argues the current CAPTCHA regime is broken in two directions: it blocks legitimate agents and increasingly fails to block hostile ones.</p>
+            <div class="body-copy">
+                <p>The essay lays out the problem plainly. A researcher with a Claude agent summarising the news is functionally indistinguishable, at the network layer, from a scraper hoarding content to train someone else&#x27;s model. The crude fix is to block everything that does not look like a human. The less crude fix is an identity layer. The authors float a mixture of cryptographically signed user-agent claims, attestation from the model provider that this traffic came from a bona-fide deployment, and rate-budget tokens that let a site meter agents the way it meters API callers. None of it is shipped yet. This matters to security leaders for two reasons. First, the current direction of travel lets any vendor quietly class your employees&#x27; Claude-driven browsing as bot traffic and degrade it. Second, once an identity layer arrives, enterprises will need to decide whether their agents identify as the company or as the individual user, and the governance implications of each are large.</p>
+            </div>
+            
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">AI &amp; Identity</span>
+            <span class="pill pill-score">84 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://browser-use.com/posts/prove-you-are-a-robot" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47781950" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-gradient" id="story-6">
+        <div class="watermark">06</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 06</span>
+                <span class="kicker">Model behaviour / Anthropic</span>
+                <div class="applies-badge">Directly applies to you</div>
+            </div>
+            <h2 class="headline">Opus 4.7 quietly rewrote its own rules</h2>
+            <p class="lede">A diff of the system prompt between Claude Opus 4.6 and 4.7 shows Anthropic tightening tool-use guidance, reshaping refusal logic, and making the model more explicit about its knowledge cutoff.</p>
+            <div class="body-copy">
+                <p>Simon Willison&#x27;s side-by-side shows a short list of meaningful changes. The refusal language is less hedged and more specific, guidance on when to fetch versus answer from memory is sharper, and there is new explicit text about how to handle conflicting user-preference instructions. The practical impact on a Cowork or Claude Code workflow is that prompts tuned to 4.6 may behave subtly differently on 4.7. Skills that depend on Claude&#x27;s refusal behaviour (for example, safety-check workflows) are the most exposed. Skills that assume particular tool-selection heuristics are the next most exposed. For anyone running Claude in production, the sensible thing is to diff your own skill prompts against the new system prompt and see whether assumptions still hold. The cost of catching drift early is a few minutes. The cost of catching it in production is a confused user.</p>
+            </div>
+            <div class="action-box"><div class="action-label">What to do</div><p>Re-run your skill test suite against Opus 4.7 and spot-check tool-selection behaviour. If any skill depends on specific refusal phrasing, update the tests. Update any internal docs that quote the old system prompt verbatim.</p></div>
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">AI Tools</span>
+            <span class="pill pill-score">274 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://simonwillison.net/2026/Apr/18/opus-system-prompt/" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47823270" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-newspaper" id="story-7">
+        <div class="watermark">07</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 07</span>
+                <span class="kicker">Supply chain / Infrastructure</span>
+                
+            </div>
+            <h2 class="headline">The RAM shortage is going to outlast your budget cycle</h2>
+            <p class="lede">The Verge reports memory pricing is not normalising any time soon. AI training is swallowing capacity that would otherwise have fed servers, laptops and phones.</p>
+            <div class="body-copy">
+                <p>Numbers to have in your head: HBM memory for GPUs is now outbidding commodity DRAM for wafer capacity, contract prices on DDR5 are up sharply over 2025, and analysts now talk about years rather than quarters before supply catches up. The knock-on effects for security teams are uninteresting and expensive. Endpoint refresh cycles slip. Server capex slides right. Cloud providers pass cost through in ways that tend to land on the compute-heavy workloads first, which in most organisations means observability and log retention. Planning response: assume higher per-unit hardware costs for at least two more budget cycles, push any log-retention or SIEM-sizing decisions that depend on DRAM-bound infrastructure out by a quarter and renegotiate, and on the positive side, treat this as cover for proposing tiered retention rather than everything, forever.</p>
+            </div>
+            
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">Cybersecurity</span>
+            <span class="pill pill-score">258 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://www.theverge.com/ai-artificial-intelligence/914672/the-ram-shortage-could-last-years" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47822414" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-clean" id="story-8">
+        <div class="watermark">08</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 08</span>
+                <span class="kicker">AI workflows / Open source</span>
+                <div class="applies-badge">Directly applies to you</div>
+            </div>
+            <h2 class="headline">A reference implementation for context engineering</h2>
+            <p class="lede">A small, readable Python repo demonstrating the patterns (retrieval, summarisation, pruning) that keep an LLM agent useful across long tasks.</p>
+            <div class="body-copy">
+                <p>Context engineering is the unglamorous cousin of prompt engineering: how you decide what goes into the model&#x27;s context window at each step of a multi-turn task, and how you keep the context from rotting as the work drags on. The repo lays out six patterns (hierarchical summarisation, sliding window, semantic retrieval, tool-output compression, reference-style memory and episodic recall) each with a working example. For anyone building skills or Claude-Code workflows, this is a better starting point than a blog post because the code runs. You can fork it and substitute your own retrieval layer in an afternoon. The wider point is that as agents take on longer tasks, the context strategy becomes the product. Two agents on the same model with different context engineering can differ by an order of magnitude in quality and cost.</p>
+            </div>
+            <div class="action-box"><div class="action-label">What to do</div><p>Fork the repo and compare its patterns against how your existing Cowork skills manage context. Any skill that currently stuffs entire documents into the prompt is probably a candidate for retrieval-plus-summary.</p></div>
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">AI Tools</span>
+            <span class="pill pill-score">41 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://github.com/outcomeops/context-engineering" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47808956" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-editorial" id="story-9">
+        <div class="watermark">09</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 09</span>
+                <span class="kicker">Geopolitics / Supply chain</span>
+                
+            </div>
+            <h2 class="headline">Brominated flame retardants and the coming chip bottleneck</h2>
+            <p class="lede">War on the Rocks walks through why Middle East instability could halt semiconductor production through a chemical most CISOs have never heard of.</p>
+            <div class="body-copy">
+                <p>Bromine sits in the flame retardants used in circuit-board laminates. The global supply is concentrated in Israel and Jordan: around two-thirds of production between them. A serious disruption there would cascade through PCB manufacturers, and from there into every electronic device with a mainboard. The essay is not a prediction that this will happen. It is a competent argument that current contingency plans do not cover it. Most tech-sector supply-chain mapping stops at silicon and assembly. The chemical feedstocks are below the radar. For a CISO thinking about availability risk, this is the kind of fact that belongs on the business-continuity register rather than the threat register. Single-source chemical inputs are a class of risk distinct from cyber, but their timeline and their impact on hardware refresh plans overlap with the RAM-shortage story on the page before.</p>
+            </div>
+            
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">Policy</span>
+            <span class="pill pill-score">186 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://warontherocks.com/cogs-of-war/the-bromine-chokepoint-how-strife-in-the-middle-east-could-halt-production-of-the-worlds-memory-chips/" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47826100" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+    <section class="spread spread-memorial" id="story-10">
+        <div class="watermark">10</div>
+        <div class="spread-inner">
+            <div class="spread-top">
+                <span class="num-tag">No. 10</span>
+                <span class="kicker">Ethics / Data integrity</span>
+                
+            </div>
+            <h2 class="headline">The quiet rot in scientific datasets</h2>
+            <p class="lede">Science Detective surveys how easily copy-paste errors propagate through published datasets, and how rarely anyone checks.</p>
+            <div class="body-copy">
+                <p>The investigation is sobering. Duplicate rows, columns swapped in a spreadsheet, sample IDs that drift by one, numbers rounded differently in the paper than in the supplementary data. Each is individually small. In aggregate they erode the reliability of the research that models built on public data depend on. This is not a cybersecurity story in the usual sense. It is closer in spirit to the log-integrity problems that SIEM teams know: if your source data is quietly wrong, every downstream analysis inherits the error and the audit trail looks clean. Worth reading because the same category of failure lurks in internal data lakes. A CSV pasted into a notebook. A pivot table that silently dropped a row. A join on a key that was not actually unique. The defences (automated schema checks, contract tests on shared datasets, provenance metadata) are familiar but rarely funded in the places where they matter most.</p>
+            </div>
+            
+            <div class="meta-bar">
+        <div class="pills">
+            <span class="pill">Research</span>
+            <span class="pill pill-score">78 points on HN</span>
+        </div>
+        <div class="links">
+            <a class="meta-link" href="https://www.sciencedetective.org/scientific-datasets-are-riddled-with-copy-paste-errors/" target="_blank" rel="noopener">Read original</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47826834" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+    </div>
+        </div>
+    </section>
+    
+
+<footer class="footer">
+    <div class="footer-inner">
+        <h3 class="footer-title">Colophon</h3>
+        <p>Ten stories curated from the Hacker News front page, read at dawn, ranked by what a cybersecurity leader should know before the first meeting of the day. 4 stories flagged as directly relevant to the reader.</p>
+        <p>Deduplication check: 2 stories that also appeared in the previous two editions were excluded (Notion public-page email leak and the typewriter-instructor AI piece).</p>
+        <p>Skipped on purpose: vendor marketing pieces, routine patch advisories without context, CVE database drama, crypto and web3 hype, and the cheerful long tail of BYTE-magazine nostalgia, mechanical keyboards and fish sauce that would otherwise pad this list.</p>
+        <p>Source: <a href="https://news.ycombinator.com" class="meta-link">Hacker News</a>. Original articles linked in each story's meta bar. Type set in Fraunces and Inter, with JetBrains Mono for the terminal spread.</p>
+        <div class="colophon">Morning Edition — 2026-04-20 — Made for Euan</div>
+    </div>
+</footer>
+
+</body>
+</html>
