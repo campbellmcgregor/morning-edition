@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition · 21 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 19px;
+  line-height: 1.65;
+  color: #15171a;
+  background: #f6f4ef;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11';
+}
+h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+a { color: inherit; }
+
+.cover {
+  min-height: 100vh;
+  padding: 6rem 6vw 4rem;
+  color: #f6f4ef;
+  background: radial-gradient(1200px 600px at 20% 20%, #3a1f1f 0%, transparent 50%),
+              radial-gradient(1000px 800px at 80% 80%, #1a1f3a 0%, transparent 60%),
+              linear-gradient(140deg, #0c0d12 0%, #1a1a24 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cover__eyebrow { font-size: 1rem; letter-spacing: 0.32em; text-transform: uppercase; opacity: 0.7; }
+.cover__title {
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.9;
+  margin-top: 2.5rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.04em;
+}
+.cover__meta { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4rem; font-size: 1.05rem; flex-wrap: wrap; gap: 1rem; }
+.cover__date { font-family: 'Fraunces', serif; font-size: clamp(1.2rem, 2.2vw, 1.8rem); opacity: 0.92; }
+.cover__tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  max-width: 40ch;
+  opacity: 0.88;
+  line-height: 1.3;
+  margin-top: 2rem;
+}
+.cover__footer { font-size: 0.95rem; opacity: 0.6; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2rem; }
+
+.toc {
+  min-height: 100vh;
+  padding: 6rem 6vw;
+  background: #f2efe7;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.toc__eyebrow { font-size: 0.95rem; letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.55; }
+.toc__title { font-size: clamp(2.4rem, 6vw, 4.4rem); margin-top: 1rem; line-height: 1; }
+.toc__intro { font-size: 1.2rem; max-width: 60ch; margin-top: 1.5rem; opacity: 0.8; }
+.toc__list { list-style: none; padding: 0; margin: 3rem 0 0; }
+.toc-item { display: flex; gap: 2rem; padding: 1.6rem 0; border-top: 1px solid rgba(0,0,0,0.1); align-items: flex-start; }
+.toc-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.toc-num { font-family: 'Fraunces', serif; font-size: 2.2rem; line-height: 1; min-width: 3.5rem; opacity: 0.4; }
+.toc-title { font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 2.2vw, 1.8rem); line-height: 1.2; font-weight: 500; }
+.toc-meta { display: flex; gap: 0.8rem; margin-top: 0.5rem; align-items: center; flex-wrap: wrap; }
+.toc-kicker { font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.55; }
+.toc-applies-tag {
+  background: #b42525; color: #fff;
+  font-size: 0.78rem; font-weight: 600;
+  padding: 0.28rem 0.7rem; border-radius: 999px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.toc-item--applies .toc-num { color: #b42525; opacity: 1; }
+
+.spread {
+  min-height: 100vh;
+  padding: 6rem 6vw;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.spread__inner { max-width: 900px; position: relative; z-index: 2; }
+.watermark {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(20rem, 48vw, 52rem);
+  line-height: 0.75;
+  right: -3vw; bottom: -8vw;
+  z-index: 1;
+  opacity: 0.08;
+  user-select: none;
+  font-variant-numeric: lining-nums;
+}
+.kicker { font-size: 0.92rem; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0.75; }
+.headline {
+  font-size: clamp(2.2rem, 5vw, 3.9rem);
+  line-height: 1.03;
+  margin-bottom: 1.8rem;
+  font-weight: 500;
+}
+.lede { font-size: 1.25rem; line-height: 1.55; margin: 0 0 2rem; max-width: 62ch; font-weight: 400; }
+.body .body-p { font-size: 1.08rem; line-height: 1.7; margin: 0 0 1.15rem; max-width: 62ch; }
+
+.applies-block {
+  margin-top: 2.5rem; padding: 1.8rem 2rem;
+  background: rgba(180, 37, 37, 0.1);
+  border-left: 4px solid #b42525;
+  border-radius: 4px;
+  max-width: 62ch;
+}
+.applies-badge {
+  display: inline-block;
+  background: #b42525; color: #fff;
+  font-size: 0.82rem; font-weight: 600;
+  padding: 0.32rem 0.9rem; border-radius: 999px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.applies-what h4 { font-family: 'Inter', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; margin: 0 0 0.6rem; opacity: 0.7; font-weight: 600; }
+.applies-what ul { margin: 0; padding-left: 1.2rem; }
+.applies-what li { font-size: 1.02rem; line-height: 1.6; margin-bottom: 0.45rem; }
+
+.meta-bar {
+  margin-top: 3rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+.pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.pill {
+  display: inline-block;
+  background: rgba(0,0,0,0.08); padding: 0.3rem 0.75rem; border-radius: 999px;
+  font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.meta-right { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+.score { opacity: 0.7; font-variant-numeric: tabular-nums; }
+.meta-link { text-decoration: underline; text-underline-offset: 4px; }
+.meta-link:hover { opacity: 0.7; }
+
+/* ===== SPREAD STYLES ===== */
+/* 1 HERO */
+.spread--hero {
+  background: linear-gradient(140deg, #1a0608 0%, #2a0a0d 40%, #3f0e12 100%);
+  color: #f4e8e7;
+}
+.spread--hero .watermark { color: #b42525; opacity: 0.18; }
+.spread--hero .kicker { color: #f09999; }
+.spread--hero .meta-bar { border-top-color: rgba(244,232,231,0.15); }
+.spread--hero .pill { background: rgba(244,232,231,0.08); }
+.spread--hero .applies-block { background: rgba(255,255,255,0.05); border-left-color: #ff6a6a; }
+.spread--hero .applies-what h4 { opacity: 0.85; }
+
+/* 2 MIDNIGHT */
+.spread--midnight {
+  background: linear-gradient(160deg, #07091a 0%, #0f1538 50%, #1a2560 100%);
+  color: #dde3ff;
+}
+.spread--midnight .watermark { color: #5a7bff; opacity: 0.07; }
+.spread--midnight .kicker { color: #8fa5ff; }
+.spread--midnight .meta-bar { border-top-color: rgba(221,227,255,0.15); }
+.spread--midnight .pill { background: rgba(221,227,255,0.1); }
+
+/* 3 ROSE ALERT */
+.spread--rose-alert {
+  background: linear-gradient(180deg, #fff3f0 0%, #ffe4dc 100%);
+  color: #2a0808;
+  border-top: 6px solid #b42525;
+  border-bottom: 6px solid #b42525;
+  position: relative;
+}
+.spread--rose-alert .watermark { color: #b42525; opacity: 0.13; }
+.spread--rose-alert .kicker { color: #b42525; font-weight: 600; }
+.spread--rose-alert::before {
+  content: 'ALERT';
+  position: absolute; top: 3rem; right: 6vw;
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem; letter-spacing: 0.4em;
+  color: #b42525;
+  border: 3px solid #b42525;
+  padding: 0.4rem 1.2rem;
+  transform: rotate(-6deg);
+  z-index: 3;
+}
+
+/* 4 TERMINAL */
+.spread--terminal {
+  background: #06100a;
+  color: #8af0a1;
+  font-family: 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+}
+.spread--terminal .headline, .spread--terminal .kicker, .spread--terminal .lede, .spread--terminal .body-p, .spread--terminal .pill, .spread--terminal .meta-link, .spread--terminal .applies-block h4, .spread--terminal .applies-block li {
+  font-family: 'JetBrains Mono', 'Menlo', monospace !important;
+}
+.spread--terminal .headline { color: #b8ffc7; font-weight: 500; font-size: clamp(1.9rem, 4.2vw, 3rem); }
+.spread--terminal .kicker { color: #46c864; }
+.spread--terminal .watermark { color: #0f3d1d; opacity: 0.55; font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.spread--terminal .kicker::before { content: '$ '; opacity: 0.6; }
+.spread--terminal .meta-bar { border-top-color: rgba(138,240,161,0.2); }
+.spread--terminal .pill { background: rgba(138,240,161,0.1); color: #8af0a1; }
+
+/* 5 ACADEMIC */
+.spread--academic {
+  background: #f5eede;
+  color: #20180f;
+}
+.spread--academic .watermark { color: #20180f; opacity: 0.05; }
+.spread--academic .kicker { color: #7a4a1f; font-style: italic; }
+.spread--academic .headline { font-style: italic; letter-spacing: -0.02em; }
+.spread--academic .body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  column-rule: 1px solid rgba(32,24,15,0.18);
+  max-width: none;
+}
+.spread--academic .body-p { max-width: none; }
+.spread--academic .body .body-p:first-child::first-letter {
+  font-family: 'Fraunces', serif;
+  font-size: 4.4rem;
+  line-height: 0.85;
+  float: left;
+  padding: 0.3rem 0.6rem 0 0;
+  font-weight: 600;
+  color: #7a4a1f;
+}
+@media (max-width: 780px) { .spread--academic .body { column-count: 1; } }
+
+/* 6 GRADIENT */
+.spread--gradient {
+  background: linear-gradient(135deg, #3a1a6e 0%, #5e2a9a 40%, #3c4fd3 100%);
+  color: #f2ecff;
+}
+.spread--gradient .watermark {
+  background: linear-gradient(135deg, #ff8cfa, #8cf6ff);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  opacity: 0.22;
+}
+.spread--gradient .kicker { color: #d2c0ff; }
+.spread--gradient .meta-bar { border-top-color: rgba(242,236,255,0.2); }
+.spread--gradient .pill { background: rgba(242,236,255,0.12); }
+
+/* 7 NEWSPAPER */
+.spread--newspaper {
+  background: #fafaf8;
+  color: #0a0a0a;
+  border-top: 12px double #0a0a0a;
+  border-bottom: 12px double #0a0a0a;
+}
+.spread--newspaper .watermark { color: #0a0a0a; opacity: 0.06; font-weight: 400; }
+.spread--newspaper .kicker { font-weight: 700; letter-spacing: 0.35em; }
+.spread--newspaper .headline { font-family: 'Fraunces', serif; font-weight: 700; letter-spacing: -0.015em; }
+.spread--newspaper .body {
+  column-count: 2; column-gap: 2.2rem;
+  column-rule: 1px solid rgba(0,0,0,0.2);
+  max-width: none;
+}
+.spread--newspaper .body-p { max-width: none; }
+@media (max-width: 780px) { .spread--newspaper .body { column-count: 1; } }
+
+/* 8 CLEAN */
+.spread--clean {
+  background: #ffffff;
+  color: #111;
+}
+.spread--clean .watermark { color: #111; opacity: 0.04; }
+.spread--clean .headline {
+  background: linear-gradient(90deg, #111 0%, #5a5a5a 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.spread--clean .kicker { color: #666; }
+
+/* 9 EDITORIAL */
+.spread--editorial {
+  background: linear-gradient(160deg, #fff1d6 0%, #f4c77a 100%);
+  color: #2b1a05;
+}
+.spread--editorial .watermark { color: #7a4c0e; opacity: 0.12; }
+.spread--editorial .kicker { color: #7a4c0e; }
+.spread--editorial .headline { letter-spacing: -0.03em; }
+
+/* 10 MEMORIAL */
+.spread--memorial {
+  background: #1a1814;
+  color: #d6cfc2;
+}
+.spread--memorial .watermark { color: #a89678; opacity: 0.07; }
+.spread--memorial .kicker { color: #a89678; font-style: italic; }
+.spread--memorial .headline { font-style: italic; color: #ece5d7; }
+.spread--memorial .meta-bar { border-top-color: rgba(214,207,194,0.2); }
+.spread--memorial .pill { background: rgba(214,207,194,0.1); }
+
+/* Footer */
+.colophon {
+  padding: 5rem 6vw;
+  background: #0c0d12; color: #bfbdb4;
+  text-align: center;
+}
+.colophon__line { font-family: 'Fraunces', serif; font-size: 1.4rem; font-style: italic; margin-bottom: 1.2rem; }
+.colophon__body { max-width: 65ch; margin: 0 auto; font-size: 1rem; line-height: 1.7; opacity: 0.75; }
+.colophon__meta { margin-top: 2rem; font-size: 0.9rem; opacity: 0.5; letter-spacing: 0.15em; text-transform: uppercase; }
+
+@media (max-width: 600px) {
+  body { font-size: 18px; }
+  .cover, .toc, .spread, .colophon { padding-left: 5vw; padding-right: 5vw; }
+}
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div>
+    <div class="cover__eyebrow">Morning Edition · Vol. 1</div>
+    <h1 class="cover__title">Morning<br/>Edition</h1>
+    <p class="cover__tagline">Ten stories from the night, curated for a CISO who reads before the inbox opens.</p>
+  </div>
+  <div>
+    <div class="cover__meta">
+      <div class="cover__date">Tuesday, 21 April 2026</div>
+      <div class="cover__date">Issue 07</div>
+    </div>
+    <div class="cover__footer">Curated from Hacker News · 5 stories flagged as directly relevant</div>
+  </div>
+</section>
+
+<section class="toc">
+  <div class="toc__eyebrow">In this issue</div>
+  <h2 class="toc__title">Ten things worth your first cup.</h2>
+  <p class="toc__intro">A mix of cybersecurity incidents, AI tools, privacy developments and the quieter governance pieces a CISO should at least have read before the 10am stand-up.</p>
+  <ol class="toc__list">
+    <li class="toc-item toc-item--applies">
+      <span class="toc-num">01</span>
+      <div class="toc-body">
+        <div class="toc-title">Brussels rolled out an age-checking app. Hackers cracked it in two minutes.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">Cybersecurity · European Union</span>
+          <span class="toc-applies-tag">Applies to you</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item">
+      <span class="toc-num">02</span>
+      <div class="toc-body">
+        <div class="toc-title">We accepted surveillance as default.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">Privacy · Surveillance</span>
+          
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item toc-item--applies">
+      <span class="toc-num">03</span>
+      <div class="toc-body">
+        <div class="toc-title">Atlassian switches on default data collection to train its AI.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">Data Protection · Enterprise SaaS</span>
+          <span class="toc-applies-tag">Applies to you</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item">
+      <span class="toc-num">04</span>
+      <div class="toc-body">
+        <div class="toc-title">Kimi K2.6 advances open-source coding.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">AI Tools · Open Source</span>
+          
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item toc-item--applies">
+      <span class="toc-num">05</span>
+      <div class="toc-body">
+        <div class="toc-title">Quantum computers are not, in fact, a threat to 128-bit symmetric keys.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">Cryptography · Post-Quantum</span>
+          <span class="toc-applies-tag">Applies to you</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item">
+      <span class="toc-num">06</span>
+      <div class="toc-body">
+        <div class="toc-title">Qwen3.6-Max-Preview lands: smarter, sharper, still evolving.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">AI Tools · Model Release</span>
+          
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item">
+      <span class="toc-num">07</span>
+      <div class="toc-body">
+        <div class="toc-title">A Roblox cheat and one AI tool brought Vercel’s platform down.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">Incident · Platform</span>
+          
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item toc-item--applies">
+      <span class="toc-num">08</span>
+      <div class="toc-body">
+        <div class="toc-title">Anthropic confirms OpenClaw-style Claude CLI usage is allowed again.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">Developer Tools · Anthropic</span>
+          <span class="toc-applies-tag">Applies to you</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item toc-item--applies">
+      <span class="toc-num">09</span>
+      <div class="toc-body">
+        <div class="toc-title">Inside GitHub’s fake star economy.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">Supply Chain · Software Governance</span>
+          <span class="toc-applies-tag">Applies to you</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="toc-item">
+      <span class="toc-num">10</span>
+      <div class="toc-body">
+        <div class="toc-title">OpenAI ad partner is selling ChatGPT ad placements based on ‘prompt relevance’.</div>
+        <div class="toc-meta">
+          <span class="toc-kicker">Ethics · AI Advertising</span>
+          
+        </div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+  <section class="spread spread--hero has-applies">
+    <div class="watermark" aria-hidden="true">01</div>
+    <div class="spread__inner">
+      <div class="kicker">Cybersecurity · European Union</div>
+      <h2 class="headline">Brussels rolled out an age-checking app. Hackers cracked it in two minutes.</h2>
+      <p class="lede">The European Commission’s flagship age-verification app — pitched as the backbone of the bloc’s minor-protection regime — collapsed in the time it takes to boil a kettle, laying bare a rushed procurement, weak threat modelling, and an uncomfortably public failure mode.</p>
+      <div class="body"><p class="body-p">Security researchers invited to kick the tyres on Brussels’ new age-checking app reportedly bypassed the core verification flow in under 120 seconds. The details are still trickling out, but the shape of the failure is painfully familiar: client-side trust, reusable credentials, and a verification contract that never survived contact with a curious attacker.</p>
+<p class="body-p">The political stakes are high. EU member states are under pressure to wire this app into adult-content gating, gambling, social media minor controls, and eventually a broader identity stack. A defective gate doesn’t just fail open — it gives every 13-year-old in Europe a repeatable playbook and every regulator a worked example of why the architecture needs a rethink.</p>
+<p class="body-p">For UK organisations preparing for Ofcom’s age-assurance guidance, this is a useful mirror. The UK’s regime leans on similar third-party verification primitives. Expect vendors to point at Brussels and claim ‘that wouldn’t happen here’. Assume it would until the assurance evidence says otherwise.</p></div>
+      
+      <div class="applies-block">
+        <div class="applies-badge">Directly applies to you</div>
+        <div class="applies-what">
+          <h4>What to do</h4>
+          <ul><li>Ask your identity vendors whether their age-assurance flows rely on client-attested claims.</li>
+<li>Flag the story in your next Ofcom / DPIA conversation as a real-world failure mode.</li>
+<li>Add an entry to the risk register: ‘regulatory mandate + rushed vendor = public breach’.</li></ul>
+        </div>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">Cybersecurity</span> <span class="pill">Regulation</span> <span class="pill">EU</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 194</span>
+          <a class="meta-link" href="https://www.politico.eu/article/eu-brussels-launched-age-checking-app-hackers-say-took-them-2-minutes-break-it/" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47832222" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--midnight">
+    <div class="watermark" aria-hidden="true">02</div>
+    <div class="spread__inner">
+      <div class="kicker">Privacy · Surveillance</div>
+      <h2 class="headline">We accepted surveillance as default.</h2>
+      <p class="lede">A quiet, careful essay on how the terms of observation stopped being negotiated and started being assumed — and why the shrug is now doing more damage than the cameras.</p>
+      <div class="body"><p class="body-p">The author traces the slow fade from informed consent to implied consent to no consent at all: loyalty cards, employer laptops, ‘smart’ TVs, every router, every car, every desk. None of it was voted on. All of it is now baseline.</p>
+<p class="body-p">The piece doesn’t reach for outrage. It reaches for an inventory — what is being collected, by whom, for what, and who benefits. The answer, repeatedly, is ‘we don’t actually know’, which is precisely the reader’s point.</p>
+<p class="body-p">For a security leader, the operational takeaway sits under the philosophy: vendor telemetry defaults are where your data governance programme dies. Every new tool arrives pre-set to ‘phone home’. The cost of inverting that default — per product, per quarter — is now a measurable line in the programme.</p></div>
+      
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">Privacy</span> <span class="pill">Essay</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 301</span>
+          <a class="meta-link" href="https://vivianvoss.net/blog/why-we-accepted-surveillance" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47836784" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--rose-alert has-applies">
+    <div class="watermark" aria-hidden="true">03</div>
+    <div class="spread__inner">
+      <div class="kicker">Data Protection · Enterprise SaaS</div>
+      <h2 class="headline">Atlassian switches on default data collection to train its AI.</h2>
+      <p class="lede">Jira, Confluence, Bitbucket — the connective tissue of most engineering orgs — now ships with AI training enabled by default. Opt-out exists. Most customers will not notice it in time.</p>
+      <div class="body"><p class="body-p">Atlassian has updated its data terms so that customer content can, by default, be used to improve its AI features. The toggle exists in the admin console. The toggle was, as of this morning, on.</p>
+<p class="body-p">For UK and EU customers, this collides hard with Article 6 lawful basis, with DPIAs that were scoped before generative AI was a data-processor category, and with anything the customer has promised its own users about where their tickets, roadmaps and code review comments end up.</p>
+<p class="body-p">The right answer is not a panicked email to Atlassian. The right answer is a 30-minute audit: who are your admins, what’s the current state of the toggle, what’s in your DPA, and what does your DPO want to say on the record before someone else says it for them.</p></div>
+      
+      <div class="applies-block">
+        <div class="applies-badge">Directly applies to you</div>
+        <div class="applies-what">
+          <h4>What to do</h4>
+          <ul><li>Check the ‘Improve Atlassian products’ and ‘AI training’ toggles in every workspace you control — today.</li>
+<li>Update the Atlassian entry in your vendor register with the new data-use basis.</li>
+<li>Send a short note to the DPO: ‘here is what changed, here is what we did, here is the evidence’.</li></ul>
+        </div>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">Data Protection</span> <span class="pill">SaaS</span> <span class="pill">AI</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 556</span>
+          <a class="meta-link" href="https://letsdatascience.com/news/atlassian-enables-default-data-collection-to-train-ai-f71343d8" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47844431" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--terminal">
+    <div class="watermark" aria-hidden="true">04</div>
+    <div class="spread__inner">
+      <div class="kicker">AI Tools · Open Source</div>
+      <h2 class="headline">Kimi K2.6 advances open-source coding.</h2>
+      <p class="lede">Moonshot’s coding model takes another step towards parity with closed frontier systems, with a meaningful jump on agentic benchmarks and a licence that is still, encouragingly, usable.</p>
+      <div class="body"><p class="body-p">K2.6 ships with stronger tool-use, longer effective context, and clear gains on code-repair benchmarks. For teams that already weave open-weights models into their dev loop, the upgrade is a drop-in.</p>
+<p class="body-p">The interesting signal is not the benchmark table. It is how quickly the gap between ‘frontier closed’ and ‘credible open’ is closing for the specific subtask of ‘help me ship a pull request’. That has procurement consequences.</p>
+<p class="body-p">If you have a ‘why are we not using X’ governance meeting coming up, K2.6 is worth a line in the appendix — both as a hedge against lock-in and as a useful benchmarking partner for your Claude-based pipelines.</p></div>
+      
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">AI</span> <span class="pill">Open Source</span> <span class="pill">Developer Tools</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 631</span>
+          <a class="meta-link" href="https://www.kimi.com/blog/kimi-k2-6" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47844539" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--academic has-applies">
+    <div class="watermark" aria-hidden="true">05</div>
+    <div class="spread__inner">
+      <div class="kicker">Cryptography · Post-Quantum</div>
+      <h2 class="headline">Quantum computers are not, in fact, a threat to 128-bit symmetric keys.</h2>
+      <p class="lede">A careful, measured teardown of the persistent myth that Grover’s algorithm halves the effective strength of symmetric cryptography — and the budget and migration decisions that keep falling out of that misreading.</p>
+      <div class="body"><p class="body-p">Filippo Valsorda walks through the actual arithmetic behind Grover’s algorithm and the practical engineering cost of running it at scale against a 128-bit symmetric key. The honest answer: it does not break AES-128 in any horizon that should be driving procurement decisions today.</p>
+<p class="body-p">The migration story that matters is asymmetric: RSA, ECDSA, DH. That is where post-quantum roadmaps should be spending their political capital, not rewriting TLS suites that remain, for all sensible threat models, fine.</p>
+<p class="body-p">CISOs are routinely asked to sign off on ‘quantum-ready’ programmes. The programmes are usually necessary. The marketing around them is, just as usually, wrong. This piece is the one to forward when someone in a boardroom asks why we are not replacing every symmetric cipher in the estate.</p></div>
+      
+      <div class="applies-block">
+        <div class="applies-badge">Directly applies to you</div>
+        <div class="applies-what">
+          <h4>What to do</h4>
+          <ul><li>When quantum migration comes up in risk committee, lead with asymmetric exposure, not symmetric.</li>
+<li>Push back on vendors bundling ‘PQ-safe symmetric’ as a paid upsell.</li>
+<li>Save this article as the canonical reference for board Q&amp;A on quantum risk.</li></ul>
+        </div>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">Cryptography</span> <span class="pill">Post-Quantum</span> <span class="pill">Analysis</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 191</span>
+          <a class="meta-link" href="https://words.filippo.io/128-bits/" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47832969" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--gradient">
+    <div class="watermark" aria-hidden="true">06</div>
+    <div class="spread__inner">
+      <div class="kicker">AI Tools · Model Release</div>
+      <h2 class="headline">Qwen3.6-Max-Preview lands: smarter, sharper, still evolving.</h2>
+      <p class="lede">Alibaba’s frontier preview brings another step up in reasoning and tool-use. The interesting part is not the headline score — it is how usable this is for the workflow patterns most teams actually deploy.</p>
+      <div class="body"><p class="body-p">Qwen3.6-Max-Preview keeps the ‘preview’ label for a reason: the release notes are candid about ongoing evolution, and the pricing is positioned for teams that want to kick tyres without committing to a year of inference budget.</p>
+<p class="body-p">For anyone building AI-assisted workflows on top of Claude or GPT, Qwen is now credible as a routing target for lower-sensitivity, higher-volume subtasks. The agentic loop improvements are where this matters most.</p>
+<p class="body-p">The strategic note: the ‘open-ish’ Chinese frontier is no longer a distant curiosity. It is a real procurement line item that your architecture review should be able to answer honestly about.</p></div>
+      
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">AI</span> <span class="pill">Model Release</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 592</span>
+          <a class="meta-link" href="https://qwen.ai/blog?id=qwen3.6-max-preview" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47843194" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--newspaper">
+    <div class="watermark" aria-hidden="true">07</div>
+    <div class="spread__inner">
+      <div class="kicker">Incident · Platform</div>
+      <h2 class="headline">A Roblox cheat and one AI tool brought Vercel’s platform down.</h2>
+      <p class="lede">A minor gaming exploit tool, routed through a popular AI coding assistant, escalated into a platform-wide incident for one of the web’s busiest hosting environments. The blast radius tells you more than the root cause.</p>
+      <div class="body"><p class="body-p">The incident writeup is refreshingly honest: a low-stakes piece of content, amplified by a popular AI tool’s deployment path, cascaded into degraded service for thousands of unrelated Vercel customers. No nation-state, no zero-day, just composition.</p>
+<p class="body-p">The lesson is less about Vercel and more about the assumptions the industry keeps making: that shared-tenant edge platforms will soak up unusual traffic, that AI-generated deployments look like human-generated deployments, and that reputation signals scale.</p>
+<p class="body-p">For a CISO, the takeaway is simple: treat AI-driven deployment tools as a new class of dependency, with their own abuse profile. Your supply-chain diagrams probably don’t have them on them yet.</p></div>
+      
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">Incident</span> <span class="pill">Supply Chain</span> <span class="pill">AI</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 80</span>
+          <a class="meta-link" href="https://webmatrices.com/post/how-a-roblox-cheat-and-one-ai-tool-brought-down-vercel-s-entire-platform" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47843569" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--clean has-applies">
+    <div class="watermark" aria-hidden="true">08</div>
+    <div class="spread__inner">
+      <div class="kicker">Developer Tools · Anthropic</div>
+      <h2 class="headline">Anthropic confirms OpenClaw-style Claude CLI usage is allowed again.</h2>
+      <p class="lede">A small policy note with outsized consequences for anyone whose daily workflow is glued together by Claude Code and community wrappers.</p>
+      <div class="body"><p class="body-p">Anthropic has clarified that third-party clients and wrappers that drive the Claude API in the OpenClaw style are once again within acceptable usage — reversing the recent uncertainty that had some teams quietly pulling automation off the shelves.</p>
+<p class="body-p">The practical effect: community tooling for agentic workflows, multi-agent orchestration and CLI-based Claude usage is back on a stable legal footing. The experimental branches can stop being experimental.</p>
+<p class="body-p">If you are building on Claude Code or Cowork, this is a quiet green light. If you had paused work on a homebrew wrapper, you can unpause it.</p></div>
+      
+      <div class="applies-block">
+        <div class="applies-badge">Directly applies to you</div>
+        <div class="applies-what">
+          <h4>What to do</h4>
+          <ul><li>Unfreeze any Claude-CLI or Cowork-adjacent automation work that was paused pending policy clarity.</li>
+<li>Re-read the current usage policy in full before restoring production traffic.</li>
+<li>Capture a one-line note in your AI governance log: ‘policy confirmed DD/MM, tooling restored’.</li></ul>
+        </div>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">AI</span> <span class="pill">Developer Tools</span> <span class="pill">Anthropic</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 64</span>
+          <a class="meta-link" href="https://docs.openclaw.ai/providers/anthropic" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47840980" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--editorial has-applies">
+    <div class="watermark" aria-hidden="true">09</div>
+    <div class="spread__inner">
+      <div class="kicker">Supply Chain · Software Governance</div>
+      <h2 class="headline">Inside GitHub’s fake star economy.</h2>
+      <p class="lede">A long-form investigation into the quiet market for manufactured GitHub stars — and what it means that the industry’s most casually trusted reputation signal is, at volume, a paid product.</p>
+      <div class="body"><p class="body-p">The investigation traces star-inflation services back to their sellers, maps the repositories most heavily juiced, and quietly demonstrates that a meaningful share of the ‘popular open source’ a buyer might evaluate on stars alone has had a thumb on the scale.</p>
+<p class="body-p">Star counts were never a great signal. They are now, at best, a lagging one, and at worst an actively manipulated one. That changes what ‘due diligence’ on an open-source dependency has to look like in 2026.</p>
+<p class="body-p">If your procurement process leans on ‘it has 12k stars, it must be fine’ — and many do — this piece is your ammunition for changing that. Build a repeatable evaluation that doesn’t include stars at the top of the funnel.</p></div>
+      
+      <div class="applies-block">
+        <div class="applies-badge">Directly applies to you</div>
+        <div class="applies-what">
+          <h4>What to do</h4>
+          <ul><li>Strip ‘GitHub stars’ from your open-source evaluation checklist. Replace with: maintainers, release cadence, CVE history.</li>
+<li>Flag any dependency in your SBOM whose primary justification was popularity. Re-review it.</li>
+<li>Brief engineering managers that ‘it’s popular’ is now officially not due diligence.</li></ul>
+        </div>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">Supply Chain</span> <span class="pill">Open Source</span> <span class="pill">Governance</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 763</span>
+          <a class="meta-link" href="https://awesomeagents.ai/news/github-fake-stars-investigation/" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47843195" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread--memorial">
+    <div class="watermark" aria-hidden="true">10</div>
+    <div class="spread__inner">
+      <div class="kicker">Ethics · AI Advertising</div>
+      <h2 class="headline">OpenAI ad partner is selling ChatGPT ad placements based on ‘prompt relevance’.</h2>
+      <p class="lede">A leaked partner deck sketches out the near-future monetisation of the world’s most-used assistant: targeted placements keyed not to demographics, but to the words a user types in a moment of need.</p>
+      <div class="body"><p class="body-p">The deck, circulated among advertisers, details a model where ad placements inside ChatGPT are matched to the semantic content of user prompts. Someone asking for help with a difficult medical question, a layoff letter, or a legal dispute becomes, in this framing, a targeting signal.</p>
+<p class="body-p">There is a version of this that is unremarkable: contextual advertising has existed for as long as advertising. There is another version that is not: a conversational agent with memory, used in some of the most private moments of a user’s life, now monetised by that very intimacy.</p>
+<p class="body-p">Regulators in the EU and UK are already asking the right question — whether consent to use a product constitutes consent to be targeted on the basis of prompt content. The honest answer, today, is that most users have not been meaningfully asked.</p></div>
+      
+      
+      <div class="meta-bar">
+        <div class="pills"><span class="pill">AI</span> <span class="pill">Privacy</span> <span class="pill">Ethics</span></div>
+        <div class="meta-right">
+          <span class="score">▲ 255</span>
+          <a class="meta-link" href="https://www.adweek.com/media/exclusive-leaked-deck-reveals-stackadapts-playbook-for-chatgpt-ads/" target="_blank" rel="noopener">Original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47833558" target="_blank" rel="noopener">Discuss on HN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="colophon">
+  <div class="colophon__line">Curated from the Hacker News front page.</div>
+  <div class="colophon__body">
+    Stories were selected from the top 50 on HN today, prioritising cybersecurity, AI tooling, privacy, and items a CISO would need to act on. Skipped in curation: vendor marketing disguised as news, CVE database drama, crypto/web3 hype, and routine patch advisories without context. General tech and human-interest items (earthquake trackers, sauna studies, hobbyist builds) were held back unless the signal warranted inclusion.<br/><br/>
+    Duplicates excluded from today’s selection: <strong>0</strong> (vs. the previous two editions).
+  </div>
+  <div class="colophon__meta">Morning Edition · 21 April 2026 · Compiled 06:34 BST</div>
+</section>
+</body></html>
