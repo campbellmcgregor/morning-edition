@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Morning Edition · 23 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #111;
+    background: #0b0b0d;
+}
+a { color: inherit; }
+
+/* ============ COVER ============ */
+.cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6vw 5vw;
+    background: radial-gradient(ellipse at 30% 20%, #1a1a2e 0%, #0b0b0d 60%),
+                radial-gradient(ellipse at 70% 80%, #2a1a3e 0%, transparent 50%);
+    color: #f3f0ea;
+    position: relative;
+    overflow: hidden;
+}
+.cover::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+.cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #9a9aa8;
+    font-weight: 600;
+}
+.cover-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 12vw, 9rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: #f3f0ea;
+    margin: 0;
+    font-variation-settings: "opsz" 144;
+}
+.cover-tag {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    color: #c9a978;
+    margin-top: 2rem;
+    max-width: 45ch;
+    line-height: 1.35;
+}
+.cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 1rem;
+    color: #9a9aa8;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.cover-issue {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: #c9a978;
+}
+
+/* ============ TOC ============ */
+.toc {
+    padding: 6vw 5vw;
+    background: #f7f3ec;
+    color: #1a1a1a;
+}
+.toc-head {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin: 0 0 0.3em 0;
+    letter-spacing: -0.02em;
+}
+.toc-sub {
+    font-size: 1.15rem;
+    color: #555;
+    margin: 0 0 3rem 0;
+    max-width: 60ch;
+}
+.toc-list {
+    display: grid;
+    gap: 1rem;
+    max-width: 1100px;
+}
+.toc-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.3rem 1.5rem;
+    background: #fff;
+    border: 1px solid #e5ddd0;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.toc-item:hover {
+    transform: translateX(6px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: #8a2a2a;
+}
+.toc-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #8a2a2a;
+    line-height: 1;
+    min-width: 3rem;
+    font-variation-settings: "opsz" 144;
+}
+.toc-body { flex: 1; }
+.toc-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+}
+.toc-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.toc-tag {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: #e5ddd0;
+    color: #555;
+    border-radius: 999px;
+}
+.toc-tag-applies {
+    background: #8a2a2a;
+    color: #fff;
+}
+
+/* ============ SPREADS: shared ============ */
+.spread {
+    min-height: 100vh;
+    padding: 5vw 5vw;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.spread-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+.watermark {
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(18rem, 48vw, 42rem);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    opacity: 0.08;
+    z-index: 1;
+    pointer-events: none;
+    top: 50%;
+    right: -2vw;
+    transform: translateY(-50%);
+    font-variation-settings: "opsz" 144;
+}
+.kicker {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid currentColor;
+}
+.headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0 0 1.3rem 0;
+    font-variation-settings: "opsz" 144;
+}
+.headline-hero {
+    font-weight: 900;
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    line-height: 1;
+}
+.headline-serif { font-style: italic; }
+.headline-mono { font-family: 'JetBrains Mono', monospace; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.01em; }
+.headline-newspaper {
+    font-weight: 900;
+    text-align: center;
+    border-top: 4px double currentColor;
+    border-bottom: 4px double currentColor;
+    padding: 1rem 0;
+}
+.headline-gradient {
+    background: linear-gradient(90deg, #0f172a, #3b82f6 60%, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.lede {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    line-height: 1.45;
+    font-weight: 400;
+    max-width: 60ch;
+    margin: 0 0 1.8rem 0;
+    font-variation-settings: "opsz" 36;
+}
+.lede-mono { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; }
+.body-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 68ch;
+    margin-bottom: 2rem;
+}
+.body-text p { margin: 0 0 1.2rem 0; }
+.body-two-col { columns: 2 320px; column-gap: 2.2rem; max-width: 72ch; }
+.body-mono { font-family: 'JetBrains Mono', monospace; font-size: 1rem; max-width: 80ch; }
+
+.applies-badge {
+    display: inline-block;
+    background: #8a2a2a;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+
+.what-to-do {
+    border-left: 4px solid #8a2a2a;
+    padding: 1.2rem 1.5rem;
+    background: rgba(138,42,42,0.07);
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+    max-width: 68ch;
+}
+.what-to-do p { margin: 0; font-size: 1.05rem; line-height: 1.6; }
+.wtd-label {
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8a2a2a;
+    margin-bottom: 0.4rem;
+}
+
+.meta-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(127,127,127,0.3);
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+}
+.pills { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.pill {
+    padding: 0.25rem 0.7rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+.meta-right { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.hn-score { font-weight: 700; font-size: 0.95rem; opacity: 0.85; }
+.meta-link {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.meta-link:hover { background: currentColor; color: var(--meta-invert, #fff); }
+.meta-link-hn { opacity: 0.75; }
+
+/* ============ 1 HERO ============ */
+.spread-hero {
+    background: radial-gradient(ellipse at top left, #3a0f12 0%, #1a0608 50%, #0b0304 100%);
+    color: #f3eae5;
+}
+.spread-hero .watermark { color: #8a2a2a; opacity: 0.15; }
+.spread-hero .kicker { color: #e87a6a; }
+
+/* ============ 2 MIDNIGHT ============ */
+.spread-midnight {
+    background: linear-gradient(160deg, #0b1530 0%, #131a3d 55%, #1d2258 100%);
+    color: #dde3f5;
+}
+.watermark-midnight { color: #6d83c4; opacity: 0.1; }
+.kicker-blue { color: #8ba6e5; }
+
+/* ============ 3 ROSE ALERT ============ */
+.spread-rose {
+    background: linear-gradient(135deg, #fdf2f2 0%, #fae4e4 100%);
+    color: #2a1414;
+    border: 14px solid #8a2a2a;
+}
+.watermark-rose { color: #8a2a2a; opacity: 0.1; }
+.kicker-red { color: #8a2a2a; }
+.alert-stamp {
+    position: absolute;
+    top: 5vw;
+    right: 5vw;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 7vw, 6rem);
+    color: #8a2a2a;
+    border: 0.5rem solid #8a2a2a;
+    padding: 0.2em 0.5em;
+    transform: rotate(8deg);
+    letter-spacing: 0.1em;
+    z-index: 3;
+    opacity: 0.92;
+    mix-blend-mode: multiply;
+    font-variation-settings: "opsz" 144;
+}
+
+/* ============ 4 TERMINAL ============ */
+.spread-terminal {
+    background: #050b07;
+    color: #7bf08c;
+    font-family: 'JetBrains Mono', monospace;
+}
+.watermark-terminal { color: #1f5d2a; opacity: 0.22; font-family: 'JetBrains Mono', monospace; }
+.terminal-prompt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: #4fb560;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+.kicker-green { color: #7bf08c; }
+.spread-terminal .pill,
+.spread-terminal .meta-link { border-color: #7bf08c; color: #7bf08c; }
+
+/* ============ 5 ACADEMIC ============ */
+.spread-academic {
+    background: #f7f1e3;
+    color: #231a10;
+}
+.watermark-academic { color: #a8874e; opacity: 0.14; }
+.kicker-academic { color: #8a5a1e; }
+.drop-cap {
+    float: left;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 5.5rem;
+    line-height: 0.85;
+    padding: 0.15em 0.12em 0 0;
+    color: #8a5a1e;
+    font-variation-settings: "opsz" 144;
+}
+
+/* ============ 6 GRADIENT ============ */
+.spread-gradient {
+    background: linear-gradient(135deg, #3d1d80 0%, #4e30a5 40%, #3058d1 100%);
+    color: #f3eaff;
+}
+.watermark-gradient { color: #c8b6ff; opacity: 0.1; }
+.kicker-violet { color: #d6c1ff; }
+
+/* ============ 7 NEWSPAPER ============ */
+.spread-newspaper {
+    background: #f3efe5;
+    color: #111;
+    padding: 3vw 4vw;
+}
+.newspaper-inner {
+    border: 3px double #111;
+    padding: 3rem 3rem 2.5rem 3rem;
+    background: #faf8f1;
+}
+.watermark-newspaper { color: #111; opacity: 0.05; }
+.newspaper-masthead {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 0.95rem;
+    letter-spacing: 0.35em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #111;
+    padding-bottom: 0.8rem;
+}
+.kicker-newspaper { color: #111; display: block; text-align: center; border: none; }
+
+/* ============ 8 CLEAN ============ */
+.spread-clean {
+    background: #fbfbfd;
+    color: #0f172a;
+}
+.watermark-clean { color: #3b82f6; opacity: 0.07; }
+.kicker-clean { color: #3b82f6; }
+
+/* ============ 9 EDITORIAL ============ */
+.spread-editorial {
+    background: linear-gradient(140deg, #3a230b 0%, #5a3412 40%, #8d5a1e 100%);
+    color: #faeccb;
+}
+.watermark-editorial { color: #f5c06a; opacity: 0.11; }
+.kicker-amber { color: #f7c96e; }
+
+/* ============ 10 MEMORIAL ============ */
+.spread-memorial {
+    background: linear-gradient(180deg, #1b1a17 0%, #2a2723 100%);
+    color: #bfb6a5;
+}
+.watermark-memorial { color: #6a604b; opacity: 0.1; }
+.kicker-muted { color: #a89b7d; }
+
+/* ============ FOOTER ============ */
+.footer {
+    padding: 5vw 5vw;
+    background: #0b0b0d;
+    color: #8a8a94;
+    font-size: 1rem;
+    line-height: 1.6;
+    border-top: 1px solid #222;
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer strong { color: #dcdce0; }
+.footer p { margin: 0 0 0.8rem 0; max-width: 75ch; }
+
+@media (max-width: 640px) {
+    body { font-size: 17px; }
+    .spread { padding: 8vw 6vw; }
+    .watermark { right: -8vw; font-size: 28rem; }
+    .body-two-col { columns: 1; }
+    .toc-item { flex-direction: row; gap: 1rem; padding: 1rem; }
+    .toc-num { font-size: 1.8rem; min-width: 2rem; }
+    .alert-stamp { font-size: 2.5rem; top: 6vw; right: 6vw; }
+    .spread-rose { border-width: 8px; }
+    .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<header class="cover">
+    <div class="cover-top">
+        <span>Claude Dispatch</span>
+        <span>Issue №113 · 2026</span>
+    </div>
+    <div>
+        <h1 class="cover-title">Morning<br>Edition</h1>
+        <p class="cover-tag">Ten stories for the cybersecurity leader starting a Thursday in Scotland. Curated from the Hacker News front page. Published 23 April 2026.</p>
+    </div>
+    <div class="cover-bottom">
+        <span>Thursday, 23 April</span>
+        <span class="cover-issue">For Euan McGregor</span>
+    </div>
+</header>
+
+<section class="toc">
+    <h2 class="toc-head">In this edition</h2>
+    <p class="toc-sub">Top of the list today: an Apple iPhone extraction patch that every CISO should push this week, a Firefox bug that breaks Tor unlinkability, and an OpenAI supply-chain compromise worth rotating tokens for. 5 of tonight's ten are flagged as directly relevant to your day.</p>
+    <div class="toc-list">
+        
+    <a class="toc-item" href="#s01">
+        <div class="toc-num">01</div>
+        <div class="toc-body">
+            <div class="toc-title">Apple fixes bug that cops used to extract deleted chat messages from iPhones</div>
+            <div class="toc-meta">
+                <span class="toc-tag">Cybersecurity</span>
+                <span class="toc-tag toc-tag-applies">Applies to you</span>
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s02">
+        <div class="toc-num">02</div>
+        <div class="toc-body">
+            <div class="toc-title">We found a stable Firefox identifier linking all your private Tor identities</div>
+            <div class="toc-meta">
+                <span class="toc-tag">Privacy</span>
+                <span class="toc-tag toc-tag-applies">Applies to you</span>
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s03">
+        <div class="toc-num">03</div>
+        <div class="toc-body">
+            <div class="toc-title">Kernel code removals driven by LLM-created security reports</div>
+            <div class="toc-meta">
+                <span class="toc-tag">Open Source</span>
+                <span class="toc-tag toc-tag-applies">Applies to you</span>
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s04">
+        <div class="toc-num">04</div>
+        <div class="toc-body">
+            <div class="toc-title">Our eighth generation TPUs: two chips for the agentic era</div>
+            <div class="toc-meta">
+                <span class="toc-tag">AI</span>
+                
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s05">
+        <div class="toc-num">05</div>
+        <div class="toc-body">
+            <div class="toc-title">Technical, cognitive, and intent debt</div>
+            <div class="toc-meta">
+                <span class="toc-tag">Engineering</span>
+                
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s06">
+        <div class="toc-num">06</div>
+        <div class="toc-body">
+            <div class="toc-title">Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model</div>
+            <div class="toc-meta">
+                <span class="toc-tag">AI</span>
+                
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s07">
+        <div class="toc-num">07</div>
+        <div class="toc-body">
+            <div class="toc-title">OpenAI&#x27;s response to the Axios developer tool compromise</div>
+            <div class="toc-meta">
+                <span class="toc-tag">Cybersecurity</span>
+                <span class="toc-tag toc-tag-applies">Applies to you</span>
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s08">
+        <div class="toc-num">08</div>
+        <div class="toc-body">
+            <div class="toc-title">Parallel agents in Zed</div>
+            <div class="toc-meta">
+                <span class="toc-tag">AI</span>
+                <span class="toc-tag toc-tag-applies">Applies to you</span>
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s09">
+        <div class="toc-num">09</div>
+        <div class="toc-body">
+            <div class="toc-title">Surveillance Pricing: Exploiting Information Asymmetries</div>
+            <div class="toc-meta">
+                <span class="toc-tag">Privacy</span>
+                
+            </div>
+        </div>
+    </a>
+    
+    <a class="toc-item" href="#s10">
+        <div class="toc-num">10</div>
+        <div class="toc-body">
+            <div class="toc-title">Ars Technica: Our newsroom AI policy</div>
+            <div class="toc-meta">
+                <span class="toc-tag">AI</span>
+                
+            </div>
+        </div>
+    </a>
+    
+    </div>
+</section>
+
+
+    <section class="spread spread-hero" id="s01">
+        <div class="watermark">01</div>
+        <div class="spread-inner">
+            <div class="kicker">Mobile Security · Law Enforcement</div>
+            <div class="applies-badge">Directly applies to you</div>
+            <h2 class="headline headline-hero">Apple fixes bug that cops used to extract deleted chat messages from iPhones</h2>
+            <p class="lede">Apple has patched a bug that police forensics firms were actively exploiting to pull deleted chats, photos and other content from seized iPhones. The vulnerability was under real-world use by at least one extraction vendor before the fix landed.</p>
+            <div class="body-text">
+                <p>Researchers flagged that a class of file-system artefacts could be reconstructed from devices that had already wiped the user-facing data, meaning messages Euan-style users thought were gone could still be recovered with commercial extraction tools. The iOS update closes the gap and forces tool vendors back to the drawing board. For any organisation whose staff travel with iPhones across borders, or whose employees are subject to lawful seizure, this is a reminder that &quot;deleted&quot; has rarely meant deleted on mobile.</p>
+            </div>
+            
+        <div class="what-to-do">
+            <div class="wtd-label">What to do</div>
+            <p>Push iOS 18.x.x to all managed devices this week. Review your mobile travel policy for staff visiting jurisdictions with aggressive device seizure powers. If you run DLP on mobile, confirm the wipe-on-unenrol flow actually overwrites, not just unlinks.</p>
+        </div>
+        
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">Cybersecurity</span><span class="pill">Privacy</span><span class="pill">Apple</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 518</span>
+            <a href="https://techcrunch.com/2026/04/22/apple-fixes-bug-that-cops-used-to-extract-deleted-chat-messages-from-iphones/" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47868867" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 128 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-midnight" id="s02">
+        <div class="watermark watermark-midnight">02</div>
+        <div class="spread-inner">
+            <div class="kicker kicker-blue">Browser Privacy · De-anonymisation</div>
+            <div class="applies-badge">Directly applies to you</div>
+            <h2 class="headline">We found a stable Firefox identifier linking all your private Tor identities</h2>
+            <p class="lede">Fingerprint.com found a stable identifier in Firefox that persists across private-browsing sessions and Tor identities, effectively linking what users believed were isolated browser personas.</p>
+            <div class="body-text">
+                <p>The flaw lives in IndexedDB scoping. Even when a user rotates Tor circuits, opens a private window, or clears cookies, a single persistent value can be read across sessions and correlated to the same browser profile. For journalists, activists and anyone using Tor-over-Firefox derivatives, the assumption that each session is a clean slate no longer holds. Mozilla has been notified; researchers are publishing before a fix ships because the issue is trivial to exploit in the wild.</p>
+            </div>
+            
+        <div class="what-to-do">
+            <div class="wtd-label">What to do</div>
+            <p>If your threat model depends on Tor Browser unlinkability (investigations, whistleblower intake, research on hostile networks), switch to the Tor Browser bundle specifically and audit for IndexedDB persistence, or move to Tails until patched. Do not rely on Firefox private windows for adversarial separation.</p>
+        </div>
+        
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">Privacy</span><span class="pill">Tor</span><span class="pill">Firefox</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 603</span>
+            <a href="https://fingerprint.com/blog/firefox-tor-indexeddb-privacy-vulnerability/" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47866697" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 164 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-rose" id="s03">
+        <div class="alert-stamp">ALERT</div>
+        <div class="watermark watermark-rose">03</div>
+        <div class="spread-inner">
+            <div class="kicker kicker-red">Kernel Security · AI Noise</div>
+            <div class="applies-badge">Directly applies to you</div>
+            <h2 class="headline">Kernel code removals driven by LLM-created security reports</h2>
+            <p class="lede">Linux kernel maintainers are now removing code in direct response to security reports generated by large language models. LWN reports the trend is measurable and accelerating.</p>
+            <div class="body-text">
+                <p>The pattern: an LLM reads kernel code, hallucinates a plausible-looking CVE, a well-meaning reporter files it, and a maintainer either argues for hours or just deletes the offending construct to make the noise stop. The signal-to-noise of inbound vuln reports has degraded enough that some subsystems are triaging less rigorously. For security teams relying on CVE feeds or SCA tools that consume them, this means more false positives flowing into your risk register, and genuine issues sitting longer in the queue.</p>
+            </div>
+            
+        <div class="what-to-do">
+            <div class="wtd-label">What to do</div>
+            <p>Audit your vuln-management pipeline for LLM-originated reports masquerading as authoritative. Weight CVE severity by whether a maintainer confirmed exploitability, not just by NVD score. If you sponsor open source, consider funding triage time, not just feature work.</p>
+        </div>
+        
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">Open Source</span><span class="pill">Vulnerabilities</span><span class="pill">AI</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 112</span>
+            <a href="https://lwn.net/Articles/1068928/" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47862230" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 93 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-terminal" id="s04">
+        <div class="watermark watermark-terminal">04</div>
+        <div class="spread-inner">
+            <div class="terminal-prompt">$ cat /morning-edition/story-04.md</div>
+            <div class="kicker kicker-green">Hardware · AI Infrastructure</div>
+            
+            <h2 class="headline headline-mono">Our eighth generation TPUs: two chips for the agentic era</h2>
+            <p class="lede lede-mono">Google launched its eighth-generation TPU line, pitched squarely at inference workloads for agent-style systems running long-horizon tool loops.</p>
+            <div class="body-text body-mono">
+                <p>Two chips: one tuned for dense attention over very long contexts, the other for high-throughput batched inference across parallel agents. Google claims a step-change in tokens-per-dollar against equivalent GPU deployments, and is publishing benchmarks showing multi-agent workloads in particular benefit. The bet is clear: the future of AI spend is not training, it is thousands of cheap concurrent agents doing small things fast.</p>
+            </div>
+            
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">AI</span><span class="pill">Infrastructure</span><span class="pill">Google</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 428</span>
+            <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47862497" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 211 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-academic" id="s05">
+        <div class="watermark watermark-academic">05</div>
+        <div class="spread-inner">
+            <div class="kicker kicker-academic">Engineering Essay</div>
+            
+            <h2 class="headline headline-serif">Technical, cognitive, and intent debt</h2>
+            <p class="lede">Martin Fowler proposes a taxonomy of debt that matters once AI writes half your code: the gap between what the code does, what you understood it to do, and what you meant it to do.</p>
+            <div class="body-text body-two-col">
+                <p><span class="drop-cap">T</span>echnical debt is the old story: shortcuts in implementation. Cognitive debt is newer: nobody on the team understands why the code is the way it is, because an agent wrote it and the reviewer nodded. Intent debt is the hardest: the code passes tests but drifts from what the business actually needs, and the drift compounds silently across agent-authored PRs. Fowler argues the remedy is not to slow down AI-assisted work but to invest in artefacts that make intent legible, so the drift shows up in review instead of production.</p>
+            </div>
+            
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">Engineering</span><span class="pill">AI</span><span class="pill">Analysis</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 246</span>
+            <a href="https://martinfowler.com/fragments/2026-04-02.html" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47865661" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 62 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-gradient" id="s06">
+        <div class="watermark watermark-gradient">06</div>
+        <div class="spread-inner">
+            <div class="kicker kicker-violet">AI Models · Open Weights</div>
+            
+            <h2 class="headline">Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model</h2>
+            <p class="lede">Alibaba shipped Qwen3.6-27B, a 27-billion-parameter dense model that they claim matches flagship coding performance while running on a single consumer GPU.</p>
+            <div class="body-text">
+                <p>If the benchmarks hold up outside the curated evals, this is the first genuinely local coding assistant good enough to replace a cloud call for most refactors, debugging and scaffold work. Weights are open, licence is permissive, and the context window is generous. For teams that have sat out the Claude/GPT coding wave on data-residency grounds, there is finally a plausible on-prem option.</p>
+            </div>
+            
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">AI</span><span class="pill">Open Source</span><span class="pill">Coding</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 798</span>
+            <a href="https://qwen.ai/blog?id=qwen3.6-27b" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47863217" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 374 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-newspaper" id="s07">
+        <div class="watermark watermark-newspaper">07</div>
+        <div class="spread-inner newspaper-inner">
+            <div class="newspaper-masthead">MORNING EDITION · DISPATCH</div>
+            <div class="kicker kicker-newspaper">Supply Chain · OAuth Breach</div>
+            <div class="applies-badge">Directly applies to you</div>
+            <h2 class="headline headline-newspaper">OpenAI&#x27;s response to the Axios developer tool compromise</h2>
+            <p class="lede">OpenAI published its incident response to a compromise at Axios, the HTTP client library, in which attackers used stolen OAuth tokens to access downstream systems at customers who had integrated Axios via its developer tooling.</p>
+            <div class="body-text body-two-col">
+                <p>The attackers scraped tokens from the Axios integration pipeline and replayed them against connected services. OpenAI says its own production was not touched, but the blast radius includes any organisation that granted an Axios app OAuth scopes to Gmail, GitHub, Slack or similar. Affected scopes include read access to email, repo read and write, and Slack message history. Rotate now.</p>
+            </div>
+            
+        <div class="what-to-do">
+            <div class="wtd-label">What to do</div>
+            <p>Search your OAuth grants for any Axios-branded app and revoke. Rotate any API tokens generated through an Axios integration in the last 30 days. If you were a direct Axios customer, assume token compromise until their remediation timeline says otherwise. Review your third-party OAuth governance: do you know what scopes your SaaS tools actually hold?</p>
+        </div>
+        
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">Cybersecurity</span><span class="pill">Supply Chain</span><span class="pill">OpenAI</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 60</span>
+            <a href="https://openai.com/index/axios-developer-tool-compromise/" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47871077" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 25 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-clean" id="s08">
+        <div class="watermark watermark-clean">08</div>
+        <div class="spread-inner">
+            <div class="kicker kicker-clean">Developer Tools · AI Workflow</div>
+            <div class="applies-badge">Directly applies to you</div>
+            <h2 class="headline headline-gradient">Parallel agents in Zed</h2>
+            <p class="lede">Zed shipped first-class parallel-agent support: spawn multiple Claude or GPT sub-agents from the editor, watch them work on separate branches, and review the diffs side by side before merging.</p>
+            <div class="body-text">
+                <p>Zed&#x27;s bet is that once editor-native agents are good, you want many of them, not one. The UI borrows from git worktrees and merge queues: each agent gets its own isolated copy of the repo, runs its own tests, and presents a reviewable result. For anyone already running this pattern manually via Claude Code or Cowork, Zed has turned the workflow into a visible, shared-team object.</p>
+            </div>
+            
+        <div class="what-to-do">
+            <div class="wtd-label">What to do</div>
+            <p>Worth a trial if your dev team is already on Zed. For Cowork users, the patterns here translate directly: spin worktrees, scope each agent tightly, review diffs before merging. Consider whether your team&#x27;s review culture is ready for 5x more PRs per engineer.</p>
+        </div>
+        
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">AI</span><span class="pill">Dev Tools</span><span class="pill">Zed</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 207</span>
+            <a href="https://zed.dev/blog/parallel-agents" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47866750" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 115 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-editorial" id="s09">
+        <div class="watermark watermark-editorial">09</div>
+        <div class="spread-inner">
+            <div class="kicker kicker-amber">Regulation · Consumer Protection</div>
+            
+            <h2 class="headline headline-serif">Surveillance Pricing: Exploiting Information Asymmetries</h2>
+            <p class="lede">A legal essay arguing that surveillance-based personalised pricing has quietly become one of the largest transfers of value from consumers to firms since the advent of the credit score, and that existing antitrust and privacy law has almost nothing to say about it.</p>
+            <div class="body-text">
+                <p>The authors document how retailers, airlines and increasingly insurers price the same good at radically different rates based on inferred willingness to pay, using data trails most consumers cannot see or opt out of. They argue the harm is not price discrimination per se but the information asymmetry: the seller knows your max, you do not know theirs, and no meaningful disclosure regime exists. For UK/EU readers, expect this framing to feed into the next round of Digital Markets rulemaking.</p>
+            </div>
+            
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">Privacy</span><span class="pill">Policy</span><span class="pill">Regulation</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 110</span>
+            <a href="https://lpeproject.org/blog/surveillance-pricing-exploiting-information-asymmetries/" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47866395" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 46 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <section class="spread spread-memorial" id="s10">
+        <div class="watermark watermark-memorial">10</div>
+        <div class="spread-inner">
+            <div class="kicker kicker-muted">Media Ethics · AI Use</div>
+            
+            <h2 class="headline headline-serif">Ars Technica: Our newsroom AI policy</h2>
+            <p class="lede">Ars Technica published its newsroom policy on AI: no AI-generated copy in articles, no AI-generated images outside clearly marked use, and full disclosure when tools were used for research or editing.</p>
+            <div class="body-text">
+                <p>The piece is quiet, careful, and reads like a policy written by people who have spent a long time watching other newsrooms get this wrong. The thread running through it: trust is a slower currency than speed, and a reader who finds out their favourite explainer was ghost-written by a model does not come back. Worth reading in full for any leader writing their own AI acceptable-use policy this year.</p>
+            </div>
+            
+            
+    <div class="meta-bar">
+        <div class="pills"><span class="pill">AI</span><span class="pill">Ethics</span><span class="pill">Journalism</span></div>
+        <div class="meta-right">
+            <span class="hn-score">▲ 6</span>
+            <a href="https://arstechnica.com/staff/2026/04/our-newsroom-ai-policy/" class="meta-link" target="_blank" rel="noopener">Original</a>
+            <a href="https://news.ycombinator.com/item?id=47872452" class="meta-link meta-link-hn" target="_blank" rel="noopener">HN · 1 comments</a>
+        </div>
+    </div>
+    
+        </div>
+    </section>
+    
+
+<footer class="footer">
+    <div class="footer-inner">
+        <p><strong>Morning Edition</strong> · 23 April 2026</p>
+        <p>Source: <a href="https://news.ycombinator.com" style="color:#bcbcc4;">Hacker News</a> top stories, fetched live from the Firebase API. Curated for a cybersecurity leader transitioning into a CISO role, based in Scotland, who builds AI-assisted workflows with Claude Code and Cowork.</p>
+        <p>Vendor marketing masquerading as news, routine CVE drama without exploit context, and crypto/web3 hype were skipped in curation.</p>
+        <p>0 stories were excluded as duplicates from the previous two editions.</p>
+        <p style="opacity:0.6; margin-top:1.5rem; font-size:0.9rem;">Built by Claude · automated run · errors in judgement are mine, not the reader's.</p>
+    </div>
+</footer>
+</body>
+</html>
