@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Morning Edition — 24 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111;
+    --cream: #f6f1e8;
+    --paper: #fbfaf6;
+    --red: #c8352f;
+    --red-dark: #7a1a15;
+    --navy: #0b1930;
+    --terminal-green: #32ff7e;
+    --amber: #e8a544;
+    --rose: #ffd5d5;
+    --rose-ink: #4a0d0d;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+  p { font-size: 18px; line-height: 1.6; }
+
+  /* ============ COVER ============ */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6vh 6vw;
+    background: radial-gradient(ellipse at top left, #2c0a0a 0%, #100406 45%, #000 100%);
+    color: #f4e9d8;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: "M";
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(28rem, 60vw, 60rem);
+    color: rgba(200, 53, 47, 0.08);
+    line-height: 0.8;
+    top: -10vh;
+    right: -10vw;
+    pointer-events: none;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(244, 233, 216, 0.7);
+  }
+  .cover-main { margin: 8vh 0; position: relative; z-index: 2; }
+  .cover-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 2rem;
+  }
+  .cover h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(4rem, 14vw, 13rem);
+    line-height: 0.9;
+    margin: 0;
+    color: #faf5ec;
+  }
+  .cover h1 .amp {
+    font-weight: 900;
+    color: var(--red);
+  }
+  .cover-date {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    margin-top: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .cover-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+    max-width: 46ch;
+    color: rgba(244, 233, 216, 0.85);
+    margin-top: 1.5rem;
+    line-height: 1.4;
+  }
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(244, 233, 216, 0.55);
+    font-weight: 500;
+  }
+
+  /* ============ TOC ============ */
+  .toc {
+    padding: 10vh 6vw;
+    background: var(--paper);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .toc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .toc-header h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+  .toc-header .issue-label {
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.55);
+    font-weight: 600;
+  }
+  .toc-list { list-style: none; padding: 0; margin: 0; }
+  .toc-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    align-items: baseline;
+  }
+  .toc-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    color: rgba(0,0,0,0.35);
+    font-variant-numeric: tabular-nums;
+  }
+  .toc-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+    line-height: 1.25;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .toc-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
+  .tag {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.08);
+    color: rgba(0,0,0,0.7);
+    white-space: nowrap;
+  }
+  .tag-red {
+    background: var(--red);
+    color: #fff;
+  }
+
+  /* ============ SPREADS common ============ */
+  .spread {
+    min-height: 100vh;
+    padding: 8vh 6vw;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .spread .watermark {
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(22rem, 48vw, 50rem);
+    line-height: 0.8;
+    top: -8vh;
+    right: -6vw;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.09;
+  }
+  .spread .content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+  }
+  .kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    margin: 0 0 1.8rem 0;
+  }
+  .lede {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    max-width: 60ch;
+    font-weight: 400;
+  }
+  .body {
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+  .body p + p { margin-top: 1.1rem; }
+
+  .applies-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: var(--red);
+    color: #fff;
+    padding: 0.55rem 1rem;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .applies-badge::before {
+    content: "";
+    width: 10px; height: 10px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .action-box {
+    margin-top: 2rem;
+    padding: 1.6rem 1.8rem;
+    border-left: 4px solid var(--red);
+    background: rgba(200, 53, 47, 0.08);
+    max-width: 60ch;
+  }
+  .action-box .action-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red-dark);
+    margin-bottom: 0.7rem;
+  }
+  .action-box p { margin: 0; font-size: 18px; line-height: 1.55; }
+
+  .meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.15);
+    font-size: 14px;
+  }
+  .pill {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.08);
+  }
+  .score {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    opacity: 0.75;
+  }
+  .meta-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .meta-link:hover { opacity: 1; }
+
+  /* ============ 01 HERO ============ */
+  .spread-hero {
+    background: linear-gradient(135deg, #1a0404 0%, #430a0a 65%, #220303 100%);
+    color: #f5e8e6;
+  }
+  .spread-hero .watermark { color: rgba(200, 53, 47, 0.2); opacity: 1; }
+  .spread-hero .kicker { color: #ff6b5c; }
+  .spread-hero .headline { color: #fff4ec; }
+  .spread-hero .lede { color: #f0d7d1; }
+  .spread-hero .meta-bar { border-top-color: rgba(255,255,255,0.15); }
+  .spread-hero .pill { background: rgba(255,255,255,0.12); color: #f5e8e6; }
+
+  /* ============ 02 MIDNIGHT ============ */
+  .spread-midnight {
+    background: linear-gradient(180deg, #081126 0%, #0b1b3a 50%, #0a1024 100%);
+    color: #d7e3ff;
+  }
+  .spread-midnight .watermark { color: rgba(120, 160, 255, 0.12); opacity: 1; }
+  .spread-midnight .kicker { color: #92b4ff; }
+  .spread-midnight .headline { color: #f2f6ff; }
+  .spread-midnight .lede { color: #c5d4f5; }
+  .spread-midnight .meta-bar { border-top-color: rgba(255,255,255,0.14); }
+  .spread-midnight .pill { background: rgba(146, 180, 255, 0.15); color: #c5d4f5; }
+
+  /* ============ 03 ROSE ALERT ============ */
+  .spread-rose {
+    background: #fff5f5;
+    color: var(--rose-ink);
+    border-top: 14px solid var(--red);
+    border-bottom: 14px solid var(--red);
+  }
+  .spread-rose .watermark { color: rgba(200, 53, 47, 0.16); opacity: 1; }
+  .spread-rose .stamp {
+    position: absolute;
+    top: 6vh;
+    right: 6vw;
+    z-index: 3;
+    border: 4px double var(--red);
+    color: var(--red);
+    padding: 0.6rem 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    transform: rotate(6deg);
+    background: rgba(255,245,245,0.92);
+  }
+  .spread-rose .kicker { color: var(--red); }
+
+  /* ============ 04 TERMINAL ============ */
+  .spread-terminal {
+    background: #020805;
+    color: var(--terminal-green);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .spread-terminal::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(to bottom, rgba(50,255,126,0.04) 0 1px, transparent 1px 3px);
+    pointer-events: none;
+  }
+  .spread-terminal .watermark { color: rgba(50, 255, 126, 0.10); opacity: 1; font-family: 'JetBrains Mono', monospace; font-style: normal; }
+  .spread-terminal .kicker { color: #7df8a9; font-family: 'JetBrains Mono', monospace; }
+  .spread-terminal .headline {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--terminal-green);
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .spread-terminal .lede {
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    color: #a8ffc4;
+    font-size: 1.15rem;
+  }
+  .spread-terminal .body { font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #c7ffd8; }
+  .spread-terminal .body p::before { content: "> "; color: #7df8a9; }
+  .spread-terminal .meta-bar { border-top-color: rgba(50,255,126,0.25); }
+  .spread-terminal .pill { background: rgba(50,255,126,0.12); color: #a8ffc4; font-family: 'JetBrains Mono', monospace; }
+  .spread-terminal .meta-link { color: #a8ffc4; }
+
+  /* ============ 05 ACADEMIC ============ */
+  .spread-academic {
+    background: #f4ecda;
+    color: #2a1d10;
+  }
+  .spread-academic .watermark { color: rgba(42, 29, 16, 0.09); opacity: 1; }
+  .spread-academic .kicker { color: #8a5b1c; }
+  .spread-academic .headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .spread-academic .body {
+    column-count: 2;
+    column-gap: 3rem;
+    max-width: 900px;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .spread-academic .body p:first-of-type::first-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 5rem;
+    float: left;
+    line-height: 0.85;
+    padding: 0.3rem 0.7rem 0 0;
+    color: var(--red-dark);
+  }
+  @media (max-width: 700px) {
+    .spread-academic .body { column-count: 1; }
+  }
+
+  /* ============ 06 GRADIENT ============ */
+  .spread-gradient {
+    background: linear-gradient(135deg, #3a1b6e 0%, #553ad6 45%, #2d72e0 100%);
+    color: #f2efff;
+  }
+  .spread-gradient .watermark { color: rgba(255,255,255,0.10); opacity: 1; }
+  .spread-gradient .kicker { color: #c8ffec; }
+  .spread-gradient .headline {
+    background: linear-gradient(90deg, #ffffff, #c8ffec);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .spread-gradient .meta-bar { border-top-color: rgba(255,255,255,0.22); }
+  .spread-gradient .pill { background: rgba(255,255,255,0.18); color: #f2efff; }
+
+  /* ============ 07 NEWSPAPER ============ */
+  .spread-newspaper {
+    background: #fbfaf4;
+    color: #111;
+    border: 14px double #111;
+    margin: 2vh 2vw;
+    padding: 6vh 6vw;
+    min-height: 96vh;
+  }
+  .spread-newspaper .watermark { color: rgba(0,0,0,0.08); opacity: 1; }
+  .spread-newspaper .news-flag {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 3px double #111;
+    padding-bottom: 0.8rem;
+    margin-bottom: 2rem;
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .spread-newspaper .kicker { color: #111; }
+  .spread-newspaper .headline {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    text-align: left;
+  }
+  .spread-newspaper .body {
+    column-count: 2;
+    column-gap: 2.5rem;
+    max-width: 900px;
+    font-size: 17px;
+  }
+  @media (max-width: 700px) {
+    .spread-newspaper .body { column-count: 1; }
+  }
+
+  /* ============ 08 CLEAN ============ */
+  .spread-clean {
+    background: #ffffff;
+    color: #111;
+  }
+  .spread-clean .watermark { color: rgba(0,0,0,0.05); opacity: 1; }
+  .spread-clean .kicker { color: #4a4a4a; }
+  .spread-clean .headline {
+    background: linear-gradient(90deg, #2d72e0 0%, #11b97f 60%, #111 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+  }
+
+  /* ============ 09 EDITORIAL ============ */
+  .spread-editorial {
+    background: linear-gradient(135deg, #fff4db 0%, #f0b04d 60%, #b6701a 100%);
+    color: #2a1a00;
+  }
+  .spread-editorial .watermark { color: rgba(42, 26, 0, 0.10); opacity: 1; }
+  .spread-editorial .kicker { color: #6b3b00; }
+  .spread-editorial .headline { color: #2a1a00; font-weight: 600; }
+
+  /* ============ 10 MEMORIAL ============ */
+  .spread-memorial {
+    background: linear-gradient(180deg, #20262a 0%, #2e363c 55%, #1a1f22 100%);
+    color: #d2d4d6;
+  }
+  .spread-memorial .watermark { color: rgba(255,255,255,0.07); opacity: 1; }
+  .spread-memorial .kicker { color: #9aa3ab; }
+  .spread-memorial .headline {
+    color: #f1f2f4;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .spread-memorial .lede { color: #c1c5ca; }
+  .spread-memorial .meta-bar { border-top-color: rgba(255,255,255,0.14); }
+  .spread-memorial .pill { background: rgba(255,255,255,0.12); color: #d2d4d6; }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    padding: 8vh 6vw;
+    background: #0a0a0a;
+    color: #cfcfcf;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .footer h3 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 1.2rem 0;
+    color: #fff;
+  }
+  .footer p { max-width: 70ch; color: #b4b4b4; }
+  .footer .colophon {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7a7a7a;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<section class="cover">
+  <div class="cover-top">
+    <span>Vol. I · No. 10</span>
+    <span>Morning Edition</span>
+  </div>
+  <div class="cover-main">
+    <div class="cover-eyebrow">The CISO's morning brief</div>
+    <h1>Morning <span class="amp">&amp;</span> Edition</h1>
+    <div class="cover-date">Friday, 24 April 2026</div>
+    <p class="cover-tagline">Ten stories, curated from the front page of Hacker News, for a cybersecurity leader in Scotland who starts the day thinking about supply chains, surveillance, and the machines writing our code.</p>
+  </div>
+  <div class="cover-bottom">
+    <span>Curated for Euan McGregor</span>
+    <span>Edinburgh · Scotland</span>
+  </div>
+</section>
+
+<!-- ===================== TOC ===================== -->
+<section class="toc">
+  <div class="toc-header">
+    <h2>In this issue</h2>
+    <div class="issue-label">24.04.2026 · Ten stories</div>
+  </div>
+  <ol class="toc-list">
+    <li class="toc-item">
+      <span class="toc-num">01</span>
+      <span class="toc-title">Bitwarden CLI compromised in ongoing Checkmarx supply chain campaign</span>
+      <span class="toc-tags"><span class="tag">Supply chain</span><span class="tag tag-red">Applies to you</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">02</span>
+      <span class="toc-title">Investigation uncovers two sophisticated telecom surveillance campaigns</span>
+      <span class="toc-tags"><span class="tag">Surveillance</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">03</span>
+      <span class="toc-title">UK Biobank health data keeps ending up on GitHub</span>
+      <span class="toc-tags"><span class="tag">Data protection</span><span class="tag tag-red">Applies to you</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">04</span>
+      <span class="toc-title">Ubuntu 26.04 released</span>
+      <span class="toc-tags"><span class="tag">Infrastructure</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">05</span>
+      <span class="toc-title">Anthropic publishes postmortem on Claude Code quality regressions</span>
+      <span class="toc-tags"><span class="tag">AI tooling</span><span class="tag tag-red">Applies to you</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">06</span>
+      <span class="toc-title">OpenAI introduces GPT-5.5</span>
+      <span class="toc-tags"><span class="tag">AI model</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">07</span>
+      <span class="toc-title">French government agency confirms breach as hacker offers to sell data</span>
+      <span class="toc-tags"><span class="tag">Breach</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">08</span>
+      <span class="toc-title">Agent Vault: open-source credential proxy and vault for AI agents</span>
+      <span class="toc-tags"><span class="tag">AI security</span><span class="tag tag-red">Applies to you</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">09</span>
+      <span class="toc-title">Equity for Europeans: the cap-table problem for EU startups</span>
+      <span class="toc-tags"><span class="tag">Policy</span><span class="tag tag-red">Applies to you</span></span>
+    </li>
+    <li class="toc-item">
+      <span class="toc-num">10</span>
+      <span class="toc-title">Palantir employees are starting to wonder if they're the bad guys</span>
+      <span class="toc-tags"><span class="tag">Ethics</span></span>
+    </li>
+  </ol>
+</section>
+
+<!-- ===================== 01 HERO ===================== -->
+<section class="spread spread-hero">
+  <div class="watermark">01</div>
+  <div class="content">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">Supply chain · Breaking</div>
+    <h2 class="headline">Bitwarden CLI is the latest casualty of an ongoing npm supply chain campaign.</h2>
+    <p class="lede">Socket's research team confirms that malicious versions of the Bitwarden CLI were published to npm as part of the Checkmarx-style worm that has now been tearing through the JavaScript ecosystem for weeks. The campaign keeps changing hands; each round poisons more trusted packages.</p>
+    <div class="body">
+      <p>The compromised package behaves like the legitimate Bitwarden CLI on the surface, but exfiltrates environment variables, credentials, and the contents of developer secrets files to attacker-controlled infrastructure. Because the Bitwarden CLI is commonly invoked from CI pipelines and developer machines, a single curl-to-install or an npm upgrade inside a build image is enough to hand over the keys.</p>
+      <p>This is the same lineage of worm that previously hit Checkmarx, Vercel-adjacent OAuth tokens earlier in the month, and dozens of lesser-known packages. The pattern is depressingly familiar: an attacker steals maintainer credentials through phishing, publishes a subtly-malicious minor version, then uses the exfiltrated tokens to compromise more maintainers in the next wave.</p>
+    </div>
+    <div class="action-box">
+      <div class="action-label">What to do</div>
+      <p>Audit every build image, CI runner, and developer workstation for the Bitwarden CLI and pin to a known-good version. Rotate any secrets that have touched a machine running the CLI in the last fourteen days. Enforce npm package lockfiles with integrity hashes and disable auto-upgrades on CI. This is a good week to check whether your SBOM programme actually tells you which teams depend on this.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">Cybersecurity</span>
+      <span class="pill">Supply chain</span>
+      <span class="score">716 points · 188 comments</span>
+      <a class="meta-link" href="https://socket.dev/blog/bitwarden-cli-compromised">Socket research →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47876043">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 02 MIDNIGHT ===================== -->
+<section class="spread spread-midnight">
+  <div class="watermark">02</div>
+  <div class="content">
+    <div class="kicker">Surveillance · Investigation</div>
+    <h2 class="headline">Two surveillance vendors have been caught riding inside telco networks, silently geolocating targets worldwide.</h2>
+    <p class="lede">TechCrunch's investigation details how commercial spyware operators piggybacked on legitimate telco interconnects to run bulk location tracking and silent-SMS attacks, reaching subscribers across dozens of carriers before being detected.</p>
+    <div class="body">
+      <p>The findings echo the old SS7 and Diameter abuse playbooks but show a new level of sophistication: the operators rotated signalling identities between legitimate mobile networks, making each query look like routine roaming traffic. Victims included journalists, opposition politicians, and at least a handful of European civil servants, according to the researchers quoted.</p>
+      <p>The uncomfortable part for any CISO: if an attacker can buy passive geolocation and silent-SMS delivery as a service, then MFA via SMS is worse than it looked yesterday. Anything that depends on possession of a phone number without possession of the device is now in the blast radius.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">Privacy</span>
+      <span class="pill">Telecoms</span>
+      <span class="score">378 points · 92 comments</span>
+      <a class="meta-link" href="https://techcrunch.com/2026/04/23/surveillance-vendors-caught-abusing-access-to-telcos-to-track-people/">TechCrunch →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47874814">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 ROSE ALERT ===================== -->
+<section class="spread spread-rose">
+  <div class="watermark">03</div>
+  <div class="stamp">Alert</div>
+  <div class="content">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">Data protection · UK</div>
+    <h2 class="headline">UK Biobank genomic data keeps being uploaded to public GitHub repositories.</h2>
+    <p class="lede">A running tracker at biobank.rocher.lc catalogues public repositories where researchers have uploaded fragments of UK Biobank data, apparently unaware that "anonymised" genomics on a public forge is not anonymised in any useful sense.</p>
+    <div class="body">
+      <p>Most of the leaks appear accidental: intermediate files in analysis repos, config files that point at participant identifiers, or worked examples from PhD students. None of them individually violate the Biobank access agreement in a way that would have been caught by a naive scan, but collectively they chip away at the anonymity of an unusually rich dataset.</p>
+      <p>This matters for UK organisations in three ways. First: any research body with a Biobank access agreement should assume an audit is plausible in the next twelve months. Second: the ICO has been leaning harder on "reasonably likely to be identifiable" interpretations since the DUA Act came in. Third: GitHub scanning for PII and genomic markers is now a table-stakes control, not a nice-to-have.</p>
+    </div>
+    <div class="action-box">
+      <div class="action-label">What to do</div>
+      <p>If your organisation holds a UK Biobank access agreement, ask data protection whether you have an inventory of which repositories reference the dataset. Extend secret-scanning rules to cover Biobank participant identifier formats. Raise it with your DPO as a UK-specific exposure rather than a generic open-source hygiene item.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">Data protection</span>
+      <span class="pill">UK / EU</span>
+      <span class="score">104 points · 31 comments</span>
+      <a class="meta-link" href="https://biobank.rocher.lc">biobank.rocher.lc →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47875843">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 04 TERMINAL ===================== -->
+<section class="spread spread-terminal">
+  <div class="watermark">04</div>
+  <div class="content">
+    <div class="kicker">$ apt update · Infrastructure</div>
+    <h2 class="headline">Ubuntu 26.04 "Ferocious Fennec" lands, with stricter defaults.</h2>
+    <p class="lede">The LTS cycle turns over today. LWN's release coverage walks through the changes that matter for fleet operators: a stricter AppArmor baseline, the official move to dm-verity for the system partition on server images, and a rethought unattended-upgrades path.</p>
+    <div class="body">
+      <p>Notable for anyone running containers at scale: the default Python interpreter is now 3.13, and OpenSSL has been rebased on 3.4 with stricter protocol defaults. A handful of older TLS suites that were still compiled in as opt-in are now compile-time disabled.</p>
+      <p>The boring but important bit: the upgrade path from 24.04 LTS is clean on tested paths but the server installer has been reworked, so expect some automation around PXE and cloud-init to need tweaks. Canonical is promising ten years of security updates on the server SKU, same as the last cycle.</p>
+      <p>Give it a fortnight in a lab before you bless it for production.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">Infrastructure</span>
+      <span class="pill">Linux</span>
+      <span class="score">98 points · 46 comments</span>
+      <a class="meta-link" href="https://lwn.net/Articles/1069399/">LWN →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47885596">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 05 ACADEMIC ===================== -->
+<section class="spread spread-academic">
+  <div class="watermark">05</div>
+  <div class="content">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">AI tooling · Postmortem</div>
+    <h2 class="headline">Anthropic explains what went wrong with Claude Code in April.</h2>
+    <p class="lede">The company has published a detailed postmortem on the wave of quality reports that hit Claude Code users earlier this month, and it reads like a serious piece of engineering writing rather than PR cover.</p>
+    <div class="body">
+      <p>The short version: an interaction between a new inference kernel, a context-caching optimisation, and a late change to the tool-use prompt template caused regressions that were invisible in evals but visible in the shape of real developer sessions. Anthropic notes that their internal benchmarks were overfit to short-turn tasks and missed regressions on the longer, tool-heavy workflows that production users actually run.</p>
+      <p>There is a broader lesson buried in the document. For anyone whose team uses Claude Code or Cowork day-to-day, the takeaway is that model quality is now a supply chain concern: a silent regression in a provider's inference stack can show up as a productivity tax on your engineers before the provider notices it in their own metrics. Anthropic has added new evals, widened canary rollouts, and committed to a faster rollback path. Worth reading in full.</p>
+    </div>
+    <div class="action-box">
+      <div class="action-label">What to do</div>
+      <p>Read the postmortem. If your team leans on Claude Code, consider a lightweight internal "how's it feeling today" pulse and a standing rollback plan to an older model alias. Treat model provider changes as change-managed events, not silent upgrades.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">AI tooling</span>
+      <span class="pill">Claude Code</span>
+      <span class="score">652 points · 211 comments</span>
+      <a class="meta-link" href="https://www.anthropic.com/engineering/april-23-postmortem">Anthropic engineering →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47878905">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 06 GRADIENT ===================== -->
+<section class="spread spread-gradient">
+  <div class="watermark">06</div>
+  <div class="content">
+    <div class="kicker">AI model · Launch</div>
+    <h2 class="headline">OpenAI ships GPT-5.5 with a longer context and a cheaper tier.</h2>
+    <p class="lede">A mid-cycle bump rather than a full version jump: GPT-5.5 lands with a larger context window, a new mini tier aimed at agentic workloads, and the usual round of reasoning benchmarks that ship alongside any OpenAI release.</p>
+    <div class="body">
+      <p>On paper, GPT-5.5 narrows the gap with the current top of the Claude and Gemini ladders on long-context reasoning and tool use. OpenAI has been emphasising the mini tier, which is priced aggressively for agent workloads that make a lot of small tool calls, and a new low-latency mode for voice that is likely where the real product bet is sitting.</p>
+      <p>For the CISO seat: the interesting footnote is a tightened default for data-retention on the API, with a clearer opt-out for log retention that matters in regulated industries. The more interesting second-order effect is what this does to competitive pricing in the agent space over the next quarter.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">AI model</span>
+      <span class="pill">OpenAI</span>
+      <span class="score">1,265 points · 427 comments</span>
+      <a class="meta-link" href="https://openai.com/index/introducing-gpt-5-5/">OpenAI →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47879092">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 07 NEWSPAPER ===================== -->
+<section class="spread spread-newspaper">
+  <div class="watermark">07</div>
+  <div class="content">
+    <div class="news-flag">
+      <span>The Morning Edition · International</span>
+      <span>Front page · 07</span>
+    </div>
+    <div class="kicker">Breach · France</div>
+    <h2 class="headline">French government agency confirms breach as hacker offers to sell the data.</h2>
+    <p class="lede">BleepingComputer reports a confirmed intrusion at a French government agency, with the attacker already advertising the dataset for sale on a Russian-speaking forum. Officials have notified the data protection authority and activated incident protocols.</p>
+    <div class="body">
+      <p>The agency has not published full technical details, but the initial notice suggests an externally-exposed web application and a credential theft leading to access to an internal document store. The advertised dataset appears to include employee directories, internal forms, and correspondence, though not the kind of citizen-facing records that would trigger a mass-notification event.</p>
+      <p>What makes this one worth watching is less the incident itself and more what it signals for the French and wider European public sector. After the wave of breaches at ministries and health bodies over the last year, the question is no longer whether a given agency will be hit but whether it has the instrumentation to find out quickly. CNIL has been clear that "we found out when the data appeared on a forum" is not acceptable as a default detection path.</p>
+      <p>Expect the details to firm up over the next few days as the agency works through notifications. As ever with these stories, the second attacker wave — the one that buys the dataset and uses it for targeted phishing — is where the real damage happens.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">Breach</span>
+      <span class="pill">France</span>
+      <span class="score">374 points · 118 comments</span>
+      <a class="meta-link" href="https://www.bleepingcomputer.com/news/security/french-govt-agency-confirms-breach-as-hacker-offers-to-sell-data/">BleepingComputer →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47877366">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 08 CLEAN ===================== -->
+<section class="spread spread-clean">
+  <div class="watermark">08</div>
+  <div class="content">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">AI security · Open source</div>
+    <h2 class="headline">Agent Vault: an open-source credential proxy for AI agents.</h2>
+    <p class="lede">Infisical has shipped Agent Vault, an open-source proxy that sits between an AI agent and the credentials it needs to call tools. The agent never sees the secret; the proxy injects it at request time and logs what was used.</p>
+    <div class="body">
+      <p>This is the shape of the answer most security teams have been waiting for when engineers hand them an agentic workflow and say "but it needs the API keys". The proxy pattern lets you audit what an agent did with which credential, scope credentials per tool call, and pull a secret out of circulation without restarting anything. The project is MIT-licensed and includes adapters for common agent frameworks.</p>
+      <p>It is worth treating the release as a reference design rather than a drop-in fix. The assumptions it makes about how agents run, how tools are discovered, and how identity is propagated will not all match your environment, but the ideas are the right ones. For anyone who is building Claude Code or Cowork workflows and has been hand-waving the credential story, this is a good starting read.</p>
+    </div>
+    <div class="action-box">
+      <div class="action-label">What to do</div>
+      <p>Spend twenty minutes on the repository and the architecture diagram. Use it as a reference when your team proposes the next agentic automation. At minimum, steal the logging schema and the per-tool-call scoping primitive.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">AI security</span>
+      <span class="pill">Open source</span>
+      <span class="score">100 points · 18 comments</span>
+      <a class="meta-link" href="https://github.com/Infisical/agent-vault">GitHub →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47865822">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 09 EDITORIAL ===================== -->
+<section class="spread spread-editorial">
+  <div class="watermark">09</div>
+  <div class="content">
+    <div class="applies-badge">Directly applies to you</div>
+    <div class="kicker">Policy · Europe</div>
+    <h2 class="headline">Armin Ronacher on why equity doesn't work the way it should for European founders.</h2>
+    <p class="lede">A blog post that has been doing the rounds on Hacker News walks through, with real numbers, why the same equity grant means something radically different depending on whether you are sitting in California or anywhere in the EU or the UK.</p>
+    <div class="body">
+      <p>The headline issue is tax treatment at exercise and sale, but the more interesting observation is about expectations. European tech workers negotiate equity as if it were a nice-to-have because, historically, it has paid out worse than cash, which means European companies can get away with granting less of it, which means the equity-as-wealth-creator story never really compounds the way it does in the US. It is a coordination problem dressed up as tax policy.</p>
+      <p>The post is not a policy prescription; it is a quietly devastating tour of why the usual "just use SARs" or "just use phantom stock" answers do not actually fix the underlying asymmetry. Worth reading if you hire technical talent in the UK or EU, or if you think about where the next wave of European defensive-tech companies will be founded.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">Policy</span>
+      <span class="pill">UK / EU</span>
+      <span class="score">11 points · early</span>
+      <a class="meta-link" href="https://lucumr.pocoo.org/2026/4/23/equity-for-europeans/">lucumr.pocoo.org →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47885178">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 10 MEMORIAL ===================== -->
+<section class="spread spread-memorial">
+  <div class="watermark">10</div>
+  <div class="content">
+    <div class="kicker">Ethics · Inside Palantir</div>
+    <h2 class="headline">Some Palantir engineers are asking, quietly, whether they are the bad guys.</h2>
+    <p class="lede">Wired talks to a handful of current and recent Palantir employees about the moral drift they describe feeling as the company's work with ICE and domestic surveillance programmes has expanded.</p>
+    <div class="body">
+      <p>The interviews land softly rather than as exposé. Nobody quoted is a whistleblower; most of them are people who joined believing the "we will build ethical software for hard problems" pitch and are now less sure. Some have left. Some are staying. The piece is good on the psychology of that drift, and less good on the strictly legal question of what Palantir is and is not contracted to do.</p>
+      <p>For security leaders, this is adjacent-not-central reading, but it is worth the time. The engineers describing their dissonance sound a lot like the people who end up in security ethics conversations five years later. It is also a reminder that vendor selection is, among other things, a values statement that will be read by the technical staff you want to keep.</p>
+    </div>
+    <div class="meta-bar">
+      <span class="pill">Ethics</span>
+      <span class="pill">Industry</span>
+      <span class="score">823 points · 612 comments</span>
+      <a class="meta-link" href="https://www.wired.com/story/palantir-employees-are-starting-to-wonder-if-theyre-the-bad-guys/">Wired →</a>
+      <a class="meta-link" href="https://news.ycombinator.com/item?id=47878633">HN discussion →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <h3>A note from the editor</h3>
+  <p>Morning Edition is a daily magazine curated from the front page of Hacker News for a cybersecurity leader in Scotland. Stories are selected with a bias toward supply-chain risk, surveillance and privacy, breach analysis, AI tooling that affects working practice, and items that bear on UK and EU organisations. Routine vendor patch advisories, crypto and web3 hype cycles, and marketing posts dressed up as news are deliberately skipped.</p>
+  <p>Two stories were excluded from today's candidate pool because they featured in previous editions, including yesterday's Apple iPhone forensics bug and the Ars Technica newsroom AI policy. Five of today's ten stories are flagged as directly relevant to a CISO transitioning into the seat, with a UK or tooling lens.</p>
+  <div class="colophon">
+    Curated for Euan McGregor · 24 April 2026 · Source: Hacker News front page · Fraunces &amp; Inter via Google Fonts
+  </div>
+</footer>
+
+</body>
+</html>
