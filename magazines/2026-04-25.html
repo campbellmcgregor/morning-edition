@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Edition — 25 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #faf7f2;
+  --accent-red: #c0392b;
+  --rule: #e6e1d8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .headline, .display { font-family: 'Fraunces', Georgia, serif; font-weight: 600; letter-spacing: -0.02em; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top, #2a2520 0%, #0c0a08 70%);
+  color: #f6efe4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4rem 5vw;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: "ME";
+  position: absolute;
+  top: -8vw; right: -4vw;
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 50vw;
+  line-height: 0.8;
+  color: rgba(255,255,255,0.04);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+}
+.cover-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.05rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.75; }
+.cover-mid { z-index: 1; }
+.cover-mid .eyebrow { font-size: 1rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.7; margin-bottom: 1rem; }
+.cover-mid .title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 14vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+}
+.cover-mid .tagline { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.3rem, 2.5vw, 2rem); max-width: 36ch; opacity: 0.85; line-height: 1.4; }
+.cover-bottom { display: flex; justify-content: space-between; align-items: flex-end; font-size: 1rem; opacity: 0.6; z-index: 1; }
+.cover-bottom .vol { letter-spacing: 0.2em; text-transform: uppercase; }
+
+/* TOC */
+.toc {
+  min-height: 100vh;
+  background: var(--paper);
+  padding: 6rem 6vw;
+}
+.toc-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 1rem; margin-bottom: 3rem;
+}
+.toc-head h2 { font-size: clamp(2rem, 4vw, 3rem); }
+.toc-head .toc-meta-text { font-size: 0.95rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; }
+.toc-list { list-style: none; }
+.toc-item { border-bottom: 1px solid var(--rule); }
+.toc-link {
+  display: flex; align-items: center; gap: 2rem;
+  padding: 1.5rem 0; text-decoration: none; color: var(--ink);
+  transition: padding 0.2s ease;
+}
+.toc-link:hover { padding-left: 1rem; background: rgba(0,0,0,0.02); }
+.toc-num {
+  font-family: 'Fraunces', serif; font-weight: 600;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  opacity: 0.3; min-width: 4rem;
+  letter-spacing: -0.04em;
+}
+.toc-body { flex: 1; }
+.toc-headline { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(1.3rem, 2.2vw, 1.8rem); display: block; line-height: 1.25; margin-bottom: 0.5rem; }
+.toc-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.9rem; }
+.toc-tag { background: rgba(0,0,0,0.06); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.82rem; letter-spacing: 0.04em; }
+.toc-badge.applies { background: var(--accent-red); color: white; padding: 0.25rem 0.75rem; border-radius: 999px; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.04em; }
+
+/* SPREADS - shared */
+.spread {
+  min-height: 100vh;
+  padding: 6rem 6vw;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; margin: 0 auto; }
+.watermark {
+  position: absolute;
+  font-family: 'Fraunces', serif; font-weight: 800;
+  font-size: clamp(20rem, 60vw, 60rem);
+  line-height: 0.75; letter-spacing: -0.05em;
+  pointer-events: none; user-select: none;
+  z-index: 1;
+}
+.kicker { font-size: 0.95rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; margin-bottom: 1.5rem; opacity: 0.85; }
+.headline { font-size: clamp(2.2rem, 5.5vw, 3.8rem); line-height: 1.05; margin-bottom: 1.75rem; }
+.lede { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.45rem; line-height: 1.45; margin-bottom: 2.25rem; max-width: 52ch; }
+.body-text p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.1rem; max-width: 64ch; }
+.applies-badge {
+  display: inline-block; background: var(--accent-red); color: white;
+  padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.85rem;
+  letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.action-box {
+  border-left: 4px solid var(--accent-red);
+  background: rgba(192, 57, 43, 0.06);
+  padding: 1.5rem 1.75rem; margin: 2rem 0; max-width: 60ch;
+}
+.action-label { font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--accent-red); margin-bottom: 0.5rem; }
+.action-text { font-size: 1.1rem; line-height: 1.6; }
+.meta-bar {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  margin-top: 3rem; padding-top: 1.5rem;
+  border-top: 1px solid currentColor; opacity: 0.95;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.meta-right { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; font-size: 0.95rem; }
+.pill { background: rgba(0,0,0,0.08); padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.85rem; }
+.meta-score { font-weight: 600; opacity: 0.7; }
+.meta-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.meta-link:hover { text-decoration-thickness: 2px; }
+
+/* 1 HERO - dark red/black */
+.spread-hero { background: linear-gradient(135deg, #1a0708 0%, #4a0d10 100%); color: #f6e8e6; }
+.spread-hero .watermark { color: rgba(192, 57, 43, 0.18); top: -8vw; right: -2vw; }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0708; }
+.spread-hero .action-box { border-color: #ff7878; background: rgba(255,120,120,0.08); }
+.spread-hero .action-label { color: #ff9090; }
+.spread-hero .pill { background: rgba(255,255,255,0.1); }
+
+/* 2 MIDNIGHT - deep navy */
+.spread-midnight { background: linear-gradient(180deg, #050a1a 0%, #0c1733 100%); color: #d8def0; }
+.spread-midnight .watermark { color: rgba(120, 150, 255, 0.08); bottom: -10vw; left: -3vw; }
+.spread-midnight .pill { background: rgba(255,255,255,0.08); color: #d8def0; }
+.spread-midnight .lede { color: #aebadc; }
+
+/* 3 ROSE ALERT - pink/white with red border */
+.spread-rose { background: #fff0f2; color: #2a0a0d; border: 18px solid var(--accent-red); }
+.spread-rose .watermark { color: rgba(192, 57, 43, 0.12); top: -8vw; right: -2vw; }
+.spread-rose::after {
+  content: "ALERT"; position: absolute; top: 2rem; right: 2rem;
+  background: var(--accent-red); color: white; padding: 0.5rem 1rem;
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.4rem;
+  letter-spacing: 0.2em; transform: rotate(8deg); z-index: 3;
+  border: 2px dashed white;
+}
+.spread-rose .pill { background: rgba(192, 57, 43, 0.12); }
+
+/* 4 TERMINAL - green on black */
+.spread-terminal { background: #050b07; color: #6cf28b; font-family: 'JetBrains Mono', 'Courier New', monospace; }
+.spread-terminal .watermark { color: rgba(108, 242, 139, 0.07); top: 2vw; left: -4vw; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.spread-terminal .kicker { color: #6cf28b; opacity: 1; }
+.spread-terminal .headline { font-family: 'JetBrains Mono', monospace; font-size: clamp(2rem, 4.5vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .lede { font-family: 'JetBrains Mono', monospace; font-style: normal; color: #9af0b0; font-size: 1.3rem; }
+.spread-terminal .lede::before { content: "$ "; color: #6cf28b; opacity: 0.6; }
+.spread-terminal .body-text p { font-family: 'JetBrains Mono', monospace; color: #c8f5d5; font-size: 1.05rem; line-height: 1.7; }
+.spread-terminal .body-text p::before { content: "> "; color: #6cf28b; opacity: 0.5; }
+.spread-terminal .pill { background: rgba(108,242,139,0.1); color: #9af0b0; }
+
+/* 5 ACADEMIC - cream with drop cap and two columns */
+.spread-academic { background: #f5ebd5; color: #2a1f0f; }
+.spread-academic .watermark { color: rgba(120, 80, 30, 0.1); bottom: -8vw; right: -3vw; }
+.spread-academic .body-text { columns: 2; column-gap: 2.5rem; column-rule: 1px solid rgba(0,0,0,0.1); }
+.spread-academic .body-text p { max-width: none; font-family: 'Fraunces', serif; font-size: 1.1rem; line-height: 1.7; break-inside: avoid; }
+.spread-academic .body-text p:first-child::first-letter {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  float: left; font-size: 5.5rem; line-height: 0.9;
+  margin: 0.4rem 0.6rem 0 0; color: var(--accent-red);
+}
+.spread-academic .pill { background: rgba(0,0,0,0.08); }
+
+/* 6 GRADIENT - purple/blue */
+.spread-gradient { background: linear-gradient(135deg, #2c0d4a 0%, #1d3b9c 50%, #0f6dbb 100%); color: #f0eaff; }
+.spread-gradient .watermark { color: rgba(255,255,255,0.08); top: -8vw; left: -2vw; }
+.spread-gradient .pill { background: rgba(255,255,255,0.12); }
+.spread-gradient .lede { color: #d8d0f8; }
+
+/* 7 NEWSPAPER - black/white */
+.spread-newspaper { background: #fbfbf7; color: #0a0a0a; border-top: 12px double #0a0a0a; border-bottom: 12px double #0a0a0a; }
+.spread-newspaper .watermark { color: rgba(0,0,0,0.05); top: -4vw; right: -2vw; }
+.spread-newspaper .kicker { border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; padding: 0.5rem 0; display: inline-block; padding-right: 2rem; }
+.spread-newspaper .body-text { columns: 2; column-gap: 2.5rem; column-rule: 1px solid rgba(0,0,0,0.15); }
+.spread-newspaper .body-text p { max-width: none; break-inside: avoid; }
+.spread-newspaper .pill { background: rgba(0,0,0,0.07); }
+
+/* 8 CLEAN - minimal white with gradient text */
+.spread-clean { background: #ffffff; color: #1a1714; }
+.spread-clean .watermark { color: rgba(40,40,60,0.04); top: -8vw; right: -4vw; }
+.spread-clean .headline {
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #ec4899);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; color: transparent;
+}
+.spread-clean .pill { background: rgba(0,0,0,0.06); }
+
+/* 9 EDITORIAL - warm amber */
+.spread-editorial { background: linear-gradient(135deg, #f9d56e 0%, #f5a742 50%, #e07b00 100%); color: #2a1a05; }
+.spread-editorial .watermark { color: rgba(70,40,5,0.08); bottom: -10vw; right: -3vw; }
+.spread-editorial .pill { background: rgba(0,0,0,0.12); }
+.spread-editorial .applies-badge { background: #2a1a05; color: #f9d56e; }
+.spread-editorial .action-box { border-color: #2a1a05; background: rgba(0,0,0,0.08); }
+.spread-editorial .action-label { color: #2a1a05; }
+
+/* 10 MEMORIAL - dark muted */
+.spread-memorial { background: linear-gradient(180deg, #1c1a1d 0%, #2c2628 100%); color: #c5bfb9; }
+.spread-memorial .watermark { color: rgba(255,255,255,0.05); top: -8vw; left: -2vw; font-style: italic; }
+.spread-memorial .headline { color: #e8e0d6; font-style: italic; font-weight: 500; }
+.spread-memorial .lede { color: #b3a99e; }
+.spread-memorial .pill { background: rgba(255,255,255,0.08); }
+
+/* FOOTER */
+.footer {
+  background: #0c0a08; color: #b8b0a4;
+  padding: 4rem 6vw; text-align: center;
+}
+.footer .footer-mark { font-family: 'Fraunces', serif; font-size: 2rem; margin-bottom: 1rem; color: #f6efe4; }
+.footer p { max-width: 60ch; margin: 0 auto 1rem; font-size: 1rem; line-height: 1.6; }
+.footer .footer-meta { font-size: 0.85rem; opacity: 0.6; margin-top: 2rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+@media (max-width: 700px) {
+  .spread-academic .body-text, .spread-newspaper .body-text { columns: 1; }
+  .spread { padding: 4rem 6vw; }
+  .toc-link { gap: 1rem; }
+  .toc-num { min-width: 2.5rem; }
+  .spread-rose { border-width: 10px; }
+  .spread-rose::after { font-size: 1rem; padding: 0.4rem 0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <header class="cover-top">
+    <span>Morning Edition</span>
+    <span>Vol. I &middot; No. 11</span>
+  </header>
+  <div class="cover-mid">
+    <div class="eyebrow">SATURDAY, 25 APRIL 2026</div>
+    <h1 class="title">Morning<br>Edition</h1>
+    <p class="tagline">A curated front page for cybersecurity leaders, with the AI news that actually changes how you work.</p>
+  </div>
+  <footer class="cover-bottom">
+    <span class="vol">Curated from Hacker News</span>
+    <span>Edited for Euan McGregor</span>
+  </footer>
+</section>
+
+<section class="toc">
+  <header class="toc-head">
+    <h2>In this issue</h2>
+    <span class="toc-meta-text">10 stories &middot; 5 flagged</span>
+  </header>
+  <ol class="toc-list">
+    <li class="toc-item">
+      <a href="#story-1" class="toc-link">
+        <span class="toc-num">01</span>
+        <span class="toc-body">
+          <span class="toc-headline">Google plans to pour up to $40B into Anthropic</span>
+          <span class="toc-meta"><span class="toc-tag">AI</span> <span class="toc-tag">Anthropic</span> <span class="toc-tag">Vendor Risk</span><span class="toc-badge applies">Applies to you</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-2" class="toc-link">
+        <span class="toc-num">02</span>
+        <span class="toc-body">
+          <span class="toc-headline">DeepSeek v4 lands, and the open-weight gap closes again</span>
+          <span class="toc-meta"><span class="toc-tag">AI</span> <span class="toc-tag">Open Source</span> <span class="toc-tag">DeepSeek</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-3" class="toc-link">
+        <span class="toc-num">03</span>
+        <span class="toc-body">
+          <span class="toc-headline">A long-time Claude user cancels — and explains why</span>
+          <span class="toc-meta"><span class="toc-tag">Claude</span> <span class="toc-tag">Anthropic</span> <span class="toc-tag">Quality</span><span class="toc-badge applies">Applies to you</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-4" class="toc-link">
+        <span class="toc-num">04</span>
+        <span class="toc-body">
+          <span class="toc-headline">An audio interface ships with SSH on by default</span>
+          <span class="toc-meta"><span class="toc-tag">Hardware</span> <span class="toc-tag">Supply Chain</span> <span class="toc-tag">IoT</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-5" class="toc-link">
+        <span class="toc-num">05</span>
+        <span class="toc-body">
+          <span class="toc-headline">You don&#x27;t want long-lived keys</span>
+          <span class="toc-meta"><span class="toc-tag">Security</span> <span class="toc-tag">Identity</span> <span class="toc-tag">Best Practice</span><span class="toc-badge applies">Applies to you</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-6" class="toc-link">
+        <span class="toc-num">06</span>
+        <span class="toc-body">
+          <span class="toc-headline">OpenAI ships GPT-5.5 and 5.5 Pro to the API</span>
+          <span class="toc-meta"><span class="toc-tag">AI</span> <span class="toc-tag">OpenAI</span> <span class="toc-tag">API</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-7" class="toc-link">
+        <span class="toc-num">07</span>
+        <span class="toc-body">
+          <span class="toc-headline">CC-Canary watches Claude Code for early regressions</span>
+          <span class="toc-meta"><span class="toc-tag">Claude Code</span> <span class="toc-tag">Tooling</span> <span class="toc-tag">Observability</span><span class="toc-badge applies">Applies to you</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-8" class="toc-link">
+        <span class="toc-num">08</span>
+        <span class="toc-body">
+          <span class="toc-headline">Toward a scientific theory of deep learning</span>
+          <span class="toc-meta"><span class="toc-tag">Research</span> <span class="toc-tag">AI</span> <span class="toc-tag">Theory</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-9" class="toc-link">
+        <span class="toc-num">09</span>
+        <span class="toc-body">
+          <span class="toc-headline">Firefox integrates Brave&#x27;s adblock engine</span>
+          <span class="toc-meta"><span class="toc-tag">Privacy</span> <span class="toc-tag">Browsers</span> <span class="toc-tag">Mozilla</span><span class="toc-badge applies">Applies to you</span></span>
+        </span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#story-10" class="toc-link">
+        <span class="toc-num">10</span>
+        <span class="toc-body">
+          <span class="toc-headline">Hear your agent suffer through your code</span>
+          <span class="toc-meta"><span class="toc-tag">AI Workflow</span> <span class="toc-tag">Ethics</span> <span class="toc-tag">Tooling</span></span>
+        </span>
+      </a>
+    </li>
+  </ol>
+</section>
+
+
+  <section id="story-1" class="spread spread-hero">
+    <div class="watermark">01</div>
+    <div class="spread-inner">
+      <div class="applies-badge">Directly applies to you</div>
+      <div class="kicker">AI Capital Markets</div>
+      <h2 class="headline">Google plans to pour up to $40B into Anthropic</h2>
+      <p class="lede">Bloomberg reports Google is preparing a fresh investment of up to $40 billion in Anthropic, deepening the strategic alignment between Mountain View and the maker of Claude.</p>
+      <div class="body-text">
+        <p>If finalised, the financing would be one of the largest single bets ever placed on a private AI company. It tightens the loop between Google&#x27;s TPU-led infrastructure and the model family that Euan and his team build with daily.</p><p>For practitioners, the headline question is independence. Anthropic has positioned itself as the safety-forward alternative — but a multi-billion dollar capital lead from a hyperscaler complicates that narrative when buyers are weighing vendor concentration risk.</p><p>Watch for follow-on changes to Anthropic&#x27;s commercial model: extended commitments, exclusive distribution lanes through Vertex, and the possibility that Anthropic-branded products quietly run more of their compute on Google silicon.</p>
+      </div>
+      
+      <div class="action-box">
+        <div class="action-label">What to do</div>
+        <p class="action-text">Add a vendor concentration line item to your AI risk register. If you depend on Anthropic for production workloads, ask Procurement to confirm whether your contract covers a change-of-control or material-investment scenario, and pencil in a 30-day diligence review.</p>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">AI</span><span class="pill">Anthropic</span><span class="pill">Vendor Risk</span></div>
+        <div class="meta-right">
+          <span class="meta-score">498 pts on HN</span>
+          <a class="meta-link" href="https://www.bloomberg.com/news/articles/2026-04-24/google-plans-to-invest-up-to-40-billion-in-anthropic" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47898597" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-2" class="spread spread-terminal">
+    <div class="watermark">02</div>
+    <div class="spread-inner">
+      
+      <div class="kicker">Model Release</div>
+      <h2 class="headline">DeepSeek v4 lands, and the open-weight gap closes again</h2>
+      <p class="lede">DeepSeek has shipped v4 of its flagship model with new agentic and long-context capabilities, leaping the front page with the largest score on Hacker News today.</p>
+      <div class="body-text">
+        <p>DeepSeek&#x27;s release notes describe meaningful gains on coding, tool use, and reasoning at lower inference cost than the closed-source incumbents. For teams building internal AI tooling, this is another argument that the practical ceiling on open-weight models keeps moving.</p><p>The geopolitical context still matters. UK and EU buyers continue to weigh the regulatory and data-residency consequences of Chinese model providers — particularly when models are run via DeepSeek&#x27;s hosted API rather than self-hosted weights.</p><p>Self-hosting v4 is non-trivial but tractable on commodity GPUs. For a small security team, the more interesting move is using the open weights as a sandbox for evaluating prompt-injection and jailbreak hardening before pushing to a managed provider.</p>
+      </div>
+      
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">AI</span><span class="pill">Open Source</span><span class="pill">DeepSeek</span></div>
+        <div class="meta-right">
+          <span class="meta-score">1873 pts on HN</span>
+          <a class="meta-link" href="https://api-docs.deepseek.com/news/news260424" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47864056" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-3" class="spread spread-newspaper">
+    <div class="watermark">03</div>
+    <div class="spread-inner">
+      <div class="applies-badge">Directly applies to you</div>
+      <div class="kicker">User Feedback</div>
+      <h2 class="headline">A long-time Claude user cancels — and explains why</h2>
+      <p class="lede">A widely-shared post from a paying customer details token-counting issues, perceived quality regressions, and a frustrating support experience that finally pushed them off Claude.</p>
+      <div class="body-text">
+        <p>The post resonated because it isn&#x27;t a hit piece. It is a methodical account from someone who clearly wanted to stay: rate limits hit faster than expected, quality on long-running coding sessions felt softer week-on-week, and support replies leaned on templates.</p><p>Anthropic has acknowledged separate routing and quality issues earlier this month (covered in yesterday&#x27;s edition). Together they form a pattern that buyers should treat as signal rather than noise.</p><p>If you&#x27;re a heavy Claude Code or Cowork user, this is the moment to capture your own baseline: track a representative task suite, log token usage by feature, and keep a rolling record so you can have a substantive conversation with Anthropic if your experience starts to drift.</p>
+      </div>
+      
+      <div class="action-box">
+        <div class="action-label">What to do</div>
+        <p class="action-text">Stand up a lightweight regression log for your Claude usage this week. Pin your most-run prompts, capture token counts and outputs, and revisit weekly. If you start seeing drift, you have receipts — and a fallback plan that names a credible second model.</p>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">Claude</span><span class="pill">Anthropic</span><span class="pill">Quality</span></div>
+        <div class="meta-right">
+          <span class="meta-score">851 pts on HN</span>
+          <a class="meta-link" href="https://nickyreinert.de/en/2026/2026-04-24-claude-critics/" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47894435" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-4" class="spread spread-midnight">
+    <div class="watermark">04</div>
+    <div class="spread-inner">
+      
+      <div class="kicker">Hardware Surveillance</div>
+      <h2 class="headline">An audio interface ships with SSH on by default</h2>
+      <p class="lede">A teardown of the Rødecaster Duo firmware reveals an SSH service running by default, with credentials that effectively grant root on a device sitting on the network in studios and home offices.</p>
+      <div class="body-text">
+        <p>The find is a textbook supply-chain story. A consumer-friendly creator product runs a stripped-down Linux stack with developer conveniences left switched on, exposing a remote shell to anyone on the same network.</p><p>The implication for organisations is broader than one vendor. Podcast and content gear has quietly moved into corporate networks alongside laptops and phones, often without IT review. Each device with default SSH is a small lateral-movement opportunity.</p><p>The author&#x27;s responsible-disclosure timeline is worth reading in full. The pattern — friendly first contact, slow vendor response, public disclosure as a forcing function — is the one defenders see again and again with consumer-grade hardware.</p>
+      </div>
+      
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">Hardware</span><span class="pill">Supply Chain</span><span class="pill">IoT</span></div>
+        <div class="meta-right">
+          <span class="meta-score">209 pts on HN</span>
+          <a class="meta-link" href="https://hhh.hn/rodecaster-duo-fw/" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47894747" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-5" class="spread spread-rose">
+    <div class="watermark">05</div>
+    <div class="spread-inner">
+      <div class="applies-badge">Directly applies to you</div>
+      <div class="kicker">Security Practice</div>
+      <h2 class="headline">You don&#x27;t want long-lived keys</h2>
+      <p class="lede">A direct, opinionated piece arguing that long-lived API keys are a category of risk most security teams have stopped taking seriously enough — and a practical playbook for moving off them.</p>
+      <div class="body-text">
+        <p>The argument is familiar to anyone who has tracked recent supply-chain breaches: a leaked long-lived key is a one-shot route into your environment that is rarely caught in time. Short-lived, scoped, audit-friendly credentials are the table stakes.</p><p>What makes the post worth bookmarking is the migration playbook. It maps common patterns — CI tokens, third-party integrations, customer-issued API keys — to specific replacements (workload identity, OIDC federation, time-bound STS roles) with the trade-offs spelled out.</p><p>For a team adopting AI agents that touch production systems, this is doubly important. Each new agent integration is a new credential boundary, and &#x27;I&#x27;ll rotate it later&#x27; is exactly how the next incident gets seeded.</p>
+      </div>
+      
+      <div class="action-box">
+        <div class="action-label">What to do</div>
+        <p class="action-text">Pull a 30-day report of every static API key in your environment. Pick the top three by blast radius and put a named owner against each, with a deadline to migrate to short-lived credentials within 90 days. Track in your CISO dashboard.</p>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">Security</span><span class="pill">Identity</span><span class="pill">Best Practice</span></div>
+        <div class="meta-right">
+          <span class="meta-score">46 pts on HN</span>
+          <a class="meta-link" href="https://argemma.com/blog/long-lived-keys/" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47896670" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-6" class="spread spread-gradient">
+    <div class="watermark">06</div>
+    <div class="spread-inner">
+      
+      <div class="kicker">AI Tools</div>
+      <h2 class="headline">OpenAI ships GPT-5.5 and 5.5 Pro to the API</h2>
+      <p class="lede">OpenAI&#x27;s developer changelog confirms that GPT-5.5 and GPT-5.5 Pro are now generally available via the API, expanding the production options for teams building agentic workflows.</p>
+      <div class="body-text">
+        <p>The Pro tier is the more interesting one. OpenAI is positioning it for long-running, tool-using agents where reliability under load matters more than peak benchmark scores.</p><p>For shops that have standardised on a Claude-first stack, this is a useful evaluation moment. Same eval suite, same prompts, same tools — measure where each model wins and lock in the routing decisions you&#x27;ve been deferring.</p><p>Pricing and rate-limit details are buried in the changelog. Expect the usual cycle of confused billing for the first few weeks; budget accordingly.</p>
+      </div>
+      
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">AI</span><span class="pill">OpenAI</span><span class="pill">API</span></div>
+        <div class="meta-right">
+          <span class="meta-score">230 pts on HN</span>
+          <a class="meta-link" href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47898308" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-7" class="spread spread-clean">
+    <div class="watermark">07</div>
+    <div class="spread-inner">
+      <div class="applies-badge">Directly applies to you</div>
+      <div class="kicker">Claude Code</div>
+      <h2 class="headline">CC-Canary watches Claude Code for early regressions</h2>
+      <p class="lede">A new open-source tool runs a battery of canary prompts against Claude Code on a schedule and surfaces drift, helping power users detect quality regressions before they bite production work.</p>
+      <div class="body-text">
+        <p>The tool itself is small and pragmatic: a prompt suite, a scoring layer, and a dashboard. The interesting bit is the philosophy. Anthropic ships changes continuously, and downstream users have been left to discover regressions through pain.</p><p>For anyone running Claude Code as part of a workflow, the practical win is having a baseline you can point at when something feels off. The output is a chart, not a hunch.</p><p>Pair it with the regression log idea above and you have something close to vendor-grade telemetry on your AI tooling — without waiting for the vendor to ship it.</p>
+      </div>
+      
+      <div class="action-box">
+        <div class="action-label">What to do</div>
+        <p class="action-text">Spin up CC-Canary against your most-used Claude Code workflows this week. Even a tiny suite (5-10 prompts) gives you a dated baseline you can show Anthropic if you ever need to escalate a quality regression.</p>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">Claude Code</span><span class="pill">Tooling</span><span class="pill">Observability</span></div>
+        <div class="meta-right">
+          <span class="meta-score">51 pts on HN</span>
+          <a class="meta-link" href="https://github.com/delta-hq/cc-canary" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47898680" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-8" class="spread spread-academic">
+    <div class="watermark">08</div>
+    <div class="spread-inner">
+      
+      <div class="kicker">Research</div>
+      <h2 class="headline">Toward a scientific theory of deep learning</h2>
+      <p class="lede">A high-traction arXiv paper argues that the field is finally close to a unifying theoretical account of why deep networks learn — and why the next decade of progress depends on getting it.</p>
+      <div class="body-text">
+        <p>The paper sits at the intersection of statistical physics, information geometry, and the empirical scaling laws the labs publish. It is unusually readable for its subject, which is part of why it has spread.</p><p>For practitioners, the practical implication is modest in the short term: nothing in your tooling changes tomorrow. The longer-term implication is large. A real theory would make capability forecasting less of a guessing game.</p><p>It also reframes how regulators and risk teams should think about model safety claims. &#x27;Empirically robust&#x27; is a different statement to &#x27;theoretically bounded&#x27;, and most current assurance work lives in the first category.</p>
+      </div>
+      
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">Research</span><span class="pill">AI</span><span class="pill">Theory</span></div>
+        <div class="meta-right">
+          <span class="meta-score">198 pts on HN</span>
+          <a class="meta-link" href="https://arxiv.org/abs/2604.21691" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47872418" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-9" class="spread spread-editorial">
+    <div class="watermark">09</div>
+    <div class="spread-inner">
+      <div class="applies-badge">Directly applies to you</div>
+      <div class="kicker">Browser Privacy</div>
+      <h2 class="headline">Firefox integrates Brave&#x27;s adblock engine</h2>
+      <p class="lede">Mozilla has shipped Firefox with Brave&#x27;s faster, MV3-friendly content-blocking engine baked in — a quiet but significant move for users who lost effective ad blocking when Chrome moved away from MV2.</p>
+      <div class="body-text">
+        <p>The technical story is about performance and the post-MV3 era. Brave&#x27;s engine is faster on mobile and handles modern bypass tricks better than uBlock Origin&#x27;s MV3 build.</p><p>The political story is more interesting. Two privacy-leaning browsers cooperating on an engine creates a counterweight to Google&#x27;s de facto control of how content blocking is allowed to work in the browser.</p><p>For UK and EU users, this matters at the policy layer too. Effective ad and tracker blocking is one of the practical levers GDPR-era data protection actually relies on.</p>
+      </div>
+      
+      <div class="action-box">
+        <div class="action-label">What to do</div>
+        <p class="action-text">If your organisation has a managed browser policy, evaluate Firefox ESR with the new engine as a privacy-first option for high-risk users (executives, journalists, GRC). The default install gives you stronger tracker protection than a vanilla Chrome build.</p>
+      </div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">Privacy</span><span class="pill">Browsers</span><span class="pill">Mozilla</span></div>
+        <div class="meta-right">
+          <span class="meta-score">139 pts on HN</span>
+          <a class="meta-link" href="https://itsfoss.com/news/firefox-ships-brave-adblock-engine/" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47893779" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="story-10" class="spread spread-memorial">
+    <div class="watermark">10</div>
+    <div class="spread-inner">
+      
+      <div class="kicker">AI Workflow Ethics</div>
+      <h2 class="headline">Hear your agent suffer through your code</h2>
+      <p class="lede">A small, sharply written GitHub project that turns coding-agent prompt traces into audio — sighs, pauses, and all — and uses the experience to ask awkward questions about what we are asking these systems to do.</p>
+      <div class="body-text">
+        <p>The project is half art, half critique. It surfaces something engineers using agentic coding tools have started to feel privately: the models churn through dull, repetitive work that we would never ask a junior engineer to do.</p><p>There is a real argument inside the joke. If we are content to outsource toil to agents, the workflows we build still encode our priorities. &#x27;The agent will handle it&#x27; becomes a way of avoiding the harder design work.</p><p>Worth reading alongside today&#x27;s other Claude stories. The tools are getting better fast — but the practice of using them well is still under-discussed.</p>
+      </div>
+      
+      
+      <div class="meta-bar">
+        <div class="meta-pills"><span class="pill">AI Workflow</span><span class="pill">Ethics</span><span class="pill">Tooling</span></div>
+        <div class="meta-right">
+          <span class="meta-score">186 pts on HN</span>
+          <a class="meta-link" href="https://github.com/AndrewVos/endless-toil" target="_blank" rel="noopener">Read original</a>
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=47898680" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="footer">
+  <div class="footer-mark">Morning Edition</div>
+  <p>Curated from the Hacker News front page on Saturday, 25 April 2026. Stories filtered for cybersecurity, AI tooling, privacy, and what a CISO can act on this week.</p>
+  <p>Skipped from today's pool: vendor marketing posts, routine patch advisories without context, CVE-database meta-drama, and crypto/web3 hype.</p>
+  <p>1 story excluded as a duplicate of yesterday's edition.</p>
+  <div class="footer-meta">Built with Claude &middot; Cowork mode &middot; 2026-04-25</div>
+</footer>
+
+</body>
+</html>
