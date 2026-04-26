@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Edition — 26 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #f5f3ee;
+}
+h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+a { color: inherit; }
+
+/* COVER */
+.cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a14 0%, #1a1325 50%, #2a0f1e 100%);
+    color: #f5f3ee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5vh 6vw;
+    position: relative;
+    overflow: hidden;
+}
+.cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(220, 60, 80, 0.15), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(80, 100, 220, 0.15), transparent 50%);
+    pointer-events: none;
+}
+.cover-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.95rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; position: relative; z-index: 1; }
+.cover-title {
+    font-size: clamp(3.5rem, 12vw, 9rem);
+    font-weight: 900;
+    line-height: 0.9;
+    margin: 4vh 0;
+    position: relative; z-index: 1;
+}
+.cover-title em { font-style: italic; font-weight: 300; opacity: 0.9; }
+.cover-tagline {
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    max-width: 60ch;
+    line-height: 1.5;
+    opacity: 0.85;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    position: relative; z-index: 1;
+}
+.cover-bottom {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    border-top: 1px solid rgba(245,243,238,0.2);
+    padding-top: 2vh;
+    position: relative; z-index: 1;
+}
+
+/* TOC */
+.toc {
+    background: #f5f3ee;
+    padding: 10vh 6vw;
+    min-height: 100vh;
+}
+.toc-header {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 2rem;
+    margin-bottom: 4rem;
+    display: flex; justify-content: space-between; align-items: baseline;
+}
+.toc-header h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
+.toc-header .meta { font-size: 0.9rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; }
+.toc-list { list-style: none; }
+.toc-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    align-items: baseline;
+}
+.toc-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: rgba(0,0,0,0.4);
+}
+.toc-link { text-decoration: none; display: block; }
+.toc-link:hover .toc-title { color: #c0392b; }
+.toc-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+    transition: color 0.2s;
+}
+.toc-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.toc-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: rgba(0,0,0,0.06);
+    border-radius: 999px;
+    font-weight: 500;
+}
+.toc-flag {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: #c0392b;
+    color: #fff;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+/* SPREADS — common */
+.spread {
+    min-height: 100vh;
+    padding: 8vh 6vw;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.spread-inner {
+    max-width: 75ch;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+.watermark {
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20rem, 50vw, 45rem);
+    font-weight: 900;
+    line-height: 0.8;
+    opacity: 0.05;
+    bottom: -8vh; right: -3vw;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+.kicker {
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+    opacity: 0.7;
+}
+.headline {
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.05;
+}
+.lede {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+.body { font-size: 1.05rem; line-height: 1.7; }
+.body p { margin-bottom: 1.2rem; }
+.flag-badge {
+    display: inline-block;
+    background: #c0392b;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+.action-box {
+    border-left: 4px solid #c0392b;
+    padding: 1.5rem 1.8rem;
+    margin: 2.5rem 0;
+    background: rgba(192, 57, 43, 0.06);
+    border-radius: 0 8px 8px 0;
+}
+.action-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #c0392b;
+    margin-bottom: 0.7rem;
+}
+.meta-bar {
+    display: flex; gap: 0.8rem; flex-wrap: wrap;
+    align-items: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid currentColor;
+    border-color: rgba(0,0,0,0.15);
+    font-size: 0.9rem;
+}
+.pill {
+    padding: 0.35rem 0.85rem;
+    background: rgba(0,0,0,0.08);
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+.pill.score { background: rgba(255,140,0,0.15); color: #c75300; }
+.meta-link {
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+}
+.meta-link:hover { opacity: 0.7; }
+
+/* SPREAD STYLES */
+.spread-hero {
+    background: linear-gradient(135deg, #1a0608 0%, #3d0a12 50%, #5a0a18 100%);
+    color: #f5f3ee;
+}
+.spread-hero .watermark { color: #fff; opacity: 0.07; }
+.spread-hero .meta-bar { border-color: rgba(245,243,238,0.25); }
+.spread-hero .pill { background: rgba(245,243,238,0.15); }
+.spread-hero .action-box { background: rgba(245,243,238,0.07); border-color: #ff6b6b; }
+.spread-hero .action-label { color: #ff8a8a; }
+
+.spread-midnight {
+    background: linear-gradient(180deg, #0a1228 0%, #131c3d 50%, #0d1530 100%);
+    color: #d6dcf0;
+}
+.spread-midnight .watermark { color: #6080d0; }
+.spread-midnight .meta-bar { border-color: rgba(214,220,240,0.25); }
+.spread-midnight .pill { background: rgba(214,220,240,0.12); }
+.spread-midnight .action-box { background: rgba(214,220,240,0.07); border-color: #ff8a8a; }
+.spread-midnight .action-label { color: #ff9a9a; }
+
+.spread-rose-alert {
+    background: #fdf0f0;
+    color: #2d0a0a;
+    border: 14px solid #c0392b;
+}
+.spread-rose-alert::before {
+    content: 'ALERT';
+    position: absolute;
+    top: 4vh; right: 4vw;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: 0.4em;
+    color: #c0392b;
+    border: 3px solid #c0392b;
+    padding: 0.5rem 1.2rem;
+    transform: rotate(8deg);
+    z-index: 2;
+}
+.spread-rose-alert .watermark { color: #c0392b; }
+
+.spread-terminal {
+    background: #0a0e0a;
+    color: #5dff8e;
+    font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .headline { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+.spread-terminal .lede { font-family: 'JetBrains Mono', monospace; font-style: normal; }
+.spread-terminal .body { font-family: 'JetBrains Mono', monospace; font-size: 0.98rem; }
+.spread-terminal .watermark { color: #5dff8e; opacity: 0.08; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .kicker::before { content: '$ '; }
+.spread-terminal .meta-bar { border-color: rgba(93,255,142,0.25); }
+.spread-terminal .pill { background: rgba(93,255,142,0.1); color: #5dff8e; }
+.spread-terminal .pill.score { background: rgba(255,180,80,0.15); color: #ffba50; }
+.spread-terminal .action-box { background: rgba(93,255,142,0.05); border-color: #ffba50; }
+.spread-terminal .action-label { color: #ffba50; }
+
+.spread-academic {
+    background: #f3ecdc;
+    color: #2a2418;
+}
+.spread-academic .body { column-count: 2; column-gap: 2.5rem; column-rule: 1px solid rgba(0,0,0,0.1); }
+.spread-academic .body p:first-child::first-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 5.5rem;
+    font-weight: 900;
+    float: left;
+    line-height: 0.8;
+    margin: 0.4rem 0.4rem 0 0;
+    color: #8a3a1a;
+}
+.spread-academic .watermark { color: #8a3a1a; }
+
+.spread-gradient {
+    background: linear-gradient(135deg, #4a1a8a 0%, #2a3aa8 50%, #1a4ad6 100%);
+    color: #f0e8ff;
+}
+.spread-gradient .watermark { color: #fff; opacity: 0.08; }
+.spread-gradient .meta-bar { border-color: rgba(240,232,255,0.25); }
+.spread-gradient .pill { background: rgba(240,232,255,0.15); }
+
+.spread-newspaper {
+    background: #fafafa;
+    color: #0a0a0a;
+    border: 6px double #0a0a0a;
+    padding-top: 6vh;
+}
+.spread-newspaper::before {
+    content: '';
+    position: absolute;
+    top: 3vh; left: 6vw; right: 6vw;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    height: 6px;
+}
+.spread-newspaper .body { column-count: 2; column-gap: 2rem; column-rule: 1px solid #ccc; }
+.spread-newspaper .headline { text-align: left; }
+.spread-newspaper .watermark { color: #000; opacity: 0.04; }
+
+.spread-clean {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+.spread-clean .headline {
+    background: linear-gradient(135deg, #4a90e2 0%, #50c878 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.spread-clean .watermark { color: #4a90e2; opacity: 0.06; }
+
+.spread-editorial {
+    background: linear-gradient(135deg, #3a2410 0%, #6a3a1a 50%, #b86a2a 100%);
+    color: #fff5e6;
+}
+.spread-editorial .watermark { color: #fff; opacity: 0.08; }
+.spread-editorial .meta-bar { border-color: rgba(255,245,230,0.25); }
+.spread-editorial .pill { background: rgba(255,245,230,0.15); }
+
+.spread-memorial {
+    background: linear-gradient(180deg, #1a1a1c 0%, #25222a 100%);
+    color: #b8b4ba;
+}
+.spread-memorial .headline { font-weight: 400; font-style: italic; opacity: 0.95; }
+.spread-memorial .watermark { color: #b8b4ba; opacity: 0.06; }
+.spread-memorial .meta-bar { border-color: rgba(184,180,186,0.2); }
+.spread-memorial .pill { background: rgba(184,180,186,0.1); }
+
+/* FOOTER */
+.colophon {
+    background: #0a0a14;
+    color: #d6d4cc;
+    padding: 8vh 6vw;
+    text-align: center;
+}
+.colophon h3 { font-size: 2rem; font-weight: 300; margin-bottom: 1.5rem; opacity: 0.9; }
+.colophon p { max-width: 60ch; margin: 0 auto 1.2rem; opacity: 0.75; line-height: 1.7; }
+.colophon .credits { margin-top: 3rem; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.4; }
+
+@media (max-width: 720px) {
+    .spread-academic .body, .spread-newspaper .body { column-count: 1; }
+    .toc-item { grid-template-columns: 50px 1fr; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<section class="cover">
+    <div class="cover-top">
+        <span>Vol. 26 · No. 116</span>
+        <span>Sunday</span>
+    </div>
+    <div>
+        <h1 class="cover-title">Morning<br><em>Edition</em></h1>
+        <p class="cover-tagline">Ten stories from the early hours, curated for a CISO in the making — the breaches, the breakthroughs, and the regulations worth waking up to.</p>
+    </div>
+    <div class="cover-bottom">
+        <span>26 April 2026</span>
+        <span>For Euan · Edinburgh</span>
+        <span>10 Stories · 3 Flagged</span>
+    </div>
+</section>
+
+<section class="toc">
+    <div class="toc-header">
+        <h2>In this issue</h2>
+        <span class="meta">Sourced from Hacker News</span>
+    </div>
+    <ol class="toc-list">
+<li class="toc-item">
+        <span class="toc-num">01</span>
+        <a href="#story-1" class="toc-link">
+            <div class="toc-title">EU Age Control: The trojan horse for digital IDs</div>
+            <div class="toc-tags"><span class="toc-tag">Privacy / Regulation</span><span class="toc-flag">Applies to you</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">02</span>
+        <a href="#story-2" class="toc-link">
+            <div class="toc-title">Tell HN: An app is silently installing itself on my iPhone every day</div>
+            <div class="toc-tags"><span class="toc-tag">Mobile Security</span><span class="toc-flag">Applies to you</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">03</span>
+        <a href="#story-3" class="toc-link">
+            <div class="toc-title">Her life savings mysteriously disappeared after a systems glitch</div>
+            <div class="toc-tags"><span class="toc-tag">Data Integrity</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">04</span>
+        <a href="#story-4" class="toc-link">
+            <div class="toc-title">GnuPG – post-quantum crypto landing in mainline</div>
+            <div class="toc-tags"><span class="toc-tag">Cryptography</span><span class="toc-flag">Applies to you</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">05</span>
+        <a href="#story-5" class="toc-link">
+            <div class="toc-title">Amateur armed with ChatGPT solves an Erdős problem</div>
+            <div class="toc-tags"><span class="toc-tag">AI in Research</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">06</span>
+        <a href="#story-6" class="toc-link">
+            <div class="toc-title">DeepSeek-V4 on Day 0: From Fast Inference to Verified RL with SGLang and Miles</div>
+            <div class="toc-tags"><span class="toc-tag">AI Models</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">07</span>
+        <a href="#story-7" class="toc-link">
+            <div class="toc-title">OpenAI Privacy Filter</div>
+            <div class="toc-tags"><span class="toc-tag">AI Safety / Privacy</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">08</span>
+        <a href="#story-8" class="toc-link">
+            <div class="toc-title">Show HN: Kloak, A secret manager that keeps K8s workload away from secrets</div>
+            <div class="toc-tags"><span class="toc-tag">Cloud Security</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">09</span>
+        <a href="#story-9" class="toc-link">
+            <div class="toc-title">Colorado Adds Open-Source Exemption to Age-Verification Bill</div>
+            <div class="toc-tags"><span class="toc-tag">Regulation</span></div>
+        </a>
+    </li>
+<li class="toc-item">
+        <span class="toc-num">10</span>
+        <a href="#story-10" class="toc-link">
+            <div class="toc-title">GPT‑5.5 Bio Bug Bounty</div>
+            <div class="toc-tags"><span class="toc-tag">AI Ethics</span></div>
+        </a>
+    </li>
+    </ol>
+</section>
+
+<section class="spread spread-hero" id="story-1">
+    <div class="watermark">01</div>
+    <div class="spread-inner">
+        <div class="kicker">Privacy / Regulation</div>
+        <h2 class="headline">EU Age Control: The trojan horse for digital IDs</h2>
+        <div class="flag-badge">★ Directly applies to you</div>
+        <p class="lede">A draft regulation that ostensibly protects children would mandate age-verification systems for the entire EU online economy. Critics warn it would normalise digital ID infrastructure across every service.</p>
+        <div class="body"><p>The EU&#x27;s Child Sexual Abuse Regulation (CSAR) and the parallel Age Verification proposals would, in their current draft, oblige any platform &quot;likely to be accessed by children&quot; to verify the age of every user. In practice this means deploying or contracting an identity provider that checks a government-issued credential or biometric.</p>
+<p>Once that infrastructure is in place across every social network, video platform, app store and adult-content host, the marginal cost of asking for an ID for any other reason — political content, encrypted messaging, news media — collapses. That is the trojan horse the author warns about: the verification rails get built for child safety, and then everything else slides onto them.</p>
+<p>The UK Online Safety Act has already pushed services toward the same architecture. Scotland-based organisations face two convergent compliance regimes with overlapping but not identical scopes.</p></div>
+        <div class="action-box">
+            <div class="action-label">What to do</div>
+            <p>Map the services your organisation operates that could fall under &quot;accessed by children&quot; — even B2B platforms with consumer-facing demos can land in scope. Begin a vendor risk review of any identity-verification provider you would procure: data residency, retention, breach history, and lawful basis. Track the UK ICO&#x27;s CSAR alignment work and the EU trilogue timeline; the supplier market for age assurance is consolidating fast and procurement decisions made now will be hard to reverse.</p>
+        </div>
+        <div class="meta-bar">
+        <span class="pill">Privacy / Regulation</span>
+        <span class="pill score">▲ 78 on HN</span>
+        <a class="meta-link" href="https://juraj.bednar.io/en/blog-en/2026/04/17/eu-age-control-the-trojan-horse-for-digital-ids/" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47907130" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-midnight" id="story-2">
+    <div class="watermark">02</div>
+    <div class="spread-inner">
+        <div class="kicker">Mobile Security</div>
+        <h2 class="headline">Tell HN: An app is silently installing itself on my iPhone every day</h2>
+        <div class="flag-badge">★ Directly applies to you</div>
+        <p class="lede">A user reports an iOS app reappearing on their device every day despite repeated removal. If reproducible, this is a class of supply-chain or sideload-installation behaviour every CISO should care about.</p>
+        <div class="body"><p>The poster describes an iOS app that reinstalls itself silently every day, despite manual deletion. Comments on the thread split between three explanations: a stuck App Store re-download triggered by a bad sync state, an MDM profile pushing the app from a former employer or device-share family, and a piece of legitimate-but-unwanted Apple-curated software (Apple TV, Sports, Wallet partners) being reinstated by an iOS update.</p>
+<p>None of those explanations are reassuring for a CISO. If a single configuration profile or stale management enrolment can put an app on a device with no notification, the same path is available to attackers who phish an MDM admin.</p>
+<p>The thread is a useful artefact regardless of the actual cause: it shows how poorly users understand what controls their phone and how rarely they connect &quot;weird thing on my device&quot; to &quot;tell security&quot;.</p></div>
+        <div class="action-box">
+            <div class="action-label">What to do</div>
+            <p>Pull MDM logs for unexpected MDM-pushed installs in the last 30 days. Check whether stale enrolments still exist for departing employees and contractors. Add &quot;an app you didn&#x27;t install just appeared&quot; to your security awareness examples — phrased as &quot;tell us, we won&#x27;t be annoyed&quot;, not as a policy violation.</p>
+        </div>
+        <div class="meta-bar">
+        <span class="pill">Mobile Security</span>
+        <span class="pill score">▲ 159 on HN</span>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47906253" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47906253" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-rose-alert" id="story-3">
+    <div class="watermark">03</div>
+    <div class="spread-inner">
+        <div class="kicker">Data Integrity</div>
+        <h2 class="headline">Her life savings mysteriously disappeared after a systems glitch</h2>
+        
+        <p class="lede">A New York Times investigation traces what Fidelity called a &quot;systems glitch&quot; that wiped a customer&#x27;s entire account balance. A reminder that data-integrity failures, not just exfiltration, can devastate users.</p>
+        <div class="body"><p>The Times follows a customer whose Fidelity account simply emptied. The official explanation, after weeks of escalation, was a &quot;systems glitch&quot; — but the article documents how close the customer came to never recovering the money.</p>
+<p>The interesting failure mode is not the glitch itself: those happen. It is the asymmetry between the firm&#x27;s confidence in its records and the customer&#x27;s ability to challenge them. Logs that look authoritative inside the system can be entirely wrong, and detecting that requires either independent reconciliation or a customer with the persistence to fight for months.</p>
+<p>For any platform handling money, identity, or critical customer data, this is a reminder that &quot;we have a record&quot; is not the same as &quot;the record is right&quot;.</p></div>
+        
+        <div class="meta-bar">
+        <span class="pill">Data Integrity</span>
+        <span class="pill score">▲ 54 on HN</span>
+        <a class="meta-link" href="https://www.nytimes.com/2026/04/25/your-money/fidelity-investments-fraud-alert.html" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47905681" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-terminal" id="story-4">
+    <div class="watermark">04</div>
+    <div class="spread-inner">
+        <div class="kicker">Cryptography</div>
+        <h2 class="headline">GnuPG – post-quantum crypto landing in mainline</h2>
+        <div class="flag-badge">★ Directly applies to you</div>
+        <p class="lede">GnuPG mainline is shipping post-quantum primitives. The migration window for protecting today&#x27;s encrypted archives against tomorrow&#x27;s harvest-now-decrypt-later attacks just got measurably shorter.</p>
+        <div class="body"><p>The mainline GnuPG announcement lands ML-KEM (Kyber) and ML-DSA (Dilithium) support in the development branch. This is the reference open-source PGP implementation; downstream packagers across Debian, Red Hat, Arch and the BSDs follow within months.</p>
+<p>Post-quantum crypto in GnuPG matters less for new email — most of that is moving to ephemeral session keys via Signal-style protocols anyway — and more for the long tail of encrypted archives, signed releases, package repositories, and key escrow. Anything you signed five years ago and expect to be valid five years from now is on the harvest-now-decrypt-later clock.</p></div>
+        <div class="action-box">
+            <div class="action-label">What to do</div>
+            <p>Inventory any long-lived encrypted material — signed software releases, archived legal documents, off-site backups. Begin a PQ migration plan even if you don&#x27;t act on it this quarter; the lead time on identifying every signing key in your supply chain is longer than people expect. Ask suppliers (Sigstore, code-signing CAs, secure-email vendors) for their PQ roadmap in writing.</p>
+        </div>
+        <div class="meta-bar">
+        <span class="pill">Cryptography</span>
+        <span class="pill score">▲ 22 on HN</span>
+        <a class="meta-link" href="https://lists.gnupg.org/pipermail/gnupg-announce/2026q2/000504.html" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47907018" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-academic" id="story-5">
+    <div class="watermark">05</div>
+    <div class="spread-inner">
+        <div class="kicker">AI in Research</div>
+        <h2 class="headline">Amateur armed with ChatGPT solves an Erdős problem</h2>
+        
+        <p class="lede">A self-taught enthusiast used ChatGPT as an iterative collaborator to crack a sixty-year-old open problem in combinatorics. The paper has held up to expert scrutiny so far.</p>
+        <div class="body"><p>The Scientific American profile describes how a non-academic mathematics enthusiast paired ChatGPT with persistent, structured prompting to produce a proof for an Erdős conjecture about graph colourings that had stood since the 1960s. Specialists who reviewed the work describe it as &quot;unexpectedly tight&quot; and have not yet found a flaw.</p>
+<p>The methodologically interesting bit is the workflow: the model was used as a tireless interlocutor for proof sketches, not as a generator of finished output. Human judgement supplied direction and verification at every step. That is closer to how serious mathematicians describe collaboration than to the popular image of &quot;AI doing the thinking&quot;.</p>
+<p>Whether this generalises beyond combinatorics — where small cases can be checked exhaustively — is the open question. But it is a useful counterweight to the discourse that frames LLMs as either oracles or stochastic parrots.</p></div>
+        
+        <div class="meta-bar">
+        <span class="pill">AI in Research</span>
+        <span class="pill score">▲ 260 on HN</span>
+        <a class="meta-link" href="https://www.scientificamerican.com/article/amateur-armed-with-chatgpt-vibe-maths-a-60-year-old-problem/" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47903126" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-gradient" id="story-6">
+    <div class="watermark">06</div>
+    <div class="spread-inner">
+        <div class="kicker">AI Models</div>
+        <h2 class="headline">DeepSeek-V4 on Day 0: From Fast Inference to Verified RL with SGLang and Miles</h2>
+        
+        <p class="lede">DeepSeek released its V4 base model with same-day inference support via SGLang and a Miles-driven verified-RL recipe. The pace of capable open-weight model releases continues.</p>
+        <div class="body"><p>DeepSeek-V4 launched with same-day inference support in SGLang and an end-to-end verified-RL training recipe documented in the LMSys writeup. The model is open weights, the recipe is reproducible, and the inference stack runs on consumer-grade multi-GPU rigs.</p>
+<p>For organisations that want to keep model use inside their own perimeter — health, legal, regulated finance — open-weight models with this level of capability change the calculus. The decision is no longer &quot;frontier closed model versus weak local one&quot; but &quot;which of several capable open models matches our governance posture&quot;.</p>
+<p>The supply-chain consideration is real. Verifying the integrity of weights, the provenance of training data, and the absence of trained-in backdoors is an unsolved problem and one that ought to inform procurement.</p></div>
+        
+        <div class="meta-bar">
+        <span class="pill">AI Models</span>
+        <span class="pill score">▲ 34 on HN</span>
+        <a class="meta-link" href="https://www.lmsys.org/blog/2026-04-25-deepseek-v4/" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47905768" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-newspaper" id="story-7">
+    <div class="watermark">07</div>
+    <div class="spread-inner">
+        <div class="kicker">AI Safety / Privacy</div>
+        <h2 class="headline">OpenAI Privacy Filter</h2>
+        
+        <p class="lede">OpenAI launched a &quot;Privacy Filter&quot; that strips identifying details from prompts before they leave the user&#x27;s device. Whether it does what it claims is another question — independent review is sparse.</p>
+        <div class="body"><p>OpenAI&#x27;s announcement frames the Privacy Filter as a client-side preprocessing step that detects and redacts personal information from prompts before they reach the model. The marketing emphasises consumer privacy. The technical detail in the launch post is sparse.</p>
+<p>Two things to note. First, the filter operates only on the prompt content the user types, not on the metadata around the request — IP, account, billing history, conversation graph. Second, &quot;client-side&quot; in this context means in the browser or app, with the detection model itself shipped by OpenAI, which means the redaction policy is whatever OpenAI decides it is.</p>
+<p>Useful as a default-on guardrail for casual users. Not a substitute for an enterprise data-loss-prevention layer for regulated content.</p></div>
+        
+        <div class="meta-bar">
+        <span class="pill">AI Safety / Privacy</span>
+        <span class="pill score">▲ 178 on HN</span>
+        <a class="meta-link" href="https://openai.com/index/introducing-openai-privacy-filter/" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47870901" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-clean" id="story-8">
+    <div class="watermark">08</div>
+    <div class="spread-inner">
+        <div class="kicker">Cloud Security</div>
+        <h2 class="headline">Show HN: Kloak, A secret manager that keeps K8s workload away from secrets</h2>
+        
+        <p class="lede">A new open-source secret manager that keeps Kubernetes workloads from ever directly handling secret material. Sidecar pattern, short-lived credentials, no cluster admin required.</p>
+        <div class="body"><p>Kloak inserts itself between the workload and the secret store using a sidecar that mints short-lived credentials on demand. The pod&#x27;s service account never sees the long-lived secret; the cluster admin never sees it either. The threat model is the standard one: stolen kubeconfigs, exfiltrated environment variables, compromised CI agents.</p>
+<p>Conceptually similar to Vault Agent or Akeyless, with a more opinionated K8s-native story. The implementation is small enough to read in an afternoon and the project is explicit about what it does not do (KMS, HSM integration, audit log forwarding to your SIEM — all &quot;bring your own&quot;).</p></div>
+        
+        <div class="meta-bar">
+        <span class="pill">Cloud Security</span>
+        <span class="pill score">▲ 49 on HN</span>
+        <a class="meta-link" href="https://getkloak.io/" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47903690" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-editorial" id="story-9">
+    <div class="watermark">09</div>
+    <div class="spread-inner">
+        <div class="kicker">Regulation</div>
+        <h2 class="headline">Colorado Adds Open-Source Exemption to Age-Verification Bill</h2>
+        
+        <p class="lede">Colorado amended its age-verification bill to exempt open-source software, after pushback from FOSS maintainers who said the original draft would have made hosting on US infrastructure untenable.</p>
+        <div class="body"><p>Colorado HB-25-1041 originally would have required platforms hosting age-restricted content to deploy commercial age verification, with no carve-out for non-commercial or open-source projects. Maintainers pointed out that this would make running a federated Mastodon instance, or even a personal blog with adult-themed fiction, impossible to operate from US infrastructure.</p>
+<p>The amended bill exempts &quot;non-commercial and open-source&quot; platforms below a usage threshold. It is a narrow win, but a useful template for the wave of similar state-level bills coming through US legislatures and the CSAR/Online Safety Act regimes in Europe.</p></div>
+        
+        <div class="meta-bar">
+        <span class="pill">Regulation</span>
+        <span class="pill score">▲ 91 on HN</span>
+        <a class="meta-link" href="https://fosstodon.org/@carlrichell/116460505717380644" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47905304" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+<section class="spread spread-memorial" id="story-10">
+    <div class="watermark">10</div>
+    <div class="spread-inner">
+        <div class="kicker">AI Ethics</div>
+        <h2 class="headline">GPT‑5.5 Bio Bug Bounty</h2>
+        
+        <p class="lede">OpenAI is paying researchers to find ways their newest model can be coaxed into producing biothreat-relevant guidance. The fact that this bounty exists — and the size of the payouts — is itself a data point.</p>
+        <div class="body"><p>The bounty is structured to pay researchers who can demonstrate that GPT-5.5 will, given sufficient probing, produce information that materially advances the design or production of a biological weapon. The maximum payout is high enough that it is now economically rational to spend weeks on a single jailbreak.</p>
+<p>The fact that OpenAI is funding this work openly is good. The fact that they consider it necessary tells you something about where the frontier capability is. The fact that the bounty is run by the same lab that ships the model — rather than by an independent third party — tells you something about the maturity of the AI safety ecosystem.</p></div>
+        
+        <div class="meta-bar">
+        <span class="pill">AI Ethics</span>
+        <span class="pill score">▲ 142 on HN</span>
+        <a class="meta-link" href="https://openai.com/index/gpt-5-5-bio-bug-bounty/" target="_blank" rel="noopener">Read original →</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47901734" target="_blank" rel="noopener">HN discussion →</a>
+    </div>
+    </div>
+</section>
+
+<footer class="colophon">
+    <h3>Colophon</h3>
+    <p>Morning Edition is curated each day from the Hacker News front page. Stories are selected for relevance to a cybersecurity leader: breaches, AI tooling, privacy, and regulation. Crypto-token marketing, vendor PR, and routine release-note CVEs are skipped.</p>
+    <p>Today's edition reviewed the top 50 stories on the front page. 1 story was excluded as a duplicate of the previous two editions. 3 stories were flagged as directly applicable to your role.</p>
+    <p class="credits">Set in Fraunces &amp; Inter · Built for Euan McGregor</p>
+</footer>
+
+</body>
+</html>
