@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morning Edition &mdash; 28 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #f5f3ee;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; letter-spacing: -0.02em; }
+
+/* --- COVER --- */
+.cover {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top left, #2b1a4a 0%, #0a0a14 60%, #000 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4rem 6vw;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 30%, rgba(220, 80, 100, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cover-top { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
+.cover-mast { font-size: 0.95rem; letter-spacing: 0.4em; text-transform: uppercase; color: #cfc8e8; }
+.cover-issue { font-family: 'Fraunces', serif; font-size: 1.05rem; font-style: italic; color: #cfc8e8; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(4rem, 14vw, 12rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+}
+.cover-title em { font-style: italic; font-weight: 400; color: #d8b8ff; }
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  position: relative;
+  z-index: 1;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  max-width: 38ch;
+  color: #efe9ff;
+}
+.cover-date { text-align: right; font-size: 0.95rem; line-height: 1.5; color: #cfc8e8; }
+.cover-date strong { display: block; font-family: 'Fraunces', serif; font-style: italic; font-size: 1.15rem; color: #fff; font-weight: 400; margin-bottom: 0.25rem; }
+
+/* --- TOC --- */
+.toc {
+  background: #0f0f15;
+  color: #f5f3ee;
+  padding: 6rem 6vw;
+}
+.toc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.toc-head h2 { font-size: clamp(2rem, 5vw, 3.6rem); }
+.toc-meta { font-size: 0.9rem; letter-spacing: 0.25em; text-transform: uppercase; color: #aaa; }
+.toc-list { display: grid; gap: 0; }
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-decoration: none;
+  color: #f5f3ee;
+  transition: padding-left 0.2s, background 0.2s;
+}
+.toc-row:hover { padding-left: 1rem; background: rgba(255,255,255,0.02); }
+.toc-num { font-family: 'Fraunces', serif; font-size: 2.4rem; color: #888; line-height: 1; }
+.toc-title { font-family: 'Fraunces', serif; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.2; margin-bottom: 0.7rem; }
+.toc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.toc-tag {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  color: #cfc8e8;
+}
+.toc-tag-red { background: #c2295a; border-color: #c2295a; color: #fff; }
+
+/* --- SPREAD BASE --- */
+.spread {
+  min-height: 100vh;
+  padding: 6rem 6vw;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; width: 100%; }
+.numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(18rem, 40vw, 36rem);
+  line-height: 0.8;
+  z-index: 1;
+  opacity: 0.06;
+  user-select: none;
+  pointer-events: none;
+  top: 50%;
+  right: 4vw;
+  transform: translateY(-50%);
+}
+.kicker {
+  font-size: 0.95rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  font-weight: 600;
+}
+.headline {
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  line-height: 1.02;
+  margin-bottom: 1.8rem;
+  max-width: 22ch;
+}
+.lede {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  line-height: 1.45;
+  font-weight: 300;
+  margin-bottom: 2.4rem;
+  max-width: 52ch;
+}
+.body-block { max-width: 65ch; }
+.body { margin-bottom: 1.4rem; font-size: 1.125rem; line-height: 1.65; }
+.body-twocol { columns: 2; column-gap: 3rem; max-width: 100%; }
+.body-twocol .body { break-inside: avoid; }
+.body-dropcap::first-letter {
+  font-family: 'Fraunces', serif;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  padding: 0.4rem 0.8rem 0 0;
+  font-weight: 600;
+}
+
+/* --- APPLIES BLOCK --- */
+.applies-block {
+  margin-top: 2.6rem;
+  padding: 2rem 2.2rem;
+  background: rgba(194, 41, 90, 0.08);
+  border-left: 4px solid #c2295a;
+  max-width: 65ch;
+}
+.applies-badge {
+  display: inline-block;
+  background: #c2295a;
+  color: #fff;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+.applies-title { font-size: 1.4rem; margin-bottom: 1rem; }
+.applies-list { padding-left: 1.4rem; }
+.applies-list li { margin-bottom: 0.7rem; font-size: 1.08rem; line-height: 1.55; }
+
+/* --- META BAR --- */
+.meta-bar {
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(0,0,0,0.18);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  align-items: center;
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pill {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.pill-red { background: #c2295a; border-color: #c2295a; color: #fff; opacity: 1; }
+.meta-stats { display: flex; gap: 1.2rem; opacity: 0.65; font-size: 0.9rem; }
+.meta-links { display: flex; gap: 1.6rem; margin-left: auto; }
+.meta-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.meta-link:hover { opacity: 0.7; }
+
+/* --- SPREAD VARIANTS --- */
+/* HERO */
+.spread-hero { background: linear-gradient(135deg, #2a0810 0%, #110608 70%, #000 100%); color: #f5e9eb; }
+.spread-hero .numeral { color: #c2295a; opacity: 0.12; }
+.spread-hero .kicker { color: #ff6b86; }
+.spread-hero .headline { color: #fff; }
+.spread-hero .lede { color: #f0d8dd; }
+.spread-hero .meta-bar { border-color: rgba(255,255,255,0.15); }
+
+/* MIDNIGHT */
+.spread-midnight { background: linear-gradient(180deg, #0a1130 0%, #0a1a4a 60%, #050a1a 100%); color: #d8e0ff; }
+.spread-midnight .numeral { color: #4a6cff; opacity: 0.08; }
+.spread-midnight .kicker { color: #8ea2ff; }
+.spread-midnight .headline { color: #fff; }
+.spread-midnight .lede { color: #c0cdf0; }
+.spread-midnight .meta-bar { border-color: rgba(255,255,255,0.15); }
+
+/* ROSE ALERT */
+.spread-rose { background: #ffe9ee; color: #4a0e1f; border: 12px solid #c2295a; }
+.spread-rose .numeral { color: #c2295a; opacity: 0.08; }
+.spread-rose .kicker { color: #c2295a; }
+.spread-rose .headline { color: #4a0e1f; }
+.alert-stamp {
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  color: #c2295a;
+  border: 4px solid #c2295a;
+  padding: 0.5rem 1.5rem;
+  transform: rotate(8deg);
+  z-index: 5;
+}
+
+/* TERMINAL */
+.spread-terminal { background: #050a05; color: #4ee04e; font-family: 'Inter', monospace; }
+.spread-terminal .numeral { color: #2dc02d; opacity: 0.08; font-family: 'Inter', sans-serif; }
+.spread-terminal .kicker { color: #4ee04e; font-family: 'Menlo', 'Courier New', monospace; }
+.spread-terminal .headline { font-family: 'Fraunces', serif; color: #cfffcf; }
+.spread-terminal .lede { color: #a0e0a0; font-family: 'Fraunces', serif; }
+.spread-terminal .body { font-family: 'Menlo', 'Courier New', monospace; font-size: 1.0625rem; color: #b8e8b8; }
+.spread-terminal .meta-bar { border-color: rgba(78, 224, 78, 0.25); color: #8fd08f; }
+.spread-terminal .meta-link { color: #4ee04e; }
+.spread-terminal .applies-block { background: rgba(78, 224, 78, 0.08); border-left-color: #4ee04e; }
+.spread-terminal .applies-badge { background: #4ee04e; color: #050a05; }
+.spread-terminal .applies-title { color: #cfffcf; }
+
+/* ACADEMIC */
+.spread-academic { background: #f5ecd9; color: #2a1e0a; }
+.spread-academic .numeral { color: #6b4f1a; opacity: 0.07; }
+.spread-academic .kicker { color: #6b4f1a; }
+.spread-academic .headline { color: #2a1e0a; font-style: italic; }
+.spread-academic .meta-bar { border-color: rgba(42, 30, 10, 0.2); }
+
+/* GRADIENT */
+.spread-gradient { background: linear-gradient(135deg, #2a1454 0%, #4a2a8a 40%, #1a3aa8 100%); color: #ece4ff; }
+.spread-gradient .numeral { color: #fff; opacity: 0.09; }
+.spread-gradient .kicker { color: #c8b6ff; }
+.spread-gradient .headline { color: #fff; }
+.spread-gradient .lede { color: #d8d0f0; }
+.spread-gradient .meta-bar { border-color: rgba(255,255,255,0.18); }
+
+/* NEWSPAPER */
+.spread-newspaper { background: #fafaf6; color: #0a0a0a; padding-top: 4rem; }
+.spread-newspaper .spread-inner { border-top: 4px double #0a0a0a; border-bottom: 4px double #0a0a0a; padding: 3rem 0; }
+.spread-newspaper .numeral { color: #000; opacity: 0.05; }
+.spread-newspaper .kicker { color: #000; border-bottom: 2px solid #000; padding-bottom: 0.6rem; display: inline-block; }
+.spread-newspaper .headline { font-weight: 600; color: #000; }
+.spread-newspaper .meta-bar { border-color: rgba(0,0,0,0.4); }
+
+/* CLEAN */
+.spread-clean { background: #fff; color: #1a1a1a; }
+.spread-clean .numeral { color: #1a1a1a; opacity: 0.04; }
+.spread-clean .kicker { color: #888; }
+.headline-gradient {
+  background: linear-gradient(135deg, #1a1a1a 0%, #4a2a8a 40%, #c2295a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* EDITORIAL */
+.spread-editorial { background: linear-gradient(135deg, #ffe8c0 0%, #f4b860 60%, #c97a1a 100%); color: #3a1f04; }
+.spread-editorial .numeral { color: #6b3a04; opacity: 0.08; }
+.spread-editorial .kicker { color: #6b3a04; }
+.spread-editorial .headline { color: #2a1604; }
+.spread-editorial .meta-bar { border-color: rgba(58, 31, 4, 0.25); }
+
+/* MEMORIAL */
+.spread-memorial { background: linear-gradient(180deg, #1a1a1e 0%, #28272d 60%, #1a1a1e 100%); color: #c0bcc0; }
+.spread-memorial .numeral { color: #686268; opacity: 0.1; }
+.spread-memorial .kicker { color: #908a90; font-style: italic; }
+.spread-memorial .headline { color: #e8e4e8; font-style: italic; font-weight: 400; }
+.spread-memorial .lede { color: #b8b4b8; }
+.spread-memorial .meta-bar { border-color: rgba(255,255,255,0.12); }
+
+/* --- FOOTER --- */
+.colophon {
+  background: #0a0a0a;
+  color: #888;
+  padding: 5rem 6vw;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.colophon-title { font-family: 'Fraunces', serif; font-style: italic; color: #fff; font-size: 1.6rem; margin-bottom: 1.5rem; }
+.colophon p { max-width: 60ch; margin: 0 auto 1rem; }
+
+@media (max-width: 700px) {
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+  .meta-links { margin-left: 0; }
+  .body-twocol { columns: 1; }
+  .toc-row { grid-template-columns: 50px 1fr; gap: 1rem; }
+  .alert-stamp { top: 1.5rem; right: 1.5rem; font-size: 1.2rem; padding: 0.3rem 1rem; }
+  .spread-rose { border-width: 6px; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <div class="cover-mast">Morning Edition</div>
+    <div class="cover-issue">Vol. I &middot; No. 28</div>
+  </div>
+  <h1 class="cover-title">Morning<br><em>Edition.</em></h1>
+  <div class="cover-bottom">
+    <div class="cover-tagline">Ten things a security leader should read before the kettle boils. Curated for Euan, in Scotland.</div>
+    <div class="cover-date"><strong>Tuesday, 28 April 2026</strong>5 stories flagged as directly relevant</div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-head">
+    <h2>Inside this issue</h2>
+    <div class="toc-meta">Ten Stories &middot; 28 April 2026</div>
+  </div>
+  <div class="toc-list"><a class="toc-row" href="#story-01">
+      <div class="toc-num">01</div>
+      <div class="toc-text">
+        <div class="toc-title">4TB of voice samples stolen from 40,000 AI contractors at Mercor</div>
+        <div class="toc-tags"><span class="toc-tag">Cybersecurity</span><span class="toc-tag">AI Vendor Risk</span><span class="toc-tag toc-tag-red">Directly applies to you</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-02">
+      <div class="toc-num">02</div>
+      <div class="toc-text">
+        <div class="toc-title">US Supreme Court reviews police use of cell location data</div>
+        <div class="toc-tags"><span class="toc-tag">Privacy</span><span class="toc-tag">Law Enforcement</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-03">
+      <div class="toc-num">03</div>
+      <div class="toc-text">
+        <div class="toc-title">Three men charged after Toronto SMS Blaster bust</div>
+        <div class="toc-tags"><span class="toc-tag">Cybersecurity</span><span class="toc-tag">Smishing</span><span class="toc-tag toc-tag-red">Directly applies to you</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-04">
+      <div class="toc-num">04</div>
+      <div class="toc-text">
+        <div class="toc-title">Networking changes coming in macOS 27</div>
+        <div class="toc-tags"><span class="toc-tag">Cybersecurity</span><span class="toc-tag">macOS</span><span class="toc-tag toc-tag-red">Directly applies to you</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-05">
+      <div class="toc-num">05</div>
+      <div class="toc-text">
+        <div class="toc-title">Decoupled DiLoCo: resilient distributed AI training at scale</div>
+        <div class="toc-tags"><span class="toc-tag">AI Research</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-06">
+      <div class="toc-num">06</div>
+      <div class="toc-text">
+        <div class="toc-title">GitHub Copilot moves to usage-based billing</div>
+        <div class="toc-tags"><span class="toc-tag">AI Tools</span><span class="toc-tag">DevOps</span><span class="toc-tag toc-tag-red">Directly applies to you</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-07">
+      <div class="toc-num">07</div>
+      <div class="toc-text">
+        <div class="toc-title">Microsoft and OpenAI end exclusive and revenue-sharing deal</div>
+        <div class="toc-tags"><span class="toc-tag">AI Industry</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-08">
+      <div class="toc-num">08</div>
+      <div class="toc-text">
+        <div class="toc-title">The Prompt API arrives in Chrome</div>
+        <div class="toc-tags"><span class="toc-tag">AI Tools</span><span class="toc-tag">Browser</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-09">
+      <div class="toc-num">09</div>
+      <div class="toc-text">
+        <div class="toc-title">China blocks Meta&#x27;s acquisition of AI startup Manus</div>
+        <div class="toc-tags"><span class="toc-tag">AI Industry</span><span class="toc-tag">Regulation</span></div>
+      </div>
+    </a><a class="toc-row" href="#story-10">
+      <div class="toc-num">10</div>
+      <div class="toc-text">
+        <div class="toc-title">Vibe coding will break your company</div>
+        <div class="toc-tags"><span class="toc-tag">AI Governance</span><span class="toc-tag">Risk</span><span class="toc-tag toc-tag-red">Directly applies to you</span></div>
+      </div>
+    </a></div>
+</section>
+
+<div id="story-01"><section class="spread spread-hero">
+      <div class="numeral">01</div>
+      <div class="spread-inner">
+        <div class="kicker">Supply Chain Breach</div>
+        <h2 class="headline">4TB of voice samples stolen from 40,000 AI contractors at Mercor</h2>
+        <p class="lede">Researchers from Oravys disclosed a breach at Mercor, the AI labour marketplace, exposing roughly four terabytes of biometric voice training data, contractor PII and signed NDAs covering work for at least nine frontier model labs.</p>
+        <div class="body-block"><p class="body">The breach was traced to an exposed contractor management bucket missing authentication on a private API endpoint. Attackers exfiltrated paid voice samples, demographic metadata, contracts, payout history and tax documents for tens of thousands of crowd workers.</p><p class="body">Most of the data is voice. Hours of curated samples per contractor, captured precisely so frontier models could learn paralinguistic features. That same fidelity is what makes it dangerous in the wild: voice cloning, helpdesk impersonation, family extortion calls. The data was stolen with consent for AI training, not for adversarial use.</p><p class="body">What makes this a CISO problem rather than an AI lab problem: every enterprise quietly using Mercor as a downstream RLHF or eval vendor now has staff voices and identifiers in the same dump. Vendor questionnaires almost never ask about biometric data handling at the labour layer.</p></div>
+        <div class="applies-block">
+      <div class="applies-badge">Directly applies to you</div>
+      <h3 class="applies-title">What to do</h3>
+      <ol class="applies-list"><li>Pull the vendor list. Confirm whether Mercor or a Mercor-routed broker has been engaged for any data labelling, RLHF, red teaming or evaluation work in the last 18 months.</li><li>If yes, treat affected staff as biometric breach victims. Update voice-channel auth assumptions for the helpdesk. Disable voiceprint-only verification for finance approvals and senior staff.</li><li>Add a biometric data clause to your AI labour DPA template before the next renewal cycle.</li></ol>
+    </div>
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">Cybersecurity</span><span class="pill">AI Vendor Risk</span></div>
+      <div class="meta-stats"><span class="meta-stat">499 points</span><span class="meta-stat">177 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://app.oravys.com/blog/mercor-breach-2026" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47919630" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-02"><section class="spread spread-midnight">
+      <div class="numeral">02</div>
+      <div class="spread-inner">
+        <div class="kicker">Surveillance &amp; Privacy</div>
+        <h2 class="headline">US Supreme Court reviews police use of cell location data</h2>
+        <p class="lede">Oral arguments opened in a case that could redraw the line between Carpenter v. United States and the geofence warrant. At stake is whether bulk historical location pulls from carriers and ad-tech brokers require individualised probable cause.</p>
+        <div class="body-block"><p class="body">The petitioners argue that the third-party doctrine has been quietly hollowed out by ad-tech intermediaries who never enter into a contract with the device owner at all. The government&#x27;s reply leans on the same telemetry as a public-safety necessity, citing trafficking and abduction cases solved with reverse geolocation.</p><p class="body">Briefs from Apple, Google and a coalition of carriers warn that a narrow ruling will simply push law enforcement deeper into the data broker market, where there is no warrant requirement and no notice to the data subject.</p><p class="body">For UK and EU readers the case is not directly binding but it shapes the precedent that mutual legal assistance requests will be argued under for the next decade.</p></div>
+        
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">Privacy</span><span class="pill">Law Enforcement</span></div>
+      <div class="meta-stats"><span class="meta-stat">239 points</span><span class="meta-stat">142 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://www.nytimes.com/2026/04/27/us/politics/supreme-court-cell-data-geofence.html" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47922940" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-03"><section class="spread spread-rose">
+      <div class="numeral">03</div>
+      <div class="alert-stamp">ALERT</div>
+      <div class="spread-inner">
+        <div class="kicker">Mobile Threat Alert</div>
+        <h2 class="headline">Three men charged after Toronto SMS Blaster bust</h2>
+        <p class="lede">Toronto Police announced what they describe as unprecedented arrests in connection with a vehicle-mounted SMS blaster used to send fraudulent messages to thousands of nearby phones, bypassing the carriers entirely.</p>
+        <div class="body-block"><p class="body">SMS blasters are IMSI-catcher cousins. The device impersonates a cell tower, forces nearby handsets to attach, and pushes spoofed text messages directly to the baseband, sidestepping every carrier-side spam filter and shortcode block. The Toronto rig was reportedly driving a regular delivery route around financial-district tower blocks.</p><p class="body">This is the second such arrest in a major North American city in twelve months. The UK&#x27;s NCSC and Ofcom have flagged similar kit being imported into Britain and a small number of suspected deployments around Manchester and Glasgow during late 2025.</p><p class="body">The phishing payload in Toronto was a spoofed bank fraud-alert text containing a one-time-use credential harvesting site. Click rates were reportedly far above email-borne phishing.</p></div>
+        <div class="applies-block">
+      <div class="applies-badge">Directly applies to you</div>
+      <h3 class="applies-title">What to do</h3>
+      <ol class="applies-list"><li>Brief execs and finance teams: a banking SMS that arrives while in a city centre is no longer a weak signal of legitimacy. Treat all unsolicited links as hostile.</li><li>Confirm your MFA push prompts include geographic and merchant context. Plain numeric OTPs are now actively dangerous on cellular.</li><li>Add SMS blaster awareness to the next staff phishing brief and include a screenshot of what a spoofed sender ID looks like in iOS and Android.</li></ol>
+    </div>
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">Cybersecurity</span><span class="pill">Smishing</span></div>
+      <div class="meta-stats"><span class="meta-stat">139 points</span><span class="meta-stat">65 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://www.tps.ca/media-centre/stories/unprecedented-sms-blaster-arrests/" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47927070" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-04"><section class="spread spread-terminal">
+      <div class="numeral">04</div>
+      <div class="spread-inner">
+        <div class="kicker">&gt; Endpoint Infrastructure</div>
+        <h2 class="headline">Networking changes coming in macOS 27</h2>
+        <p class="lede">Howard Oakley&#x27;s analysis of macOS 27 betas surfaces a deeper rework of the network stack than Apple has so far flagged: tighter limits on raw sockets, mandatory privacy proxy paths for unsigned binaries, and a new app-bound DNS layer.</p>
+        <div class="body-block"><p class="body">The change most likely to bite enterprises is the new privacy-preserving DNS layer. Resolutions from non-system processes get routed through a relay unless the binary is signed and notarised by an enrolled team, breaking a long tail of in-house engineering tools.</p><p class="body">Raw sockets are now gated behind a new entitlement, which will trip homegrown packet capture utilities and a number of EDR sensors that still rely on legacy interfaces. Vendors with stable Endpoint Security Framework integrations will be unaffected.</p><p class="body">Beta cycles run through the summer with a likely autumn release. The networking changes are the kind that quietly break VPN clients, captive portal handlers and EDR agents the day staff hit the upgrade button.</p></div>
+        <div class="applies-block">
+      <div class="applies-badge">Directly applies to you</div>
+      <h3 class="applies-title">What to do</h3>
+      <ol class="applies-list"><li>Get a 27 beta on a representative laptop now. Run your VPN, EDR, captive portal, dev tooling and any in-house signed binaries through it.</li><li>Open a ticket with your EDR vendor and ask for a written compatibility statement against the 27 beta. Treat anything vague as a red flag.</li><li>Hold the auto-upgrade ring for at least two weeks past general availability while you confirm DNS path behaviour for split-horizon resolvers.</li></ol>
+    </div>
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">Cybersecurity</span><span class="pill">macOS</span></div>
+      <div class="meta-stats"><span class="meta-stat">222 points</span><span class="meta-stat">192 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://eclecticlight.co/2026/04/23/networking-changes-coming-in-macos-27/" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47923010" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-05"><section class="spread spread-academic">
+      <div class="numeral">05</div>
+      <div class="spread-inner">
+        <div class="kicker">Research</div>
+        <h2 class="headline">Decoupled DiLoCo: resilient distributed AI training at scale</h2>
+        <p class="lede">DeepMind released a research note on Decoupled DiLoCo, a distributed training architecture that survives network partitions by allowing local optimisers to run independently between infrequent synchronisations.</p>
+        <div class="body-block body-twocol"><p class="body body-dropcap">The interesting result is not raw throughput but tolerance: the technique sustains training quality even when individual cluster regions go offline for hours. That makes it the first credible recipe for training frontier models across multiple data centres without a hot interconnect.</p><p class="body">For the rest of the industry, this is mostly a signal. If the largest labs can decouple training from a single physical fabric, expect compute aggregation across sovereign regions to become a near-term commercial offering. That collapses one of the standing arguments for centralising frontier model compute on the US west coast.</p><p class="body">There is also a research-integrity angle. Decoupled training makes it harder to reproduce a checkpoint exactly, complicating the kind of model lineage attestation that AI act regulators have started asking for.</p></div>
+        
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">AI Research</span></div>
+      <div class="meta-stats"><span class="meta-stat">45 points</span><span class="meta-stat">5 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://deepmind.google/blog/decoupled-diloco/" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47924181" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-06"><section class="spread spread-gradient">
+      <div class="numeral">06</div>
+      <div class="spread-inner">
+        <div class="kicker">AI Developer Tools</div>
+        <h2 class="headline">GitHub Copilot moves to usage-based billing</h2>
+        <p class="lede">GitHub announced that Copilot&#x27;s flat-fee model will be retired in stages over the next two quarters, replaced with metered billing tied to model invocations, agent actions and indexed repository size.</p>
+        <div class="body-block"><p class="body">The mechanics matter. Inline completions stay roughly priced. Agent actions, code review automations and the new long-context refactors are billed per call against a tiered allowance, with overage billed at a per-token rate that varies by model.</p><p class="body">The blast radius is real for anyone running Copilot at thousands of seats. Engineering finance teams who modelled flat-fee Copilot as a fixed cost now need a meter, a budget, and a per-team chargeback story. There is also a model-choice surface for the platform team to manage, since cheaper models are exposed as a billing lever.</p><p class="body">For shops on Claude Code or other agents the news is mostly competitive context: every major coding assistant is now metered, and procurement frameworks built around per-seat licences will need updating.</p></div>
+        <div class="applies-block">
+      <div class="applies-badge">Directly applies to you</div>
+      <h3 class="applies-title">What to do</h3>
+      <ol class="applies-list"><li>Pull the last 90 days of Copilot telemetry. Identify the top decile of agent-action users and forecast their bill under the new meter.</li><li>Stand up a per-team budget alert before billing flips. Engineers who use the agent heavily must not discover the change in next quarter&#x27;s allocation.</li><li>Update your AI tooling procurement template to handle metered usage as a default, not an exception. Same applies to Claude Code consumption tracking.</li></ol>
+    </div>
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">AI Tools</span><span class="pill">DevOps</span></div>
+      <div class="meta-stats"><span class="meta-stat">619 points</span><span class="meta-stat">451 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47923357" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-07"><section class="spread spread-newspaper">
+      <div class="numeral">07</div>
+      <div class="spread-inner">
+        <div class="kicker">Industry Realignment</div>
+        <h2 class="headline">Microsoft and OpenAI end exclusive and revenue-sharing deal</h2>
+        <p class="lede">Bloomberg reports that Microsoft and OpenAI have wound down the exclusivity and revenue-share provisions that defined their seven-year partnership. OpenAI is now free to sell raw frontier inference into Azure competitors. Microsoft retains preferred but non-exclusive access.</p>
+        <div class="body-block body-twocol"><p class="body">The split was telegraphed for months but the legal mechanics are sharper than expected. OpenAI gains the ability to negotiate directly with AWS and GCP for hosted offerings. Microsoft gains room to ship its own internal frontier models without an OpenAI carve-out, and to deepen the Anthropic relationship that has been quietly expanding inside Azure for the last two quarters.</p><p class="body">Enterprise customers running mission-critical workloads on Azure OpenAI Service should expect product roadmap turbulence. The legacy SLA, region availability and data-handling commitments survive the break, but the two roadmaps now diverge.</p><p class="body">For the wider market, the practical effect is more competitive pricing on frontier inference and a louder pitch from every cloud that they are now a viable host for OpenAI workloads.</p></div>
+        
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">AI Industry</span></div>
+      <div class="meta-stats"><span class="meta-stat">836 points</span><span class="meta-stat">715 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://www.bloomberg.com/news/articles/2026-04-27/microsoft-to-stop-sharing-revenue-with-openai" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47921248" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-08"><section class="spread spread-clean">
+      <div class="numeral">08</div>
+      <div class="spread-inner">
+        <div class="kicker">Web Platform</div>
+        <h2 class="headline headline-gradient">The Prompt API arrives in Chrome</h2>
+        <p class="lede">Chrome shipped the Prompt API as a stable surface, exposing on-device Gemini Nano to web pages with a structured request and response interface, content filters, and a permissions prompt that maps to user intent rather than origin.</p>
+        <div class="body-block"><p class="body">On-device inference inside the browser changes the cost curve for small UX improvements: form-field summarisation, intent classification, accessibility rewrites. None of those round trips need to leave the device, which is interesting for both performance and data-protection reasons.</p><p class="body">It also creates an interesting attack surface. Sites can now ask the browser&#x27;s local model for a structured response and use it as part of a privilege decision. Expect novel prompt-injection chains where attacker-controlled content tries to convince the local model to issue commands the user did not intend.</p><p class="body">A second permission model lands alongside the API: prompts are scoped per-task, per-origin, and the browser surfaces the actual prompt to the user before a high-stakes call.</p></div>
+        
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">AI Tools</span><span class="pill">Browser</span></div>
+      <div class="meta-stats"><span class="meta-stat">260 points</span><span class="meta-stat">133 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://developer.chrome.com/docs/ai/prompt-api" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47917026" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-09"><section class="spread spread-editorial">
+      <div class="numeral">09</div>
+      <div class="spread-inner">
+        <div class="kicker">Geopolitics</div>
+        <h2 class="headline">China blocks Meta&#x27;s acquisition of AI startup Manus</h2>
+        <p class="lede">Beijing&#x27;s market regulator declined to clear Meta&#x27;s bid for Manus, the agentic browser-automation startup, citing national security concerns and a lack of competitive remedies. Meta has signalled it will not contest the decision.</p>
+        <div class="body-block"><p class="body">The decision is the second cross-border AI deal blocked by China this quarter and tracks an emerging pattern: agentic systems with strong web-automation capabilities are being treated as dual-use technology by both Beijing and Brussels.</p><p class="body">European Commission watchers should note the parallel CMA-style filing now sitting in Brussels for a different transaction. The signal to the market is clear: AI deals with geopolitical exposure are now multi-jurisdictional puzzles, not a US-only DOJ matter.</p><p class="body">For Meta, the practical consequence is a strategic detour. Expect organic agent investment to accelerate inside Reality Labs and an aggressive talent recruitment push aimed at the original Manus engineering team.</p></div>
+        
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">AI Industry</span><span class="pill">Regulation</span></div>
+      <div class="meta-stats"><span class="meta-stat">358 points</span><span class="meta-stat">252 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://www.cnbc.com/2026/04/27/meta-manus-china-blocks-acquisition-ai-startup.html" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47920315" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div><div id="story-10"><section class="spread spread-memorial">
+      <div class="numeral">10</div>
+      <div class="spread-inner">
+        <div class="kicker">Governance &amp; Ethics</div>
+        <h2 class="headline">Vibe coding will break your company</h2>
+        <p class="lede">Forbes contributor Jason Wingard argues that the rapid adoption of vibe coding, the practice of shipping production code with minimal human review of AI-generated output, is creating a class of unmaintained, undocumented liability that companies will discover only after a breach.</p>
+        <div class="body-block"><p class="body">The piece lands at an awkward moment for security leaders. Most CISOs have spent the last twelve months fighting to legitimise AI-assisted development inside their estate. The argument here is not against the practice itself but against the absence of guardrails: no human signoff, no architectural review, no test coverage requirement, no audit trail of which model produced which line.</p><p class="body">The author reaches for a few overheated examples but the underlying observation is hard to dismiss. Code review velocity has not kept pace with code generation velocity. Static analysis catches a fraction of what reviewers would. The exposure compounds quietly.</p><p class="body">For a CISO this is the clearest ethics-meets-risk story of the week: a defensible AI development position is one that says yes to the productivity, no to the abandoned review, and writes that policy down before the auditors do.</p></div>
+        <div class="applies-block">
+      <div class="applies-badge">Directly applies to you</div>
+      <h3 class="applies-title">What to do</h3>
+      <ol class="applies-list"><li>Publish a one-page AI-assisted development policy. Mandate human review on every merge regardless of source. Track AI-attributed lines as a metric, not a target.</li><li>Require model attribution in the commit footer. This is cheap to add, expensive to retrofit, and pays back the first time an audit asks who wrote the regex that leaked PII.</li><li>Run a tabletop scenario where a critical bug originates in a vibe-coded service. Walk through who explains the decision chain to your auditor or the ICO.</li></ol>
+    </div>
+        <div class="meta-bar">
+      <div class="meta-pills"><span class="pill">AI Governance</span><span class="pill">Risk</span></div>
+      <div class="meta-stats"><span class="meta-stat">41 points</span><span class="meta-stat">18 comments</span></div>
+      <div class="meta-links">
+        <a class="meta-link" href="https://www.forbes.com/sites/jasonwingard/2026/04/23/vibe-coding-will-break-your-company/" target="_blank" rel="noopener">Original story &rarr;</a>
+        <a class="meta-link" href="https://news.ycombinator.com/item?id=47930738" target="_blank" rel="noopener">HN discussion &rarr;</a>
+      </div>
+    </div>
+      </div>
+    </section></div>
+
+<footer class="colophon">
+  <div class="colophon-title">Colophon</div>
+  <p>Morning Edition is curated each morning from the front page of <a href="https://news.ycombinator.com/" style="color:#ddd;">Hacker News</a>, weighted toward cybersecurity, AI tooling and privacy. The top forty to fifty stories are reviewed and ten are selected for editorial treatment.</p>
+  <p>Skipped this morning: vendor marketing dressed as breach disclosure, routine CVE database drama, crypto hype, and the usual front-page filler. 0 duplicates from previous editions were excluded.</p>
+  <p>Set in Fraunces and Inter. Built for one reader on one Tuesday.</p>
+</footer>
+
+</body>
+</html>
