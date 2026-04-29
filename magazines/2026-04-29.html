@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 29 April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 119</span>
+    <span>Wednesday · 29 April 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A daily editorial brief, hand-curated for a cybersecurity leader. Today: a GitHub RCE you must patch by tonight, the slow privatisation of the phone you paid for, and the question of who owns the code your model wrote.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 29 April 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      7 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-title">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">GitHub RCE Vulnerability: CVE-2026-3854 Breakdown</span>
+         <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Your phone is about to stop being yours</span>
+         <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Healthcare Vulnerabilities</span>
+        <span class="toc-title">AISLE Discovers 38 CVEs in OpenEMR Healthcare Software</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain</span>
+        <span class="toc-title">GitHub Actions is the weakest link</span>
+         <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Software Supply Chain</span>
+        <span class="toc-title">Patch applies fake diffs from commit messages</span>
+         <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tools</span>
+        <span class="toc-title">Claude for Creative Work</span>
+         <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Incident</span>
+        <span class="toc-title">Claude.ai unavailable and elevated errors on the API</span>
+         <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open Source</span>
+        <span class="toc-title">Localsend: An open-source cross-platform alternative to AirDrop</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Governance</span>
+        <span class="toc-title">Who owns the code Claude Code wrote?</span>
+         <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Civil Liberties</span>
+        <span class="toc-title">Drone pilot makes US rescind no-fly zones around unmarked, moving ICE vehicles</span>
+        
+      </span>
+    </a>
+  </div>
+</section>
+
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">GitHub RCE Vulnerability: CVE-2026-3854 Breakdown</h2>
+      <p class="spread-lede">Wiz researchers detail CVE-2026-3854, a remote code execution flaw in GitHub Enterprise Server reachable through a malformed webhook payload. Patches landed late on the 28th. Exploit code is already circulating on private channels.</p>
+      <div class="spread-body"><p>The chain abuses a deserialisation primitive in GitHub's webhook delivery worker. An attacker who can convince a target to add their server as a webhook destination, or who already controls a forked repository in an organisation with auto-trust enabled, can pivot from initial deserialisation to a full shell on the GHES appliance. Wiz rates the exploit complexity as low once authenticated to any org as a member.</p><p>This is the second high-severity GHES vulnerability this quarter and reinforces a pattern: the webhook subsystem is a soft target because it sits at the boundary between untrusted Git events and the appliance's privileged service runtime. Self-hosted runners on the same network segment are likely impacted by lateral movement.</p></div>
+      
+        <div class="action-section">
+          <div class="action-label">What to do</div>
+          <p class="action-body">Audit your GHES version against the patched release tonight. If you cannot patch within 24 hours, disable webhook delivery to internal endpoints and rotate all PATs that have admin scopes. Block egress from the GHES appliance to anything except your registry mirror until the patch is verified.</p>
+        </div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 306</span>
+          <span class="meta-pill meta-source">wiz.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.wiz.io/blog/github-rce-vulnerability-cve-2026-3854" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47936479" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Your phone is about to stop being yours</h2>
+      <p class="spread-lede">An open letter signed by 800 developers, security researchers and Android maintainers warns that Google&#x27;s upcoming Play Integrity changes will collapse the difference between approved hardware, approved firmware and approved behaviour. The piece argues that the device a user paid for will, in practice, no longer belong to them.</p>
+      <div class="spread-body"><p>The technical claim is that Play Integrity v25 will gate not just the Play Store but a widening set of payment, banking and government apps behind a verdict that requires factory firmware, locked bootloaders and a vendor-signed kernel. Custom ROMs, GrapheneOS-style hardening, even rooting your own device for forensics, all fail the check. The argument is not that Google is doing something illegal. It is that the long-running social contract — you own the hardware, the OS is removable — quietly stopped applying.</p><p>For UK and EU readers the implication is not abstract. If banking apps require Play Integrity to function, and Play Integrity fails on any non-stock OS, then the right to repair, the right to a non-tracking device and the practical ability to opt out of an attestation graph all become legal fictions defended by no one.</p></div>
+      
+        <div class="action-section">
+          <div class="action-label">What to do</div>
+          <p class="action-body">Track this for your mobile policy. If your organisation issues Android handsets, decide now whether you require attested stock firmware (and accept the loss of optionality) or whether you mandate a privacy-respecting stack (and accept that an increasing share of consumer apps will refuse to run). Read the open letter and watch for an EU Digital Markets Act response over the next quarter.</p>
+        </div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 1217</span>
+          <span class="meta-pill meta-source">keepandroidopen.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://keepandroidopen.org/en/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47935853" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Healthcare Vulnerabilities</div>
+      
+      <h2 class="spread-headline">AISLE Discovers 38 CVEs in OpenEMR Healthcare Software</h2>
+      <p class="spread-lede">Security firm AISLE published a coordinated disclosure covering 38 CVEs in OpenEMR, the most-deployed open-source electronic health record system. The set includes seven pre-auth RCEs, four SQL injection chains and a sprinkle of exposed admin endpoints reachable without a session.</p>
+      <div class="spread-body"><p>OpenEMR powers small clinics, GP practices and humanitarian medical responses worldwide. Many deployments are run by IT generalists with no patching cadence, exposed directly to the public internet so clinicians can log in from home. AISLE estimates more than 70,000 reachable instances at the time of disclosure, with a long tail still on versions older than 7.0.</p><p>The disclosure is responsible — fixes shipped in the same release cycle — but it is the deployment population that should worry you. Most of the at-risk systems hold the most regulated category of personal data on the planet, and the people running them often do not subscribe to vulnerability mailing lists. Expect public exploitation within the week.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 168</span>
+          <span class="meta-pill meta-source">aisle.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://aisle.com/blog/aisle-discovers-38-critical-security-vulnerabilities-in-healthcare-software-used-by-100000-providers" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47936347" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">GitHub Actions is the weakest link</h2>
+      <p class="spread-lede">A field essay by a former GitHub security engineer argues that GitHub Actions has quietly become the most permissive, least audited build system at scale, and that the pull-request-driven trust model is the wrong shape for what people actually do with it.</p>
+      <div class="spread-body"><p>The piece walks through three concrete classes of compromise: token leakage from third-party actions pinned to mutable tags, escalation through reusable workflow inheritance, and the fact that fork PR runs can quietly read repository secrets if a maintainer flips one obscure setting. Each has been seen in the wild this year. Each is, in the author's framing, structural rather than incidental.</p><p>The most useful section is the policy fix list: pin every action by SHA, ban mutable tags in default branches, require manual approval for fork PRs from outside contributors, and treat OIDC-to-cloud federation as the only acceptable secret pattern. None of this is novel. Almost no large organisation does all four.</p></div>
+      
+        <div class="action-section">
+          <div class="action-label">What to do</div>
+          <p class="action-body">Run an Actions audit this week. Generate a report of every action in use, grouped by whether it is pinned to a SHA or a tag. Block anything not on a SHA at the org level. If you publish via Actions — Cowork&#x27;s morning-edition repo included — check that the publishing token is scoped to a single path.</p>
+        </div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 226</span>
+          <span class="meta-pill meta-source">nesbitt.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://nesbitt.io/2026/04/28/github-actions-is-the-weakest-link.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47933257" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Software Supply Chain</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Patch applies fake diffs from commit messages</h2>
+      <p class="spread-lede">Researchers at Samizdat publish a working proof-of-concept for what they call Phantom Patch: a class of attack where the visible diff in a commit message bears no relation to the actual blob applied by GNU patch under permissive flags. The implication is that human and AI reviewers can both be fooled by the same shape of malicious commit.</p>
+      <div class="spread-body"><p>The trick lives in the fuzz-matching modes of the patch utility, combined with the fact that many code review tools render the commit message rather than re-deriving the diff from the parent and child trees. An attacker can push a commit whose displayed diff adds an innocuous comment, while the actual content lands a backdoor in a different file. Tooling that trusts the commit message to summarise the change, and review processes that read the commit message rather than the blob, both miss it.</p><p>The Samizdat team responsibly disclosed the technique to the major forge vendors and to the Linux kernel maintainers. GitHub has shipped a renderer change. The interesting question is whether your AI-assisted review pipeline has — Claude Code, Copilot review, anything that ingests a commit message and emits a verdict.</p></div>
+      
+        <div class="action-section">
+          <div class="action-label">What to do</div>
+          <p class="action-body">Check that any AI code review you depend on derives diffs from the parent and child commits, not from the commit message text. For Claude Code specifically, the safe pattern is to ask it to produce its own diff from the changed files and compare. Add a CI step that re-derives the diff and compares it byte-for-byte against the displayed one.</p>
+        </div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 94</span>
+          <span class="meta-pill meta-source">samizdat.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://samizdat.dev/phantom-patch/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47917250" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tools</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Claude for Creative Work</h2>
+      <p class="spread-lede">Anthropic announces Claude for Creative Work, a configuration of Claude tuned for long-form drafting, screenwriting, novel work and brand voice, with a workspace-style UI for keeping a project&#x27;s voice consistent across documents.</p>
+      <div class="spread-body"><p>The product itself is a thin wrapper over the existing Sonnet and Opus models, but the configuration matters: persistent style guides, scene-level memory, a different RLHF mix that biases toward voice fidelity over corporate hedging. There is also a per-project content policy slider that lets a writer permit darker material in fiction without retraining Claude's default safety posture.</p><p>For a CISO transitioning into a leadership role this is more relevant than it sounds. The same surface — persistent style, project-scoped memory, a softer policy — is the one that will land in enterprise tooling next. Ask now how your DLP, eDiscovery and brand-voice review will work when every memo, deck and external comm flows through a consistent model-side memory.</p></div>
+      
+        <div class="action-section">
+          <div class="action-label">What to do</div>
+          <p class="action-body">Try the new Creative Work mode on the Morning Edition itself this week — feed it last week&#x27;s editions and see whether it can hold the voice. If you publish under a personal brand, build a style guide as an artifact you can check into your Cowork workspace and reuse.</p>
+        </div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 103</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/news/claude-for-creative-work" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47942386" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Incident</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Claude.ai unavailable and elevated errors on the API</h2>
+      <p class="spread-lede">Anthropic&#x27;s status page records a multi-region availability incident on 28 April: claude.ai unreachable for roughly 47 minutes, API error rates elevated for closer to two hours. Cause attributed to a misconfigured edge routing change. No data exposure.</p>
+      <div class="spread-body"><p>The incident itself is unremarkable as outages go. What it surfaces is the dependency footprint of agentic tooling: Claude Code, Cowork, the entire suite of Anthropic-backed automations all stop progressing during an Anthropic-side outage. There is no graceful local fallback for most agentic workflows because the model is the runtime.</p><p>Anthropic's post-incident note commits to a faster blast-radius limiter on edge config rollouts. That is the right surface to be hardening. The deeper question for builders is whether to architect for partial degradation — running smaller local models, queuing prompts, displaying the right kind of error to the user — or to accept that downtime in the agent layer is downtime in the product, full stop.</p></div>
+      
+        <div class="action-section">
+          <div class="action-label">What to do</div>
+          <p class="action-body">If you depend on Claude for any morning workflow — and Morning Edition does — set a sentinel that pings the status page before kicking off the run, and write a fallback that queues the work for retry rather than failing silently. Add the Anthropic status RSS to your incident channel.</p>
+        </div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 282</span>
+          <span class="meta-pill meta-source">status.claude.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://status.claude.com/incidents/9l93x2ht4s5w" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47938097" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open Source</div>
+      
+      <h2 class="spread-headline">Localsend: An open-source cross-platform alternative to AirDrop</h2>
+      <p class="spread-lede">Localsend, the open-source cross-platform AirDrop alternative, hits 50,000 GitHub stars and ships a 2.0 release with end-to-end encryption by default, a hardened mDNS discovery layer and native packages for Linux, macOS, Windows, Android and iOS.</p>
+      <div class="spread-body"><p>The product has been quietly excellent for years. The 2.0 release is interesting because it removes the last reasons a privacy-aware shop had to keep AirDrop or vendor-locked transfer tools around. Files never leave the local network unless the user opts in to a relay; the relay itself is open source and self-hostable.</p><p>The reason it is in this edition rather than the developer-tools section: cross-platform local file transfer is one of the few categories where the open-source option is now strictly better than the proprietary defaults, and it removes a quiet category of shadow-IT risk where staff use personal cloud accounts to move files between devices.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 785</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/localsend/localsend" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47933208" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Governance</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Who owns the code Claude Code wrote?</h2>
+      <p class="spread-lede">A close reading by an IP lawyer of the terms of service across Claude Code, Copilot and Cursor, asking the practical question: when a model writes the patch, who owns the patch, and what is the warranty?</p>
+      <div class="spread-body"><p>The short answer is that the user owns the output, with caveats that vary by tool. The longer answer is that the warranty disclaimers in every vendor's terms of service mean that if Claude Code, in good faith, lands a patch that contains a snippet substantially similar to a GPL-licensed file in its training data, the legal exposure runs to the user and the user's employer rather than the model provider.</p><p>The author argues this is not a settled question. Recent UK and EU rulings on the copyright status of model outputs do not draw the line cleanly between input-similarity, output-similarity and human-authored fixes that follow. For organisations adopting agentic coding at any scale, the only safe posture is to treat model output the way you treat code from a third-party contractor: license-scanned at PR time, with provenance recorded.</p></div>
+      
+        <div class="action-section">
+          <div class="action-label">What to do</div>
+          <p class="action-body">Add a license-scanning step to any repo where Claude Code commits land. Record provenance in commit trailers. If your organisation has not yet asked counsel about indemnification on agentic output, this week is a reasonable week to start.</p>
+        </div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Legal</span>
+          <span class="meta-pill meta-score">HN 338</span>
+          <span class="meta-pill meta-source">legallayer.substack.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://legallayer.substack.com/p/who-owns-the-claude-code-wrote" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47932937" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Civil Liberties</div>
+      
+      <h2 class="spread-headline">Drone pilot makes US rescind no-fly zones around unmarked, moving ICE vehicles</h2>
+      <p class="spread-lede">Ars Technica reports that a drone hobbyist&#x27;s FOIA-driven legal challenge has forced the FAA to rescind a series of temporary no-fly zones that had been issued around unmarked, moving Immigration and Customs Enforcement vehicles, on the grounds that mobile NOTAMs without disclosed locations are not lawful.</p>
+      <div class="spread-body"><p>The mechanics of the case are narrow but the precedent is wider. The FAA had been issuing TFRs that travelled with vehicles whose locations were withheld, effectively creating a moving secrecy bubble around law enforcement movements. A single pilot, joined by EFF counsel, argued that you cannot lawfully be required to avoid airspace whose boundaries are state secrets, and won.</p><p>It is in this edition because it is a small good thing. In a year of surveillance-state expansion the case is a reminder that the legal architecture that constrains state opacity still functions when someone has the patience to use it, and that drones — the most surveillance-coded consumer technology — have, in this instance, been the lever for transparency.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 209</span>
+          <span class="meta-pill meta-source">arstechnica.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://arstechnica.com/gadgets/2026/04/no-fly-zones-around-moving-ice-vehicles-this-drone-pilot-fought-back-and-won/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=47940271" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 29 April 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as news, routine patch advisories without context, CVE-database drama without a user-facing implication, and crypto/web3 hype. General tech stories were considered for filler slots only and none were needed today.</p>
+    <p>Duplicates excluded against the previous two editions: 0. The HN front page rotated cleanly overnight.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
