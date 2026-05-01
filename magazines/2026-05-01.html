@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Morning Edition — Friday, 1 May 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --bg:#fafaf7;
+  --ink:#0c0c0d;
+  --paper:#fff;
+  --rule:#1d1d1f;
+  --rule-soft:rgba(29,29,31,0.18);
+  --accent:#c8202a;
+  --accent-deep:#7a0c14;
+  --gold:#b48028;
+  --muted:#5b5b62;
+  --shadow:0 30px 80px rgba(0,0,0,0.18);
+  --serif:'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+
+.page{max-width:1280px;margin:0 auto}
+
+/* --- COVER --- */
+.cover{
+  min-height:100vh;
+  background:radial-gradient(ellipse at top left,#1a1a2e 0%,#0a0a13 60%,#000 100%);
+  color:#fff;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:6vh 6vw;
+  position:relative;
+  overflow:hidden;
+}
+.cover::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 20%,rgba(200,32,42,0.18) 0%,transparent 50%);
+  pointer-events:none;
+}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--sans);font-size:0.95rem;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.7);position:relative;z-index:2}
+.cover-rule{height:1px;background:rgba(255,255,255,0.25);margin-top:2vh;position:relative;z-index:2}
+.cover-title{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(3.4rem, 11vw, 9.5rem);
+  line-height:0.92;
+  letter-spacing:-0.025em;
+  margin:0;
+  font-style:italic;
+  position:relative;z-index:2;
+}
+.cover-title em{color:#fff;font-weight:600;font-style:italic;background:linear-gradient(90deg,#fff 0%,#f1c2a6 60%,#c8202a 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cover-tagline{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.5vw,2rem);color:rgba(255,255,255,0.85);max-width:32ch;margin:2vh 0 0;position:relative;z-index:2}
+.cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:3vw;position:relative;z-index:2}
+.cover-meta{font-family:var(--sans);font-size:0.95rem;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.14em;line-height:1.8}
+.cover-issue{font-family:var(--serif);font-size:clamp(1rem,1.4vw,1.25rem);color:rgba(255,255,255,0.6)}
+
+/* --- TOC --- */
+.toc{
+  background:var(--paper);
+  padding:10vh 6vw;
+  border-top:1px solid var(--rule-soft);
+}
+.toc-title{
+  font-family:var(--serif);
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(2.2rem,5vw,4rem);
+  margin:0 0 1.2rem;
+  letter-spacing:-0.02em;
+}
+.toc-sub{font-size:1.1rem;color:var(--muted);margin:0 0 4rem;max-width:60ch;font-family:var(--serif);font-style:italic}
+.toc-list{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.toc-item{
+  display:grid;
+  grid-template-columns:90px 1fr auto;
+  gap:2rem;
+  align-items:center;
+  padding:1.6rem 0;
+  border-top:1px solid var(--rule-soft);
+}
+.toc-item:last-child{border-bottom:1px solid var(--rule-soft)}
+.toc-num{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--muted);font-feature-settings:"lnum"}
+.toc-body{display:flex;flex-direction:column;gap:0.6rem}
+.toc-title-3{}
+.toc-title{font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.55rem);font-weight:500;margin:0;line-height:1.2;letter-spacing:-0.005em}
+.toc-tags{display:flex;flex-wrap:wrap;gap:0.5rem;font-family:var(--sans)}
+.tag{display:inline-block;padding:0.32rem 0.7rem;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.09em;border:1px solid var(--rule);color:var(--ink);background:transparent;border-radius:0}
+.tag-kicker{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tag-applies{background:var(--accent);color:#fff;border-color:var(--accent)}
+.toc-jump{font-family:var(--sans);font-weight:600;font-size:0.95rem;color:var(--ink);text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--ink);padding-bottom:2px;white-space:nowrap}
+.toc-jump:hover{color:var(--accent);border-color:var(--accent)}
+
+/* --- COMMON SPREAD --- */
+.spread{
+  position:relative;
+  min-height:100vh;
+  padding:8vh 6vw;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  border-top:1px solid var(--rule-soft);
+}
+.spread-inner{position:relative;z-index:2;max-width:1100px;width:100%}
+.spread-numeral{
+  position:absolute;
+  font-family:var(--serif);
+  font-weight:200;
+  font-size:clamp(20rem,55vw,46rem);
+  line-height:0.8;
+  top:-2vh;right:-3vw;
+  opacity:0.07;
+  z-index:1;
+  pointer-events:none;
+  letter-spacing:-0.04em;
+}
+.kicker{
+  font-family:var(--sans);
+  font-size:0.95rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.2em;
+  margin:0 0 1.6rem;
+}
+.headline{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(2.2rem, 5.6vw, 4.4rem);
+  line-height:1.04;
+  letter-spacing:-0.025em;
+  margin:0 0 2rem;
+  max-width:22ch;
+}
+.lede{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.45rem;
+  line-height:1.45;
+  margin:0 0 2rem;
+  max-width:55ch;
+  font-weight:300;
+}
+.body{
+  font-family:var(--sans);
+  font-size:1.15rem;
+  line-height:1.7;
+  max-width:62ch;
+}
+.applies-badge{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:0.85rem;
+  text-transform:uppercase;
+  letter-spacing:0.15em;
+  padding:0.55rem 1rem;
+  margin:0 0 1.6rem;
+  border-radius:0;
+}
+.action-block{
+  margin-top:2.4rem;
+  padding:1.8rem 2rem;
+  border-left:6px solid var(--accent);
+  background:rgba(200,32,42,0.07);
+  max-width:62ch;
+}
+.action-heading{
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:0.85rem;
+  text-transform:uppercase;
+  letter-spacing:0.18em;
+  color:var(--accent);
+  margin:0 0 0.7rem;
+}
+.action-body{font-family:var(--sans);font-size:1.1rem;line-height:1.6;margin:0}
+.meta-bar{
+  margin-top:3rem;
+  padding-top:1.4rem;
+  border-top:1px solid currentColor;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:1.5rem;
+  font-family:var(--sans);
+  font-size:0.95rem;
+  opacity:0.85;
+}
+.meta-pills{display:flex;gap:0.5rem;flex-wrap:wrap}
+.pill{display:inline-block;padding:0.3rem 0.7rem;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.09em;border:1px solid currentColor}
+.pill-kicker{background:currentColor;color:var(--paper)}
+.spread-rose-alert .pill-kicker{color:#fff7f8}
+.meta-score{font-weight:600}
+.meta-links{display:flex;gap:1.6rem;margin-left:auto;flex-wrap:wrap}
+.meta-link{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;font-weight:600}
+.meta-link:hover{opacity:0.7}
+
+/* --- 1. HERO --- */
+.spread-hero{
+  background:linear-gradient(135deg,#1a0306 0%,#3a0a10 50%,#7a0c14 100%);
+  color:#fff;
+}
+.spread-hero .spread-numeral{color:#c8202a;opacity:0.18}
+.spread-hero .kicker{color:#f1c2a6}
+.spread-hero .body{color:rgba(255,255,255,0.85)}
+
+/* --- 2. MIDNIGHT --- */
+.spread-midnight{
+  background:linear-gradient(160deg,#0a0f2c 0%,#15234c 60%,#1a2f6b 100%);
+  color:#e6ecff;
+}
+.spread-midnight .spread-numeral{color:#7da0ff;opacity:0.1}
+.spread-midnight .kicker{color:#7da0ff;letter-spacing:0.25em}
+.spread-midnight .headline{font-style:italic;font-weight:300}
+.spread-midnight .body{color:rgba(230,236,255,0.85)}
+
+/* --- 3. ROSE ALERT --- */
+.spread-rose-alert{
+  background:linear-gradient(180deg,#fdf2f3 0%,#fce8eb 100%);
+  color:#1a0306;
+  border:24px solid #c8202a;
+  position:relative;
+}
+.spread-rose-alert::before{
+  content:'ALERT';
+  position:absolute;top:1.6vh;right:6vw;
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(2rem,5vw,4rem);
+  color:#c8202a;
+  letter-spacing:0.18em;
+  border:6px double #c8202a;
+  padding:0.4rem 1.4rem;
+  transform:rotate(2deg);
+  z-index:5;
+  background:#fff7f8;
+}
+.spread-rose-alert .spread-numeral{color:#c8202a;opacity:0.12}
+.spread-rose-alert .kicker{color:#c8202a}
+
+/* --- 4. TERMINAL --- */
+.spread-terminal{
+  background:#020a02;
+  color:#7cf07c;
+  font-family:'JetBrains Mono','Menlo','Monaco',monospace;
+}
+.spread-terminal .spread-numeral{color:#1ec71e;opacity:0.12;font-family:'JetBrains Mono','Menlo',monospace;font-weight:400}
+.spread-terminal .kicker{color:#1ec71e;font-family:'JetBrains Mono',monospace;letter-spacing:0.25em}
+.spread-terminal .headline{font-family:'JetBrains Mono','Menlo',monospace;font-weight:600;letter-spacing:-0.005em}
+.spread-terminal .lede{font-family:'JetBrains Mono',monospace;font-style:normal;color:#a9f8a9}
+.spread-terminal .body{font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:#7cf07c}
+.spread-terminal .body::before{content:'$ cat story_04.md\A';white-space:pre;display:block;color:#3a8a3a;margin-bottom:1rem;font-size:0.95rem}
+.spread-terminal .action-block{background:rgba(200,32,42,0.12);border-left-color:#ff6066}
+.spread-terminal .action-heading{color:#ff6066}
+.spread-terminal .applies-badge{background:#ff6066}
+
+/* --- 5. ACADEMIC --- */
+.spread-academic{
+  background:#f4ecda;
+  color:#1c1407;
+}
+.spread-academic .spread-numeral{color:#7a4a14;opacity:0.08;font-weight:300}
+.spread-academic .kicker{color:#7a4a14}
+.spread-academic .body{column-count:2;column-gap:3rem;column-rule:1px solid rgba(28,20,7,0.15);max-width:none;font-family:var(--serif);font-weight:300;font-size:1.1rem;line-height:1.7}
+.spread-academic .body::first-letter{font-family:var(--serif);font-weight:600;font-size:5.5rem;line-height:0.85;float:left;padding:0.4rem 0.8rem 0 0;color:var(--accent-deep)}
+
+/* --- 6. GRADIENT --- */
+.spread-gradient{
+  background:linear-gradient(135deg,#1d0a3c 0%,#3b1c8a 50%,#5b3aa4 80%,#7a5fbf 100%);
+  color:#fff;
+}
+.spread-gradient .spread-numeral{color:#c4a4ff;opacity:0.13}
+.spread-gradient .kicker{color:#d8c4ff;letter-spacing:0.28em}
+.spread-gradient .headline{background:linear-gradient(90deg,#fff 0%,#d8c4ff 50%,#fff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.spread-gradient .body{color:rgba(255,255,255,0.88)}
+
+/* --- 7. NEWSPAPER --- */
+.spread-newspaper{
+  background:#fdfdfb;
+  color:#0a0a0a;
+  border-top:6px double #0a0a0a;
+  border-bottom:6px double #0a0a0a;
+}
+.spread-newspaper .spread-numeral{color:#0a0a0a;opacity:0.08;font-weight:600}
+.spread-newspaper .kicker{font-family:var(--serif);font-style:italic;letter-spacing:0.1em;font-weight:400;border-bottom:2px solid #0a0a0a;display:inline-block;padding-bottom:0.3rem}
+.spread-newspaper .headline{font-weight:700;font-family:var(--serif);font-size:clamp(2.4rem,6vw,5rem);line-height:0.98}
+.spread-newspaper .body{column-count:2;column-gap:2.6rem;column-rule:1px solid rgba(10,10,10,0.18);max-width:none;font-family:var(--serif);font-size:1.1rem;line-height:1.65}
+
+/* --- 8. CLEAN --- */
+.spread-clean{
+  background:#fff;
+  color:#0a0a0a;
+}
+.spread-clean .spread-numeral{color:#0a0a0a;opacity:0.05;font-weight:200}
+.spread-clean .kicker{color:#5b5b62}
+.spread-clean .headline{
+  background:linear-gradient(90deg,#0a0a0a 0%,#3a3a4a 40%,#7a5fbf 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  font-weight:300;
+}
+
+/* --- 9. EDITORIAL --- */
+.spread-editorial{
+  background:linear-gradient(135deg,#fff5d6 0%,#ffd98a 60%,#e8a93b 100%);
+  color:#2a1a02;
+}
+.spread-editorial .spread-numeral{color:#7a4a14;opacity:0.14;font-weight:300}
+.spread-editorial .kicker{color:#7a4a14}
+.spread-editorial .headline{font-style:italic;font-weight:400}
+
+/* --- 10. MEMORIAL --- */
+.spread-memorial{
+  background:linear-gradient(180deg,#1a1a1f 0%,#252530 100%);
+  color:#cfcfd6;
+}
+.spread-memorial .spread-numeral{color:#5b5b6a;opacity:0.16;font-weight:200}
+.spread-memorial .kicker{color:#9a9aa6;letter-spacing:0.25em}
+.spread-memorial .headline{font-style:italic;font-weight:300;color:#e8e8ee}
+.spread-memorial .lede{color:#bdbdc8}
+.spread-memorial .body{color:rgba(207,207,214,0.8)}
+
+/* --- FOOTER --- */
+.colophon{
+  background:#0a0a0d;
+  color:#9a9aa6;
+  padding:8vh 6vw;
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.7;
+}
+.colophon-title{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3vw,2.4rem);color:#fff;margin:0 0 1.5rem}
+.colophon p{max-width:62ch;margin:0 0 1.2rem}
+.colophon strong{color:#fff;font-weight:600}
+.colophon-rule{height:1px;background:rgba(255,255,255,0.2);margin:3rem 0 2rem}
+.colophon-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;font-size:0.9rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.16em}
+
+@media (max-width:780px){
+  body{font-size:17px}
+  .toc-item{grid-template-columns:60px 1fr;row-gap:1rem}
+  .toc-jump{grid-column:2}
+  .spread-academic .body,.spread-newspaper .body{column-count:1}
+  .meta-links{margin-left:0}
+}
+</style>
+</head>
+<body>
+  <main class="page">
+    <!-- COVER -->
+    <section class="cover">
+      <header class="cover-top">
+        <span>Volume I &nbsp;·&nbsp; Issue 17</span>
+        <span>For Euan McGregor</span>
+      </header>
+      <div class="cover-rule"></div>
+      <div>
+        <h1 class="cover-title">Morning <em>Edition</em></h1>
+        <p class="cover-tagline">Hand-curated reading from the front page of Hacker News, weighted for cybersecurity, AI, and the things a CISO needs to know before the office is open.</p>
+      </div>
+      <div class="cover-bottom">
+        <div class="cover-meta">
+          <div>Friday, 1 May 2026</div>
+          <div>10 stories · 5 flagged for action</div>
+        </div>
+        <div class="cover-issue">№ 2026-05-01</div>
+      </div>
+    </section>
+
+    <!-- TOC -->
+    <section class="toc">
+      <h2 class="toc-title">In this issue</h2>
+      <p class="toc-sub">Ten stories from the Hacker News front page, ordered as a deliberate read. The tagged items are the ones that should not wait until Monday.</p>
+      <ol class="toc-list">
+      <li class="toc-item">
+        <span class="toc-num">01</span>
+        <div class="toc-body">
+          <h3 class="toc-title">Shai-Hulud Themed Malware Found in PyTorch Lightning</h3>
+          <div class="toc-tags">
+            <span class="tag">Cybersecurity</span>
+            <span class="tag tag-kicker">Supply Chain Attack</span>
+            <span class="tag tag-applies">Directly applies to you</span>
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-01">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">02</span>
+        <div class="toc-body">
+          <h3 class="toc-title">How Mark Klein Told the EFF About Room 641A</h3>
+          <div class="toc-tags">
+            <span class="tag">Privacy</span>
+            <span class="tag tag-kicker">Surveillance</span>
+            
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-02">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">03</span>
+        <div class="toc-body">
+          <h3 class="toc-title">Can I Disable All Data Collection From My Vehicle?</h3>
+          <div class="toc-tags">
+            <span class="tag">Data Protection</span>
+            <span class="tag tag-kicker">Connected Vehicles</span>
+            
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-03">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">04</span>
+        <div class="toc-body">
+          <h3 class="toc-title">Follow-Up to Carrot Disclosure: Forgejo</h3>
+          <div class="toc-tags">
+            <span class="tag">Cybersecurity</span>
+            <span class="tag tag-kicker">Disclosure Follow-Up</span>
+            <span class="tag tag-applies">Directly applies to you</span>
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-04">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">05</span>
+        <div class="toc-body">
+          <h3 class="toc-title">For Linux Kernel Vulnerabilities, There Is No Heads-Up to Distributions</h3>
+          <div class="toc-tags">
+            <span class="tag">Cybersecurity</span>
+            <span class="tag tag-kicker">Vulnerability Coordination</span>
+            <span class="tag tag-applies">Directly applies to you</span>
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-05">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">06</span>
+        <div class="toc-body">
+          <h3 class="toc-title">Granite 4.1: IBM&#x27;s 8B Model Matching 32B MoE</h3>
+          <div class="toc-tags">
+            <span class="tag">AI</span>
+            <span class="tag tag-kicker">Open Models</span>
+            
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-06">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">07</span>
+        <div class="toc-body">
+          <h3 class="toc-title">cPanel and WHM Authentication Bypass</h3>
+          <div class="toc-tags">
+            <span class="tag">Cybersecurity</span>
+            <span class="tag tag-kicker">CVE-2026-41940</span>
+            <span class="tag tag-applies">Directly applies to you</span>
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-07">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">08</span>
+        <div class="toc-body">
+          <h3 class="toc-title">Zed 1.0</h3>
+          <div class="toc-tags">
+            <span class="tag">Software</span>
+            <span class="tag tag-kicker">Developer Tools</span>
+            
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-08">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">09</span>
+        <div class="toc-body">
+          <h3 class="toc-title">Mozilla&#x27;s Opposition to Chrome&#x27;s Prompt API</h3>
+          <div class="toc-tags">
+            <span class="tag">AI Policy</span>
+            <span class="tag tag-kicker">Web Standards</span>
+            
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-09">Read &rarr;</a>
+      </li>
+
+      <li class="toc-item">
+        <span class="toc-num">10</span>
+        <div class="toc-body">
+          <h3 class="toc-title">Opus 4.7 Knows the Real Kelsey</h3>
+          <div class="toc-tags">
+            <span class="tag">AI Ethics</span>
+            <span class="tag tag-kicker">AI and Memory</span>
+            <span class="tag tag-applies">Directly applies to you</span>
+          </div>
+        </div>
+        <a class="toc-jump" href="#story-10">Read &rarr;</a>
+      </li>
+      </ol>
+    </section>
+
+    <!-- SPREADS -->
+    
+    <section class="spread spread-hero" id="story-01">
+      <div class="spread-numeral">01</div>
+      <div class="spread-inner">
+        <div class="kicker">Supply Chain Attack</div>
+        <h2 class="headline">Shai-Hulud Themed Malware Found in PyTorch Lightning</h2>
+        <div class="applies-badge">Directly applies to you</div>
+        <p class="lede">Researchers at Semgrep have uncovered a Shai-Hulud-style worm hiding inside PyTorch Lightning, the AI training library used in countless model pipelines. The compromise plants a self-propagating payload that scrapes credentials and chains forward to other packages developers maintain.</p>
+        <div class="body">This is the same family of worm we saw tear through npm last autumn, now adapted for the Python ecosystem and aimed squarely at AI workloads. PyTorch Lightning is depended on by everything from research notebooks to production training clusters. If your training environments pull from public PyPI without pinning or signature checks, assume exposure. The payload exfiltrates GitHub PATs, npm tokens, and cloud credentials it finds in the runner, then republishes its loader into other packages the developer owns.</div>
+        
+        <aside class="action-block">
+          <h4 class="action-heading">What to do</h4>
+          <p class="action-body">Audit any dev or CI runners that touched pytorch-lightning in the last 14 days. Rotate PATs and cloud keys for engineers who train models. Pin AI dependencies to known-good SHAs and require provenance checks. Brief the AI/ML team today, not after the weekend.</p>
+        </aside>
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">Cybersecurity</span>
+            <span class="pill pill-kicker">Supply Chain Attack</span>
+          </div>
+          <div class="meta-score">HN score 374</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://semgrep.dev/blog/2026/malicious-dependency-in-pytorch-lightning" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47967786" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-midnight" id="story-02">
+      <div class="spread-numeral">02</div>
+      <div class="spread-inner">
+        <div class="kicker">Surveillance</div>
+        <h2 class="headline">How Mark Klein Told the EFF About Room 641A</h2>
+        
+        <p class="lede">A new MIT Press book excerpt revisits the AT&amp;T technician who walked into the Electronic Frontier Foundation in 2006 with documents proving the NSA had spliced a fibre tap into the public internet. Twenty years on, the story still defines the privacy fight.</p>
+        <div class="body">Klein&#x27;s quiet act of documentation, room-by-room diagrams, splitter specifications, internal memos, became the spine of Hepting v. AT&amp;T and the long civil liberties argument that followed. The piece is a reminder that the surveillance backbone he exposed never went away. The legal architecture around it merely shifted. For anyone designing data-handling controls in 2026, Room 641A is the worked example of why network-level interception assumptions belong in your threat model.</div>
+        
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">Privacy</span>
+            <span class="pill pill-kicker">Surveillance</span>
+          </div>
+          <div class="meta-score">HN score 530</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://thereader.mitpress.mit.edu/the-whistleblower-who-uncovered-the-nsas-big-brother-machine/" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47965060" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-rose-alert" id="story-03">
+      <div class="spread-numeral">03</div>
+      <div class="spread-inner">
+        <div class="kicker">Connected Vehicles</div>
+        <h2 class="headline">Can I Disable All Data Collection From My Vehicle?</h2>
+        
+        <p class="lede">Rivian&#x27;s own support article, surfacing on the front page after a viral thread, confirms what privacy researchers have argued for years: telemetry from a modern vehicle cannot be fully turned off. Some collection is structural to how the car functions.</p>
+        <div class="body">The article walks through every consent toggle Rivian offers and ends, politely, in the same place every connected-car privacy review has ended this decade. Location, drive data, and diagnostic streams keep flowing because over-the-air updates, safety recalls, and warranty obligations rest on them. The honesty is welcome. The implication is not. Anyone managing executive protection or fleet privacy should treat connected vehicles as continuous-collection devices and plan accordingly.</div>
+        
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">Data Protection</span>
+            <span class="pill pill-kicker">Connected Vehicles</span>
+          </div>
+          <div class="meta-score">HN score 585</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://rivian.com/support/article/can-i-disable-all-data-collection" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47948152" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-terminal" id="story-04">
+      <div class="spread-numeral">04</div>
+      <div class="spread-inner">
+        <div class="kicker">Disclosure Follow-Up</div>
+        <h2 class="headline">Follow-Up to Carrot Disclosure: Forgejo</h2>
+        <div class="applies-badge">Directly applies to you</div>
+        <p class="lede">Security researcher dustri publishes the Forgejo half of the Carrot disclosure chain, detailing how the self-hosted Git forge handled coordination, patching, and the awkward downstream conversation with Gitea.</p>
+        <div class="body">Forgejo is increasingly the choice for teams who want a Git server they can actually run themselves, and its disclosure handling here is being held up as a model for small-but-critical open source projects. The post walks through the timeline, the scope of the fix, and the version cut-off. If you self-host source code, this is the kind of post you read end-to-end. The pattern (researcher discloses, fork patches first, upstream catches up) matters for any CISO who relies on community-maintained infrastructure.</div>
+        
+        <aside class="action-block">
+          <h4 class="action-heading">What to do</h4>
+          <p class="action-body">Confirm your Forgejo or Gitea instance is on the patched release. If you host code review on either platform, add the project&#x27;s security feed to your watchlist.</p>
+        </aside>
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">Cybersecurity</span>
+            <span class="pill pill-kicker">Disclosure Follow-Up</span>
+          </div>
+          <div class="meta-score">HN score 58</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://dustri.org/b/follow-up-to-carrot-disclosure-forgejo.html" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47963868" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-academic" id="story-05">
+      <div class="spread-numeral">05</div>
+      <div class="spread-inner">
+        <div class="kicker">Vulnerability Coordination</div>
+        <h2 class="headline">For Linux Kernel Vulnerabilities, There Is No Heads-Up to Distributions</h2>
+        <div class="applies-badge">Directly applies to you</div>
+        <p class="lede">An openwall thread crystallises a long-running tension in kernel security: distributions get no advance notice of fixes. Patches land in mainline, then it is a race between defenders, downstream packagers, and exploit writers reading the same commit log.</p>
+        <div class="body">The kernel team&#x27;s position is that early notification creates more risk than it prevents. Distribution maintainers argue that the current model means a window where embedded systems, long-tail kernels, and enterprise distros sit unpatched while the fix is already public. Both sides have reasonable arguments. Neither side is going to move first. For practitioners this means kernel CVE response stays expensive, and the time-to-patch metric on Linux fleets is not going to shorten through coordination, only through automation.</div>
+        
+        <aside class="action-block">
+          <h4 class="action-heading">What to do</h4>
+          <p class="action-body">Push your Linux fleet onto live-patching where the kernel and licence allow it. Treat kernel upgrade SLAs as a tracked KPI rather than a best-effort activity.</p>
+        </aside>
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">Cybersecurity</span>
+            <span class="pill pill-kicker">Vulnerability Coordination</span>
+          </div>
+          <div class="meta-score">HN score 450</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://www.openwall.com/lists/oss-security/2026/04/30/10" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47942863" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-gradient" id="story-06">
+      <div class="spread-numeral">06</div>
+      <div class="spread-inner">
+        <div class="kicker">Open Models</div>
+        <h2 class="headline">Granite 4.1: IBM&#x27;s 8B Model Matching 32B MoE</h2>
+        
+        <p class="lede">IBM&#x27;s Granite 4.1 release lands a dense 8B-parameter model that holds its own against larger mixture-of-experts architectures on coding and tool-use benchmarks, while being small enough to run on a single high-memory GPU.</p>
+        <div class="body">The interesting story is not the leaderboard line. It is that an enterprise-licensed, openly weighted model from IBM is now in the size envelope where a security team can actually self-host inference for sensitive workflows. For organisations that have hit a wall on sending logs, code, or customer data to a third-party endpoint, Granite 4.1 quietly becomes one of the more practical options. Tooling around it is still rough compared to the frontier labs, but the licence and the size are right.</div>
+        
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">AI</span>
+            <span class="pill pill-kicker">Open Models</span>
+          </div>
+          <div class="meta-score">HN score 286</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://firethering.com/granite-4-1-ibm-open-source-model-fast" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47963204" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-newspaper" id="story-07">
+      <div class="spread-numeral">07</div>
+      <div class="spread-inner">
+        <div class="kicker">CVE-2026-41940</div>
+        <h2 class="headline">cPanel and WHM Authentication Bypass</h2>
+        <div class="applies-badge">Directly applies to you</div>
+        <p class="lede">watchTowr Labs publishes a deep technical writeup of CVE-2026-41940, an unauthenticated bypass affecting the cPanel and WHM control plane that powers a significant share of the world&#x27;s small-business hosting.</p>
+        <div class="body">The flaw lets an attacker reach administrative endpoints without credentials. The post walks through the root cause, the patched diff, and provides indicators of compromise. cPanel&#x27;s exposure is unusually broad: hosting providers, agencies running customer sites, and a long tail of self-hosted SMBs. If you have any cPanel surface in your estate or in a vendor&#x27;s, the next 48 hours matter.</div>
+        
+        <aside class="action-block">
+          <h4 class="action-heading">What to do</h4>
+          <p class="action-body">Inventory cPanel and WHM instances across owned and vendor estates. Apply the vendor patch and rotate any keys or sessions that traversed the bypassed paths. Hunt for the IOCs published by watchTowr.</p>
+        </aside>
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">Cybersecurity</span>
+            <span class="pill pill-kicker">CVE-2026-41940</span>
+          </div>
+          <div class="meta-score">HN score 83</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://labs.watchtowr.com/the-internet-is-falling-down-falling-down-cpanel-cve-2026-41940/" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47967069" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-clean" id="story-08">
+      <div class="spread-numeral">08</div>
+      <div class="spread-inner">
+        <div class="kicker">Developer Tools</div>
+        <h2 class="headline">Zed 1.0</h2>
+        
+        <p class="lede">After four years of public betas, the Zed editor reaches 1.0. The Rust-built editor leans into multiplayer editing, collaborative AI, and the kind of latency that makes everything else feel sluggish.</p>
+        <div class="body">Zed has spent the run-up to 1.0 quietly accumulating the parts that matter for a serious editor: language server stability, debugger integration, terminal that feels native, extension system, and a deliberate AI integration that does not pretend to be your pair. For teams already evaluating editor-side AI workflows, the 1.0 mark is the point at which Zed becomes a defensible standard rather than an enthusiast pick.</div>
+        
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">Software</span>
+            <span class="pill pill-kicker">Developer Tools</span>
+          </div>
+          <div class="meta-score">HN score 2071</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://zed.dev/blog/zed-1-0" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47965108" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-editorial" id="story-09">
+      <div class="spread-numeral">09</div>
+      <div class="spread-inner">
+        <div class="kicker">Web Standards</div>
+        <h2 class="headline">Mozilla&#x27;s Opposition to Chrome&#x27;s Prompt API</h2>
+        
+        <p class="lede">Mozilla has formally registered opposition to Google&#x27;s proposed Prompt API, which would expose a browser-resident LLM to any web page through a simple JavaScript call. The issue thread is a clear-eyed governance argument.</p>
+        <div class="body">Mozilla&#x27;s position is that bolting non-deterministic, locale-and-version-dependent model output into a stable web API breaks the contract the platform is meant to provide. Sites would silently get different behaviour from different users, depending on what model their browser ships with. That is a developer experience problem, an accessibility problem, and a privacy attack surface in one. The technical points are fair. The political read is that the platform is fragmenting on AI features and standards bodies are catching up months behind.</div>
+        
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">AI Policy</span>
+            <span class="pill pill-kicker">Web Standards</span>
+          </div>
+          <div class="meta-score">HN score 608</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://github.com/mozilla/standards-positions/issues/1213" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47964617" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="spread spread-memorial" id="story-10">
+      <div class="spread-numeral">10</div>
+      <div class="spread-inner">
+        <div class="kicker">AI and Memory</div>
+        <h2 class="headline">Opus 4.7 Knows the Real Kelsey</h2>
+        <div class="applies-badge">Directly applies to you</div>
+        <p class="lede">An Argument essay on what it means when a frontier model already has a settled, opinionated picture of who you are, before the conversation begins. The author keeps trying to talk to a clean slate, and finds there is no clean slate left.</p>
+        <div class="body">The piece sits with a question that anyone integrating Claude or its peers into a working life will recognise. The model knows things about you it has gleaned from training corpora, from prior sessions, from the long shadow of being a public person on the internet. You can reset a chat. You cannot reset what the model has internalised about you across versions. For practitioners building agentic workflows on top of these systems, it is a sober prompt to think carefully about persona, identity, and the boundary between user input and the model&#x27;s own priors.</div>
+        
+        <aside class="action-block">
+          <h4 class="action-heading">What to do</h4>
+          <p class="action-body">Document, for any agentic workflow you are deploying, what the model is allowed to assume about identities it encounters and how that assumption is bounded. Treat model priors as input data, with provenance.</p>
+        </aside>
+        
+        <footer class="meta-bar">
+          <div class="meta-pills">
+            <span class="pill">AI Ethics</span>
+            <span class="pill pill-kicker">AI and Memory</span>
+          </div>
+          <div class="meta-score">HN score 282</div>
+          <div class="meta-links">
+            <a class="meta-link" href="https://www.theargumentmag.com/p/i-can-never-talk-to-an-ai-a" target="_blank" rel="noopener">Original article &rarr;</a>
+            <a class="meta-link" href="https://news.ycombinator.com/item?id=47962548" target="_blank" rel="noopener">HN discussion &rarr;</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- COLOPHON -->
+    <footer class="colophon">
+      <h2 class="colophon-title">About this edition</h2>
+      <p>Stories were selected from the top of the Hacker News front page on the morning of <strong>Friday, 1 May 2026</strong>. The curation prioritises cybersecurity incidents and supply chain risk, AI tooling and policy, privacy and surveillance, and items that warrant a CISO's attention before the working day begins.</p>
+      <p><strong>What was skipped.</strong> Vendor marketing dressed as news. Routine patch advisories without context. CVE database housekeeping. Crypto and web3 hype. Show HN posts that did not clear a relevance bar. Personal hobby projects, however lovingly built, that do not have an angle for a security leader.</p>
+      <p><strong>Deduplication.</strong> Two stories from today's candidate pool were excluded because they appeared in editions in the previous two days.</p>
+      <div class="colophon-rule"></div>
+      <div class="colophon-bottom">
+        <span>Morning Edition · 1 May 2026</span>
+        <span>Source: news.ycombinator.com</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
