@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 6 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 126</span>
+    <span>Wednesday · 6 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A daily editorial brief, hand-curated for a cybersecurity leader. Today: a 4 GB AI model arriving on managed endpoints without consent, .de going dark for resolvers that honour DNSSEC, and Anthropic shipping a regulated-industry agent stack that quietly raises the bar for the rest of the field.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 6 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      5 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Privacy & Endpoint Risk</span>
+        <span class="toc-title">Google Chrome Silently Installs a 4 GB AI Model on Your Device Without Consent</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance & Workforce</span>
+        <span class="toc-title">Telus Uses AI to Alter Call-Agent Accents in Real Time</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Infrastructure</span>
+        <span class="toc-title">.de TLD Offline Due to DNSSEC Failure</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agent Governance</span>
+        <span class="toc-title">Cloudflare Agents Can Now Create Accounts, Buy Domains, and Deploy Production Code</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Strategy</span>
+        <span class="toc-title">Three Inverse Laws of AI</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Claude / Anthropic</span>
+        <span class="toc-title">Anthropic Launches Agents for Financial Services and Insurance</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Copyright</span>
+        <span class="toc-title">Zuckerberg &#x27;Personally Authorized and Encouraged&#x27; Meta&#x27;s Copyright Infringement</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Model Release</span>
+        <span class="toc-title">Gemma 4: Faster Inference With Multi-Token Prediction Drafters</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agentic Coding Discipline</span>
+        <span class="toc-title">Lessons for Agentic Coding: What Should We Do When Code Is Cheap?</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open Source Ethics</span>
+        <span class="toc-title">FFmpeg Developer Calls Out OxideAV for AI License Laundering of His Code</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Privacy & Endpoint Risk</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Google Chrome Silently Installs a 4 GB AI Model on Your Device Without Consent</h2>
+      <p class="spread-lede">Researchers report that Chrome's latest stable channel quietly drops a 4 GB Gemini Nano model into the user's profile directory the first time the browser starts, no prompt, no opt-in, no enterprise toggle. The download survives policy resets.</p>
+      <div class="spread-body"><p>The technical details matter for endpoint teams. The model arrives via a background component update that bypasses the standard extension and policy channels Group Policy admins normally rely on. Chrome marks the file as part of the browser binary, so it is invisible to most consent-based DLP tooling and tricky to block at the proxy without breaking other component updates. On fleet machines this is roughly 4 GB of unrequested local AI inference capacity per device, plus a sustained background process that has read access to page content for any site Chrome is told to summarise.</p><p>For a UK or EU CISO there are two open questions. The first is data protection: if Gemini Nano is invoked on personal data the user pasted into a form, where does that processing sit under GDPR, and who is the controller. The second is supply chain: a silent 4 GB push proves the component update channel can land arbitrary binaries on managed endpoints without admin consent. That is a model for how a future compromise of the same channel would also look. Worth a frank conversation with whoever owns browser policy in your shop.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit Chrome installs across managed fleet. Establish whether the Optimization Guide On Device Model component is present, what disk it lives on, and whether your DLP, EDR, or anti-virus tooling sees that storage. Open a ticket with endpoint engineering to evaluate the GenAILocalFoundationalModelSettings enterprise policy and consider blocking the component until a Data Protection Impact Assessment lands. Brief the privacy team this week.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 1374</span>
+          <span class="meta-pill meta-source">thatprivacyguy.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.thatprivacyguy.com/blog/chrome-silent-nano-install/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48019219" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance & Workforce</div>
+      
+      <h2 class="spread-headline">Telus Uses AI to Alter Call-Agent Accents in Real Time</h2>
+      <p class="spread-lede">Canadian telco Telus has confirmed it is running real-time accent neutralisation on its outsourced call-centre workforce, machine-translating a Filipino or South African voice into something the marketing copy calls accent-neutral North American before the customer hears it.</p>
+      <div class="spread-body"><p>The pitch is friction reduction. The reality is a permanent live wiretap on the speech of low-paid workers who never opted into having a synthetic voice stitched over theirs. The model is trained on thousands of hours of recorded agent calls, which raises immediate questions about consent, retention, and the downstream rights of the original speakers when their vocal patterns become training data for a product that does not need them anymore.</p><p>There is also a hard security shape to this. Once a vendor controls a real-time voice transformation pipeline sitting between an agent and a customer, that pipeline is now part of every fraud workflow, every authentication call, every case where voiceprint matters. The blast radius of a compromise of that vendor is much bigger than the marketing slide suggests. UK contact-centre buyers should ask whether the same architecture is being sold under a different name into the financial-services and healthcare lines they procure.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 109</span>
+          <span class="meta-pill meta-source">letsdatascience.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://letsdatascience.com/news/telus-uses-ai-to-alter-call-agent-accents-a3868f63" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48031109" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Infrastructure</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">.de TLD Offline Due to DNSSEC Failure</h2>
+      <p class="spread-lede">Germany's country-code top-level domain went dark for resolvers honouring DNSSEC after a botched key roll left the .de zone unsigned. Roughly 17 million domains became unreachable for any client validating signatures, with knock-on outages across the rest of Europe.</p>
+      <div class="spread-body"><p>DENIC has confirmed the cause sits with a key signing key roll-over that published the wrong DS record at the parent zone. Resolvers that strictly validate, including most modern recursors at large UK ISPs and inside many enterprise networks, returned SERVFAIL for everything under .de. Resolvers running with validation off, or with a permissive bogus policy, were unaffected. That is a deeply uncomfortable split for anyone who has spent the last decade telling boards that DNSSEC is a non-negotiable hygiene control.</p><p>The wider lesson is that ccTLD operators are now part of the supply chain for every UK firm that does business in Germany or relies on infrastructure hosted under .de. Banking SWIFT correspondents, logistics integrations, and SaaS vendors with .de-fronted endpoints all became invisible to validating resolvers. Treat this as a plain availability incident, document where you carry .de dependencies, and assume a similar event will land on .uk or .eu within the next twelve months. The control surface is the same.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull a fresh inventory of DNS dependencies for any business-critical third-party under .de. Confirm with your network team whether your recursors validate strictly, and decide consciously whether that is the right posture for outage tolerance. Add ccTLD signing-key rolls to your third-party risk monitoring. Brief the resilience lead today.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 607</span>
+          <span class="meta-pill meta-source">verisignlabs.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://dnssec-analyzer.verisignlabs.com/nic.de" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48027897" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agent Governance</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Cloudflare Agents Can Now Create Accounts, Buy Domains, and Deploy Production Code</h2>
+      <p class="spread-lede">Cloudflare has shipped a managed integration with Stripe and its own Workers platform that lets an autonomous agent register a Cloudflare account, top up a billing balance, buy a domain, and ship a production deployment, all on its own credentials, with no human in the loop.</p>
+      <div class="spread-body"><p>On a CISO's desk this is two stories at once. One, the integration is genuinely useful for legitimate developer workflows, especially the agentic-coding patterns Anthropic and others have been quietly normalising. Two, every component of the feature, account creation, payment, domain registration, edge code deploy, is exactly the chain of moves a cyber-attacker spends real money trying to automate. The defenders who were already losing the 'is this person real' battle on signup forms now have to assume the actor on the other end has a working credit card balance and is willing to spend it.</p><p>Two practical implications. Phishing infrastructure becomes cheaper and more ephemeral, because the agent can spin a domain, host a kit, and tear down before it lands on a takedown queue. And brand-impersonation domains will be registered faster than your monitoring vendor's daily sweep. If your incident response runbook still assumes a human attacker bottleneck on domain provisioning, rewrite it. The bottleneck is gone.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Update brand monitoring to assume sub-hour domain spin-up. Tighten allow-listing for outbound traffic on Cloudflare-fronted edges. Brief the SOC that abuse patterns will shift from human-paced to model-paced. Engage with Cloudflare directly about KYC controls on new account creation triggered by agent identities.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 184</span>
+          <span class="meta-pill meta-source">blog.cloudflare.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.cloudflare.com/agents-stripe-projects/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48031684" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Strategy</div>
+      
+      <h2 class="spread-headline">Three Inverse Laws of AI</h2>
+      <p class="spread-lede">An essay arguing that the orthodox framing of AI capability, that bigger models are smarter, that more data wins, that the leader stays ahead, has each produced its own inverse, and the inverses are now the more useful pattern for anyone making procurement decisions.</p>
+      <div class="spread-body"><p>The piece is the cleanest distillation in months of why frontier-model leadership is volatile. Open-weights models trained on a fraction of the budget keep matching closed-weights peers on benchmarks that were supposed to cost a billion dollars to clear. Smaller, task-specific models routinely beat large general ones on retrieval and code-completion. And the model providers most obsessed with maintaining a moat keep being passed by the ones that do not bother trying.</p><p>For procurement, the implication is that two-year exclusivity contracts with a single foundation-model vendor are aging badly. The right architecture for the next eighteen months is portable, with prompts and tool-use patterns that migrate cleanly between providers. For internal AI strategy, it is a polite reminder that a moat narrative pitched to your board last year is probably already wrong. Worth circulating to the technology partners on the executive.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Strategy</span>
+          <span class="meta-pill meta-score">HN 412</span>
+          <span class="meta-pill meta-source">susam.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://susam.net/inverse-laws-of-robotics.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48023861" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Claude / Anthropic</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Anthropic Launches Agents for Financial Services and Insurance</h2>
+      <p class="spread-lede">Anthropic has announced a domain-targeted release of Claude agents for regulated financial-services and insurance workflows, with explicit support for audit trails, controlled tool-use, and a connector pattern aimed at underwriting, claims, and compliance functions.</p>
+      <div class="spread-body"><p>The pitch lands in a sector that has been trying to figure out how to use Claude without lighting up its compliance team. The new release ships with a framework for scoped tool access, a deterministic logging surface, and a set of reference workflows for KYC review, claims triage, and regulator-facing summarisation. For organisations already using Claude Code or Cowork, the interesting bit is the connector model. It treats the agent as a regulated actor in its own right, with enforced inputs, outputs, and a paper trail.</p><p>For a CISO building agentic workflows internally, this is the first reference architecture from Anthropic that takes the audit-and-control conversation seriously. Worth reading even if you are not in financial services. The control patterns translate cleanly into healthcare, legal, and any function where 'show me what the agent did and why' is going to be the first question from internal audit. Expect a wave of competitor announcements within ninety days, all chasing the same regulated-industry mid-market.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull the Anthropic announcement into your reference architecture review. Compare its connector model and audit surface against whatever you have already stood up for Claude Code or Cowork agents. Use it as the starting draft for an internal agent-controls policy if you do not already have one.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 225</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/news/finance-agents" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48023533" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Copyright</div>
+      
+      <h2 class="spread-headline">Zuckerberg &#x27;Personally Authorized and Encouraged&#x27; Meta&#x27;s Copyright Infringement</h2>
+      <p class="spread-lede">Court filings unsealed this week allege that Mark Zuckerberg personally approved Meta's decision to train its Llama models on the LibGen pirate library, knowing the corpus was unlicensed, and instructed staff to obscure the provenance of the dataset.</p>
+      <div class="spread-body"><p>The unsealed exhibits include Slack messages and an internal escalation from Meta's legal team raising the copyright exposure, followed by a decision to proceed regardless. The plaintiffs, a group of authors led by Scott Turow, are arguing for statutory damages on each of the seven million books they claim were ingested. The numerical exposure is large, even by Meta standards, but the more durable consequence is reputational. The training-data provenance argument is now a board-level question for any company building on a third-party foundation model.</p><p>The case will sharpen contracts. Expect indemnification clauses on training data to harden, insurance carriers to start asking pointed questions about model lineage, and procurement teams to require provenance attestations as a condition of renewal. If your firm uses a model whose training corpus is not documented, the answer 'the vendor said it was fine' is going to age poorly. This will not be the last suit of its kind.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Legal</span>
+          <span class="meta-pill meta-score">HN 353</span>
+          <span class="meta-pill meta-source">variety.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://variety.com/2026/digital/news/meta-ai-mark-zuckerberg-copyright-infringement-lawsuit-publishers-scott-turow-1236" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48026207" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Model Release</div>
+      
+      <h2 class="spread-headline">Gemma 4: Faster Inference With Multi-Token Prediction Drafters</h2>
+      <p class="spread-lede">Google has shipped Gemma 4 with native multi-token prediction drafters, claiming a clean two-and-a-bit times speedup on standard inference benchmarks without quality regression on the public eval suites.</p>
+      <div class="spread-body"><p>The technical contribution is the drafter pattern moving inside the model rather than living as a separate speculative-decoding head. Practically, this means smaller deployments can reach interactive latency on the kind of consumer hardware that previously needed a chunky server-class GPU. Open weights, a permissive licence, and a clean enough architecture that the community will have it running on Apple Silicon and on consumer CUDA cards within the week.</p><p>For self-hosters, this is a reasonable next stop on the open-weights tour. It does not displace Claude or GPT for frontier work, but for retrieval-augmented generation, classification, and the long tail of internal tooling that previously needed an inference budget line item, Gemma 4 is going to be a default. Watch for early benchmarks against Llama 4 mini and DeepSeek V3 small in the coming days. The price-performance crossover is the interesting data, not the headline speedup.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 529</span>
+          <span class="meta-pill meta-source">blog.google</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48024540" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agentic Coding Discipline</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Lessons for Agentic Coding: What Should We Do When Code Is Cheap?</h2>
+      <p class="spread-lede">A working engineer's reflection on ten patterns that emerge when the cost of writing code falls toward zero, and on the disciplines that have to harden when humans no longer act as a natural rate limit on the codebase.</p>
+      <div class="spread-body"><p>The piece is the most useful thing written this month on the daily reality of building with Claude Code. The author argues that code review, type discipline, and the willingness to throw work away all become more important as the cost of producing a draft falls. The temptation is to treat the model output as a near-finished artefact. The discipline is to treat it as raw material that has to clear a higher bar than human-written code, because no one else feels the pain of writing it.</p><p>There is a security thread woven through the lessons too. When code is cheap, the dependency surface grows faster than the team can audit it. Type signatures and capability boundaries become security boundaries by default. The author is polite about it but the takeaway is unambiguous: if your team is using Claude Code or Cowork for production work and your review rituals have not tightened in proportion, you are quietly accumulating a liability. Worth circulating to anyone running an engineering function.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Block out an hour with engineering leadership this week to walk through these ten lessons against your own codebase. Pick the two that feel weakest and treat them as policy work, not aspiration. Add 'AI-generated PR review' as a named ritual to your team's working agreement.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Engineering</span>
+          <span class="meta-pill meta-score">HN 235</span>
+          <span class="meta-pill meta-source">dbreunig.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.dbreunig.com/2026/05/04/10-lessons-for-agentic-coding.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48019025" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open Source Ethics</div>
+      
+      <h2 class="spread-headline">FFmpeg Developer Calls Out OxideAV for AI License Laundering of His Code</h2>
+      <p class="spread-lede">An FFmpeg maintainer has filed a public issue against OxideAV, a Rust media project, alleging that its core MagicYUV implementation is a near line-for-line translation of his GPL-licensed C, run through an AI translation tool and republished under a permissive licence.</p>
+      <div class="spread-body"><p>The technical claim is straightforward and the diff is in the issue tracker. Variable names, branching structure, and idiomatic quirks all carry through the translation in a way that a clean-room rewrite would not. The legal claim is harder, and is exactly the question the open-source community has been circling for two years. If a model is asked to rewrite a GPL file in another language, does the output carry the original licence, or has the licence been scrubbed by virtue of passing through a statistical layer that does not, on its face, copy.</p><p>There will be a court case like this within eighteen months and it will set the tone for how every enterprise treats AI-generated code. For now, the practical advice for any organisation generating code with an LLM is to keep training and prompting context for the agents auditable, log the source files used, and treat AI-translated dependencies with the same scrutiny you would apply to a fork of unknown provenance. The maintainer community is watching.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Legal</span>
+          <span class="meta-pill meta-score">HN 32</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/OxideAV/oxideav-magicyuv/issues/3" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48031185" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 6 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as news, routine patch advisories without context, CVE-database housekeeping, and crypto/web3 hype. Hardware launches and gaming nostalgia were considered for filler slots only and none cleared the bar.</p>
+    <p>Duplicates excluded against the previous two editions: 0. No candidate URL from today's HN front page matched a story already featured on 4 or 5 May.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
