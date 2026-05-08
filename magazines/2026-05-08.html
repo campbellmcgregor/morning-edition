@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 8 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 128</span>
+    <span>Friday · 8 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">This morning the front page is dominated by a single shape: trust failing in the places we built it. ShinyHunters is sitting on the Canvas LMS, a kernel-level Linux LPE turns every multi-tenant cluster into a tenant-isolation problem, and Google has quietly walked back a privacy promise about Chrome’s on-device AI. Underneath the cyber news there is a softer story about what happens to expertise when the tools get good.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 8 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      6 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Education Sector Breach</span>
+        <span class="toc-title">Canvas is down as ShinyHunters threatens to leak schools’ data</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Chrome removes claim of On-device Al not sending data to Google Servers</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain Caution</span>
+        <span class="toc-title">Maybe you shouldn&#x27;t install new software for a bit</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Tooling Advisory</span>
+        <span class="toc-title">Claude Code CVE-2026-39861:sandbox escape via symlink</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Interpretability Research</span>
+        <span class="toc-title">Natural Language Autoencoders: Turning Claude&#x27;s Thoughts into Text</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Coding Agent</span>
+        <span class="toc-title">AlphaEvolve: Gemini-powered coding agent scaling impact across fields</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">Dirtyfrag: Universal Linux LPE</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Browser Hardening</span>
+        <span class="toc-title">Hardening Firefox with Claude Mythos Preview</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Governance</span>
+        <span class="toc-title">Two Home Affairs officials suspended after AI &#x27;hallucinations&#x27; found</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Community Decay</span>
+        <span class="toc-title">AI slop is killing online communities</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Education Sector Breach</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Canvas is down as ShinyHunters threatens to leak schools’ data</h2>
+      <p class="spread-lede">The ShinyHunters extortion crew claims it has stolen data from Instructure’s Canvas LMS platform, taking the system offline as it threatens to publish records belonging to schools and universities worldwide.</p>
+      <div class="spread-body"><p>Canvas underpins coursework, grading, and student records at thousands of universities and K-12 districts. ShinyHunters, the same crew tied to recent Snowflake-customer extortion campaigns, says it has lifted institution-level data and is running a countdown clock. Instructure has confirmed disruption and is investigating but has not yet characterised what was taken or how the intrusion landed. For schools that mapped sensitive identity data into Canvas, the blast radius extends well beyond grades — names, contact info, potentially safeguarding notes and special-needs records sit inside many tenants.</p>
+        <p>For UK and EU education customers this is a 72-hour clock under GDPR Article 33 the moment Instructure tells them their tenant is implicated. CISOs at affected institutions should be preparing data-mapping briefs for their DPOs now, not after a notification arrives. Treat ShinyHunters posts as authentic until proven otherwise — the group has a track record of following through, and pre-empting the news cycle is cheaper than trying to outrun a public leak page.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Confirm whether your institution touches Canvas (directly, via federation, or via a third-party tool that sits inside it). Pull your tenant logs for the last 90 days, line up your DPO, and draft your Article 33 narrative now. If you can identify which Canvas tenant data was sensitive, prioritise notifying anyone whose safeguarding or special-needs records might have left the building.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 519</span>
+          <span class="meta-pill meta-source">theverge.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.theverge.com/tech/926458/canvas-shinyhunters-breach" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48055913" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Chrome removes claim of On-device Al not sending data to Google Servers</h2>
+      <p class="spread-lede">Google has quietly removed the marketing line that promised on-device Chrome AI features would not send data back to its servers, raising fresh questions about how much of your browsing now feeds the model layer.</p>
+      <div class="spread-body"><p>The original copy was unambiguous: Chrome’s built-in AI ran locally and did not transmit content to Google. That sentence is gone. No press release, no migration notice, no clarifying blog post — just a silent edit that surfaced on r/chrome and ricocheted across the front page. Whether the change reflects a product reality (telemetry now leaves the device) or a legal hedge (lawyers refusing to commit to an absolute), the effect is the same: users who relied on that promise no longer have it in writing.</p>
+        <p>In the UK and EU this is more than a trust problem. ICO and EDPB guidance on browser-based AI lean heavily on data minimisation and the absence of unexpected processing. A vendor walking back a &quot;stays on device&quot; claim is exactly the kind of change that should trigger a refresh of any DPIA that mentioned Chrome AI. If your staff browsers have on-device AI enabled by default — and most do — your risk register just got a new line item.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit which of your Chrome estates have built-in AI features turned on. Update the Chrome entry on your DPIA register and re-test what data leaves the device using a network proxy. If you cannot prove processing stays local, treat it as cloud processing for compliance purposes until Google publishes a clearer statement.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 536</span>
+          <span class="meta-pill meta-source">old.reddit.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://old.reddit.com/r/chrome/comments/1t5qayz/chrome_removes_claim_of_ondevice_al_not_sending/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48050964" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain Caution</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Maybe you shouldn&#x27;t install new software for a bit</h2>
+      <p class="spread-lede">Xe Iaso’s argument is short and unwelcome: the npm and PyPI ecosystems are absorbing too many fresh malicious packages right now, and the safest move for the next week or two is simply to stop installing.</p>
+      <div class="spread-body"><p>Iaso lays out a sequence of recent typosquatting and dependency-confusion incidents in npm, PyPI and Cargo, all landing inside a tight window. Their thesis is not that the registries are broken forever — it is that the attacker tempo has briefly outpaced the defenders’. New transitive dependencies, version bumps, and &quot;just curious&quot; `npx` runs are the highest-risk activity, and skipping them for a week costs almost nothing compared to triaging a postinstall script that has already exfiltrated your developer secrets.</p>
+        <p>For a security team, the operational reading is more useful than the dramatic one. You probably will not get every developer to abstain. You can, however, freeze CI dependency upgrades, turn on registry-side install policies, and require a second pair of eyes on any new package added during the window. The cost of a false-positive caution is a slightly slower week. The cost of a successful supply chain hit is an incident response.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Freeze automated dependency updates across CI for the next seven to ten days. Turn on package-allowlisting in your registry proxy if you have one. Tell engineering leads that any new top-level dependency added this week needs a manual review from security before merge, and audit the last 30 days of `postinstall` and `prepare` script executions on developer machines.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 380</span>
+          <span class="meta-pill meta-source">xeiaso.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://xeiaso.net/blog/2026/abstain-from-install/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48056227" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Tooling Advisory</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Claude Code CVE-2026-39861:sandbox escape via symlink</h2>
+      <p class="spread-lede">A symlink-handling bug in Claude Code lets a malicious project escape its sandbox and reach files outside the working directory — exactly the situation the sandbox was supposed to prevent.</p>
+      <div class="spread-body"><p>CVE-2026-39861 covers a path-resolution flaw in how Claude Code follows symlinks during tool calls. A repository that ships a crafted symlink can convince the agent that a path inside the project actually points outside it, allowing read or write operations against arbitrary locations on the developer’s machine. Anthropic has published an advisory and a patched version; the older builds are now flagged in GitHub’s advisory database. There is no public exploitation in the wild yet, but the proof-of-concept is straightforward and security-research mailing lists already have it.</p>
+        <p>For Cowork users this is your tool — patch first, then think about provenance. The risk is not Claude itself. It is that any repository pulled from a stranger and run inside Claude Code can reach beyond what the sandbox suggests. Treat untrusted clones the way you would treat a random shell script: do not run them inside your primary developer profile, and assume that anything Claude Code can read, the symlinked attacker can too, until you confirm the upgrade.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Update Claude Code to the patched version today. If you cannot upgrade immediately, avoid running Claude Code against repositories you do not trust, and in particular against repositories from open-source PRs you have not yet read. Add an internal note to your AI tooling runbook so this advisory is not lost in noise.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 8</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/advisories/GHSA-vp62-r36r-9xqp" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48057842" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Interpretability Research</div>
+      
+      <h2 class="spread-headline">Natural Language Autoencoders: Turning Claude&#x27;s Thoughts into Text</h2>
+      <p class="spread-lede">Anthropic’s new natural-language autoencoder turns Claude’s internal residual-stream activations into readable English sentences, opening a path to interpretability that does not depend on probes or sparse coding.</p>
+      <div class="spread-body"><p>The team trained a small decoder model to map a transformer’s hidden state into a sentence and then back again, with a reconstruction loss that pushes the encoder to land on text that actually reflects what the model was thinking at that layer. The result reads less like an explanation and more like a paraphrase of the model’s in-progress reasoning — sometimes uncannily faithful, sometimes confidently wrong in ways that are themselves diagnostic. It joins a small but growing toolbox alongside SAEs and circuit-level work.</p>
+        <p>The interesting claim is not that this fully solves interpretability. It is that the residual stream is more linguistically structured than most assumed, which has knock-on consequences for safety evaluation, jailbreak detection, and red-team tooling. If you can read a model’s mid-flight thoughts in plain English, you can audit them. The catch is the usual one — auditing is only useful if the readout is faithful, and the paper is honest about how often it is not.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Research</span>
+          <span class="meta-pill meta-score">HN 249</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/research/natural-language-autoencoders" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48052537" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Coding Agent</div>
+      
+      <h2 class="spread-headline">AlphaEvolve: Gemini-powered coding agent scaling impact across fields</h2>
+      <p class="spread-lede">DeepMind’s AlphaEvolve combines Gemini with an evolutionary search loop, and the team claims real research wins — improved matrix-multiplication kernels, better data-centre scheduling, sharper compiler heuristics.</p>
+      <div class="spread-body"><p>Alpha­Evolve writes candidate programs, runs them, scores them, and recombines the survivors. That is not new — genetic programming has been around for decades — but the substrate is. Using a strong frontier LLM as the mutation engine means the population stays plausible without exhaustive enumeration, and the scoring loop turns a chat assistant into something closer to an autonomous researcher. DeepMind reports improvements in problems Google actually cares about, including a 23 percent speed-up on a kernel inside Borg’s scheduler.</p>
+        <p>The interesting wrinkle for engineering leaders is the shape of the system, not the benchmark. AlphaEvolve is a controller-and-population pattern that any team with a measurable scoring function can copy. If you have a problem with a clean fitness signal — a query planner, a deployment scheduler, a synthesis target — you do not need to wait for DeepMind. You need a good evaluator and a small frontier-model budget.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 277</span>
+          <span class="meta-pill meta-source">deepmind.google</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://deepmind.google/blog/alphaevolve-impact/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48050278" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Dirtyfrag: Universal Linux LPE</h2>
+      <p class="spread-lede">Dirtyfrag is a universal local-privilege-escalation in the Linux kernel’s fragment-cache path that hits every supported distribution, requires no special build flags, and turns an unprivileged shell into root with a couple of well-aimed packets.</p>
+      <div class="spread-body"><p>The Openwall advisory describes a use-after-free in IPv4 fragment reassembly that any local user can race. The proof of concept lands on stock Ubuntu, RHEL, Debian, and Amazon Linux — anywhere fragment caching is enabled, which is everywhere. Patches are out for the major distributions; older kernels and long-tail distributions are still exposed. Because the bug is reachable from a network namespace, container escapes are on the menu too: a compromised pod on a multi-tenant cluster can become a root on the underlying host.</p>
+        <p>For anyone running Linux in production this is a patch-everything-now situation. The exploit is short, public, and reliable. If you cannot patch in the next 24 hours, mitigations exist (disable IPv4 fragmentation, enable user-namespace restrictions on a per-host basis) but they are partial. CISOs should be staring at their multi-tenant Kubernetes posture in particular, because that is where this bug stops being a single-host LPE and starts being a tenant-isolation failure.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Identify every Linux host you operate, prioritise multi-tenant Kubernetes nodes, and roll out the kernel patch within 24 hours. Where you cannot patch, restrict unprivileged user namespaces and audit container runtime configuration. Add this CVE to your incident threshold list — exploitation indicators are subtle, and you will want it in your hunting queries.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 560</span>
+          <span class="meta-pill meta-source">openwall.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.openwall.com/lists/oss-security/2026/05/07/8" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48053623" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Browser Hardening</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Hardening Firefox with Claude Mythos Preview</h2>
+      <p class="spread-lede">Mozilla is rolling Claude Mythos into Firefox’s security review pipeline as a preview, using the model to surface memory-safety issues during development rather than after a release ships.</p>
+      <div class="spread-body"><p>The Hacks post walks through how the Firefox security team is using Claude Mythos to review patches in Bugzilla before they land. The model annotates diffs with concern levels, suggests test cases for tricky paths, and — crucially — flags the kind of &quot;looks fine, isn’t&quot; subtle memory issues that human reviewers catch on a good day and miss on a tired one. Mozilla is careful to frame this as augmentation rather than replacement: Mythos comments are reviewed by a human owner, and the model is not allowed to approve patches alone.</p>
+        <p>For UK and EU CISOs this is a useful reference point. Firefox is open-source, the workflow is documented, and the failure modes are visible. If you are building a case internally for using Anthropic’s models inside your security review loop, you now have a credible third-party adopter doing it on a public codebase. Worth bookmarking for your next AI-governance committee meeting.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Review your own SAST/SCA pipeline and ask whether an LLM-augmented diff review would catch the bugs your humans currently miss. If you already have an Anthropic enterprise tenancy, run a small spike against your last 90 days of merged PRs and measure agreement with your reviewer notes before scaling.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 137</span>
+          <span class="meta-pill meta-source">hacks.mozilla.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48051079" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Governance</div>
+      
+      <h2 class="spread-headline">Two Home Affairs officials suspended after AI &#x27;hallucinations&#x27; found</h2>
+      <p class="spread-lede">Two senior officials at South Africa’s Department of Home Affairs were suspended after auditors found that case decisions had been built on AI-generated citations and statutes that simply do not exist.</p>
+      <div class="spread-body"><p>The Citizen reports that the officials used a generative model to draft adjudication decisions and did not check the outputs before signing them. The fabrications were caught when applicants’ lawyers tried to follow the cited authorities and could not find any of them. The department has paused related cases and opened a disciplinary process. It is the highest-profile administrative-law incident yet involving AI hallucination, and the suspensions matter — the message is that the human in the loop is liable for what the model produced.</p>
+        <p>Every regulator on the planet is watching this kind of case. The lesson for governance teams is not &quot;ban the tools&quot; — it is &quot;log the use, train the staff, and make verification a workflow step rather than a hope.&quot; Public-sector decision-making is the canary, but private-sector legal, HR and compliance teams are using the same models with the same risks. If your AI usage policy does not explicitly require source-checking before a model-drafted decision is signed, you are one mistake away from being in the same headline.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Governance</span>
+          <span class="meta-pill meta-score">HN 77</span>
+          <span class="meta-pill meta-source">citizen.co.za</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.citizen.co.za/news/home-affairs-officials-suspended-ai-hallucinations/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48053842" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Community Decay</div>
+      
+      <h2 class="spread-headline">AI slop is killing online communities</h2>
+      <p class="spread-lede">Robin Moffatt’s essay catalogues the slow collapse of the Stack Overflows, subreddits, and mailing lists that taught a generation of engineers, as AI-generated answers crowd out the humans who used to write them.</p>
+      <div class="spread-body"><p>The argument is not that AI killed the forums — engagement was already drifting before LLMs arrived. It is that LLMs accelerated the collapse by intercepting the questions that used to seed community discussion. New engineers ask Claude or ChatGPT, get an adequate answer, and never post. The communities that depended on those posts to teach the next generation of contributors are starving in slow motion. Moffatt writes about the human cost in a way that avoids both nostalgia and despair.</p>
+        <p>There is no obvious action item here, which is part of why the piece sits at the end of the issue. But the piece is worth the time. The same dynamic that makes our work easier is hollowing out the apprenticeship pipeline that produced the people who built the tools we now rely on. CISOs and engineering leaders alike will be hiring from a thinner pool of self-taught contributors in five years, and the time to think about that is now.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Ethics</span>
+          <span class="meta-pill meta-score">HN 582</span>
+          <span class="meta-pill meta-source">rmoff.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://rmoff.net/2026/05/06/ai-slop-is-killing-online-communities/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48053203" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 8 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed up as research, routine patch advisories without context, crypto and web3 hype, and a lot of consumer hardware noise.</p>
+    <p>Duplicates excluded against the previous two editions: 0. None of yesterday or the day before’s stories were still in this morning’s top 50, which is unusual but not unheard of for a Friday.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
