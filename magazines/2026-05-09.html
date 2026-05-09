@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 9 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 129</span>
+    <span>Saturday · 9 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A Linux kernel privilege escalation lands clean, Meta unwinds end-to-end encryption on Instagram DMs, and Brussels turns its attention to the consumer VPN. Add a quiet AWS afternoon and a thoughtful note from Anthropic on why Claude does what it does, and the morning makes itself.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 9 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      6 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">You gave me a u32. I gave you root. (io_uring ZCRX freelist LPE)</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Meta Shuts Down End-to-End Encryption for Instagram Messaging</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Coerced Consent</span>
+        <span class="toc-title">Apple Is Holding My Pictures Hostage Until I Accept Their New Terms of Service</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Container Exploit</span>
+        <span class="toc-title">Podman rootless containers and the Copy Fail exploit</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Vulnerability Disclosure</span>
+        <span class="toc-title">AI is breaking two vulnerability cultures</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling</span>
+        <span class="toc-title">Teaching Claude Why</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Cloud Outage</span>
+        <span class="toc-title">AWS North Virginia data center outage – recovery to take hours</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Tooling Pattern</span>
+        <span class="toc-title">Using Claude Code: The unreasonable effectiveness of HTML</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Regulation</span>
+        <span class="toc-title">EU calls VPNs &quot;a loophole that needs closing&quot; in age verification push</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Platform Power</span>
+        <span class="toc-title">Google broke reCAPTCHA for de-googled Android users</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">You gave me a u32. I gave you root. (io_uring ZCRX freelist LPE)</h2>
+      <p class="spread-lede">A new write-up walks through a freelist exploit in the Linux kernel io_uring ZCRX path that turns a single attacker-controlled u32 into a clean local privilege escalation, with no exotic primitives required.</p>
+      <div class="spread-body"><p>Linux LPE bugs in async I/O paths have become routine, but this one is worth reading because it is unusually self-contained: the author lands on a corrupted slab freelist with one writeable u32 and walks the chain to root in a way that any reasonably current kernel will replicate. The exploit relies on io_uring being enabled with ZCRX, which most enterprise distributions ship by default. Patches are upstream but distribution backports are still landing, which means production hosts are very likely vulnerable today.</p><p>For anyone running shared multi-tenant Linux — container hosts, build runners, dev VMs, anything where untrusted code touches userspace — this is the type of bug that turns a contained foothold into game over. Treat io_uring as a privileged interface, not a performance feature, and audit who needs it. Disabling io_uring globally where it is not load-bearing is the surgical fix, and the Linux community has been pushing that recommendation for two years now. Today is a good day to revisit the policy.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit which fleet hosts have io_uring enabled, prioritise patching kernels on container hosts and build infrastructure, and consider the kernel.io_uring_disabled sysctl on systems where io_uring is not strictly required. If you run hardened Kubernetes nodes, confirm your AppArmor/seccomp profiles block io_uring_setup for non-system workloads.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 170</span>
+          <span class="meta-pill meta-source">ze3tar.github.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://ze3tar.github.io/post-zcrx.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48067734" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      
+      <h2 class="spread-headline">Meta Shuts Down End-to-End Encryption for Instagram Messaging</h2>
+      <p class="spread-lede">Meta is rolling back end-to-end encryption on Instagram direct messages, citing safety obligations and the demands of regulators in several jurisdictions, after spending two years promoting E2EE as a default privacy posture.</p>
+      <div class="spread-body"><p>The reversal is being framed as a compliance move, but the practical effect is that a billion-plus user surface that defaulted to private now defaults to readable. Meta will retain the ability to scan content for safety classifiers and respond to legal requests with cleartext, which is the exact capability E2EE was designed to remove. The cryptographic plumbing built up since 2024 quietly becomes window dressing. Threat models that assumed Instagram DMs were equivalent to Signal need to be redrawn today.</p><p>Beyond the immediate user impact, this is a strong precedent. Once a major platform demonstrates that E2EE can be unwound under regulatory pressure, the policy argument shifts. Expect WhatsApp pressure to intensify next, particularly in the EU and UK Online Safety Act context. For organisations relying on consumer apps as fallback comms, this is a reminder that platform privacy guarantees are reversible and rarely come with notice. Treat any consumer messenger as a "best effort" channel, not a confidential one.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 235</span>
+          <span class="meta-pill meta-source">pcmag.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.pcmag.com/news/meta-shuts-down-end-to-end-encryption-for-instagram-dms-messaging" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48069192" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Coerced Consent</div>
+      
+      <h2 class="spread-headline">Apple Is Holding My Pictures Hostage Until I Accept Their New Terms of Service</h2>
+      <p class="spread-lede">A widely shared post documents how iCloud Photos becomes inaccessible until users click &quot;Agree&quot; on new Apple terms, with no read-only mode and no realistic alternative beyond accepting whatever the new agreement contains.</p>
+      <div class="spread-body"><p>The mechanic is familiar: a modal lands across the photo library, the legalese is nine screens long, and there is no way to retrieve a wedding picture without tapping Agree. Apple is hardly alone in this — Microsoft, Google and most consumer SaaS use the same pattern — but the post is a useful counterweight to the marketing that positions Apple as a privacy-first platform. Consent extracted at the moment of access is not informed consent, and consumer protection regulators in the EU have begun saying so out loud.</p><p>The CISO read here is about precedent, not pixels. If your workforce stores work-related artefacts in personal iCloud or OneDrive accounts (and they do), they are routinely accepting terms that change the legal posture of your data without anyone in your organisation seeing the clauses. This is one of the quieter shadow-IT problems and it intersects directly with GDPR data processor obligations. Worth a fresh policy conversation before the regulators have it for you.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 35</span>
+          <span class="meta-pill meta-source">probablydance.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://probablydance.com/2026/05/01/apple-is-holding-my-pictures-hostage-until-i-accept-their-new-terms-of-service/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48067496" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Container Exploit</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Podman rootless containers and the Copy Fail exploit</h2>
+      <p class="spread-lede">A detailed Podman write-up shows how the rootless container Copy operation can be abused in a way that breaks the unprivileged isolation guarantee, allowing controlled writes outside the user namespace boundary on common configurations.</p>
+      <div class="spread-body"><p>Rootless Podman is widely sold as the safe-by-default alternative to dockerd, and for most threat models that is true. But this exploit shows that the rootless story has sharp edges where mount and copy semantics meet user namespaces. The author walks through a reproduction that, on default Fedora and recent RHEL configurations, lets a container process land files where it should not. Not a remote-code-execution headline, but a clean local privilege boundary break in a tool that many teams have adopted specifically to avoid running a Docker daemon as root.</p><p>If your developer workstations or CI runners shifted to rootless Podman in the last 18 months — a popular hardening project — assume you are exposed and check your version. Fixed releases are out for the upstream and most distributions, but the standard story applies: shipping a rootless build does not mean every build is rootless, and the bug surfaces in shared CI runners that most security teams never inventory carefully.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory Podman versions across CI runners, developer laptops and any K8s tooling that bundles Podman. Pin upgraded versions, and if you cannot patch immediately, restrict the bind mounts available to rootless containers in CI configuration. Re-check your container threat model assumptions while you are in there.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 124</span>
+          <span class="meta-pill meta-source">garrido.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://garrido.io/notes/podman-rootless-containers-copy-fail/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48062745" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Vulnerability Disclosure</div>
+      
+      <h2 class="spread-headline">AI is breaking two vulnerability cultures</h2>
+      <p class="spread-lede">Jeff Kaufman argues that AI-assisted vulnerability research is fracturing two formerly uneasy but functioning cultures: coordinated disclosure between researchers and vendors, and the implicit norms that have governed the bug bounty economy for the last decade.</p>
+      <div class="spread-body"><p>The thesis is that AI-aided fuzzing and code analysis collapse the cost of finding a bug, but do not change the cost of triaging or fixing one. The result is vendors drowning in plausible-sounding but low-quality reports, while the smaller pool of high-quality researchers loses the trust signals that used to get their findings prioritised. Bug bounty platforms are caught in the middle, with payout scales that no longer track the value of what is being submitted, and vendor security teams who increasingly treat external reports with weary suspicion by default.</p><p>This is the rare AI-and-security piece worth reading, because it does not lean on hype. The diagnosis is sober and the prescriptions are concrete: structured triage funnels, AI-assisted disclosure protocols on the vendor side, and reputation systems that survive the report-volume explosion. For anyone running a vulnerability disclosure programme, this is a useful frame for the next year of work.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 308</span>
+          <span class="meta-pill meta-source">jefftk.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.jefftk.com/p/ai-is-breaking-two-vulnerability-cultures" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48066524" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Teaching Claude Why</h2>
+      <p class="spread-lede">A new Anthropic research note describes work on getting Claude to internalise the reasoning behind a refusal or behaviour rather than the surface pattern, with the practical claim that this reduces brittle workarounds and improves robustness in agent settings.</p>
+      <div class="spread-body"><p>The post sits in the lineage of constitutional AI but pushes harder on the gap between a model that knows a rule and a model that knows why the rule exists. The work shows measurable improvements in resistance to prompt-injection style manipulation and, more usefully, in the tendency of agentic Claude deployments to recover gracefully when their tools or environment fail. For anyone building serious automation on top of Claude, this is the type of foundation work that quietly changes what the model can be trusted with.</p><p>The piece is also an interesting tell for where Anthropic is investing. Less attention on benchmark gymnastics, more on the failure modes that surface when models are dropped into multi-step agent loops. That matches what teams running Claude Code and similar agents are actually asking for, which is fewer brittle stoppages and clearer recovery behaviour. Worth a read before the next round of agent design choices.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If you run Claude in agentic loops (Claude Code, Cowork, custom SDK agents), watch for upcoming model updates that fold this work in and re-test your prompt-injection regression suite against them. The practical wins should land on retry behaviour and grounding under tool failure.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Anthropic</span>
+          <span class="meta-pill meta-score">HN 136</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/research/teaching-claude-why" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48066592" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Cloud Outage</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">AWS North Virginia data center outage – recovery to take hours</h2>
+      <p class="spread-lede">AWS suffered a multi-hour incident in us-east-1 (Northern Virginia) on Friday, with FanDuel, Coinbase and a long tail of consumer products knocked offline as core EC2 and networking control planes degraded into the evening US time.</p>
+      <div class="spread-body"><p>us-east-1 is the region where AWS keeps the keys to the kingdom for many control-plane services, which is why a regional incident there has a habit of becoming a global one. Friday evening UK time, the symptoms looked familiar: API errors, EC2 launch failures, knock-on impacts to anything that authenticates against IAM. AWS communications were predictably terse during the active phase. The post-event RCA will arrive in a few days and will be required reading for anyone with serious dependencies in the region.</p><p>The takeaway is the boring one: us-east-1 concentration risk is real, and the answer is not "move to Frankfurt", it is "design assuming the region you are in will burn for four hours twice a year". Cross-region failover for control-plane operations, alarm paths that do not depend on the same region, and run-books that have actually been rehearsed in the last six months. None of this is news to anyone, but every outage produces a fresh reminder that the diagrams and the reality drifted apart.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull your last us-east-1 incident retrospective and confirm the action items closed. Verify cross-region observability on the services that matter to you, particularly your IAM-dependent control paths. If you depend on a SaaS that runs in us-east-1, check whether their status page told the truth on Friday — it often does not.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Operations</span>
+          <span class="meta-pill meta-score">HN 194</span>
+          <span class="meta-pill meta-source">cnbc.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.cnbc.com/2026/05/08/aws-outage-data-center-fanduel-coinbase.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48058197" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Tooling Pattern</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Using Claude Code: The unreasonable effectiveness of HTML</h2>
+      <p class="spread-lede">A practitioner thread argues that the most underrated affordance of Claude Code is its willingness to render HTML for everything — debugging output, ad hoc dashboards, prototypes — and the speed advantage that creates for one-person workflows.</p>
+      <div class="spread-body"><p>The observation is mundane but the implication is not. Most coding assistants treat HTML output as a fallback for when nothing else fits. Claude Code treats it as a default surface, which means a 30-second request can produce an interactive view of whatever data you happen to be looking at. For internal-tools work, exploratory analysis, and the kind of quick-and-dirty visualisations that engineers usually skip, this collapses the loop from "would be nice to see" to "here it is".</p><p>For solo operators and small teams, the cumulative effect over a quarter is significant. The cost of rendering anything you have already loaded in context drops to near zero, and you stop talking yourself out of building little tools because they would take half an hour. The advice in the post is concrete and lifts cleanly into other agentic environments, including Cowork: ask for HTML by default, ask for it self-contained, and treat the output file as disposable.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add an HTML-first artefact instruction to your default Claude Code and Cowork workflows: when generating internal views, dashboards or debugging output, default to a self-contained .html the user can open. The marginal cost is zero and the optionality compounds.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tooling</span>
+          <span class="meta-pill meta-score">HN 58</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/trq212/status/2052809885763747935" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48071940" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Regulation</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">EU calls VPNs &quot;a loophole that needs closing&quot; in age verification push</h2>
+      <p class="spread-lede">A leaked working document shows EU policymakers describing consumer VPNs as a &quot;loophole that needs closing&quot; in the context of age-verification rules for online platforms, suggesting future regulation that would require platforms to detect and block VPN traffic.</p>
+      <div class="spread-body"><p>The political logic is straightforward: age-verification mandates only work if users cannot trivially route around them, and any user with a £4-a-month VPN subscription can. The technical logic is much messier. There is no clean way to identify "VPN traffic" that does not also catch enterprise remote access, privacy tools used by journalists and activists, and the operational VPNs that almost every organisation runs. The proposals cited in the document gesture at this without resolving it, which is the standard EU pattern at this stage of a file.</p><p>UK readers should not feel safe from this. The Online Safety Act regulator has been openly sympathetic to the same framing, and any EU rule that survives consultation will produce strong pressure on UK platforms via market access. Expect a 12-to-24-month window before implementing rules land. The right time to engage is now, while the technical objections still have leverage on the policy text.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If your organisation has a public-policy function, flag this as worth tracking before the formal proposal. For your own technical estate, audit the VPN footprint your business depends on (split tunnel, ZTNA gateways, contractor access) so you can argue the impact in concrete numbers when consultation opens.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy / Regulation</span>
+          <span class="meta-pill meta-score">HN 21</span>
+          <span class="meta-pill meta-source">cyberinsider.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://cyberinsider.com/eu-calls-vpns-a-loophole-that-needs-closing-in-age-verification-push/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48072190" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Platform Power</div>
+      
+      <h2 class="spread-headline">Google broke reCAPTCHA for de-googled Android users</h2>
+      <p class="spread-lede">A change to reCAPTCHA quietly broke verification for users on de-googled Android distributions, locking them out of large parts of the open web that have outsourced bot-detection to Google over the past decade.</p>
+      <div class="spread-body"><p>The technical detail is small: reCAPTCHA now relies on signals that are only present on Play-services-bearing Android. The political detail is large. A single private company has been allowed to become the gatekeeper of "is this a human?" for most of the consumer internet, and the price of stepping outside its ecosystem is being treated as a bot. Users running GrapheneOS, LineageOS and similar projects — disproportionately journalists, security researchers, and people with reason to avoid Google — find themselves quietly cut off from banking portals, ticketing sites and government services.</p><p>This is not a story about a bug. It is a story about what happens when bot mitigation, an ostensibly technical concern, is entrusted to a company with strong incentives to make leaving its platform expensive. The right response from website operators is to stop relying on reCAPTCHA as the front door, and the right response from policy is to treat human-verification gatekeepers as the critical infrastructure they have become. Both will take a while.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 872</span>
+          <span class="meta-pill meta-source">reclaimthenet.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://reclaimthenet.org/google-broke-recaptcha-for-de-googled-android-users" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48067119" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 9 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as advisories, routine patch-Tuesday roundups without context, crypto and Web3 hype, and a generous helping of meta-discourse about LLM benchmarks.</p>
+    <p>Duplicates excluded against the previous two editions: 0. None of yesterday&#x27;s or Thursday&#x27;s URLs reappeared on the front page today.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
