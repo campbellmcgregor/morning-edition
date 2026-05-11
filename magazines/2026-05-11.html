@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 11 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 131</span>
+    <span>Monday · 11 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Today the front page reads like a brief on the seams: a community plugin ecosystem turned into a malware vector, a thirty-year-old SSH first-connection problem finally pinned down, and a quiet legislative move in Tehran that stretches a maritime chokepoint into the digital plane. The work, as ever, is in noticing which seams are yours.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 11 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      6 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain Attack</span>
+        <span class="toc-title">Obsidian plugin was abused to deploy a remote access trojan</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Civil Liberties</span>
+        <span class="toc-title">Hardware Attestation as Monopoly Enabler</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Defensive Practice</span>
+        <span class="toc-title">Stop MitM on the first SSH connection, on any VPS or cloud provider</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Toolchain</span>
+        <span class="toc-title"></span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Incident Retrospective</span>
+        <span class="toc-title">Incident Report: CVE-2024-YIKES</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Claude Code Tooling</span>
+        <span class="toc-title">Show HN: adamsreview – better multi-agent PR reviews for Claude Code</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Infrastructure</span>
+        <span class="toc-title">Iran mulls taking control of all 7 cables passing through Strait of Hormuz</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Energy Markets</span>
+        <span class="toc-title">Spain has become one of Europe’s cheapest power markets</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Infrastructure Politics</span>
+        <span class="toc-title">Maryland citizens hit with $2B power grid upgrade for out-of-state AI</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI and the Frontier of Practice</span>
+        <span class="toc-title">A recent experience with ChatGPT 5.5 Pro</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain Attack</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Obsidian plugin was abused to deploy a remote access trojan</h2>
+      <p class="spread-lede">A malicious Obsidian community plugin slipped past review and was used to drop a remote access trojan on note-taker machines, turning a productivity tool into a persistent foothold across knowledge worker endpoints.</p>
+      <div class="spread-body"><p>The campaign, dubbed Phantom Pulse, weaponised a plugin in the Obsidian community marketplace to deploy a remote access trojan with persistence, keylogging, and clipboard hijack capabilities. Obsidian&#x27;s plugin model installs JavaScript with full filesystem access, so a single compromised maintainer or a typo-squatted release is enough to ship malware to thousands of vault owners. Researchers attribute the operation to a financially motivated cluster targeting consultants, lawyers, and security teams who store sensitive notes locally.</p><p>This sits squarely in the same class of risk as the npm and VS Code marketplace incidents of the past 18 months. Knowledge workers treat plugins as harmless conveniences, but every install is a privileged JavaScript runtime sitting next to your most sensitive documents. If your organisation tolerates Obsidian, Logseq, or any markdown-vault tool on managed devices, the plugin ecosystem is now an unmanaged software supply chain you almost certainly do not have inventory for.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory which staff use Obsidian on managed devices. Disable community plugins via group policy or push an allow-list. Rotate any credentials, API keys, or session tokens stored in vault notes and audit endpoint detection for the Phantom Pulse IOCs published by the researchers.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 157</span>
+          <span class="meta-pill meta-source">cyber.netsecops.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://cyber.netsecops.io/articles/obsidian-plugin-abused-in-campaign-to-deploy-phantom-pulse-rat/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48088576" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Civil Liberties</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Hardware Attestation as Monopoly Enabler</h2>
+      <p class="spread-lede">GrapheneOS argues that hardware attestation, sold as a security feature, has become the lever Apple and Google use to lock users into a duopoly and out of independent operating systems, repair, and self-custody.</p>
+      <div class="spread-body"><p>The thread frames attestation as a one-way ratchet. What started as a way for banks to verify a genuine device has become a gating mechanism for app stores, payment networks, and government services. The result is that running a non-stock Android (including hardened, privacy-respecting builds) increasingly means losing access to banking, transit, identity, and even some workplace apps. GrapheneOS calls it a monopoly enabler dressed up in the language of trust.</p><p>For a CISO this is not just a consumer story. Bring-your-own-device programmes, contractor laptops, and field staff phones all sit in the attestation pipeline. Any UK or EU organisation that mandates a specific stock OS to access internal tooling is making a procurement decision that the Competition and Markets Authority and the European Commission are actively examining. The accessibility and right-to-repair angles also matter for public-sector buyers under the Procurement Act.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If you mandate stock Android or iOS for access, document the security justification now. Brief procurement and legal on the live CMA and EC investigations into mobile ecosystems. Consider whether attestation-bypass exceptions are needed for staff using hardened or accessibility-modified devices.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 1266</span>
+          <span class="meta-pill meta-source">grapheneos.social</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://grapheneos.social/@GrapheneOS/116550899908879585" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48086190" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Defensive Practice</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Stop MitM on the first SSH connection, on any VPS or cloud provider</h2>
+      <p class="spread-lede">A practical write-up on how to defeat the first-connection trust-on-first-use problem in SSH by injecting host keys into cloud-init or instance metadata before the operator ever sees the prompt.</p>
+      <div class="spread-body"><p>The post walks through the awkward truth that almost every cloud SSH workflow accepts an unverifiable host key on the first connection. The author shows how to ship the expected host fingerprint into AWS, Hetzner, and Linode user-data so the SSH client can verify against a known value from the start. The technique generalises to any provider that supports cloud-init and a few lines of Ansible or Terraform glue.</p><p>This is the kind of bread-and-butter hardening that quietly disappears from runbooks during a fast-growth phase and then surfaces in an audit finding. It also fixes a class of supply chain risk where a compromised provisioning network could MITM the first session and harvest credentials or insert authorised keys. The tooling is mature and the operational cost is essentially zero once it is wired into your image pipeline.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit your provisioning pipeline for SSH first-connection handling. Add host fingerprint emission to your golden image build and consume it in your bastion or developer tooling. Flag any team still answering yes to fingerprint prompts in their runbooks.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 103</span>
+          <span class="meta-pill meta-source">joachimschipper.nl</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.joachimschipper.nl/Stop%20MITM%20on%20the%20first%20SSH%20connection,%20on%20any%20VPS%20or%20cloud%20provider.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48061602" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Toolchain</div>
+      
+      <h2 class="spread-headline"></h2>
+      <p class="spread-lede">Bun&#x27;s ground-up Rust rewrite has reached 99.8 per cent test compatibility on Linux x64 glibc, putting the JavaScript runtime within striking distance of a stable Rust-backed release.</p>
+      <div class="spread-body"><p>Jarred Sumner posted that the experimental Rust rewrite of Bun now passes 99.8 per cent of the existing test suite on Linux x64 glibc, a milestone that flips the project from proof-of-concept to credible replacement. The motivation is well known: Zig&#x27;s smaller ecosystem and the ergonomic and memory-safety wins of Rust for a runtime that increasingly powers production workloads. The remaining gap is reported to be platform-specific edge cases rather than fundamental design issues.</p><p>For teams who picked Bun for build speed or for Cloudflare Workers compatibility, this is a sign that the long-term direction is stabilising. It also pulls Bun closer to the wider Rust-runtime conversation that includes Deno&#x27;s recent Rust work and the npm-compatible runtimes appearing in the edge space. Expect a stable Rust-backed Bun release to land before the end of 2026, with macOS and Windows trailing Linux by a few months.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Developer Tools</span>
+          <span class="meta-pill meta-score">HN 0</span>
+          <span class="meta-pill meta-source"></span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48073680" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Incident Retrospective</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Incident Report: CVE-2024-YIKES</h2>
+      <p class="spread-lede">A long-form retrospective on CVE-2024-YIKES, a quietly devastating dependency bug that the author&#x27;s team triaged, mitigated, and disclosed across a tangle of customers, vendors, and downstream consumers.</p>
+      <div class="spread-body"><p>The author walks through the discovery, the internal scramble to identify exposure, the painful coordination with an upstream maintainer who was on holiday, and the customer communications that had to be drafted before the embargo lifted. The story leans into the unglamorous parts: the spreadsheet of every customer with a vulnerable build, the SBOM gaps that turned a four-hour job into a four-day one, and the executive briefing template the author wishes they had written six months earlier.</p><p>This is the cleanest piece of incident response writing on the front page this month. It is also a reminder that almost no part of the industry has solved the operational problem of &quot;who is exposed to this CVE, right now, with high confidence&quot;. For a CISO it doubles as a training artefact: hand it to a new analyst and ask them to map the timeline against your own incident response runbook. The gaps you find are the work for the next quarter.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Run a tabletop using this incident as the scenario. Measure how long it takes your team to enumerate affected customers and produce a draft holding statement. Update your SBOM ingestion and your embargo communications template based on what you cannot answer quickly.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 478</span>
+          <span class="meta-pill meta-source">nesbitt.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://nesbitt.io/2026/02/03/incident-report-cve-2024-yikes.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48086082" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Claude Code Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Show HN: adamsreview – better multi-agent PR reviews for Claude Code</h2>
+      <p class="spread-lede">Adam Miller has released adamsreview, an open-source multi-agent pull request reviewer purpose-built for Claude Code that runs specialised reviewers in parallel and consolidates their findings into a single inline comment thread.</p>
+      <div class="spread-body"><p>The project wires together a security reviewer, a test-coverage reviewer, a style reviewer, and a high-level architecture reviewer, each invoked as a Claude Code subagent with a tailored system prompt. Findings are reconciled to avoid duplicates and posted as one structured GitHub comment. The early benchmarks shared in the README claim it catches a meaningfully larger share of real defects than a single-pass review while staying cheaper than running each reviewer as a separate top-level call.</p><p>This is the first widely shared Claude Code pattern that takes the multi-agent idea past the demo stage. It is also a useful template: the same scaffolding works for incident postmortems, threat models, or any review-style task where you want specialised perspectives without losing the unified output. For a team already using Claude Code for code review, it is a near-zero-cost upgrade. For a security team, the security reviewer prompt is a good starting point even if you do not adopt the rest.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Install adamsreview in a low-stakes repo this week and compare its output to your current PR review process for a fortnight. Fork the security reviewer prompt as the basis for your own threat-modelling subagent. Share findings with the wider engineering org if the signal-to-noise ratio holds up.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 18</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/adamjgmiller/adamsreview" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48090276" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Infrastructure</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Iran mulls taking control of all 7 cables passing through Strait of Hormuz</h2>
+      <p class="spread-lede">Iran is reportedly weighing legislation that would assert state control over the seven undersea internet cables passing through the Strait of Hormuz, putting a fragile chokepoint of European and Asian connectivity on edge.</p>
+      <div class="spread-body"><p>The report describes draft legislation that would give Iran&#x27;s communications ministry the authority to inspect, slow, or sever traffic on the cables that land or transit through its territorial waters. The Strait of Hormuz is already the world&#x27;s most sensitive oil chokepoint; the proposed move would extend that pressure point to the digital plane. Analysts quoted in the piece flag the risk of unilateral disconnection during regional escalations and the second-order effect on insurance markets for subsea infrastructure.</p><p>Most UK and EU enterprises route some portion of Asia-Pacific traffic through this corridor whether or not they are aware of it. Cloud providers publish redundancy diagrams but the underlying physical paths are concentrated through a small number of cable systems. A single political decision in Tehran could add tens of milliseconds of latency, force traffic onto more expensive Northern routes, or in the worst case sever capacity entirely for hours. Resilience planning that stops at &quot;multi-region cloud&quot; is now visibly insufficient.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Ask your network and cloud teams which cable systems your highest-value flows actually traverse. Add Strait of Hormuz disruption as a named scenario in your business continuity plan. Confirm with your incident comms function how a partial Asia-Pacific outage would be communicated to customers and regulators.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Geopolitics</span>
+          <span class="meta-pill meta-score">HN 10</span>
+          <span class="meta-pill meta-source">wionews.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.wionews.com/world/iran-to-take-full-control-of-all-7-undersea-internet-cables-passing-through-strait-of-hormuz-1778361695047" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48091203" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Energy Markets</div>
+      
+      <h2 class="spread-headline">Spain has become one of Europe’s cheapest power markets</h2>
+      <p class="spread-lede">Spain has overtaken much of Europe to become one of the continent&#x27;s cheapest wholesale power markets, driven by record solar deployment, mild weather, and a transmission build-out that is finally catching up with generation.</p>
+      <div class="spread-body"><p>Jan Rosenow&#x27;s analysis charts how Spain&#x27;s day-ahead prices have repeatedly traded well below the German, French, and UK benchmarks across the last quarter. Behind the numbers is a combination of cheap evening solar, fast permitting reforms, and the slow opening of new interconnectors to France that finally allow surplus generation to flow north. The piece pushes back on the lazy narrative that renewables-heavy grids are intrinsically expensive.</p><p>For organisations running compute-heavy workloads, the Spanish price differential is large enough to make Iberia a real candidate for data centre siting alongside the established Nordic and Irish hubs. The piece also undercuts a popular line of opposition argument against UK and German renewables build-out, with hard data on what a high-solar, well-interconnected grid actually delivers. Energy procurement teams should be reading it ahead of next year&#x27;s PPAs.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Energy</span>
+          <span class="meta-pill meta-score">HN 159</span>
+          <span class="meta-pill meta-source">janrosenow.substack.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://janrosenow.substack.com/p/spain-just-became-one-of-europes" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48085330" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Infrastructure Politics</div>
+      
+      <h2 class="spread-headline">Maryland citizens hit with $2B power grid upgrade for out-of-state AI</h2>
+      <p class="spread-lede">Maryland regulators have approved a roughly two-billion-dollar power grid upgrade whose cost will be borne by Maryland ratepayers, even though most of the new capacity is destined for AI data centres in neighbouring states.</p>
+      <div class="spread-body"><p>The Tom&#x27;s Hardware piece documents a quiet but consequential ruling: Maryland households and small businesses will see surcharges on their bills for transmission upgrades that primarily serve hyperscale data centre clusters in Virginia and Pennsylvania. Consumer advocates argue the cost-allocation methodology is a relic of an era when load growth was diffuse, not concentrated in a few campuses operated by a handful of cloud and AI firms. Utility regulators in at least three other US states are reportedly watching the precedent.</p><p>The story matters beyond the US. UK and EU regulators are at the front end of the same debate, with Ofgem already preparing guidance on how to allocate grid reinforcement costs driven by AI build-out. Expect a wave of campaigning from consumer groups, and expect the AI industry&#x27;s social licence to operate to start factoring grid politics into siting decisions. For procurement leads, this also raises a quiet diligence question about which suppliers&#x27; margins depend on cross-subsidised power.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Governance</span>
+          <span class="meta-pill meta-score">HN 215</span>
+          <span class="meta-pill meta-source">tomshardware.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/maryland-citizens-slapped-with-usd2-billion-grid-upgrade-bill-for-out-of-state-ai-data-centers-state-complains-to-federal-energy-regulators-says-additional-cost-breaks-ratepayer-protection-pledge-promises" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48088151" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI and the Frontier of Practice</div>
+      
+      <h2 class="spread-headline">A recent experience with ChatGPT 5.5 Pro</h2>
+      <p class="spread-lede">Fields Medallist Timothy Gowers describes a sustained exchange with ChatGPT 5.5 Pro that, for the first time, made him feel he was conversing with a peer rather than instructing a precocious student, and reflects on what that means for the practice of mathematics.</p>
+      <div class="spread-body"><p>Gowers details a session in which the model engaged with a research problem at a level he describes as genuinely useful, suggesting non-obvious avenues, catching errors in his own reasoning, and producing a write-up he was willing to incorporate. He is careful to caveat the case: it was a problem on which he already had strong intuition, and the model&#x27;s outputs still needed checking. Even so, the piece is a measured shift in tone from a public intellectual who has previously been a sceptic.</p><p>Read alongside the rest of today&#x27;s edition this is the most quietly significant piece. If Gowers&#x27;s experience generalises, the leverage AI gives to the most skilled practitioners is starting to look qualitatively different from the productivity gains it gives the average user. That has implications for how research output is attributed, for journal review processes, and for the talent strategy of any organisation that competes on a small number of exceptional people. It is worth reading slowly.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Ethics</span>
+          <span class="meta-pill meta-score">HN 688</span>
+          <span class="meta-pill meta-source">gowers.wordpress.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48071262" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 11 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing thinly dressed as security analysis, single-vendor patch advisories without wider context, repackaged CVE database commentary, and the day's crop of cryptocurrency and web3 promotional posts.</p>
+    <p>Duplicates excluded against the previous two editions: 2. Stories already featured on 9 May or 10 May were dropped before curation.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
