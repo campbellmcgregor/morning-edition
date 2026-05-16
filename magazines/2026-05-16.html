@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 16 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 136</span>
+    <span>Saturday · 16 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">An exploit chain that quietly traverses the Pixel modem, London&#x27;s Met scanning protesters with biometrics, and a federal dragnet asking the app stores to name every driver who tinkers. The morning&#x27;s reading is a study in surface area, and who gets to see it.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 16 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      6 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">A 0-click exploit chain for the Pixel 10</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">London Police Deploy Facial Recognition at Protest for First Time</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Data Protection</span>
+        <span class="toc-title">U.S. DOJ demands Apple and Google unmask over 100k users of car-tinkering app</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Tooling Release</span>
+        <span class="toc-title">Erlang/OTP 29.0</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Research</span>
+        <span class="toc-title">The sigmoids won&#x27;t save you</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Adoption</span>
+        <span class="toc-title">I believe there are entire companies right now under AI psychosis</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain</span>
+        <span class="toc-title">&#x27;No way to prevent this,&#x27; says only package manager where this regularly happens</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">OSS Security</span>
+        <span class="toc-title">Welcome to the Strip Mining Era of OSS Security</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Tech Regulation</span>
+        <span class="toc-title">California bill would require patches or refunds when online games shut down</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Media Ethics</span>
+        <span class="toc-title">ABC News has taken all FiveThirtyEight articles offline</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">A 0-click exploit chain for the Pixel 10</h2>
+      <p class="spread-lede">Google&#x27;s Project Zero publishes a full 0-click exploit chain targeting the Pixel 10, traversing the cellular baseband into the application processor without any user interaction.</p>
+      <div class="spread-body"><p>The chain links a baseband memory corruption to a kernel privilege escalation, ending with persistent code execution at the OS layer. Project Zero's writeup is technical, but the takeaway for anyone running a fleet of mobile devices is unambiguous: the device's most exposed network attack surface, the modem, is once again the path of least resistance, and the mitigations in Android's hardened boot chain did not stop the chain from landing.</p><p>Pixel devices already received a patch in the May security bulletin. The wider concern is that the same class of baseband flaw almost certainly exists in the Samsung, MediaTek, and Qualcomm modems shipping in the rest of the Android estate, where patch latency is measured in months, not days. If your organisation issues Android handsets and does not have a hard floor on supported security patch level, this is the prompt to set one.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Confirm your MDM is enforcing May 2026 security patch level on all Android devices. For non-Pixel hardware, audit OEM patch SLA in your supplier register and flag anything still on April or earlier as out of policy.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 358</span>
+          <span class="meta-pill meta-source">projectzero.google</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://projectzero.google/2026/05/pixel-10-exploit-chain.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48155324" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">London Police Deploy Facial Recognition at Protest for First Time</h2>
+      <p class="spread-lede">The Metropolitan Police used live facial recognition vans at a demonstration in central London, marking the first deployment of the technology against a political assembly in the UK.</p>
+      <div class="spread-body"><p>The Met framed the deployment as a public safety measure, but civil liberties groups have called it a category shift: from finding named suspects in a crowd to scanning everyone present at a protest. The watchlist used for the deployment has not been published, and there is no UK statutory framework specifically authorising live facial recognition at protests. The deployment proceeded under generic common-law policing powers.</p><p>For UK organisations, the shift matters even if you are not running protests. The same legal scaffolding being used to justify protest surveillance will inform regulator expectations on biometric processing in private contexts: workplace entry, retail loss prevention, event venues. The ICO is overdue an updated position on live facial recognition, and the legal weather is likely to get worse before it gets clearer.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If your organisation operates facial recognition in any context, including office access or event security, review your DPIA against the ICO&#x27;s 2023 LFR guidance now. Expect a refreshed enforcement posture in the second half of 2026 and document your lawful basis carefully.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 134</span>
+          <span class="meta-pill meta-source">reclaimthenet.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://reclaimthenet.org/london-police-deploy-facial-recognition-at-protest-for-first-time" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48150069" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Data Protection</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">U.S. DOJ demands Apple and Google unmask over 100k users of car-tinkering app</h2>
+      <p class="spread-lede">Federal prosecutors have served Apple and Google with orders demanding identifying data on more than 100,000 users of a car-tuning app, in what may be the largest dragnet identifier request publicly known.</p>
+      <div class="spread-body"><p>The order asks both stores for any user who downloaded the app within a multi-year window, then names that population as the investigation cohort. This is the same pattern as geofence and keyword warrants, scaled to the application layer. The legal theory is that downloading an app capable of disabling emissions controls is itself probable cause of federal environmental crime, which is a remarkable step.</p><p>Both Apple and Google are pushing back, but neither has rejected the order outright. For any business that handles app-store telemetry, the precedent is that your install graph can be subpoenaed wholesale, by app and by date range, and there is no current legal doctrine that limits the size of the population a single order can touch. UK and EU subsidiaries should not assume GDPR insulates them: cross-border data sharing arrangements remain live.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Review where your organisation relies on app install or usage telemetry as a proxy for risk. Update your data retention schedules so that store-side metadata is no broader than your stated lawful basis. Brief your DPO on this case as a worked example of US dragnet exposure for app developers.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 403</span>
+          <span class="meta-pill meta-source">macdailynews.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://macdailynews.com/2026/05/15/u-s-doj-demands-apple-and-google-unmask-over-100k-users-of-car-tinkering-app/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48149259" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Tooling Release</div>
+      
+      <h2 class="spread-headline">Erlang/OTP 29.0</h2>
+      <p class="spread-lede">Erlang/OTP 29.0 ships with a new just-in-time compiler tier, improved native code generation for ARM, and a long list of stdlib refinements aimed at the BEAM concurrency model.</p>
+      <div class="spread-body"><p>The headline is performance: the new JIT tier reportedly closes a meaningful gap with the BEAM HiPE work of a decade ago, while keeping the cold-start characteristics that make Erlang suitable for embedded and edge deployments. The release also tightens crypto API ergonomics and finally lands native TLS 1.3 zero-RTT support in ssl, after several releases of work-in-progress.</p><p>OTP is not on most CISO radars, but it underpins WhatsApp, RabbitMQ, CouchDB, and a long tail of telecoms and fintech middleware. Major OTP releases tend to drive a multi-quarter dependency wave through that supply chain. If your stack has a RabbitMQ broker or a vendor product that quietly embeds Elixir or Erlang, expect upgrade pressure to land on your team by late summer.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Engineering</span>
+          <span class="meta-pill meta-score">HN 168</span>
+          <span class="meta-pill meta-source">erlang.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.erlang.org/news/188" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48121333" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Research</div>
+      
+      <h2 class="spread-headline">The sigmoids won&#x27;t save you</h2>
+      <p class="spread-lede">Scott Alexander pushes back on the comforting story that AI capabilities will plateau into a manageable sigmoid curve, arguing the empirical and economic conditions of the current cycle make a soft landing the less likely outcome.</p>
+      <div class="spread-body"><p>The essay's contribution is to make the sigmoid hypothesis falsifiable. Alexander walks through the specific things that would need to be true for capability gains to flatten in the next 18 months, then argues that none of them currently are: compute is still growing, post-training tricks are still compounding, and the marginal cost of an additional capability evaluation is now low enough that scaling labs run thousands per month. None of that, he argues, looks like the top of a curve.</p><p>The piece is worth reading in full because it is one of the few public attempts to reason about scaling slowdown without either dismissing it or assuming it. For security leaders trying to plan a 2027 budget, the underlying question is whether the threat model around AI-assisted attacks will get worse linearly or non-linearly. Alexander's argument suggests planning for the latter, even if you assign it a modest probability.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 184</span>
+          <span class="meta-pill meta-source">astralcodexten.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.astralcodexten.com/p/the-sigmoids-wont-save-you" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48132106" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Adoption</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">I believe there are entire companies right now under AI psychosis</h2>
+      <p class="spread-lede">Mitchell Hashimoto&#x27;s thread argues that whole organisations are now confabulating about their AI usage, performing adoption metrics for boards while quietly producing worse work than they did 18 months ago.</p>
+      <div class="spread-body"><p>The thread reads as a sharp counterpoint to the prevailing 'every team must use AI more' mandate. Hashimoto's claim is not that AI tools are useless, but that the management theatre around them creates pressure to fabricate usage, which then feeds back into worse decisions about where to deploy the tools. He cites teams measuring 'AI-assisted commits' as if the metric itself were the goal.</p><p>For anyone running an AI-assisted workflow seriously, including Claude Code and Cowork users, the thread is a useful corrective. The leverage is in measuring real outcomes, not adoption rates: cycle time, defect rate, incident resolution time. If your AI strategy is denominated in usage rather than outcomes, you are exactly the company Hashimoto is describing, and the audit will find it.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit any AI-usage KPI in your team scorecards. Replace &#x27;AI commits&#x27; or &#x27;AI-assisted tickets&#x27; with outcome metrics: time to first response, defect rate, or change failure rate. If a metric only goes up when people perform AI usage, it is the wrong metric.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 1142</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/mitchellh/status/2055380239711" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48150431" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">&#x27;No way to prevent this,&#x27; says only package manager where this regularly happens</h2>
+      <p class="spread-lede">A pointed essay surveys the latest npm compromise and notes, with The Onion-style framing, that the same supply chain failure mode keeps recurring exclusively in one ecosystem.</p>
+      <div class="spread-body"><p>The piece collates the last six months of npm package-takeover incidents and observes a pattern: maintainer account compromise, post-install script injection, exfiltration of developer credentials, repeat. The author's argument is structural. The npm registry's combination of mutable versions, low-friction publishing, and post-install execution by default produces this outcome reliably, and no equivalent cluster of incidents has occurred on PyPI, Maven Central, or crates.io in the same window.</p><p>The framing is funny, but the underlying point is one your software supply chain programme already knows. The mitigations are unglamorous: lockfiles, integrity checks, disabling lifecycle scripts in CI, and pinning to immutable digests. If your build pipeline still runs <code>npm install</code> without <code>--ignore-scripts</code> on untrusted dependencies, you are running an exploitable build by default, and the next published compromise will land in your artifact registry before the takedown notice goes out.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add --ignore-scripts to all CI install commands for untrusted dependency graphs. Enforce npm lockfile integrity checks at PR time. Confirm your SBOM pipeline captures post-install script execution as a tracked control. Brief application security leads on this pattern.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 297</span>
+          <span class="meta-pill meta-source">kevinpatel.xyz</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://kevinpatel.xyz/posts/no-way-to-prevent-this" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48118478" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">OSS Security</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Welcome to the Strip Mining Era of OSS Security</h2>
+      <p class="spread-lede">Metabase&#x27;s engineering team describes a new economic dynamic in which vulnerability research firms automate disclosure pipelines against open-source maintainers, transferring the cost of remediation downhill to volunteer projects.</p>
+      <div class="spread-body"><p>The post traces a recent uptick in low-effort, high-volume CVE submissions against small OSS projects, generated by tools that scan for stale dependencies, generate boilerplate writeups, and publish to the NVD before the maintainer has any chance to respond. The result is reputational damage to the project, inflated dependency-scanner alert volume for downstream users, and zero net improvement in security.</p><p>For enterprise consumers of OSS the second-order effect matters most. The volume of low-quality CVE noise in your scanner output is going to keep climbing, which means your triage policy needs to assume bad-faith disclosure as a default mode, not an edge case. Vendor SBOM imports will need provenance metadata, and your security exception process needs to handle the case where the right answer is 'this CVE is a hallucination.'</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Review your vulnerability management policy for handling disputed, withdrawn, or low-quality CVEs. Add a documented workflow for triaging CVE-source quality, not just CVSS score. Brief AppSec on the strip-mining pattern so they can recognise it in scanner output.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 111</span>
+          <span class="meta-pill meta-source">metabase.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.metabase.com/blog/strip-mining-era-of-oss-security" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48126014" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Tech Regulation</div>
+      
+      <h2 class="spread-headline">California bill would require patches or refunds when online games shut down</h2>
+      <p class="spread-lede">A California bill advancing through committee would require online game publishers to either provide a final offline patch or issue refunds when they sunset a service, effectively codifying a right to play games you have paid for.</p>
+      <div class="spread-body"><p>The bill is narrowly written, but its underlying principle is the broader product-longevity question that has been simmering across smart home devices, consumer IoT, and SaaS-licensed enterprise software. The drafting explicitly contemplates digital goods sold as a one-time purchase with an implied perpetual license. If passed, it will be the first US statute to put real teeth behind the difference between 'buying' and 'subscribing.'</p><p>The CISO-adjacent angle is product strategy. The same logic that says a game must keep working after shutdown will inevitably extend to the security side: vendors that EOL a product before its hardware's useful life is up will face increasing regulatory pressure to ship a final security baseline or refund. Procurement and vendor management teams should be reading this bill as a leading indicator of where enterprise EOL contract terms are heading.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Policy</span>
+          <span class="meta-pill meta-score">HN 426</span>
+          <span class="meta-pill meta-source">arstechnica.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://arstechnica.com/gaming/2026/05/bill-to-keep-online-games-playable-advances-in-california/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48155212" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Media Ethics</div>
+      
+      <h2 class="spread-headline">ABC News has taken all FiveThirtyEight articles offline</h2>
+      <p class="spread-lede">ABC News has quietly removed the entire FiveThirtyEight archive from the public web, ending more than a decade of polling analysis, sports modelling, and political reporting that many readers built citations and arguments around.</p>
+      <div class="spread-body"><p>The takedown went live without a redirect strategy, breaking inbound links from academic papers, Wikipedia, and news archives. There is no announced plan to mirror the content to the Internet Archive at higher fidelity than its existing partial captures, and the staff who would have negotiated such a deal mostly departed in 2023 when the unit was disbanded.</p><p>The loss is a reminder that institutional knowledge stored only on a corporate website has the persistence of that company's mood. For organisations producing thought leadership, technical blogs, or customer case studies, the FiveThirtyEight takedown is a worked example of what your own content's half-life looks like if you rely on a single platform for hosting. Mirror your own work, archive your customers' work where contracts permit, and treat link rot as a category of operational risk.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Media</span>
+          <span class="meta-pill meta-score">HN 307</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/baseballot/status/205530907620" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48134135" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 16 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as news, routine patch advisories without context, crypto and web3 noise, and HN-only meta threads with no underlying source.</p>
+    <p>Duplicates excluded against the previous two editions: 1. The arkadiyt.com RAV4 privacy walkthrough featured yesterday returned in a near-identical form and was held back to make room for fresh stories.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
