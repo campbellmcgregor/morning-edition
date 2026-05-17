@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 17 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 137</span>
+    <span>Sunday · 17 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A zero-click chain pried open the Pixel 10 before patches arrived. Grafana confirmed contractor credentials cost them their source repos. And Mitchell Hashimoto put a name on the quiet failure mode hollowing out the boardroom — running the company on what the model said.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 17 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">A 0-click exploit chain for the Pixel 10</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Access</span>
+        <span class="toc-title">Gaining control of every projector and camera on campus</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Vendor Breach</span>
+        <span class="toc-title">Grafana Labs internal source code accessed</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Tooling</span>
+        <span class="toc-title">Zerostack – A Unix-inspired coding agent written in pure Rust</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Security Research</span>
+        <span class="toc-title">Frontier AI has broken the open CTF format</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open Model Release</span>
+        <span class="toc-title">SANA-WM, a 2.6B open-source world model for 1-minute 720p video</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Model Internals</span>
+        <span class="toc-title">DeepSeek-V4-Flash means LLM steering is interesting again</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Frontend Craft</span>
+        <span class="toc-title">Moving away from Tailwind, and learning to structure my CSS</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Governance</span>
+        <span class="toc-title">OpenAI and Government of Malta partner to roll out ChatGPT Plus to all citizens</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Tech &amp; Society</span>
+        <span class="toc-title">I believe there are entire companies right now under AI psychosis</span>
+        
+      </span>
+    </a>
+
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">A 0-click exploit chain for the Pixel 10</h2>
+      <p class="spread-lede">Google&#x27;s Project Zero published the full mechanics of a zero-click remote-code-execution chain against the Pixel 10, sitting in the wild for months before patching. The chain stitched together a media parser bug with a sandbox escape that needed no user interaction.</p>
+      <div class="spread-body"><p>The write-up is unusually candid about how the bug evaded both Pixel 10&#x27;s Memory Tagging Extensions and the hardened V8 sandbox. Two of the four primitives were variant rediscoveries of issues Project Zero had reported in 2024 and 2025, neither fully fixed, both surviving multiple patch cycles. The post is a quiet rebuke of the assumption that &#x27;we patched the class&#x27; actually closes the class. Variant analysis remains an afterthought across most vendors, and Android&#x27;s heterogeneity makes regression testing brittle in a way iOS does not have to suffer.</p><p>For defenders the immediate question is exposure. The chain shipped via RCS payload and required nothing from the victim. Pixel devices on the May 2026 security bulletin are patched; everyone behind a carrier&#x27;s deployment lag is not. RCS is enabled by default on Google Messages for almost every Android user. If you run an Android fleet, the patch level field in your MDM is suddenly load-bearing. Project Zero also notes the same media stack is licensed into several Samsung and Motorola firmware lines, so this is not a Pixel-only problem even when it carries the Pixel name.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull MDM patch-level reports today. Force-update anything below May 2026 (Pixel) or the relevant OEM equivalent. Disable RCS for high-risk users until you&#x27;ve confirmed patch status. If you&#x27;re on the GrapheneOS / hardened-Android track, verify the media codec patches landed in your build channel — variant fixes lag mainline.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 430</span>
+          <span class="meta-pill meta-source">projectzero.google</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://projectzero.google/2026/05/pixel-10-exploit.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48148460" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Access</div>
+      
+      <h2 class="spread-headline">Gaining control of every projector and camera on campus</h2>
+      <p class="spread-lede">A student at an unnamed European university documents how a routine network scan from a dorm laptop ended with shell access to every projector, document camera, and Crestron controller across campus. None of the devices had been patched in years.</p>
+      <div class="spread-body"><p>The write-up is meticulous and faintly horrified. Default credentials on the projectors, an unauthenticated HTTP endpoint on the cameras that streamed raw video, and a SOAP API on the Crestron units that accepted firmware uploads without signing. The author had not intended to find anything; they were mapping the campus VLAN out of curiosity and the devices kept answering. Within an evening they had a script that could blank every lecture-theatre projector or replay the previous week&#x27;s footage from any seminar room.</p><p>The lesson is older than the kit. AV gear ships with the operational mental model of a wall socket — install once, never touch — and gets dropped onto the same flat VLAN as everything else because segmentation is hard and AV vendors do not test for it. Higher-ed networks are the canonical case, but the same pattern plays out in corporate boardrooms with smart displays, hotel meeting suites, and the conference rooms of half the FTSE 100. The story is a useful artefact to circulate to anyone who still thinks IoT segmentation is theoretical.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Security Research</span>
+          <span class="meta-pill meta-score">HN 111</span>
+          <span class="meta-pill meta-source">edna.land</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.edna.land/blogs/posts/scanning/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48130468" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Vendor Breach</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Grafana Labs internal source code accessed</h2>
+      <p class="spread-lede">Grafana Labs confirmed via its official channel that an attacker accessed portions of its internal source code repositories. The company says no customer data, telemetry, or Grafana Cloud infrastructure was touched, and that the intrusion vector was a compromised contractor credential.</p>
+      <div class="spread-body"><p>Source-code theft itself is rarely the headline a week later — the headline is what the attacker does with it. Grafana ships an enormous installed base of self-hosted instances inside enterprises, government, and critical infrastructure; the source-code exposure increases the odds of new vulnerability classes being mined and turned into n-days against unpatched on-prem deployments. The contractor-credential angle is the part every CISO should sit with. SaaS vendor compromise via a third party is the new normal and your TPRM questionnaire almost certainly does not cover it.</p><p>Grafana&#x27;s statement is short on detail about MFA posture for the compromised account and what role-scoping limited the blast radius. Expect a fuller writeup within the week. In the meantime treat any self-hosted Grafana you operate as if it sits one disclosure away from a fresh RCE, and audit your own contractor identity hygiene now rather than next quarter.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory every self-hosted Grafana instance you own and confirm it is on a supported version with the latest patch. Subscribe to Grafana&#x27;s security advisory feed. Pull a list of your contractors with access to production source, version control, or CI/CD — and verify MFA, session length, and least-privilege scoping are actually enforced rather than nominally configured.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Supply Chain Risk</span>
+          <span class="meta-pill meta-score">HN 32</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/grafana/status/2055827123236171827" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48165902" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Tooling</div>
+      
+      <h2 class="spread-headline">Zerostack – A Unix-inspired coding agent written in pure Rust</h2>
+      <p class="spread-lede">Zerostack is a coding agent written entirely in Rust, designed around a Unix-pipeable command-line philosophy. It composes well with grep, jq, and shell pipelines, and it has no telemetry, no cloud dependency, and no plugin system worth speaking of.</p>
+      <div class="spread-body"><p>The pitch is deliberately small. The author argues that the AI coding tool category has confused &#x27;agentic&#x27; with &#x27;sprawling&#x27;, and that a single 5 MB binary that does one thing and reads its config from stdin has a place. Zerostack ships with adapters for OpenAI, Anthropic, and any OpenAI-compatible endpoint, and that&#x27;s the entire vendor surface. Comparison to Claude Code in the README is fair: Zerostack is faster to start, much narrower in scope, and intentionally illiterate about your repo until you pipe it the file.</p><p>Whether it earns a slot in anyone&#x27;s workflow depends on temperament. If you live in tmux and want an agent that behaves like another well-mannered Unix process, it&#x27;s a strong candidate. If you want long-running, context-aware agents that hold a whole codebase in their head, this is the wrong tool. The interesting signal is the Rust ecosystem finally producing serious agent tooling — until now most coding agents have been Node or Python, and the operational profile of a single static binary is appealing for anyone shipping AI into restricted environments.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tools</span>
+          <span class="meta-pill meta-score">HN 303</span>
+          <span class="meta-pill meta-source">crates.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://crates.io/crates/zerostack/1.0.0" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48164287" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Security Research</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Frontier AI has broken the open CTF format</h2>
+      <p class="spread-lede">Kabir argues the Capture the Flag scene that trained a generation of security researchers is effectively dead, killed by frontier LLMs that solve typical CTF challenges faster than humans can read the brief. Recent DEF CON qualifiers saw entire reverse-engineering tracks rendered trivial by Claude and GPT-5.</p>
+      <div class="spread-body"><p>The piece is more elegy than panic. CTFs survived because they were the meritocratic on-ramp into offensive security — anyone with a laptop and time could outperform credentialed professionals. That equation has flipped overnight. The author quotes organisers who watched mid-tier teams climb to the top three on the back of careful prompting alone, and pros who feel their craft has been reduced to clerical orchestration. The community is still working out whether to ban model use, ratify it, or invent new challenge classes that require physical reasoning or hardware fault injection.</p><p>For the cybersecurity industry the loss matters out of proportion to the size of the scene. CTFs were the cheapest and most honest signal that someone could actually attack a system, more reliable than certs or résumés. Hiring pipelines that depended on them now need rethinking. The deeper point is that automated offensive capability is no longer an asymmetric advantage for the patient and persistent — it is something any defender&#x27;s adversary can rent for $20 a month. Plan red-team programmes accordingly.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit how your security team currently evaluates candidates and red-team contractors. If CTF performance is a meaningful signal in your hiring loop, replace or augment it with something that tests judgement under partial information — for instance, scenario-based exercises with restricted tool access. Brief your SOC on the realistic upper bound for adversary tooling: assume an attacker has the same agent capability your engineers do.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 358</span>
+          <span class="meta-pill meta-source">kabir.au</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://kabir.au/blog/the-ctf-scene-is-dead" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48157559" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open Model Release</div>
+      
+      <h2 class="spread-headline">SANA-WM, a 2.6B open-source world model for 1-minute 720p video</h2>
+      <p class="spread-lede">NVIDIA Labs released SANA-WM, a 2.6 billion parameter open-source world model capable of generating coherent 1-minute videos at 720p from a single prompt. The model weights, training recipe, and inference code are all on Hugging Face under a permissive licence.</p>
+      <div class="spread-body"><p>The architecture is a refinement of SANA&#x27;s deep-compression autoencoder paired with a diffusion transformer trained on a curated mix of cinematography and real-world driving footage. The headline-worthy bit is the inference cost: a single H100 generates the full 60 seconds in roughly 90 seconds, far ahead of the closed-source incumbents and within budget for a small studio or a hobbyist with cloud credit. Quality is not Sora-tier — physics still drifts after about 20 seconds — but for storyboarding, pre-vis, and synthetic training data the gap is academic.</p><p>The release also matters as a counterweight. Open weights for video generation at this quality have been promised for a year and consistently delayed. NVIDIA&#x27;s calculus is straightforward: more open models in the world means more demand for the GPUs to run and fine-tune them. For everyone downstream that&#x27;s a useful alignment of incentive and outcome. Expect a wave of community fine-tunes within weeks; expect the synthetic-media detection industry to have a much harder week within a month.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 322</span>
+          <span class="meta-pill meta-source">nvlabs.github.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://nvlabs.github.io/Sana/WM/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48159445" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Model Internals</div>
+      
+      <h2 class="spread-headline">DeepSeek-V4-Flash means LLM steering is interesting again</h2>
+      <p class="spread-lede">Sean Goedecke walks through why the DeepSeek-V4-Flash release makes steering vectors — the technique of editing a model&#x27;s behaviour by adding constant offsets to internal activations — newly tractable and interesting again, after a year of being largely a curiosity.</p>
+      <div class="spread-body"><p>Steering vectors lost their shine when frontier models grew enough capacity to route around naive intervention. DeepSeek-V4-Flash is small enough, distilled enough, and open enough that the technique works cleanly: a few hundred contrastive examples produce a vector you can add at inference time to nudge tone, refuse less, refuse more, or coax the model into a particular thinking style. The post includes runnable code and a worked example of steering away from sycophancy without retraining.</p><p>The implications for product teams are quietly large. Steering is cheaper than fine-tuning, leaves the base model intact, and is easy to A/B. For anyone building on open-weights models the technique is now in the same toolbox as system prompts and RAG, with the advantage of working on parts of the model that prompting cannot reach. The risk side is symmetric — the same vectors that disable sycophancy can disable safety training. Expect to see both faces of this on Hugging Face by the end of the month.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Research</span>
+          <span class="meta-pill meta-score">HN 225</span>
+          <span class="meta-pill meta-source">seangoedecke.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.seangoedecke.com/steering-vectors/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48160807" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Frontend Craft</div>
+      
+      <h2 class="spread-headline">Moving away from Tailwind, and learning to structure my CSS</h2>
+      <p class="spread-lede">Julia Evans writes about migrating her personal sites off Tailwind and rediscovering the joy of writing plain CSS with modern features. The post is a quiet, practical reminder that the web platform has improved underneath the framework discourse.</p>
+      <div class="spread-body"><p>The piece is not anti-Tailwind so much as pro-paying-attention. Evans documents how nested selectors, custom properties, and container queries have closed most of the ergonomic gap that justified atomic-CSS frameworks in the first place. Her migration produced a smaller bundle, faster page loads, and CSS she could read months later without a cheat sheet. The throughline is structural: when you write CSS as if your stylesheet were a small program, with named components and inheritance, you get most of what utility classes promised without the cognitive overhead of memorising abbreviations.</p><p>The reaction in the comments is the usual frontend kerfuffle, but the substantive critique is interesting. Tailwind&#x27;s value at team scale — enforcing consistency, eliminating naming arguments — does not vanish because the underlying language improved. The bigger lesson is the half-life of frontend tooling decisions: anything you adopt today probably needs a sunset review in three years. Worth circulating to engineering leadership during the next platform-strategy conversation.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Engineering</span>
+          <span class="meta-pill meta-score">HN 488</span>
+          <span class="meta-pill meta-source">jvns.ca</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://jvns.ca/blog/2026/05/15/moving-away-from-tailwind--and-learning-to-structure-my-css-/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48158400" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Governance</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">OpenAI and Government of Malta partner to roll out ChatGPT Plus to all citizens</h2>
+      <p class="spread-lede">OpenAI announced a partnership with the Government of Malta to provide free ChatGPT Plus accounts to every Maltese citizen aged 18 and over. The pilot runs for twelve months, funded by the government with a confidential per-user fee.</p>
+      <div class="spread-body"><p>Malta becomes the first EU member state to roll out frontier AI access as something close to a public utility. The announcement is short on detail about data handling — whether prompts will be processed under EU residency, what residency means when the underlying model is hosted in the US, and how this lands against the AI Act&#x27;s transparency obligations. Maltese officials describe it as &#x27;an experiment in national-scale upskilling&#x27;. OpenAI describes it as a flagship for sovereign AI deployments. Both framings will be tested in court within the year.</p><p>For other European governments the precedent matters more than the pilot. The political appetite to be seen &#x27;doing something&#x27; about AI is enormous, and a turnkey deal with a US frontier lab is a cheap way to score the headline. Expect Estonia, Ireland, and the Nordics to be next in the queue. UK policy watchers should pay attention: the Scottish and Welsh governments have both expressed interest in similar civic AI deployments, and the procurement framework Malta has used will be a template.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Track how this pilot reports on data residency, audit logging, and incident response in its first months — those terms will become the template every public-sector buyer copies. If your organisation operates in the UK or EU public-sector supply chain, draft your position on sovereign AI deployments now. The conversation is coming, and the people who arrive with a clear answer will shape the procurement language everyone else inherits.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Policy / EU</span>
+          <span class="meta-pill meta-score">HN 142</span>
+          <span class="meta-pill meta-source">openai.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openai.com/index/malta-chatgpt-plus-partnership/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48163392" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Tech &amp; Society</div>
+      
+      <h2 class="spread-headline">I believe there are entire companies right now under AI psychosis</h2>
+      <p class="spread-lede">Mitchell Hashimoto posted a short thread arguing that some companies are now operating under collective AI psychosis — making product, hiring, and strategy decisions based on what an LLM said rather than what their own data shows. The thread caught fire because it named something founders had been quietly worried about.</p>
+      <div class="spread-body"><p>Hashimoto&#x27;s specific examples are recognisable to anyone close to a venture-backed startup. A founder copy-pasting market analyses from Claude into board decks without verification. Roadmaps reshuffled because an AI agent surfaced a &#x27;trend&#x27; that turned out to be three blog posts. Hiring loops where the interviewer is reading model-generated questions in real time and cannot distinguish strong from weak answers. The pattern is not that the AI is wrong; it is that the human has stopped doing the work that would catch it being wrong.</p><p>The piece resonates partly because it gives a name to a quiet failure mode of LLM tooling. The systems are useful enough that they erode the muscle of independent judgement, and the erosion is invisible until something important goes sideways. For leaders the practical question is small: which decisions in the past month did you make where the only verification step was &#x27;the model said so&#x27;. The answer is usually more than zero, and the remedy is dull — write the analysis yourself, defend it in conversation, and keep the LLM as a sparring partner rather than a source of truth.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Ethics</span>
+          <span class="meta-pill meta-score">HN 1934</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/mitchellh/status/2055380239711457578" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48153379" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 17 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: routine framework discourse, retro nostalgia, hardware curiosities, and the daily wave of arxiv preprints that did not change anyone&#x27;s Monday.</p>
+    <p>Duplicates excluded against the previous two editions: 1. A repeat of yesterday&#x27;s sigmoid-curve analysis was filtered out.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
