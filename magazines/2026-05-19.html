@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 19 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 139</span>
+    <span>Tuesday · 19 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A password manager rebuilds itself in public, the bureau goes shopping for every number plate in America, and a quiet acquisition reshapes the developer surface behind half the AI tools you use. Plus a goodbye to the field&#x27;s longest-running conscience.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 19 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      3 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Cybersecurity · Identity</span>
+        <span class="toc-title">The Quiet Renovation at Bitwarden</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">FBI Wants Nationwide Access to License Plate Readers</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Security · Alert</span>
+        <span class="toc-title">Voice AI Systems Are Vulnerable to Hidden Audio Attacks</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling · Release</span>
+        <span class="toc-title">Anthropic Acquires Stainless</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Research · Roundup</span>
+        <span class="toc-title">The Last Six Months in LLMs in Five Minutes</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling</span>
+        <span class="toc-title">Cursor Introduces Composer 2.5</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Regulation · Consumer Protection</span>
+        <span class="toc-title">Shutterstock to Pay $35M Over Hard-To-Cancel Subscriptions</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Industry Analysis</span>
+        <span class="toc-title">AI Eats the World — Spring 2026</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Governance · Court</span>
+        <span class="toc-title">Musk Loses Lawsuit Against Sam Altman and OpenAI</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">In Memoriam</span>
+        <span class="toc-title">Peter G. Neumann Has Died</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Cybersecurity · Identity</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">The Quiet Renovation at Bitwarden</h2>
+      <p class="spread-lede">A long-time Bitwarden contributor walks through the post-acquisition rebuild of the password manager: new server architecture, tighter client crypto boundaries, and an opinionated take on what self-hosting will and will not survive.</p>
+      <div class="spread-body"><p>Password managers are still the most leveraged piece of an enterprise&#x27;s identity story, and Bitwarden in particular has become the default UK pick for teams that want self-hosting without paying 1Password tax. The renovation the post describes is real: the old monolithic vault APIs are being broken up, client-side encryption invariants are being formalised in code rather than docs, and the self-host story is being narrowed to a smaller, better-supported surface. None of that is marketing. It is documented in the migration PRs and the new client crypto module.</p><p>The interesting risk is the one the author flags only obliquely: when a security tool&#x27;s substrate changes this much, every assumption a CISO has shipped in their threat model needs re-checking. Recovery flows, SSO integrations, emergency access, the bridge between the browser extension and the password vault. All of these are touched. If you run Bitwarden self-hosted in a UK org, the next six months are when the deviation between your docs and reality will be at its widest.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull the current self-host build and diff it against your runbook. Re-verify recovery and emergency-access flows in a staging tenant before any of your users hit a forced upgrade. Get the new client crypto module on your supply-chain risk register; if you do not know which vendor library handles the unlock primitive today, that is the gap.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 613</span>
+          <span class="meta-pill meta-source">blog.ppb1701.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.ppb1701.com/the-quiet-renovation-at-bitwarden" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48163389" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      
+      <h2 class="spread-headline">FBI Wants Nationwide Access to License Plate Readers</h2>
+      <p class="spread-lede">Procurement documents obtained by 404 Media show the bureau is moving to buy a single nationwide feed of automated number-plate-reader data, sweeping together commercial dragnet operators that already cover most US highways and parking lots.</p>
+      <div class="spread-body"><p>ANPR has been one of the quietest surveillance build-outs of the decade. The reason it normally stays quiet is the federation: thousands of local cameras, a handful of vendors, no single buyer with the appetite to consolidate them. The procurement request flips that. A nationwide subscription tier means the bureau no longer asks a county for help. It queries the same dashboard a parking-lot operator does, with the same retention window, against any plate in the country.</p><p>The UK lesson is not abstract. Police Scotland and the Met both run ANPR with their own retention rules, but every major commercial logistics platform that pings UK roads exports plate hits to vendors who in turn licence US datasets. The architectural question that matters here is whether retention is bounded by the cameras or by the buyer. If the buyer can hold thirty days for one customer and seven years for another, the cameras&#x27; retention policy becomes decorative.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 267</span>
+          <span class="meta-pill meta-source">404media.co</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.404media.co/the-fbi-wants-to-buy-nationwide-access-to-license-plate-readers/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48184350" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Security · Alert</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Voice AI Systems Are Vulnerable to Hidden Audio Attacks</h2>
+      <p class="spread-lede">IEEE Spectrum writes up new academic work showing that production voice agents from three major vendors will follow embedded instructions inaudible to humans, including transcription, ticketing and triage flows already shipping in enterprise call centres.</p>
+      <div class="spread-body"><p>This is the prompt-injection story re-skinned for audio. The attack lives in a band the human caller cannot hear but the speech model still tokenises. The researchers demonstrate it against a triage workflow that escalates a fake outage, a billing bot that issues a refund, and an IVR that forwards a call to an attacker-controlled extension. Each takes seconds and zero credentials. The vendor responses cited in the piece read familiar: rate limits, retraining, an upcoming filter.</p><p>What turns this from a curiosity into a CISO problem is the rollout curve. Voice agents are arriving in financial services and the NHS reception layer at exactly the moment classic phishing detection assumes the threat lives in inboxes. The mitigations that work, input-band filtering, instruction grounding, refusal on unverified intent, are doable but rarely on by default. The fix path is shorter than the disclosure path, which is the worst kind of vulnerability to sit on.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If your org has piloted a voice agent in the last twelve months, ask the vendor in writing whether they filter for ultrasonic and adversarial perturbation payloads. Treat the answer as a control, not a feature note. Anything that takes a customer call and triggers a refund, a password reset, or a ticket creation needs the same threat model you apply to a public web form.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Security</span>
+          <span class="meta-pill meta-score">HN 116</span>
+          <span class="meta-pill meta-source">spectrum.ieee.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://spectrum.ieee.org/voice-ai-audio-attacks" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48178378" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling · Release</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Anthropic Acquires Stainless</h2>
+      <p class="spread-lede">Anthropic has acquired Stainless, the API SDK generation company behind a long list of developer toolchains including OpenAI, Cloudflare and Anthropic itself. The post promises tighter SDK generation across Claude products and a unified shape for the Anthropic developer surface.</p>
+      <div class="spread-body"><p>Stainless is the quiet plumbing of the modern AI developer experience. Anthropic, OpenAI, Cloudflare, Together. They all generated their SDKs through the same pipeline, and the consistency in shape across those SDKs is largely Stainless&#x27;s contribution. Bringing that pipeline in-house gives Anthropic a faster path to consistent tool definitions, type safety across languages, and a cleaner story for SDKs that sit alongside the Agent SDK and Claude Code.</p><p>The integration risk is real for everyone who is not Anthropic. If you build on Claude through Cowork or Claude Code today, the SDK surface is about to evolve faster, and breaking-change discipline now depends on a single team. That is plausibly an upgrade. Stainless has shipped exceptionally clean SDKs for years, but it also concentrates the bus factor. Anybody who depends on a Stainless-built SDK for a competing model provider should be reading the announcement twice.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Re-check the Anthropic SDK version pins in your Cowork and Claude Code workflows. Decide whether to track the stable channel or the preview channel for the next two release cycles. If you have agentic code that consumes a non-Anthropic Stainless SDK, file the dependency on the upgrade-risk side of your roadmap.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tooling</span>
+          <span class="meta-pill meta-score">HN 416</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48182281" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Research · Roundup</div>
+      
+      <h2 class="spread-headline">The Last Six Months in LLMs in Five Minutes</h2>
+      <p class="spread-lede">Simon Willison condenses the last six months of model releases, benchmark drama, and tooling shifts into one stress-tested timeline that strips away the launch theatre and asks what actually changed in the model layer.</p>
+      <div class="spread-body"><p>Willison&#x27;s roundups have become the de facto reading list for anyone whose job depends on the LLM layer but cannot afford to live in it. The piece is dense without being long: he tracks frontier model launches, scoring controversies, the slow collapse of cost-per-token, and the emergence of a credible local-inference tier on commodity Apple Silicon. The most useful contribution is calibration. Which numbers are real, which are demo-driven, which are vendor noise.</p><p>The signal worth pulling out is structural. Inference cost has dropped by an order of magnitude for the median workload, but throughput at the long-context tail is still the binding constraint. That changes the architecture choice for anything you build on top: long-context agents are now plausible, batch summarisation is essentially free, and the bottleneck has moved from the model bill to the orchestration glue. Read it for the curated links if nothing else.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Research</span>
+          <span class="meta-pill meta-score">HN 231</span>
+          <span class="meta-pill meta-source">simonwillison.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://simonwillison.net/2026/May/19/5-minute-llms/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48188183" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling</div>
+      
+      <h2 class="spread-headline">Cursor Introduces Composer 2.5</h2>
+      <p class="spread-lede">Cursor ships a major upgrade to its agentic coding mode with a new planning step, a smaller context footprint, and a sharper distinction between read-only research turns and write turns. Features that will sound familiar to anyone working in Claude Code.</p>
+      <div class="spread-body"><p>Composer 2.5 is the clearest sign yet that the agentic-IDE category is converging. The new planning stage explicitly separates discovery from edits, the diff-review surface has been rebuilt, and the model menu now treats tool-calling models differently from base models. None of this is radical on its own. Claude Code shipped most of the moves earlier. But the convergence matters because it means the productivity gap between IDE-agents is narrowing fast.</p><p>The Cursor team has also published their internal evals, which is rarer than it should be. The numbers are not directly comparable to Claude Code&#x27;s because the benchmarks differ, but the methodology is honest and the failure-mode breakdown is useful. For anyone whose job involves choosing between coding agents for a team, read the eval methodology before the headline gains; the methodology will outlive the version.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tooling</span>
+          <span class="meta-pill meta-score">HN 101</span>
+          <span class="meta-pill meta-source">cursor.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://cursor.com/blog/composer-2-5" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48182516" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Regulation · Consumer Protection</div>
+      
+      <h2 class="spread-headline">Shutterstock to Pay $35M Over Hard-To-Cancel Subscriptions</h2>
+      <p class="spread-lede">The FTC announces a settlement with Shutterstock over a multi-year pattern of dark-pattern subscription flows: hidden cancel buttons, surprise renewals, and a customer-service maze that made cancellation an obstacle rather than a path.</p>
+      <div class="spread-body"><p>The settlement itself is unremarkable in size for a company of Shutterstock&#x27;s revenue, but the precedent is not. The FTC filing leans heavily on its Click-to-Cancel rulemaking, and the language tracks closely to what the UK Digital Markets, Competition and Consumers Act has now codified for British consumers. The complaint reads like a checklist: friction in the cancel flow, asymmetric ease between signup and stop, opaque renewal dates.</p><p>The transatlantic dynamic is that UK and EU regulators are converging on similar enforcement priorities at roughly the same time. A company being sued in the US for its cancel flow today is one that has a parallel exposure under UK consumer law tomorrow. If your org runs a B2C or even a low-end SaaS billing flow, this is the moment to compare your unsubscribe path to your signup path and tell the truth about whether the friction is symmetrical.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Regulation</span>
+          <span class="meta-pill meta-score">HN 163</span>
+          <span class="meta-pill meta-source">ftc.gov</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.ftc.gov/news-events/news/press-releases/2026/05/shutterstock-pay-35-million-settle-ftc-action" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48184635" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Industry Analysis</div>
+      
+      <h2 class="spread-headline">AI Eats the World — Spring 2026</h2>
+      <p class="spread-lede">Benedict Evans publishes his spring deck on how AI is reshaping software, services, and the cost curves underneath them. Less prediction theatre than past editions, more focus on what has actually shipped and what has measurably moved.</p>
+      <div class="spread-body"><p>Evans&#x27;s deck is the rare industry-analyst artefact that improves over time. The 2026 spring edition leans into measurement: which platforms have crossed the revenue threshold where AI is a P&amp;L line and not a future bet, which categories have proven resistant, where the consumer adoption curve is flattening versus accelerating. The chart that will get the most screenshots is the one showing capex versus revenue at the four largest training labs.</p><p>The interesting contrarian thread is on agents. Evans argues, politely, that the agent narrative has run further than the agent product. Most enterprise pilots are still copilots in costume, the demos that ship reliably are narrow, and the trust ceiling for an autonomous workflow is lower than vendor decks suggest. For a CISO listening to a sales pitch for an agentic platform this quarter, the slide deck reads like a translation guide.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Industry</span>
+          <span class="meta-pill meta-score">HN 196</span>
+          <span class="meta-pill meta-source">static1.squarespace.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://static1.squarespace.com/static/50363cf324ac8e905e7df861/t/6a0af5d0484fbf5fe9a7743e/177910318" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48179021" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Governance · Court</div>
+      
+      <h2 class="spread-headline">Musk Loses Lawsuit Against Sam Altman and OpenAI</h2>
+      <p class="spread-lede">A federal court has ruled against Elon Musk in his long-running suit against OpenAI and Sam Altman, finding that the for-profit conversion did not breach the founding agreements Musk relied on. The opinion is narrower than the headlines but consequential for how AI labs structure governance.</p>
+      <div class="spread-body"><p>The ruling itself rests on contract law, not AI policy, but the structural read is significant. The court declined to treat OpenAI&#x27;s founding documents as a binding charitable trust, which removes a legal lever activists and disgruntled founders have spent two years sharpening against the major labs. For Anthropic, Mistral, and any frontier lab structured as a public benefit corporation, the opinion is a quiet endorsement that mission-driven framing does not by itself create fiduciary obligations enforceable by ex-founders.</p><p>The governance read is more interesting than the legal one. Frontier labs are still navigating the gap between their founding rhetoric and the capital they now consume, and the appetite for litigation against that gap is not exhausted. Only this particular suit is. Expect the next wave of pressure to come from state regulators and shareholder actions rather than from named individuals. The model-card and safety-card commitments labs make publicly are increasingly load-bearing.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Legal</span>
+          <span class="meta-pill meta-score">HN 901</span>
+          <span class="meta-pill meta-source">techcrunch.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://techcrunch.com/2026/05/18/elon-musk-has-lost-his-lawsuit-against-sam-altman-and-openai/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48182754" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">In Memoriam</div>
+      
+      <h2 class="spread-headline">Peter G. Neumann Has Died</h2>
+      <p class="spread-lede">The TUHS list shares the news that Peter Neumann, founding moderator of the RISKS Digest and one of the most consequential public figures in computer security, has died at 93. The Digest archives stretching back to 1985 stand as a near-complete oral history of the field.</p>
+      <div class="spread-body"><p>Neumann&#x27;s contribution to computer security is hard to overstate, partly because so much of it lives in other people&#x27;s footnotes. The RISKS Digest he ran for forty years is the closest thing the field has to a longitudinal record of how things broke and what we learned. Most of the vocabulary used to teach security undergraduates, fail-stop, separation of concerns, the principle of least surprise, passed through his hands either as an editor or as a quiet originator.</p><p>What is worth remembering on a day like this is his insistence that security is a public-interest discipline, not a vendor category. The Digest never carried advertising, never softened a case study to spare a name, and never treated incidents as one-off rather than as the working surface of a system. For anyone stepping into a CISO role, the back issues are a free, savage, and humane curriculum on what we have known and forgotten and re-learned.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Memorial</span>
+          <span class="meta-pill meta-score">HN 23</span>
+          <span class="meta-pill meta-source">tuhs.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.tuhs.org/pipermail/tuhs/2026-May/033748.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48188787" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 19 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: crypto-collateralised shipping insurance, vendor marketing dressed as patch notes, low-context CVE drama, and lifestyle items unrelated to the security and AI brief.</p>
+    <p>Duplicates excluded against the previous two editions: 0. The HN front page rotated cleanly overnight.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
