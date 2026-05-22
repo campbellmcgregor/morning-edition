@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 22 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 142</span>
+    <span>Friday · 22 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A reliable local privilege escalation lands against current FreeBSD kernels with a working proof-of-concept already in the open. Seattle's police quietly stitch together a corporate surveillance fabric. And Google rewrites the data-handling contract for its flagship coding agent mid-stream, while the news industry pulls the rug from under the Internet Archive.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 22 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">FatGid: FreeBSD 14.x kernel local privilege escalation</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Seattle Shield: an intelligence-sharing network operated by Seattle police</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Information Access</span>
+        <span class="toc-title">More than 340 local news outlets are blocking the Internet Archive</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Tools</span>
+        <span class="toc-title">Google&#x27;s Antigravity bait and switch</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Industry Analysis</span>
+        <span class="toc-title">The IBM-ification of Google?</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tools</span>
+        <span class="toc-title">Launch HN: Runtime (YC P26) — sandboxed coding agents for teams</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Offensive Security</span>
+        <span class="toc-title">I dedicated four years to mastering offline password cracking</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Hardware Security</span>
+        <span class="toc-title">Flipper One — we need your help</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Search &amp; Regulation</span>
+        <span class="toc-title">Google is testing new ad formats in Search and expanding Direct Offers</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">In Memoriam</span>
+        <span class="toc-title">Cleve Moler — creator of Matlab — has died</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">FatGid: FreeBSD 14.x kernel local privilege escalation</h2>
+      <p class="spread-lede">A research drop named FatGid documents a reliable local privilege escalation against current FreeBSD 14.x kernels, with weaponised proof-of-concept code already circulating in the open. Patches have not yet landed in the official tree.</p>
+      <div class="spread-body"><p>FreeBSD shows up in more security-conscious shops than its market share suggests. Network appliances, jump hosts, perimeter firewalls running pfSense or OPNsense, NAS systems, and a fair number of bank and government back ends are all built on a hardened FreeBSD base. A local privilege escalation on a kernel that old-fashioned shops treat as inherently trustworthy is exactly the class of bug that turns a low-impact phishing toehold into root.</p>
+<p>The detail that matters is who already has a shell. If you run FreeBSD on multi-tenant infrastructure, shared bastion hosts, or anywhere a service account could be coaxed into running attacker-controlled code, FatGid moves an attacker from constrained to god mode. The FreeBSD security team will issue an advisory and a patched kernel within days, but the window between exploit publication and patch deployment is the dangerous one. Operators should not wait for the formal CVE.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit your estate this morning for any FreeBSD 14.x kernels — pfSense, OPNsense, TrueNAS, and FreeBSD jails are the usual culprits. Restrict local shell access on anything you cannot patch within 48 hours. Subscribe to freebsd-security-notifications if you have not already. Treat the FatGid PoC as a triage trigger, not a research curiosity.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 92</span>
+          <span class="meta-pill meta-source">fatgid.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://fatgid.io/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48221415" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      
+      <h2 class="spread-headline">Seattle Shield: an intelligence-sharing network operated by Seattle police</h2>
+      <p class="spread-lede">A Prism investigation maps a private intelligence-sharing programme run by Seattle police that draws on Amazon, retail security teams, and downtown business associations, hoovering camera feeds and protest intelligence into a single law-enforcement portal.</p>
+      <div class="spread-body"><p>Public-private surveillance fusion has been the slow story of the past decade, and Seattle Shield is the cleanest example yet. The reporting documents a portal where corporate security teams upload incident reports, video clips, and licence-plate hits, which the city&#x27;s police then enrich with crime data and re-share back to participants. The participants include landlords, large retailers, and the convention bureau. Activists and journalists trying to cover demonstrations end up logged in the same system as shoplifters.</p>
+<p>The interesting question for a security leader sitting outside Seattle is whether your own corporate cameras are quietly feeding something equivalent. Many UK retailers participate in industry CCTV-sharing schemes with police. The Information Commissioner&#x27;s Office has issued guidance on this; few firms apply it consistently. If your team contributes images to any cross-organisation portal, you owe yourself a fresh look at the data protection impact assessment and the retention schedule.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 449</span>
+          <span class="meta-pill meta-source">prismreports.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://prismreports.org/2026/05/20/seattle-shield-private-companies-surveillance/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48226588" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Information Access</div>
+      
+      <h2 class="spread-headline">More than 340 local news outlets are blocking the Internet Archive</h2>
+      <p class="spread-lede">Nieman Lab catalogues a growing wave of US local newsrooms updating their robots.txt files to block the Internet Archive, citing AI training scrapers and rights confusion, but cutting off the public&#x27;s primary record of local journalism in the process.</p>
+      <div class="spread-body"><p>The Wayback Machine was always the safety net for retracted articles, quietly stealth-edited stories, and broken links inside legal filings. That net is fraying. The new blocks are not aimed at the Archive itself; they are collateral damage from publishers trying to fend off AI training crawlers. The result is the same. A defamation lawyer in 2028 will find that the article cited in their pleadings simply does not exist anywhere.</p>
+<p>For anyone whose work depends on a durable record of what was published when — investigators, OSINT analysts, threat intelligence teams, journalists — this is a quiet but consequential shift. The Archive is also a core dependency for incident response work, where the question &#x27;what was on this URL three weeks ago&#x27; is often the difference between attribution and speculation. The lesson is that you cannot rely on a third party to preserve evidence you may need; archive your own.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 258</span>
+          <span class="meta-pill meta-source">niemanlab.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.niemanlab.org/2026/05/more-than-340-local-news-outlets-are-limiting-the-internet-archives-access-to-their-journalism/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48225838" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Tools</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Google&#x27;s Antigravity bait and switch</h2>
+      <p class="spread-lede">A widely-read post documents how Google rolled the open Gemini CLI into a closed, telemetry-heavy product called Antigravity, retiring the previous tool, breaking workflows that depended on its terms of use, and quietly reclassifying customer code as training data.</p>
+      <div class="spread-body"><p>Google&#x27;s transition note framed this as a routine deprecation. The community reading is harsher. Antigravity replaces Gemini CLI with a daemon that watches the working directory, ships diffs to the cloud, and binds users to terms that allow opt-out training only on the paid tier. Developers who built shell scripts and CI hooks around the Gemini CLI find them broken, and the smaller print walks back the previous privacy posture in non-trivial ways.</p>
+<p>The broader concern is the precedent. When the marquee vendor in agentic coding tools changes the data-handling contract mid-stream, every team relying on a closed AI dev tool has to re-read its DPA. Claude Code, Cursor, and the various Copilot derivatives have all pushed in the same direction at different speeds. The right defensive posture is to treat your agent&#x27;s terms of use as code: pin a version, diff it on each release, and have a fallback ready.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add the AI dev tool DPAs to your contract watchlist. Diff the current Anthropic, OpenAI, and Cursor data-processing terms against what you signed off on. Decide today whether your codebase is allowed inside any agent whose training opt-out is buried in a paid-tier setting. Document the answer.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 634</span>
+          <span class="meta-pill meta-source">0xsid.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.0xsid.com/blog/antigravity-bait-n-switch" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48222529" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Industry Analysis</div>
+      
+      <h2 class="spread-headline">The IBM-ification of Google?</h2>
+      <p class="spread-lede">A long analytical read argues that Google has crossed the same threshold IBM did in the late 1980s — too internally coupled to ship, too dependent on incumbent revenue to pivot, and now visibly losing the AI race despite a vast head start.</p>
+      <div class="spread-body"><p>The essay&#x27;s strength is in the comparison points. IBM had the best research lab in the world while losing the PC market it had created. Google has DeepMind, Alphabet Search dominance, the largest TPU fleet on the planet, and a measurable inability to ship a consumer AI product that anyone keeps using. The author traces this to org design: every product crosses six VPs, all of whom have a veto and none of whom carry profit responsibility. The pattern matches Gerstner-era IBM almost line for line.</p>
+<p>Whether the argument fully convinces is less interesting than the implication for buyers. If Google&#x27;s product cadence is genuinely structural rather than cyclical, the cost of building critical workflow on Gemini, Vertex, or Workspace AI is higher than it looks. Vendor risk should now include the question of whether your AI supplier can ship a coherent roadmap, not just whether they will be acquired or shuttered. Anthropic, OpenAI, and the major hyperscalers all clear that bar differently.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Industry</span>
+          <span class="meta-pill meta-score">HN 152</span>
+          <span class="meta-pill meta-source">zeroshot.bearblog.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://zeroshot.bearblog.dev/google-is-shattering-under-its-own-weight-the-ibm-ification-of-google/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48230049" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tools</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Launch HN: Runtime (YC P26) — sandboxed coding agents for teams</h2>
+      <p class="spread-lede">A new YC company launches a managed sandbox for running Claude Code, Cursor, and other coding agents on team infrastructure, isolating each agent in a per-task container with policy-bound network egress and audit logging.</p>
+      <div class="spread-body"><p>Runtime targets the awkward middle ground that anyone running coding agents at organisational scale has already hit. Developers want long-running, file-system-aware agents. Security wants none of those things to touch production keys, customer data, or the internet without controls. Runtime offers per-agent VMs with credential brokering, scoped MCP servers, and a recorded session log per task. The implementation is closer to Devcontainers plus tailored egress firewalls than to anything Anthropic or Cursor ship natively.</p>
+<p>The interesting design decision is that Runtime treats the agent as the threat model. Audit logs capture every tool call, every shell command, and the diff applied to the workspace. That is the right primitive. For CISOs starting to formalise an AI coding policy, a third-party sandbox is one of the cleanest controls available, far better than trying to bolt logging onto each individual agent. Worth a look this morning even if you do not buy it.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Spin up the demo with a non-production repo and see what audit telemetry it surfaces compared with running Claude Code natively. Use the test to write down what you actually need from an agent sandbox: egress policy, secret brokering, replay logs, MCP allowlists. That requirements list is portable across vendors.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 82</span>
+          <span class="meta-pill meta-source">runtm.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.runtm.com/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48225040" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Offensive Security</div>
+      
+      <h2 class="spread-headline">I dedicated four years to mastering offline password cracking</h2>
+      <p class="spread-lede">A detailed Show HN walks through four years of obsessive work on offline password cracking, covering rule engines, mask attacks, hardware tuning, and the unglamorous reality of how often modern hashes still fall in a single weekend.</p>
+      <div class="spread-body"><p>The write-up is rare in being honest about what works. The author cuts through marketing claims around Argon2, scrypt, and the latest KDFs, and shows where real-world deployments break their own protections by under-tuning parameters. The takeaway every defender already half-knows is here in numbers: bcrypt at cost 10 falls fast against a six-GPU rig if the password set is human, and most password sets are human. PBKDF2 at common iteration counts is worse.</p>
+<p>Beyond the technical detail, the post is a useful pointer to the resources a defender should track to stay current — hashcat rule curation, the Have I Been Pwned password set, and the cracking community&#x27;s quiet, steady documentation of which corporate hash leaks have already been broken. The author is generous with hardware costs and electricity bills, which is the part most blue-team write-ups never mention. Read it if you have any responsibility for credential storage.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 225</span>
+          <span class="meta-pill meta-source">news.ycombinator.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=48221896" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48221896" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Hardware Security</div>
+      
+      <h2 class="spread-headline">Flipper One — we need your help</h2>
+      <p class="spread-lede">Flipper Devices puts out an open call ahead of the Flipper One launch, asking the community for radio-protocol contributions, regional regulatory testing volunteers, and feedback on the in-development Linux-based firmware.</p>
+      <div class="spread-body"><p>The Flipper Zero became the default pocket tool for red-teamers, lock-picking hobbyists, and the steady stream of news outlets that periodically rediscover that consumer RF security is bad. Flipper One is meaningfully different — a full Linux device with USB-C, an SDR, and enough compute to run Kali tooling natively. The hardware is mostly settled; the post is about the long tail of compliance certification across Europe, the UK, the US, and several friendlier Asian markets.</p>
+<p>For a CISO, the interesting angle is not whether to ban Flipper devices from the office — that decision has already been made one way or the other — but to read the new feature list as a forecast of what consumer attack tooling will look like in six months. The Flipper Zero&#x27;s emergence drove the BLE and key-fob hardening that vehicle and access-control vendors are now scrambling to ship. Flipper One will do the same for Wi-Fi and badge-cloning attacks against corporate access systems.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Security Hardware</span>
+          <span class="meta-pill meta-score">HN 1115</span>
+          <span class="meta-pill meta-source">blog.flipper.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.flipper.net/flipper-one-we-need-your-help/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48220647" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Search &amp; Regulation</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Google is testing new ad formats in Search and expanding Direct Offers</h2>
+      <p class="spread-lede">Google quietly expands AI-generated ad formats inside Search results and rolls Direct Offers into more verticals, blurring the line between organic results and paid placements in ways that European regulators have already begun to question.</p>
+      <div class="spread-body"><p>The new format injects an AI-summary block above the fold that recommends products, brands, and &#x27;direct offer&#x27; purchase paths sponsored by paying merchants. The UI cue distinguishing ads from organic results is now smaller than the surrounding cards and uses a colour tone visually indistinguishable from the AI Overview. The change is rolling out in the US, UK, and several EU markets simultaneously.</p>
+<p>European law has been clear since the Digital Services Act and the Digital Markets Act came fully into force last year. Sponsored content must be conspicuously labelled, and platforms with significant market power face heightened transparency obligations. The Commission has fined Google twice in the past eighteen months for related infractions. Today&#x27;s announcement reads as a deliberate test of how far the line can be pushed before the next enforcement action, and a fair number of UK firms whose own marketing depends on Search visibility will be reading it nervously.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Brief your marketing leadership today. If your firm runs Google Ads in the UK or EU, expect organic visibility to drop again and CPCs to creep up. Update your data-protection register: if your organisation buys these new formats, the targeting telemetry flowing back from Google now includes purchase intent signals that some categories of DPA covenant prohibit.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Legal</span>
+          <span class="meta-pill meta-score">HN 590</span>
+          <span class="meta-pill meta-source">blog.google</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.google/products/ads-commerce/google-marketing-live-search-aads/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48220105" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">In Memoriam</div>
+      
+      <h2 class="spread-headline">Cleve Moler — creator of Matlab — has died</h2>
+      <p class="spread-lede">MathWorks announces that Cleve Moler, who built the first version of Matlab in Fortran in 1979 to teach numerical analysis to his students at the University of New Mexico, died on 20 May. He was 87.</p>
+      <div class="spread-body"><p>Moler&#x27;s career bridged the era when scientific computing was still a craft. He wrote LINPACK and EISPACK, two of the libraries that quietly powered a generation of engineering work, then turned the same matrix routines into the interactive environment that became Matlab. He stayed close to the technical work after MathWorks grew into a corporation, writing the &#x27;Cleve&#x27;s Corner&#x27; column for decades and remaining the company&#x27;s chief mathematician.</p>
+<p>His contribution sits somewhere between Knuth&#x27;s and Stallman&#x27;s in shape if not always in tone — a long career spent insisting that the right notation, the right primitive, and the right teaching example mattered more than the surrounding noise of the industry. A whole generation of engineers, scientists, and yes, several first cohorts of machine-learning researchers, learned to think in matrices because of his work. The field is poorer this morning.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Industry</span>
+          <span class="meta-pill meta-score">HN 32</span>
+          <span class="meta-pill meta-source">mathworks.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.mathworks.com/company/aboutus/founders/clevemoler.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48231319" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 22 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as research, routine patch advisories without context, crypto and web3 promotional posts, the daily Python 3.15 feature drip, and three feel-good obituaries-of-the-internet pieces that did not move the action needle.</p>
+    <p>Duplicates excluded against the previous two editions: 0. Today's Hacker News front page did not overlap with the URLs surfaced on 20 May or 21 May.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
