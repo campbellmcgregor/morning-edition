@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 24 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 144</span>
+    <span>Sunday · 24 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A spam route running quietly through Microsoft’s own house, a ring on your finger answering the wrong kind of subpoena, and a Spanish court finally pushing back on the football-piracy blocking machine. Plus eight more, and three that need your attention before Monday.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 24 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Cybersecurity</span>
+        <span class="toc-title">Scammers are abusing an internal Microsoft account to send spam links</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Oura says it gets government demands for user data</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Biometric Surveillance</span>
+        <span class="toc-title">ICE Awards $25M Iris-Scanning Contract to Bi2 Technologies</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open Source / History</span>
+        <span class="toc-title">Microsoft open-sources &quot;the earliest DOS source code discovered to date&quot;</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Research / Analysis</span>
+        <span class="toc-title">Making deep learning go brrrr from first principles (2022)</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tools</span>
+        <span class="toc-title">-​-dangerously-skip-reading-code</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Civil Liberties</span>
+        <span class="toc-title">Texas woman arrested for Facebook post about town water quality</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Safety</span>
+        <span class="toc-title">Improving C# Memory Safety</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Governance / EU</span>
+        <span class="toc-title">Spanish court declines to fine NordVPN over LaLiga piracy blocking order</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Accountability</span>
+        <span class="toc-title">Air France and Airbus found guilty of manslaughter over 2009 plane crash</span>
+        
+      </span>
+    </a>
+
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Cybersecurity</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Scammers are abusing an internal Microsoft account to send spam links</h2>
+      <p class="spread-lede">Researchers found scammers piggybacking on a legitimate internal Microsoft account to fire spam links into inboxes, the messages arriving fully authenticated and waved through by trust filters built to look for exactly the opposite.</p>
+      <div class="spread-body"><p>The attack does not exploit a bug so much as a configuration: a misused internal sender that customers and detection stacks both treat as gospel. SPF, DKIM and DMARC all pass. Once the messages are inside, the spam-link payloads run with the implicit credibility of a Microsoft.com origin, which is precisely the property that defeats the secure email gateway sitting in front of most enterprises. Microsoft has been notified and is investigating, but as of this morning the route is still live.</p><p>For anyone running an M365 estate the exposure is binary. You either have controls that look beyond authentication results, or you do not. Detection-as-code rules that key on sender reputation alone will miss this entirely. The more interesting question is what other internal-account-as-relay scenarios are quietly being abused inside the tenant boundary, where the trust assumptions are even softer than at the perimeter.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull the IOCs from the TechCrunch piece into your SOC ticket queue this week. Validate that your email security stack alerts on links inside messages from internal Microsoft sender addresses, not just unknown ones. Brief the helpdesk so they stop telling users &quot;if it is from microsoft.com it is safe&quot;.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 105</span>
+          <span class="meta-pill meta-source">techcrunch.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://techcrunch.com/2026/05/21/scammers-are-abusing-an-internal-microsoft-account-to-send-spam/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48253186" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Oura says it gets government demands for user data</h2>
+      <p class="spread-lede">Oura, the wearable maker whose ring quietly tracks sleep, heart rate and movement, has acknowledged for the first time that it receives government demands for user data, though it will not yet say how many.</p>
+      <div class="spread-body"><p>The disclosure matters because wearables sit in a privacy grey zone most threat models still ignore. Heart rate variability and sleep patterns can imply pregnancy, illness, stress and travel, all of which are increasingly attractive to investigators and increasingly subpoenable from third parties under the third-party doctrine. Oura has not published a transparency report; the company says one is coming, but until then customers have no visibility into volume, jurisdiction, or compliance rate.</p><p>For organisations whose senior people wear these devices, this is the moment to ask the boring question. What data leaves the wrist, who holds it, under whose law, and what happens when a foreign government issues a request to a US-headquartered processor of EU residents data. The right answer is probably not "we will worry about it when it happens". The right answer is a written stance, communicated to the executive team, that treats consumer wearables as in scope.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add wearable and quantified-self devices to your executive privacy briefing. Decide whether sensitive roles should disable cloud sync or use brands that publish transparency reports. Ask your DPO whether any current Oura processing involves UK or EU residents and how a US legal demand would be handled under the UK-US Data Access Agreement.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 267</span>
+          <span class="meta-pill meta-source">this.weekinsecurity.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://this.weekinsecurity.com/oura-says-it-gets-government-demands-for-user-data-will-it-share-how-many/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48247876" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Biometric Surveillance</div>
+      
+      <h2 class="spread-headline">ICE Awards $25M Iris-Scanning Contract to Bi2 Technologies</h2>
+      <p class="spread-lede">US Immigration and Customs Enforcement has awarded a twenty-five million dollar contract to Bi2 Technologies for iris-scanning capability, normalising biometric identification at a scale and operational tempo that has not previously had federal funding.</p>
+      <div class="spread-body"><p>Iris recognition is harder to fool than face and harder to revoke than a password. Once it is in a federal database, it is in there for life. The contract pushes the technology from prisons and jails, where Bi2 already operates, into immigration enforcement where the consent model is, generously, weak. Civil liberties advocates argue this is a textbook function-creep moment: the system stood up for one population gets repurposed for another, and the second population had no say in being enrolled.</p><p>The broader read for security leaders outside the US is that biometric procurement is moving faster than biometric governance everywhere. The Online Safety Act age-checks debate in the UK and the EU AI Act prohibitions on certain biometric uses are both still being interpreted in real time. Vendors are not waiting. Procurement decisions made now will outlive whoever signed them.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 125</span>
+          <span class="meta-pill meta-source">projectsaltbox.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.projectsaltbox.com/p/ice-awards-25-million-iris-scanning" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48252720" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open Source / History</div>
+      
+      <h2 class="spread-headline">Microsoft open-sources &quot;the earliest DOS source code discovered to date&quot;</h2>
+      <p class="spread-lede">Microsoft has released what is being described as the earliest discovered build of MS-DOS source code, a 1981 artefact that predates the version that went out with the original IBM PC, posted to GitHub under the MIT licence.</p>
+      <div class="spread-body"><p>The release is mostly archaeological, but the choice of licence is the interesting part. MIT means the assembly listings can be excerpted, taught and forked without lawyer involvement, which matters for the small but serious community of retrocomputing maintainers. The diffs against later 1.x releases will fill in a few longstanding holes in the historical record around CP/M compatibility, BIOS boundary handling and the early Tim Paterson code paths.</p><p>For anyone who learned to program against later DOS, the listings read like a museum tour through a vanished set of constraints: eight kilobytes of resident code, hand-coded interrupt vectors, deliberate sacrifices for floppy speed. The educational value is real and the licensing decision is, in 2026, a reassuringly normal corporate move. Worth a slow Sunday read with a coffee.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Tooling</span>
+          <span class="meta-pill meta-score">HN 164</span>
+          <span class="meta-pill meta-source">arstechnica.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://arstechnica.com/gadgets/2026/04/microsoft-open-sources-the-earliest-dos-source-code-discovered-to-date/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48253386" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Research / Analysis</div>
+      
+      <h2 class="spread-headline">Making deep learning go brrrr from first principles (2022)</h2>
+      <p class="spread-lede">Horace He’s 2022 essay on making deep learning go fast is back on the front page, and it is the rare piece that has aged into a near-canonical reference for anyone reasoning about why a model trains at the speed it does.</p>
+      <div class="spread-body"><p>The argument is simple and the implications are not. Deep learning performance is governed by three regimes — compute-bound, memory-bound, and overhead-bound — and intuitions developed in one regime do badly when transplanted to another. He walks through the arithmetic intensity calculations that tell you which regime you are in for a given operation, and the rules of thumb that follow: when fusion helps, when it does not, when chasing FLOPS is wasted effort because you are bandwidth-starved.</p><p>The essay is worth re-reading now because the regimes have shifted under our feet. The 2022 era was dominated by attention kernels on A100s. In 2026 the H200 and B100 generations, longer-context architectures, and the rise of inference-time compute have moved many workloads decisively into bandwidth-bound territory. The mental model still holds. The constants do not. That is a reasonable summary of most useful engineering writing.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Engineering</span>
+          <span class="meta-pill meta-score">HN 163</span>
+          <span class="meta-pill meta-source">horace.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://horace.io/brrr_intro.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48246889" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tools</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">-​-dangerously-skip-reading-code</h2>
+      <p class="spread-lede">A new essay arguing against the now-common Claude Code flag that skips reading existing code before editing it has hit the front page, and the disagreement it has provoked maps directly onto the divide between agentic AI optimists and the engineers cleaning up after them.</p>
+      <div class="spread-body"><p>The author’s thesis is straightforward. Disabling the read-before-write step in a coding agent is a local time saving paid for with global correctness debt: changes get made against a model of the code rather than the code itself, regressions slip past tests, and the diff is harder to review because the agent cannot explain choices it never grounded. The piece names names and shows diffs, which is what gives it teeth.</p><p>For anyone running Claude Code or Cowork inside an engineering workflow this is not abstract. The pattern the author critiques is exactly the one that turns a useful collaborator into a confident vandal in larger repos. Worth circulating to the team along with a working agreement on when, if ever, the flag is allowed. The default answer should be: never on shared code, sometimes on a throwaway script, only with an explicit user override.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit your team’s Claude Code and Cowork configurations for any use of dangerously-skip flags or equivalents. Add a written norm to your engineering handbook that agents must read affected files before editing them, with a documented exception process. Bring this up at your next AI tooling sync.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Workflow</span>
+          <span class="meta-pill meta-score">HN 135</span>
+          <span class="meta-pill meta-source">olano.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://olano.dev/blog/dangerously-skip/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48246232" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Civil Liberties</div>
+      
+      <h2 class="spread-headline">Texas woman arrested for Facebook post about town water quality</h2>
+      <p class="spread-lede">A Texas woman was arrested after a Facebook post questioning the quality of her town’s drinking water, an enforcement action that has prompted lawyers and free-speech groups to ask what statute, precisely, the police believe she violated.</p>
+      <div class="spread-body"><p>The reported facts are these: a resident posted publicly about discolouration and taste in tap water and was charged under a state misinformation statute. The legal hook appears to be a provision originally written for terrorism hoaxes, now being stretched to cover what looks a lot like ordinary citizen complaint. The story is being amplified because it lands at a moment when several US states are testing the edges of what speech online can be criminalised for, and because the chilling effect on legitimate public-health reporting is obvious.</p><p>For practitioners in the UK and EU it is a useful reminder that the same legislative pattern — broadly drafted online harms statutes being applied beyond their original scope — is not a uniquely American phenomenon. The Online Safety Act, the Digital Services Act and equivalent regimes elsewhere all contain provisions whose first contested enforcement cases will set important precedents. Worth tracking even if you don’t draft policy yourself.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Speech &amp; Surveillance</span>
+          <span class="meta-pill meta-score">HN 688</span>
+          <span class="meta-pill meta-source">reclaimthenet.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://reclaimthenet.org/texas-woman-arrested-for-facebook-post-about-town-water-quality" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48249747" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Safety</div>
+      
+      <h2 class="spread-headline">Improving C# Memory Safety</h2>
+      <p class="spread-lede">Microsoft’s .NET team has published the design notes for the memory-safety improvements landing in upcoming C# releases, a quiet but consequential shift in how the language handles spans, lifetimes and the unsafe surface.</p>
+      <div class="spread-body"><p>The headline change is a tighter, statically checked model for ref-struct lifetimes that closes several long-standing footguns around stack-allocated buffers escaping their scope. It is not Rust, and it does not claim to be: the compromise is that the existing C# idioms keep working, but the compiler now refuses the small subset that used to silently produce undefined behaviour. The proposal also lays the groundwork for a path away from the unsafe keyword for common interop scenarios.</p><p>For enterprise teams the practical effect is that some classes of vulnerability — use-after-free in pooled buffers, span-based parsing bugs — should become harder to write and easier to spot. That matters because .NET continues to be a dominant runtime in finance, government and healthcare, exactly the sectors where memory-safety issues have the most expensive blast radius. The .NET 11 preview cycle is the right time to read the spec and start planning migrations.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Tooling</span>
+          <span class="meta-pill meta-score">HN 151</span>
+          <span class="meta-pill meta-source">devblogs.microsoft.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://devblogs.microsoft.com/dotnet/improving-csharp-memory-safety/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48225782" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Governance / EU</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Spanish court declines to fine NordVPN over LaLiga piracy blocking order</h2>
+      <p class="spread-lede">A Spanish court has declined to fine NordVPN for refusing to enforce LaLiga’s sweeping piracy-blocking order against its own users, the first significant judicial check on a regime that had previously been treated as functionally automatic.</p>
+      <div class="spread-body"><p>The blocking order, originally issued at LaLiga’s request, required ISPs and adjacent providers to cut access to a moving target list of IP ranges. The collateral damage has been steady: Cloudflare-fronted unrelated sites going dark during matches, payment processors briefly unreachable, and the predictable VPN workaround becoming so popular it inverted the original purpose of the order. The court’s reasoning, summarised in the filing, leans heavily on proportionality and on NordVPN’s lack of a local establishment.</p><p>The ruling is narrow but the read-across is broad. EU member states have been testing whether private rights-holder injunctions can be exported into the infrastructure layer, and several UK enforcement bodies have been watching closely. A judicial brake from any one jurisdiction matters; a Spanish brake on a sports-rights case matters more, because the LaLiga regime had become the working template.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add this judgement to your legal-watch queue and flag it for the General Counsel. If your organisation operates VPN, CDN or DNS services into Spain, ask outside counsel whether the reasoning extends to your category. UK readers: track whether the Premier League replicates the LaLiga playbook in the autumn season and what your statutory obligations would be if it does.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Legal / Privacy</span>
+          <span class="meta-pill meta-score">HN 147</span>
+          <span class="meta-pill meta-source">torrentfreak.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://torrentfreak.com/spanish-court-declines-to-fine-nordvpn-over-laliga-piracy-blocking-order/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48245362" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Accountability</div>
+      
+      <h2 class="spread-headline">Air France and Airbus found guilty of manslaughter over 2009 plane crash</h2>
+      <p class="spread-lede">A French appeal court has found Air France and Airbus guilty of manslaughter over the 2009 crash of Flight 447, reversing earlier acquittals and ending a seventeen-year legal arc with a finding that corporate decisions, not just pilot error, were at fault.</p>
+      <div class="spread-body"><p>The crash, which killed 228 people after pitot tubes iced over and the autopilot disengaged at altitude, has been studied in safety circles for a generation. The new ruling explicitly attributes part of the causal chain to known deficiencies in the pitot tube model, to insufficient pilot training for high-altitude stall recovery, and to a corporate posture that treated both as acceptable risks. It is the first time the French criminal system has held a major airframer and a flag carrier jointly responsible at this level.</p><p>The judgement will be cited far beyond aviation. Anyone whose work touches safety-critical software or hardware should read the reasoning, because it lays out a workable doctrine for corporate manslaughter that turns on documented internal awareness of risk plus a decision not to act. That doctrine has obvious applications to algorithmic harms, to autonomous systems, and to any vendor whose telemetry shows failure modes that were not communicated to the buyer.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Ethics / Safety</span>
+          <span class="meta-pill meta-score">HN 58</span>
+          <span class="meta-pill meta-source">bbc.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.bbc.com/news/articles/czd2qmdvmq6o" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48250980" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 24 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: routine patch advisories without context, vendor marketing dressed as security research, crypto and web3 speculation, and US political news without a technology angle.</p>
+    <p>Duplicates excluded against the previous two editions: 1. Anthropic’s Project Glasswing initial update was carried forward from yesterday and dropped from today’s pool.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
