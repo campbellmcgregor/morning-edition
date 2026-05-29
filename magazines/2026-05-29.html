@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 29 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 149</span>
+    <span>Friday · 29 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Today's lead is GitHub suspending a researcher for publishing live exploit code, which keeps the platform-power conversation uncomfortably open. We pair that with a tally of what your car now silently exfiltrates, and a clear-eyed read on Anthropic's trillion-dollar Series H and what it changes about how you carry the relationship on your TPRM list.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 29 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Disclosure &amp; Platform Power</span>
+        <span class="toc-title">GitHub bans security researcher who posted zero-day Windows exploits</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Cars collect a startling amount of data about you</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Civil Liberties Alert</span>
+        <span class="toc-title">Legislation killed that would have effectively blocked police LPR, including Flock</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Anthropic Release</span>
+        <span class="toc-title">Claude Opus 4.8</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Research</span>
+        <span class="toc-title">Investigating how prompt politeness affects LLM accuracy</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling</span>
+        <span class="toc-title">Various LLM Smells</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Trust &amp; Consent</span>
+        <span class="toc-title">SF startup is testing robots in Airbnbs, and trashing them, lawsuit claims</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agent UX</span>
+        <span class="toc-title">Continue? Y/N: A 60-second game about AI agent permission fatigue</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">EU Enforcement</span>
+        <span class="toc-title">EU fines Temu €200M for allowing sale of illegal products</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Industry Milestone</span>
+        <span class="toc-title">Anthropic raises $65B in Series H funding at $965B post-money valuation</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Disclosure &amp; Platform Power</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">GitHub bans security researcher who posted zero-day Windows exploits</h2>
+      <p class="spread-lede">Microsoft-owned GitHub has suspended the account of a researcher who published proof-of-concept exploits for two unpatched Windows vulnerabilities, reigniting the long-running fight over what counts as responsible disclosure when the platform hosting your research also belongs to the vendor you are pressuring.</p>
+      <div class="spread-body"><p>The mechanics here matter more than the headline. The researcher posted working exploit code while the vulnerabilities were still unpatched, which violates GitHub's acceptable use rules and Microsoft's own coordinated disclosure expectations. The counter-argument, made loudly across infosec Twitter, is that pressure-publishing is sometimes the only lever that moves a vendor of Microsoft's size off a slow patch cycle. Neither side is straightforwardly right. The uncomfortable part is that the arbiter of who gets to publish what is also the vendor whose product is being exposed, which is a structural conflict of interest that a handful of high-profile bans now make impossible to ignore.</p><p>For security leaders the practical question is supply-chain dependency. If GitHub is where your team mirrors offensive tooling, hosts internal red-team write-ups, or publishes your own advisory drafts, you should treat "account suspended without notice" as a credible operational risk. That is not a reason to leave GitHub; it is a reason to have your advisory pipeline, exploit research and pentest evidence backed up somewhere that does not share a corporate parent with the vendor you most often have to push.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit where your offensive-tooling and advisory drafts live. Mirror anything you would not want disappearing on 24 hours&#x27; notice to a second provider, and add a one-line clause to your coordinated-disclosure policy that names the platform risk explicitly so it is not novel the next time a researcher on your team gets suspended.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 308</span>
+          <span class="meta-pill meta-source">tomshardware.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.tomshardware.com/tech-industry/cyber-security/microsoft-shuts-down-github-account-of-security-researcher-following-zero-day-windows-leaks" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48317774" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      
+      <h2 class="spread-headline">Cars collect a startling amount of data about you</h2>
+      <p class="spread-lede">A BBC Future investigation tallies what modern vehicles actually exfiltrate: location traces every few seconds, biometric voice samples from the in-cabin assistant, paired-phone contact lists, and in several models, sexual-activity inference derived from seat-belt and cabin sensors.</p>
+      <div class="spread-body"><p>The interesting thing about the piece is not the existence of the data collection, which has been known for years, but the granularity of what is now being sold downstream. Insurance brokers, fleet-analytics resellers and a thin layer of data brokers are quietly building behavioural profiles that are richer than anything most consumer apps are permitted to hold under GDPR. The fact that the legal basis is buried in a clickwrap signed at the dealership rather than in an app store is, for now, holding off the regulators. That will not last.</p><p>The deeper problem is that the modern car is now indistinguishable, architecturally, from a smartphone with a chassis welded to it — and yet it is still bought, sold and disposed of by people who treat it as a physical object. The hand-off at lease end, the trade-in, the family member borrowing the second car all become privacy-leaking events that nobody documents. Expect Mozilla's annual "all cars are creepy" report to be cited as evidence in the first serious class action within the next eighteen months.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 241</span>
+          <span class="meta-pill meta-source">bbc.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.bbc.com/future/article/20260513-your-car-is-spying-on-you" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48318481" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Civil Liberties Alert</div>
+      
+      <h2 class="spread-headline">Legislation killed that would have effectively blocked police LPR, including Flock</h2>
+      <p class="spread-lede">A bipartisan US amendment that would have meaningfully restricted police use of automated licence-plate readers — and crucially, Flock&#x27;s expanding national network of them — was killed in committee this week, with IPVM publishing the procedural trail.</p>
+      <div class="spread-body"><p>Flock's growth story is unusual for a surveillance vendor: it has built a dense, vendor-managed ANPR mesh by selling directly to small-town police forces and HOAs rather than to large agencies, which keeps each individual contract beneath the threshold that would normally trigger a procurement review. The amendment that died this week would have forced retention limits, third-party-sharing audits and a federal floor on what police forces can do with the resulting trove. The death of it confirms that the present US trajectory is the opposite — fewer guardrails on a network that is already national in scope.</p><p>For UK readers the relevance is indirect but real. The Flock-pattern (dense, contracted ANPR, sold under the procurement radar to councils and private estates) is one of the templates that will be tested in the UK and Ireland over the next two years, and there is no equivalent unifying piece of legislation here either. The Surveillance Camera Code is guidance, not law; the ICO's interest in ANPR has been patchy. Watch this space.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 108</span>
+          <span class="meta-pill meta-source">ipvm.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://ipvm.com/reports/bipartisan-alpr-amendment-killed" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48315968" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Anthropic Release</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Claude Opus 4.8</h2>
+      <p class="spread-lede">Anthropic has released Claude Opus 4.8, a point upgrade to the Opus line focused on longer-horizon agentic work, tighter tool-use reliability, and meaningful gains on the coding and security-review benchmarks that the 4.x line was already strongest on.</p>
+      <div class="spread-body"><p>The release notes deliberately downplay the headline-benchmark numbers and lean instead on the things that actually break in long agent runs: tool-call schema adherence on the hundredth call, mid-task plan correction, and recovery after a single bad sub-step. These are the things that determine whether a Claude Code or Cowork session that started at 09:00 still trusts itself at 16:00, and the work here is more useful than the topline SWE-bench delta most reviewers will lead with.</p><p>The other quiet line item is that Opus 4.8 is the first model on the Opus tier to ship with the new structured-output and computer-use refinements in general availability rather than beta. For anyone building automations on top of Cowork or the Agent SDK, that is the more consequential change — you can now move workflows that were beta-gated for a quarter onto a stable, contracted surface, which is what an org-level rollout actually needs.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If you are running Claude Opus on the 4.6 line in Claude Code or Cowork, plan a one-day side-by-side on your two or three highest-frequency workflows before flipping the default. The interesting deltas will not be on benchmarks — they will be on tool-call reliability and on how the model handles your idiosyncratic prompts mid-session.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 1394</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48311647" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Research</div>
+      
+      <h2 class="spread-headline">Investigating how prompt politeness affects LLM accuracy</h2>
+      <p class="spread-lede">A small but careful arXiv paper revisits the recurring question of whether politeness markers in prompts affect model accuracy, and arrives at a more nuanced answer than either the &quot;please works&quot; or &quot;please is noise&quot; camps want to hear.</p>
+      <div class="spread-body"><p>The authors run a controlled sweep across six models and five domains, varying only the politeness register of an otherwise identical prompt. The effect is small, real, and direction-dependent: extreme politeness ("could you please be so kind as to") tends to degrade accuracy on reasoning tasks because it eats context budget and tilts the model toward equally verbose output, while a moderate register ("please walk me through") slightly improves it on instruction-following. The hostility end of the spectrum is the most interesting finding — overtly rude prompts measurably reduce calibration, with models producing more confidently wrong answers rather than refusing.</p><p>The practical takeaway for anyone tuning prompts is that politeness is not a moral question but a stylistic one with measurable effects, and the safest default for production system prompts is the same plain, direct register that a good technical document would use. The paper does not answer whether the effect generalises to non-English prompts, and that is the obvious next study.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Research</span>
+          <span class="meta-pill meta-score">HN 140</span>
+          <span class="meta-pill meta-source">arxiv.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://arxiv.org/abs/2510.04950" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48318174" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling</div>
+      
+      <h2 class="spread-headline">Various LLM Smells</h2>
+      <p class="spread-lede">A working engineer catalogues the recurring stylistic and structural tells in LLM-written code — the giveaways that turn a code review from &quot;let me read this&quot; into &quot;this was written by a model and the author did not look at it twice&quot; — and turns the list into a usable taste guide.</p>
+      <div class="spread-body"><p>The piece is the rare LLM-coding write-up that is more useful as a checklist than as an opinion. The smells the author flags — exhaustive single-letter-variable type narrowing, the "defensive" try/except wrapper around code that cannot raise, the docstring that restates the function name, the overly explicit return-type union — are exactly the patterns that pile up in a pull request when the human reviewer is rubber-stamping rather than reading. None of them is a bug in itself; collectively they are a slow degradation of code legibility that is only obvious six months in.</p><p>The implicit argument is that the right response is not to ban LLM code but to develop the same review reflex senior engineers already have for junior code: a short list of "if I see this, slow down" markers. The paper would be a good starting point for an internal review checklist, and the comments thread on Hacker News adds another dozen smells worth folding in.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 274</span>
+          <span class="meta-pill meta-source">shvbsle.in</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://shvbsle.in/various-llm-smells/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48314002" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Trust &amp; Consent</div>
+      
+      <h2 class="spread-headline">SF startup is testing robots in Airbnbs, and trashing them, lawsuit claims</h2>
+      <p class="spread-lede">An SF-based robotics startup is being sued by multiple Airbnb hosts who allege the company booked their properties as residential lets and then used them as unsupervised testing environments for prototype household robots, causing significant damage and recording video of guests and hosts.</p>
+      <div class="spread-body"><p>The complaint reads like a parody of the move-fast playbook applied to physical-world consent. Hosts allege that the bookings were made under individual employee names, that the stays consistently involved a half-dozen people and large unmarked crates, and that one host's nanny cam captured a robot pulling fixtures off the wall. The startup's defence so far has been a procedural one — that the bookings were made in compliance with Airbnb's host terms — which is doing very little to address the more interesting question of whether "I agreed to host a guest" constitutes consent to host an unsupervised mechanical test rig that films you.</p><p>The story is a useful concrete case for the consent-and-deployment debates that are otherwise stuck at the level of policy abstraction. Every legal team currently writing a robotics or computer-vision deployment policy should expect a version of this lawsuit to be tested in their jurisdiction within the next two years, and the cleanest defence is going to be auditable consent records, not retroactive arguments about platform terms.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 173</span>
+          <span class="meta-pill meta-source">sfstandard.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://sfstandard.com/2026/05/28/sf-startup-secretly-testing-robots-airbnbs/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48280451" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agent UX</div>
+      
+      <h2 class="spread-headline">Continue? Y/N: A 60-second game about AI agent permission fatigue</h2>
+      <p class="spread-lede">A small in-browser game asks you to play the role of a developer babysitting an LLM agent that fires permission prompts at the rate of one every couple of seconds, and rapidly demonstrates how quickly any human in that loop becomes a rubber stamp.</p>
+      <div class="spread-body"><p>The piece is a toy, but it is also one of the better-designed pieces of security UX commentary of the year. The game does nothing technically interesting; it just shows you the failure mode of "the human is always in the loop" as a security control, by making you be the human for sixty seconds. Most players hit the "approve everything" rhythm within twenty seconds, which is the same rhythm currently being normalised in production by the default Claude Code, Cursor and Cline configurations.</p><p>The interesting question for security leads is not whether to ban this UX pattern but what to put in place around it. The right answer is probably not more prompts but fewer and louder ones — a small set of high-friction confirmations for operations that touch credentials, network or destructive filesystem writes, and a silent allow for the rest. Worth ten minutes of any security architect's morning.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Security UX</span>
+          <span class="meta-pill meta-score">HN 288</span>
+          <span class="meta-pill meta-source">llmgame.scalex.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://llmgame.scalex.dev" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48314951" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">EU Enforcement</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">EU fines Temu €200M for allowing sale of illegal products</h2>
+      <p class="spread-lede">The European Commission has fined Temu €200 million under the Digital Services Act for systemic failures to prevent the sale of illegal and non-compliant products on its marketplace — the largest DSA fine to date and the first targeted at a non-EU-headquartered marketplace operator.</p>
+      <div class="spread-body"><p>The DSA is now doing what its critics said it would not: producing nine-figure fines that are large enough to matter to a firm of Temu's scale, and specific enough in their reasoning that other large marketplaces can read the order and work out how exposed they are. The Commission's published findings name three failure modes — inadequate seller-onboarding KYC, insufficient post-listing monitoring, and a complaint-handling pipeline that the Commission characterises as "non-functional at observed volumes". Each of those is a control objective most large marketplaces will recognise from their own internal compliance plan.</p><p>The wider read is that the Commission has chosen to make Temu the test case rather than a European incumbent, which is going to be politically useful for the DSA's longer-term legitimacy. It also signals that the second wave of DSA enforcement is going to focus on marketplaces and not on speech platforms, which is a quieter but more consequential shift in priority.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If you run a marketplace surface — even an internal partner marketplace or a B2B procurement portal that touches EU users — read the Commission&#x27;s published findings, not just the press summary. The three control areas they cite (seller KYC, post-listing monitoring, complaints) are the standard checklist your DSA exposure will be assessed against, and the cost of building those controls properly now is materially lower than the cost of building them under a Commission timetable.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Regulation</span>
+          <span class="meta-pill meta-score">HN 318</span>
+          <span class="meta-pill meta-source">bbc.co.uk</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.bbc.co.uk/news/articles/c1k2ydn1rz8o" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48276598" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Industry Milestone</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Anthropic raises $65B in Series H funding at $965B post-money valuation</h2>
+      <p class="spread-lede">Anthropic has closed a $65 billion Series H at a $965 billion post-money valuation — a round that pushes the company into the same capital cohort as the largest cloud providers and effectively closes the question of whether the frontier-model market consolidates around three players or fewer.</p>
+      <div class="spread-body"><p>The number is the headline, but the more useful signal is the composition of the round and what it implies about the next eighteen months. Series H rounds at this scale are not growth-equity rounds; they are infrastructure rounds. The capital is for compute commitments, datacentre power purchase agreements and the long-dated supply contracts that determine which lab gets to train the 2027 frontier model on time. For customers of any of the frontier labs, that means the model-availability story for next year is now a question of who has locked in the GW-scale power and the wafer allocation, not who has the cleverest research.</p><p>The quieter consequence is on the buyer side. A company valued at nearly a trillion dollars is no longer a vendor you can sensibly classify as "emerging" in a third-party risk review, and several enterprise procurement teams that had been deferring Anthropic onto a lighter-weight vendor process should expect that path to close. Treat Anthropic the way you treat AWS or Microsoft in your TPRM programme — because that is now the cohort it sits in.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If your third-party risk register still has Anthropic in an &quot;emerging vendor&quot; or &quot;pilot&quot; lane, move it. Refresh the vendor profile, request the current SOC 2 and the most recent penetration-test letter, and put the relationship on the same renewal and review cadence as your other tier-one cloud and AI vendors. The procurement story you tell the board for 2027 should not have Anthropic in the same column as a pre-Series A tooling vendor.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Industry</span>
+          <span class="meta-pill meta-score">HN 319</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/news/series-h" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48317294" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 29 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: routine CVE-database drama, vendor marketing dressed as analysis, crypto and web3 hype, and a cluster of Blue Origin rocket-explosion items that were duplicates of one another.</p>
+    <p>Duplicates excluded against the previous two editions: 1. YouTube's AI-labelling rollout, which we ran yesterday, surfaced again on the front page and was dropped from today's pool.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
