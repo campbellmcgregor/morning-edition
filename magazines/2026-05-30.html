@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 30 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 150</span>
+    <span>Saturday · 30 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A Windows zero-day standoff that didn't end with the GitHub takedown, a European ad identifier that lives below the browser, and a Claude Code release that quietly changes how workflows ought to be written. Five of today's ten stories want something from you before Monday.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 30 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      5 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">Microsoft 0-day feud escalates as researcher threatens another exploit dump</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance & Privacy</span>
+        <span class="toc-title">Utiq: the ad-tracking ID your European ISP quietly assigns you</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain Risk</span>
+        <span class="toc-title">Someone used my open-source project to phish people</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Tooling Release</span>
+        <span class="toc-title">Dynamic Workflows in Claude Code</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Research</span>
+        <span class="toc-title">CAPTCHAs can still detect AI agents</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Protocol Debate</span>
+        <span class="toc-title">MCP is dead?</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Industry</span>
+        <span class="toc-title">Notes from the Mistral AI Now Summit</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Model Release</span>
+        <span class="toc-title">Liquid AI releases 8B-A1B MoE trained on 38T tokens</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Governance</span>
+        <span class="toc-title">White House proposes giving political appointees final approval on research grants</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Reflection</span>
+        <span class="toc-title">We should be more tired than the model</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Microsoft 0-day feud escalates as researcher threatens another exploit dump</h2>
+      <p class="spread-lede">A security researcher whose GitHub account Microsoft shuttered last week is now threatening to publish a second Windows zero-day proof of concept, turning a procedural disagreement into a live exploit-timing question for every Windows shop.</p>
+      <div class="spread-body"><p>The Register reports the researcher is staging a release window and has named the next target as kernel-level, without coordinating disclosure with MSRC. That puts defenders into the worst part of any 0-day cycle: the gap between PoC visibility and a real patch. Treat this one as breaking, not academic. Microsoft has not committed to an out-of-band fix, and the last drop went into commodity tooling within days.</p><p>The wider picture is uglier. Suspending the account did nothing to retract what was already mirrored, and it converted a procedural disagreement into a public reputational fight the researcher is winning. For UK shops this lands during a quiet bank-holiday weekend and ahead of June Patch Tuesday, so expect any drop to coincide with peak skeleton-staffing windows. The lesson for CISOs is older than this incident: prepare for the dump, not the disclosure.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Confirm Windows endpoints are on the latest cumulative update tonight, not next sprint. Have your detection team write hunting rules around kernel-level escalation and unusual driver loads now, ahead of any PoC. Brief your duty manager on what an out-of-band Microsoft advisory looks like and how it would be triaged over the weekend.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 229</span>
+          <span class="meta-pill meta-source">theregister.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.theregister.com/security/2026/05/28/microsoft-0-day-feud-escalates-as-researcher-threatens-another-exploit-dump/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48330436" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance & Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Utiq: the ad-tracking ID your European ISP quietly assigns you</h2>
+      <p class="spread-lede">Utiq is a telco-grade identifier carried inside the network, built and operated jointly by major European ISPs to give advertisers a stable handle that survives cookie clearing, private browsing and changing devices on the same line.</p>
+      <div class="spread-body"><p>The pitch from Utiq's backers is consent-based attribution. The reality is that the consent prompt appears in places few users read carefully, and the resulting ID is attached to the connection itself, not the browser. Once granted it can be presented to any site that integrates Utiq, including from a logged-out session. The piece walks through what to disable inside operator portals, but the more important point is that this lives below the browser, below ad blockers, and below most enterprise controls.</p><p>For Scotland and the rest of the UK, this matters because Utiq is operated by carriers that hold a chunk of the domestic mobile market via Vodafone and others, and because GDPR consent has now been stretched to cover a network-layer identifier. Expect ICO scrutiny but no quick remedy. Anyone managing a corporate mobile fleet should assume staff devices on consumer SIMs may be carrying this identifier into work browsing today.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Check whether your corporate mobile estate is on operator plans that participate in Utiq (Vodafone UK is the obvious one). Add an item to next month&#x27;s data-protection review asking whether marketing partners are integrating Utiq. For personal use, follow the opt-out flow on each operator portal. There is no global kill switch.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 3</span>
+          <span class="meta-pill meta-source">korben.info</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://korben.info/utiq-identifiant-publicitaire-telcos.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48332047" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain Risk</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Someone used my open-source project to phish people</h2>
+      <p class="spread-lede">An indie maintainer describes waking up to find their popular OSS project repurposed as the trust anchor in a credential-phishing campaign. The attacker forked, rebranded just enough to look legitimate, and pointed victims at a lookalike domain.</p>
+      <div class="spread-body"><p>This is the modern supply chain attack that does not need a malicious package. The attacker did not compromise the upstream repo or publish a poisoned release. They simply weaponised the project's reputation: a fork, a slightly different name, a landing page that copies the README, and a Google search result that ranks above the legitimate one. Victims who did their research ended up on the lookalike and entered credentials that mapped to the real product.</p><p>The author's response, DMCA and takedown requests and mobilising the community, worked slowly. The broader read for defenders is that supply chain risk now includes brand-shaped attacks against tools your developers already trust. Treat this as a phishing variant that bypasses every domain-based filter you have, because the originating domain is something engineers chose to type. There is no clean playbook yet. The early defence is awareness and a corporate registry of approved tooling URLs.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add the dominant OSS tools your engineers actually use to your phishing simulation set and to your SSO landing pages. If you maintain an internal package mirror, point it at known-good upstream URLs and route developer traffic through it. Brief engineering leads that lookalike forks are now a category, not an edge case.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 98</span>
+          <span class="meta-pill meta-source">andrej.sh</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://andrej.sh/posts/phishing-through-my-open-source-project" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48324910" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Tooling Release</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Dynamic Workflows in Claude Code</h2>
+      <p class="spread-lede">Anthropic has shipped dynamic workflows in Claude Code: runtime-composable, conditional, multi-step agent flows defined alongside the project&#x27;s skills, replacing the older static slash-command model with something closer to a real orchestrator.</p>
+      <div class="spread-body"><p>The release adds first-class branching, parameter passing, and conditional fan-out to subagents, all driven from the same workflow file the user already keeps in source control. For anyone who has been hand-rolling orchestration logic across skills, this collapses a meaningful chunk of boilerplate. The Anthropic post is worth reading in full because it changes the right pattern for new projects: workflows now own the control flow, skills own the steps.</p><p>The honest caveat is that this lands on the same week the wider AI ecosystem started arguing whether MCP is still the right primitive (see story 6). Dynamic workflows depend on a stable tool surface, and the surface is not stable. Even so, this is the most useful Claude Code release since skills. Cowork users in particular should look at converting their busiest scheduled tasks into proper workflow files this week.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pick one Cowork or Claude Code task that already has &#x27;if X then Y else Z&#x27; logic baked into prose and migrate it to a workflow file. Start with something low-stakes, your daily briefing or this Morning Edition pipeline is a good candidate. Keep the old prompt as a fallback for two weeks before deleting.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 169</span>
+          <span class="meta-pill meta-source">claude.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://claude.com/blog/introducing-dynamic-workflows-in-claude-code" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48328184" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Research</div>
+      
+      <h2 class="spread-headline">CAPTCHAs can still detect AI agents</h2>
+      <p class="spread-lede">Roundtable&#x27;s research team ran a battery of modern browser-using agents against current CAPTCHA implementations and found that the bot wall is holding up better than the discourse suggests, though not for the reasons most defenders assume.</p>
+      <div class="spread-body"><p>The interesting finding is not that agents fail the visual puzzle. They mostly solve it. They fail the surrounding behavioural signals: mouse paths that are too clean, focus events out of order, timing distributions that don't match a human reading the page. CAPTCHA vendors have quietly moved the detection surface away from the puzzle itself and into the telemetry around it, and the agents have not caught up.</p><p>For anyone planning to deploy agent traffic against real services this matters in both directions. If you are the defender, your existing CAPTCHA is buying you more time than you thought. If you are the operator running agents, you need to budget for getting blocked even when the model can read the image perfectly. The detection surface will close eventually, but the timeline is months, not weeks.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Security</span>
+          <span class="meta-pill meta-score">HN 73</span>
+          <span class="meta-pill meta-source">research.roundtable.ai</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://research.roundtable.ai/captchas-detect-ai/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48325624" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Protocol Debate</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">MCP is dead?</h2>
+      <p class="spread-lede">Quandri&#x27;s engineering team argue the Model Context Protocol has already failed in production: too leaky for enterprise, too thin for agents, and now being routed around by every vendor that initially shipped servers for it.</p>
+      <div class="spread-body"><p>The argument is partly polemic and partly observation. The observation is that the major model vendors have started shipping native tool surfaces, workflows, skills, first-party connectors, that compete with the very MCP servers they once endorsed. The polemic is that MCP's pull model and its lack of typed contracts make it a poor fit for the agentic workloads it was advertised for. Comments on the HN thread split sharply between 'this is overdue honesty' and 'this is one team's bad experience.'</p><p>The right read is not that MCP is dead but that it is being demoted. It will keep working as a connector glue layer between platforms that have no other contract. What it will not do is sit at the centre of agent orchestration the way it was sold a year ago. Anyone building on top of MCP servers should already be testing fallbacks to native tool calls in their primary platform.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory the MCP servers your team relies on this morning. For each, note whether the underlying platform now offers a native tool surface (most do). Plan a one-quarter migration path for the two most-used servers and treat MCP as glue, not foundation.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 157</span>
+          <span class="meta-pill meta-source">quandri.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.quandri.io/engineering-blog/mcp-is-dead" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48324712" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Industry</div>
+      
+      <h2 class="spread-headline">Notes from the Mistral AI Now Summit</h2>
+      <p class="spread-lede">An attendee&#x27;s notebook from Mistral&#x27;s AI Now summit in Paris captures a company openly courting European sovereign workloads, and a roadmap that leans on open weights, regulated deployment, and direct partnerships with EU ministries.</p>
+      <div class="spread-body"><p>The interesting threads are the regulatory ones. Mistral is positioning itself as the answer to EU AI Act compliance for organisations that cannot put data through US-hosted models, and several deployments name France, Italy and the Netherlands explicitly. The technical updates, a new mid-size model and an inference stack tuned for European telco GPU capacity, are real but second-order.</p><p>For UK leadership the read is that Mistral's pitch lands cleanly with the public sector caution that has kept frontier model usage stalled inside several Whitehall departments. Expect to see Mistral named in more procurement frameworks over the next two quarters. None of this is hostile to Anthropic or OpenAI, but the regulatory contour is now clearly bifurcating.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Industry</span>
+          <span class="meta-pill meta-score">HN 335</span>
+          <span class="meta-pill meta-source">koenvangilst.nl</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://koenvangilst.nl/lab/mistral-ai-now-summit" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48325340" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Model Release</div>
+      
+      <h2 class="spread-headline">Liquid AI releases 8B-A1B MoE trained on 38T tokens</h2>
+      <p class="spread-lede">Liquid AI has released LFM2.5 8B-A1B, an 8-billion-parameter mixture-of-experts model with one active expert per forward pass, trained on a 38-trillion-token corpus and positioned squarely at on-device inference.</p>
+      <div class="spread-body"><p>The headline number, 38T tokens, is large by any measure, and the one-active-expert design keeps inference cheap on hardware that cannot accommodate a dense 8B model. Benchmarks in the post show it competitive with several 7B-class dense models on reasoning, ahead on instruction-following, and meaningfully cheaper to run. Liquid's bet is that the next round of model competition happens on devices, not in data centres.</p><p>The useful question is whether the model travels well into the workflows that already depend on a frontier model in the cloud. The answer in early testing is partly: fine for retrieval-augmented summarisation, weaker on long agentic chains. Worth keeping in the mental model for any project where data residency rules out a hosted API and you are sizing local hardware.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 173</span>
+          <span class="meta-pill meta-source">liquid.ai</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.liquid.ai/blog/lfm2-5-8b-a1b" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48330192" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Governance</div>
+      
+      <h2 class="spread-headline">White House proposes giving political appointees final approval on research grants</h2>
+      <p class="spread-lede">A draft Office of Management and Budget rule would route every federal research grant through a political appointee for final sign-off, replacing the peer-review-led approval path that has run American science funding since the 1950s.</p>
+      <div class="spread-body"><p>The proposed change is described as a consistency review but is structurally a veto. Scientific American walks through the affected agencies, NIH, NSF, DOE Office of Science, the alphabet soup that funds most basic research in the US, and notes the rule would apply to existing as well as new awards. The mechanism is a single appointee, named by the administration, with discretion to halt awards on undefined grounds.</p><p>The proposal will run a public comment period and is likely to be litigated regardless of outcome. For UK and EU research leaders the practical question is which collaborations get caught in the slowdown: joint grants with US labs, shared datasets, postdoc transfer programmes all sit downstream of awards that may now be delayed by months. Plan accordingly even before the rule lands.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Policy</span>
+          <span class="meta-pill meta-score">HN 130</span>
+          <span class="meta-pill meta-source">scientificamerican.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.scientificamerican.com/article/white-house-proposes-new-rules-giving-political-appointees-final-approval-of-research-grants" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48330088" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Reflection</div>
+      
+      <h2 class="spread-headline">We should be more tired than the model</h2>
+      <p class="spread-lede">Vicki Boykis writes about the strange exhaustion of working alongside a model that never tires, and the asymmetric burnout that creeps in when humans treat themselves as the slower runtime in their own work.</p>
+      <div class="spread-body"><p>The essay is short and worth reading without summary. The argument, if it must be reduced, is that the productivity claim around AI assistants depends on a human partner who can do the parts that the model cannot, judgement, taste, responsibility, and that those parts are the most expensive ones to run. Treating them as the cheap padding around model output is the failure mode that produces tired senior engineers and brittle products.</p><p>Boykis is not anti-AI; she is anti-disposable-human. The piece pairs well with the recurring discourse this spring about senior engineers leaving teams that have over-rotated on agent throughput. For anyone managing knowledge workers in 2026 this is the conversation to have with your team this month, not next year.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Ethics</span>
+          <span class="meta-pill meta-score">HN 167</span>
+          <span class="meta-pill meta-source">vickiboykis.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://vickiboykis.com/2026/05/28/we-should-be-more-tired-than-the-model/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48328405" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 30 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing copy framed as news, routine patch-Tuesday recaps without context, crypto and web3 hype, and the perennial flood of HN front-page personal essays with no operational signal.</p>
+    <p>Duplicates excluded against the previous two editions: 1. The Anthropic Series H announcement carried over from yesterday's front page was dropped.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
