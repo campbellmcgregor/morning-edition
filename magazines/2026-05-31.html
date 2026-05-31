@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 31 May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 151</span>
+    <span>Sunday · 31 May 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Microsoft quietly turned paid-for Office on Mac into a read-only loss leader, and the consumer-rights wiki noticed before the press did. Cloudflare&#x27;s politest CAPTCHA turns out to want a fingerprint. And a working developer asks, in public, whether the price of asking the machine is the slow loss of the habit of thinking.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 31 May 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      3 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Vendor Lock-in</span>
+        <span class="toc-title">Microsoft Office for Mac quietly converts paid users to view-only mode</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Browser Fingerprinting</span>
+        <span class="toc-title">Cloudflare Turnstile now demands fingerprintable WebGL to prove you are human</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance</span>
+        <span class="toc-title">Reproducing lawful TLS wiretapping at home</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Infrastructure</span>
+        <span class="toc-title">OpenRouter closes a $113M Series B for its model-routing layer</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Post-Quantum</span>
+        <span class="toc-title">A gentle introduction to lattice-based cryptography</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Workflows</span>
+        <span class="toc-title">With Claude: less coding, more testing</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Side-Channel Research</span>
+        <span class="toc-title">FROST: fingerprinting remote devices by timing OPFS-backed SSD writes</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Local Models</span>
+        <span class="toc-title">Bonsai 4B: a one-bit image-generation model that runs on the device in your pocket</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Regulation</span>
+        <span class="toc-title">Connecticut signs an AI law requiring employer notice to staff</span>
+        
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Reflection</span>
+        <span class="toc-title">The solution might be cancelling my AI subscription</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Vendor Lock-in</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Microsoft Office for Mac quietly converts paid users to view-only mode</h2>
+      <p class="spread-lede">Office 2019 and 2021 for Mac—software customers paid for outright—is being silently downgraded to a read-only state, with documents locked behind a forced subscription. The Mac community is calling it data hostage-taking dressed as a feature update.</p>
+      <div class="spread-body"><p>Users discovered in late May that perpetual-license copies of Office for Mac were refusing to save edits, prompting purchase of a Microsoft 365 subscription instead. There was no advance notice, no in-app warning, no migration path. Files created by people who legitimately owned their software simply stopped being editable. Microsoft&#x27;s response has been silence and a help-centre page suggesting users subscribe to regain write access. The consumer-rights wiki documenting the change reached the top of Hacker News inside hours.</p><p>For CISOs running mixed estates this is a textbook supply-chain integrity event. A vendor altered the functionality of installed, paid-for software without consent—exactly the scenario regulators in the UK and EU cite when arguing for stronger digital-content protections. The immediate technical risk is data accessibility: anyone with archived .docx or .xlsx files made through these versions now needs a route to extract them. The strategic risk is that this normalises silent capability removal, which has obvious implications for every other piece of vendor software in the stack.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit your Mac fleet for Office 2019 and 2021 installations this week. Confirm archived documents remain editable on at least one known-good install before further updates roll out. Communicate to staff that documents created in these versions should be backed up immediately. Add this incident to your vendor-risk register as a worked example when re-negotiating perpetual-license contracts.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 956</span>
+          <span class="meta-pill meta-source">consumerrights.wiki</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://consumerrights.wiki/w/Microsoft_Office_2019_and_2021_for_Mac_view-only_conversion_(2026)" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48345028" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Browser Fingerprinting</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Cloudflare Turnstile now demands fingerprintable WebGL to prove you are human</h2>
+      <p class="spread-lede">The challenge-response widget protecting a significant slice of the public web is, according to fresh analysis, requiring WebGL contexts whose exposed parameters uniquely identify the device behind the browser.</p>
+      <div class="spread-body"><p>The author shows that Turnstile&#x27;s invisible challenge fails on browsers that resist WebGL fingerprinting—Tor Browser, hardened Firefox profiles, anything that returns a generic GPU string. Sites using Turnstile in &#x27;managed&#x27; or &#x27;invisible&#x27; mode therefore degrade to blocking visitors whose browsers behave in the way every privacy guide recommends. Cloudflare&#x27;s documentation does not disclose the WebGL dependency, and Turnstile is marketed as a privacy-preserving alternative to reCAPTCHA. The post traces specific fingerprintable signals lifted from the canvas context and ties them to known unique-identifier research.</p><p>This matters for any UK or EU site relying on Turnstile in front of authenticated flows. The GDPR and PECR analysis is uncomfortable: if the bot-detection layer reads device-unique values, it is processing personal data, and the lawful-basis question shifts. It also matters operationally—accessibility advocates have spent two years arguing that Turnstile breaks for screen-reader users and people on hardened browsers. The new fingerprinting requirement turns a usability complaint into a legal exposure.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If your perimeter uses Turnstile, ask your DPO whether the WebGL signal-collection has been documented in your Article 30 records. Test the widget against a hardened Firefox build and Tor Browser to confirm whether legitimate visitors are being silently blocked. Brief your legal team that the threat-detection rationale may no longer carry the privacy posture you claimed when you procured the service.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 199</span>
+          <span class="meta-pill meta-source">hacktivis.me</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://hacktivis.me/articles/cloudflare-turnstile-webgl-fingerprinting" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48345840" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance</div>
+      
+      <h2 class="spread-headline">Reproducing lawful TLS wiretapping at home</h2>
+      <p class="spread-lede">A researcher rebuilds the mechanism by which lawful interception of TLS sessions actually works—keys, middleboxes, the courtroom story—from public documents and a lab setup. It is uncomfortable reading for anyone who assumed end-to-end meant end-to-end.</p>
+      <div class="spread-body"><p>The piece walks through the practical reconstruction: an intercepting authority, cooperative endpoints, the use of session-key escrow patterns that have surfaced in legal proceedings, and the gap between protocol-level secrecy and operational secrecy. The author is careful not to publish anything that isn&#x27;t already in court filings or RFC drafts. What emerges is a clear picture that the everyday lawful-intercept regime relies less on cryptographic backdoors and more on access at the endpoints—CA infrastructure, employee certificates, and managed devices.</p><p>For CISOs the read-across is direct. Most enterprise TLS interception runs on the same playbook as state-level lawful intercept; the only difference is who signs the policy. If your endpoint estate trusts a managed root CA, you have already accepted that visibility is a matter of access-control, not cryptography. The piece is a useful artefact for board-level conversations about why classical &#x27;end-to-end&#x27; assurances aren&#x27;t the right vocabulary for enterprise traffic, and why segmentation and policy matter more than protocol theatre.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 121</span>
+          <span class="meta-pill meta-source">remyhax.xyz</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://remyhax.xyz/posts/reproducing-lawful-tls-wiretapping/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48343078" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Infrastructure</div>
+      
+      <h2 class="spread-headline">OpenRouter closes a $113M Series B for its model-routing layer</h2>
+      <p class="spread-lede">OpenRouter, the unified API in front of several hundred LLMs, announced a $113M round that confirms model-routing as a distinct layer of the AI stack rather than a temporary middleware.</p>
+      <div class="spread-body"><p>The pitch is straightforward: developers ship against one OpenAI-shaped endpoint, OpenRouter handles the rest—failover, price routing, regional shaping, prompt-caching across providers. The Series B will fund enterprise controls, tighter audit trails, and direct contracts with model vendors that lower the take-rate. The announcement is light on customer counts but does namecheck several of the AI-native SaaS companies whose architectures depend on swapping models per request.</p><p>Strategically this is the moment the routing layer stops being a developer convenience and starts being a procurement decision. If you depend on model choice for cost, latency, or compliance reasons, treating that choice as runtime configuration is more honest than baking a single vendor into your contracts. The flip side is concentration: a routing layer that fronts every major model becomes its own dependency and its own audit surface. Worth watching what OpenRouter discloses about model-vendor data handling now that enterprise customers are asking.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 446</span>
+          <span class="meta-pill meta-source">openrouter.ai</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openrouter.ai/announcements/series-b" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48341407" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Post-Quantum</div>
+      
+      <h2 class="spread-headline">A gentle introduction to lattice-based cryptography</h2>
+      <p class="spread-lede">An accessible primer on the mathematics underpinning the schemes that will replace today&#x27;s public-key cryptography over the next decade. Worth an hour if your team has been quoting &#x27;post-quantum&#x27; without anyone having read the maths.</p>
+      <div class="spread-body"><p>The PDF is exactly what it claims: a guided walk through the learning-with-errors problem, ring variants, and how the NIST-selected schemes (Kyber, Dilithium, and friends) sit on top of those foundations. It avoids the usual trap of leaping into matrices without motivation; instead it shows why hard lattice problems resist quantum algorithms in a way that factoring does not. By the end the reader understands why migration timelines are measured in years rather than weekends.</p><p>For a CISO the practical use is calibration. Vendor pitches around post-quantum readiness lean heavily on jargon, and engineering teams default to either dismissing the migration as remote or panicking about it. The primer gives you a shared vocabulary to ask the right questions: what are you using LWE for, where is the key encapsulation happening, what does your hybrid scheme look like, and how does it integrate with existing PKI. Migration planning starts with that conversation, not with a Gartner quadrant.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 140</span>
+          <span class="meta-pill meta-source">cryptography101.ca</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://cryptography101.ca/wp-content/uploads/lattice-based-cryptography.pdf" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48318402" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Workflows</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">With Claude: less coding, more testing</h2>
+      <p class="spread-lede">Henrik Warne&#x27;s running diary of building with Claude lands on a pattern many practitioners are now converging on: the AI writes the first draft of the code, and the engineer&#x27;s time shifts almost entirely to writing tests that prove what the code actually does.</p>
+      <div class="spread-body"><p>The post is concrete. Warne walks through a small Rust refactor and a Python data-pipeline change, both done with Claude inside an editor. In each case the model produced working code faster than he could have, but the surface area he had to actually understand—and therefore the place where mistakes could hide—was the test suite. He ends up writing more tests, not fewer, because the cost of writing them dropped and the value of having them rose. The piece is honest about where Claude gets it wrong: subtle off-by-one and async-ordering bugs that read as plausible.</p><p>The implication for a security-aware team is sharper than the framing suggests. If code review is partly displaced by tests, those tests need to cover security properties, not just functional correctness. Authorisation paths, input-validation invariants, and supply-chain provenance all need to land in the test layer. The good news is that Claude is also better at writing those tests than at writing the policy that should accompany them—so the human role moves toward defining what &#x27;safe&#x27; means and letting the model produce the assertions.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Use this as the reference write-up the next time you have to explain to leadership how engineering productivity shifts under AI assistance. The interesting metric is no longer lines of code per sprint—it is test coverage of security-relevant invariants. If your team is using Claude Code or Cowork today, set a quarterly target for the share of new code accompanied by automated security tests, and track that instead.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 11</span>
+          <span class="meta-pill meta-source">henrikwarne.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://henrikwarne.com/2026/05/31/with-claude-less-coding-more-testing/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48337987" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Side-Channel Research</div>
+      
+      <h2 class="spread-headline">FROST: fingerprinting remote devices by timing OPFS-backed SSD writes</h2>
+      <p class="spread-lede">A new academic paper demonstrates that the Origin Private File System, the browser&#x27;s local storage primitive intended to be unobservable, leaks enough timing detail to uniquely identify the underlying SSD across visits.</p>
+      <div class="spread-body"><p>The researchers measured write latencies through OPFS across a large device pool and showed that controller-specific patterns survive cleanly enough to act as a stable identifier. The attack does not require any privileged API; it runs from ordinary JavaScript inside any browser that exposes OPFS, which is now most of them. Crucially, the signal persists across browser-profile resets and incognito mode—it is hardware-derived, not cookie-derived.</p><p>The paper joins a steady accumulation of work showing that the platform&#x27;s privacy boundaries leak through performance side-channels. For practitioners the takeaway is not that OPFS should be turned off; it is that the threat model around &#x27;private browsing&#x27; has shifted again. If your authentication or fraud-detection stack assumes that incognito sessions are anonymous, that assumption is now demonstrably wrong, and probably has been for some time. Expect this to feed into the next round of browser-vendor mitigation debate.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 12</span>
+          <span class="meta-pill meta-source">hannesweissteiner.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://hannesweissteiner.com/pdfs/frost.pdf" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48345822" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Local Models</div>
+      
+      <h2 class="spread-headline">Bonsai 4B: a one-bit image-generation model that runs on the device in your pocket</h2>
+      <p class="spread-lede">PrismML has shipped Bonsai Image 4B, a four-billion-parameter image model quantised to a single bit per weight and tuned to run inside the memory budget of a recent phone. The performance numbers, if they hold, redraw the local-AI conversation.</p>
+      <div class="spread-body"><p>The technical claim is that one-bit quantisation with a learned scaling layer keeps Bonsai within striking distance of mid-tier diffusion models while dropping memory use by an order of magnitude. The release includes Core ML and ONNX builds, sample images, and a benchmark suite against open-weight competitors. The repository emphasises that the model never needs network access to function; the entire generation pipeline executes locally.</p><p>Local image models matter less for what they generate and more for what they remove from the threat model. Anything that doesn&#x27;t have to traverse a cloud API doesn&#x27;t have to be logged, intercepted, or governed by an SaaS DPA. For enterprises that have spent the last year writing AI policies pointing &#x27;no customer data into hosted models&#x27;, a credible on-device option changes the procurement conversation. Expect the next twelve months of vendor pitches to lean heavily on the &#x27;runs on the laptop you already paid for&#x27; angle.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 88</span>
+          <span class="meta-pill meta-source">prismml.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://prismml.com/news/bonsai-image-4b" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48346257" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Regulation</div>
+      
+      <h2 class="spread-headline">Connecticut signs an AI law requiring employer notice to staff</h2>
+      <p class="spread-lede">Governor Lamont signed legislation making Connecticut one of the first US states to require employers to tell workers when AI is used in hiring, promotion, or termination decisions. The text is narrower than the EU AI Act, but the direction of travel is the same.</p>
+      <div class="spread-body"><p>The law obliges any employer using AI tools in HR decisions to provide written notice at the point of use, document the system&#x27;s purpose, and offer a human-review path. It does not ban any specific tool. Enforcement sits with the state labour department, with penalties starting at administrative fines and escalating where harm is shown. The drafters explicitly modelled the notice requirements on EU practice while keeping the substantive obligations lighter than the AI Act&#x27;s high-risk classifications.</p><p>For UK CISOs and HR leaders the relevance is not the Connecticut law itself but the pattern. US states are converging on a notice-and-document model that is functionally similar to what large UK and EU employers already do under GDPR Article 22. The companies that already maintain AI registers and impact assessments will absorb this without effort; the companies that don&#x27;t will discover that they need to. The interesting question is how quickly Westminster picks up the same notice obligation for the UK private sector.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Legal</span>
+          <span class="meta-pill meta-score">HN 3</span>
+          <span class="meta-pill meta-source">news.bloomberglaw.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://news.bloomberglaw.com/daily-labor-report/connecticuts-lamont-signs-ai-law-with-employer-notice-mandate" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48347137" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Reflection</div>
+      
+      <h2 class="spread-headline">The solution might be cancelling my AI subscription</h2>
+      <p class="spread-lede">An essay that has reached the Hacker News front page on the strength of a single, well-argued worry: that the cost of asking a machine for help is the slow surrender of the habit of thinking.</p>
+      <div class="spread-body"><p>The author is a working developer, not an AI sceptic. The piece traces a year of integrating models into daily work and lands on the observation that the easiest tasks—reading a paper, summarising a meeting, writing a first draft—are also the tasks where unaided practice had been compounding. Without those reps, the harder tasks get harder. Cancelling the subscription is offered not as policy but as personal experiment; an attempt to find out whether the cognitive cost is real.</p><p>The piece is worth sitting with regardless of whether you agree. The interesting move is methodological: rather than arguing about AI in the abstract, it proposes a measurable test on the only sample available—oneself. For anyone managing a team that has rapidly adopted AI tooling, the question that surfaces is whether you have any visibility into the same dynamic. The productivity metrics will look fine. The slower compounding of judgement, taste, and craft is harder to see, and harder still to admit.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 254</span>
+          <span class="meta-pill meta-source">thoughts.hmmz.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://thoughts.hmmz.org/2026-05-31.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48345896" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 31 May 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing, routine CVE-database drama with no enterprise impact, crypto and web3 hype, and the usual stream of show-HN side projects that don&#x27;t bear on the editorial brief.</p>
+    <p>Duplicates excluded against the previous two editions: 0. None of today&#x27;s curated candidates appeared in the 29 or 30 May editions.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
