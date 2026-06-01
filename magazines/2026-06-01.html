@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 1 June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 152</span>
+    <span>Monday · 1 June 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A Big Four consultancy quietly absorbs the world&#x27;s most-installed network diagnostic. A volunteer map crosses a hundred thousand licence-plate readers. And a quiet field note on what language models are doing to the operational substrate underneath us.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 1 June 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Vendor Consolidation</span>
+        <span class="toc-title">Accenture to acquire Ookla to strengthen network intelligence</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Secrets Hygiene</span>
+        <span class="toc-title">Security Envelope Pattern collection — S.E.C.R.E.T</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance Watch</span>
+        <span class="toc-title">Deflock hits 100k ALPRs mapped in USA</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling</span>
+        <span class="toc-title">Odysseus — self-hosted AI workspace</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Field Report</span>
+        <span class="toc-title">Talk Is Cheap: The Operational Impact of LLM Use</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Builders</span>
+        <span class="toc-title">The Speed of Prototyping in the Age of AI</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Commentary</span>
+        <span class="toc-title">Domain expertise has always been the real moat</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open Standards</span>
+        <span class="toc-title">The Website Specification</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Industry</span>
+        <span class="toc-title">Avoiding Death on the Yellow Brick Road</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Re-read</span>
+        <span class="toc-title">You weren&#x27;t meant to have a boss (2008)</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Vendor Consolidation</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Accenture buys Ookla, pulling Speedtest into the consultancy stack</h2>
+      <p class="spread-lede">Accenture&#x27;s acquisition of Ookla bundles Speedtest&#x27;s network telemetry into a Big Four consultancy footprint, putting an enterprise diagnostic that lives on millions of phones into a single procurement bucket alongside SI, audit and managed services.</p>
+      <div class="spread-body"><p>Ookla's data has quietly become a load-bearing input for telecom analysts, regulators, and any CISO trying to argue with a carrier about service quality. Moving it inside Accenture changes the commercial model: independent benchmarking turns into a paid feature of an integrator's offering, and the public Speedtest cohort becomes leverage in enterprise sales motions. Expect the dataset to keep flowing, but expect the headline reports to start carrying a consulting agenda alongside the numbers.</p><p>The procurement angle is more immediate. Many UK enterprises already buy something from Accenture. If your security or network observability tooling is downstream of Speedtest Server, Ookla Open Data, or one of their RootMetrics products, you have a vendor change you did not ask for. The risk classification on those agreements needs revisiting now, before renewal teams start bundling them into broader managed-services deals where exit is harder and price discovery is worse.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull every contract or data feed touching Ookla, Speedtest, or RootMetrics into one view. Flag them with procurement before renewal season, and ask Accenture in writing how data residency, independence of benchmarking, and exit terms change post-close. Treat this as a supply-chain event, not a press release.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 316</span>
+          <span class="meta-pill meta-source">newsroom.accenture.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://newsroom.accenture.com/news/2026/accenture-to-acquire-ookla-to-strengthen-network-intelligence-and-experience-with-data-and-ai-for-enterprises" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48337987" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Secrets Hygiene</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">A field manual for the security envelopes you keep getting wrong</h2>
+      <p class="spread-lede">S.E.C.R.E.T catalogues the antipatterns that keep secrets leaking — env files in container images, tokens in CI logs, plaintext writes to shared config — and pairs each with a concrete envelope to swap in.</p>
+      <div class="spread-body"><p>Most secrets exposure incidents do not start with sophisticated attack. They start with a developer writing a token into a place that gets indexed, copied, or shipped to a third party. The archive lays out those failure shapes in a single taxonomy, which is unusually useful for the painful conversation about why your secret-scanning rule keeps firing on the same six teams. It is descriptive rather than prescriptive, which is exactly the right register for an internal training set.</p><p>The deeper value sits in the cross-referencing. Each antipattern points to the envelope it should have been wrapped in — short-lived credentials, workload identity, sealed configuration, brokered access. That mapping is the bit that usually gets lost when secret management gets framed as 'install a vault and move on.' This reads more like a runbook for the conversation a security team should be having with platform engineering this quarter.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Skim the antipattern index against your last three secret-leak tickets. If any of those tickets closed without a corresponding envelope swap, that secret is going to leak again — schedule the platform-engineering conversation now rather than after the next incident.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 91</span>
+          <span class="meta-pill meta-source">secret-archive.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://secret-archive.org/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48321089" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance Watch</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Crowdsourced ALPR map crosses 100,000 cameras</h2>
+      <p class="spread-lede">Deflock&#x27;s volunteer-built map of automated licence plate readers has reached six figures, exposing the density of vehicle tracking infrastructure across US cities and the corridors that connect them.</p>
+      <div class="spread-body"><p>The headline number is American, but the lesson travels. Deflock shows what happens when private-fleet ALPRs, municipal cameras and Flock-style vendor networks are mapped at street level — corridors of total coverage, retention windows nobody disclosed, and a quiet erosion of any practical notion of vehicular anonymity. UK policing already runs the largest ANPR network in Europe, and Police Scotland's national rollout is on the same trajectory. The crowdsourced approach is what is interesting here, not the geography.</p><p>For corporate security teams the implication is uncomfortable: any pool car, executive vehicle, or rented fleet plate is now functionally a beacon. If your physical-security model still treats vehicle movement as private telemetry, it is mis-modelled. The mitigation conversation is the same one we have already had about employee mobile-phone geolocation — accept the visibility, plan the threat model around it, and stop pretending the data does not exist.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add ALPR exposure to the next physical-security threat model. For UK readers, request the current Police Scotland and Home Office ANPR retention policies, and review whether executive-protection or close-protection processes still assume vehicle anonymity. They do not.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 206</span>
+          <span class="meta-pill meta-source">deflock.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://deflock.org/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48347370" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">A self-hosted AI workspace that keeps your prompts on your box</h2>
+      <p class="spread-lede">Odysseus packages a local-LLM workspace — chat, files, agents, retrieval — into something you can run on a workstation, with no data egress beyond the model APIs you explicitly wire up.</p>
+      <div class="spread-body"><p>The interesting design choice is treating the workspace as the unit of trust rather than the model. Files, conversations, and tool calls live in a single local store you can back up, audit, or wipe. Models are pluggable: a local Ollama deployment for the day-to-day, a commercial API for the heavier asks. The mental model is closer to a desktop IDE than a SaaS chat product, which is the right shape for anyone who has had a 'where did that prompt go' conversation with security.</p><p>For someone already building Cowork and Claude Code workflows, this is a useful comparator. The orchestration surface, the file-handling assumptions, the way it draws the line between agent autonomy and human approval — all of it pulls in different directions to the hosted approach. Worth standing up against a representative task to see which assumptions you actually care about before you lock in another year of tooling.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Stand it up on a spare workstation against a representative weekly task — a research brief, a code review, an inbox triage — and compare time-to-first-useful-output against your current Claude Code or Cowork loop. Decide on data, not on the GitHub README.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 154</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/pewdiepie-archdaemon/odysseus" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48346693" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Field Report</div>
+      
+      <h2 class="spread-headline">What LLMs are quietly doing to operational work</h2>
+      <p class="spread-lede">An ethnographic field note on what happens to support queues, postmortems and on-call rotas once language models are doing the writing — the meetings shrink, the artefacts grow, and the quality bar shifts in unexpected places.</p>
+      <div class="spread-body"><p>The piece is short on hype and long on observation. The author tracks where LLM use compresses operational work and where it merely relocates the burden. Postmortem narratives become longer and more uniform; incident-bridge transcripts become summarisable but harder to challenge; the residual human work concentrates in classification, escalation, and saying no. None of that is unique to one organisation, but it has not yet been described this cleanly.</p><p>For a security organisation, the second-order effects matter most. Triage notes start carrying the rhythm of the model that wrote them, which makes pattern recognition across incidents harder. Vendor reports converge on the same lexicon. Detection content starts being justified in prose that looks confident regardless of underlying signal. None of those are reasons to stop using LLMs in ops, but they are reasons to instrument the boundary between human judgement and model output before the boundary disappears.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Operations</span>
+          <span class="meta-pill meta-score">HN 32</span>
+          <span class="meta-pill meta-source">unessays.substack.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://unessays.substack.com/p/talk-is-cheap" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48347155" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Builders</div>
+      
+      <h2 class="spread-headline">Prototyping has gotten cheap. The implications are not all good.</h2>
+      <p class="spread-lede">A practitioner&#x27;s note on what happens to product decisions when the cost of building a prototype collapses — more is built, less is decided, and the choke point moves to taste and verification.</p>
+      <div class="spread-body"><p>The author argues that the bottleneck in software work was never the typing — it was the thinking, deciding, and verifying — and that AI-accelerated prototyping has just made that fact unavoidable. When five plausible prototypes can be produced in an afternoon, the team that wins is the one that can rule four of them out before lunch. That capability is not evenly distributed, and it gets worse the more junior the practitioner.</p><p>The note lands on something that should be familiar to anyone hiring this year: 'can you ship a prototype' has stopped being a useful signal, because almost everyone can. The signal that actually matters now is whether the candidate can articulate why their prototype is wrong, what would make it right, and what they would refuse to build at all. That is a much harder thing to test for in 45 minutes, and most interview loops have not caught up.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Practice</span>
+          <span class="meta-pill meta-score">HN 142</span>
+          <span class="meta-pill meta-source">darylcecile.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://darylcecile.net/notes/speed-of-prototyping-age-of-ai" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48347153" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Commentary</div>
+      
+      <h2 class="spread-headline">Domain expertise, not the model, is what wins</h2>
+      <p class="spread-lede">An argument that the AI-era moat is not the foundation model or the framework but the boring institutional knowledge — schema quirks, regulatory edges, customer workflows — that nobody has bothered to write down.</p>
+      <div class="spread-body"><p>The piece pushes back on the recurring claim that LLMs commoditise expertise. The author's read is the opposite: models are good at the surface, mediocre at the structural, and embarrassing at the political. A team with deep domain knowledge can use a model as an amplifier; a team without it produces plausible-sounding output that nobody wants to ship. That maps cleanly to anyone who has been on the receiving end of a vendor demo this year.</p><p>The implication for buyers is uncomfortable. The temptation is to assume that any vendor with a fluent demo has captured the domain. The reality is that the demo costs almost nothing now, and the difference between teams that understand the regulator, the auditor and the customer and teams that do not has gotten harder to see from the outside. Procurement diligence questions need to move from 'what does the product do' to 'who on your team has been in this regulatory mess before.'</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Strategy</span>
+          <span class="meta-pill meta-score">HN 829</span>
+          <span class="meta-pill meta-source">brethorsting.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48340411" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open Standards</div>
+      
+      <h2 class="spread-headline">Somebody finally tried to write down what a website is</h2>
+      <p class="spread-lede">A draft specification attempts to define the minimum a website should do — performance budgets, accessibility floors, content sovereignty — as a shared baseline rather than a vendor checklist.</p>
+      <div class="spread-body"><p>The draft reads less like a W3C document and more like a manifesto written by people who have audited too many enterprise sites. It defines floor-level expectations: keyboard navigation, readable at 200% zoom, no third-party identifier load on first paint, content available without JavaScript for the critical path. None of it is novel; what is novel is the attempt to package it as a single reference an organisation can adopt as policy.</p><p>The likely fate is the usual one — partial adoption, friendly forks, and a long argument about whether 'no third-party identifiers' really means none. But there is a useful artefact here for anyone trying to argue the case for accessibility, privacy and performance budgets against marketing tooling. Pointing at a published specification is more durable than pointing at your own opinions, even if both are saying the same thing.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Web / Standards</span>
+          <span class="meta-pill meta-score">HN 474</span>
+          <span class="meta-pill meta-source">specification.website</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://specification.website/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48343683" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Industry</div>
+      
+      <h2 class="spread-headline">a16z spells out the AI investment failure modes</h2>
+      <p class="spread-lede">The Andreessen Horowitz piece catalogues the ways AI startups die — model dependency, regulatory exposure, customer-acquisition cost, integration risk — and what the surviving cohort do differently.</p>
+      <div class="spread-body"><p>The framing is conventional VC content but the failure-mode taxonomy is useful. The recurring theme is that AI startups die in the same ways other software startups die — cash burn, missing distribution, undifferentiated product — only faster, because the compute bill compounds and the foundation models keep moving the ground. The companies that survive have either tied themselves to a specific regulatory or operational moat or built up genuine distribution before their differentiation evaporated.</p><p>For anyone evaluating AI vendors as a buyer, the implicit reading list is the more useful part. It maps the questions a CISO or a procurement team should be asking about durability: who owns the model, what happens if the upstream provider raises prices or rate-limits, what does the company look like if its current foundation partner becomes a competitor. Those are not security questions in the narrow sense, but they shape every multi-year procurement decision now.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Industry</span>
+          <span class="meta-pill meta-score">HN 18</span>
+          <span class="meta-pill meta-source">a16z.news</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.a16z.news/p/avoiding-death-on-the-yellow-brick" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48315521" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Re-read</div>
+      
+      <h2 class="spread-headline">Paul Graham, 2008: you weren&#x27;t meant to have a boss</h2>
+      <p class="spread-lede">An eighteen-year-old essay arguing that working in large organisations is a learned tolerance rather than a natural state — and that the people who refuse the tolerance disproportionately end up building things.</p>
+      <div class="spread-body"><p>The essay is back on the front page because the comparison it makes — programmers as a kind of craftsperson temperamentally unsuited to corporate scale — keeps landing harder as AI compresses the gap between an individual and a small team. Graham's argument was about startups in 2008. Read in 2026, it sounds like a description of the agent-augmented solo operator, except eighteen years before that label existed.</p><p>The piece is worth revisiting not for the conclusions, which have been over-quoted, but for the diagnostic. The questions he asks about whether you are temperamentally suited to a hierarchy still work as a calibration exercise for anyone considering a senior role inside an established organisation. Reading it as a CISO-track essay rather than a startup essay is a useful reframing — many of the failure modes he describes are exactly the failure modes that quietly burn out experienced security leaders.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Career / Reflection</span>
+          <span class="meta-pill meta-score">HN 128</span>
+          <span class="meta-pill meta-source">paulgraham.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://paulgraham.com/boss.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48345282" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 1 June 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as news, routine patch advisories without operational context, crypto and web3 announcements, and stories already featured in the previous two editions.</p>
+    <p>Duplicates excluded against the previous two editions: 10. Includes Cloudflare's WebGL fingerprinting, OpenRouter's Series B, the Microsoft Office view-only conversion, the FROST OPFS timing paper and other items that ran in the 30 or 31 May editions.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
