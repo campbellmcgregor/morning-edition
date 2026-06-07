@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 7 June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 158</span>
+    <span>Sunday · 7 June 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Meta&#x27;s own AI chatbot becomes the credential-laundering tool that finally proves the warning we&#x27;d all been quietly worried about. The Pentagon adds Israel to its top-tier counter-intelligence list, recalibrating an assumption that&#x27;s been sitting in corporate threat models for a decade. And in the small print, a Motorola-shaped reminder that anything cloud-managed can be turned off without notice — including the thing on your shelf.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 7 June 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Breach · AI Abuse</span>
+        <span class="toc-title">Meta confirms 1000s of Instagram accounts were hacked by abusing its AI chatbot</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Counterintelligence</span>
+        <span class="toc-title">Pentagon raised threat of Israeli spying on U.S. to highest level, sources say</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain · End of Life</span>
+        <span class="toc-title">Motorola effectively bricked its entire line of WiFi routers without explanation</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling</span>
+        <span class="toc-title">Harness engineering: Leveraging Codex in an agent-first world</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Foundations</span>
+        <span class="toc-title">How LLMs work</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Workflow Shift</span>
+        <span class="toc-title">I design with Claude more than Figma now</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Persistent Outage</span>
+        <span class="toc-title">Valve P2P networking broken for more than 2 months</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Sandboxing</span>
+        <span class="toc-title">Running Python code in a sandbox with MicroPython and WASM</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Infrastructure</span>
+        <span class="toc-title">Google to pay SpaceX $920M a month for compute capacity at xAI data centers</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Infrastructure Sabotage</span>
+        <span class="toc-title">An Ohio Valley 100k-Watt FM signal is severed in broad daylight</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Breach · AI Abuse</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Meta confirms 1000s of Instagram accounts were hacked by abusing its AI chatbot</h2>
+      <p class="spread-lede">Attackers turned Meta&#x27;s own assistant into a credential-laundering machine, using prompt-shaped requests to extract recovery hints and pivot into thousands of Instagram accounts before the company moved to throttle it.</p>
+      <div class="spread-body"><p>The attack pattern is the one every security team has been warning about for two years and almost nobody is testing for: a public-facing LLM with privileged context, asked the right kind of question, will quietly reveal more than the policy intended. The accounts compromised here were not corporate, but the technique is portable. Replace the chatbot with a customer service agent that can read account state, replace the recovery hints with order history or last-four digits, and the same exploit pattern lifts directly into the enterprise stack.</p>
+<p>Meta&#x27;s confirmation comes after weeks of denial from support teams, which is the part of the story you should read as a control failure rather than a bug. The detection signal — a sudden spike in recovery-flow assistance for accounts the user did not own — was visible in their telemetry well before this hit the news. Build the question into your own AI assurance review: which of our deployed assistants can be coaxed into revealing identifying information, and what does that look like in logs?</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit any AI assistant you have customer-facing this quarter. Map the data context it is allowed to read, the questions it can be asked, and the rate at which a single session can extract identifying values. If your support stack uses an LLM at all, write the detection rule for recovery-hint abuse before the next board meeting.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 535</span>
+          <span class="meta-pill meta-source">this.weekinsecurity.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://this.weekinsecurity.com/meta-confirms-thousands-of-instagram-accounts-hacked-via-ai-chatbot/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48427643" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Counterintelligence</div>
+      
+      <h2 class="spread-headline">Pentagon raised threat of Israeli spying on U.S. to highest level, sources say</h2>
+      <p class="spread-lede">Defence officials have reportedly elevated the counterintelligence threat posed by Israeli intelligence services to the same tier as Russia and China, citing a sustained collection campaign against U.S. defence contractors and technology firms.</p>
+      <div class="spread-body"><p>Treat this less as a geopolitical story and more as a recalibration of how Western governments are sorting allied intelligence services. For more than a decade the assumption inside many corporate security programmes was that hostile state collection meant Beijing, Moscow, occasionally Pyongyang or Tehran — and that allied services were a problem someone else managed. That assumption is now formally retired in the U.S. defence community, and the European equivalents will follow whether they say so publicly or not.</p>
+<p>The practical knock-on for any CISO with a defence, dual-use or critical-infrastructure footprint is that supplier vetting, secondment policies and joint-venture data flows now need a wider lens. The old shortcut of mapping risk to a fixed list of adversary nations was already brittle. This headline is the moment to bin it. Your collection-risk framework should be about behaviours and access patterns, not flags.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 493</span>
+          <span class="meta-pill meta-source">nbcnews.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.nbcnews.com/politics/national-security/pentagon-israeli-spying-united-states-threat-level-raised" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48430070" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain · End of Life</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Motorola effectively bricked its entire line of WiFi routers without explanation</h2>
+      <p class="spread-lede">A silent firmware update has rendered Motorola&#x27;s consumer WiFi router line inoperative overnight, with no advance notice to owners and no public statement from the vendor explaining what just happened.</p>
+      <div class="spread-body"><p>The mechanism here matters more than the brand. A cloud-managed device with a working network link can be turned off by its vendor at any time, for any reason, and the user has no recourse and often no warning. Whether the trigger is end-of-life economics, a remote security kill-switch or a quiet legal pressure point, the operational outcome is identical: hardware you own behaves like a service you rent.</p>
+<p>This is now the third major consumer-device bricking event in eighteen months and the pattern is clear enough to plan around. Anywhere a critical control depends on a vendor-managed cloud channel staying live, you have an availability dependency that almost certainly is not in your continuity plan. The routers are a consumer story. The same architecture sits underneath thousands of enterprise IoT, OT and edge deployments — and the same kill switch lives there.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Run a quick inventory across the estate for any device whose firmware can be remotely altered by the vendor without your consent or notification. For UK organisations, this also intersects with the Product Security and Telecommunications Infrastructure Act assumptions about lifecycle support — get procurement to start asking written questions about end-of-support behaviour before signing the next refresh.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 116</span>
+          <span class="meta-pill meta-source">mashable.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://mashable.com/tech/motorola-wifi-routers-stop-working-bricked-firmware" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48430539" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Harness engineering: Leveraging Codex in an agent-first world</h2>
+      <p class="spread-lede">OpenAI&#x27;s research team formalises the discipline of designing the scaffolding, evaluators and feedback loops that surround an agentic coding model, arguing that the harness now matters as much as the model weights.</p>
+      <div class="spread-body"><p>Strip out the OpenAI branding and this is a clean articulation of where agentic engineering has actually landed in 2026. The interesting work is no longer in the prompt or the model, it is in the test harness: how you gate a write, how you sample alternatives, how you score the outputs, how you reroute when the agent stalls. Anyone running Claude Code, Codex or Cowork-style workflows at scale will recognise the pattern, even if their terminology differs.</p>
+<p>The unspoken security implication is the one to keep in mind. As harnesses become the unit of differentiation, they also become a high-value supply-chain target. A compromised eval rubric or a poisoned test fixture can let a malicious or simply wrong agent action through silently, and the audit trail will look clean. If you have engineers building or adopting agentic harnesses internally, treat them with the same care you would a CI/CD pipeline — because functionally that is what they are.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If your engineering org is rolling out agentic coding tools, fold the harness configuration into your change-management process now. Pin the evaluator code, sign the prompts that gate writes, and make sure someone outside the team owning the agent can review what &#x27;passing&#x27; actually means.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Developer Tools</span>
+          <span class="meta-pill meta-score">HN 162</span>
+          <span class="meta-pill meta-source">openai.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48425528" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Foundations</div>
+      
+      <h2 class="spread-headline">How LLMs work</h2>
+      <p class="spread-lede">A patient, almost bookish walkthrough of how a modern transformer actually composes a response, written for engineers who use these models daily but never quite sat down with the maths.</p>
+      <div class="spread-body"><p>Most explainers either drown the reader in linear algebra or hand-wave with metaphors about autocomplete. This one threads the gap. It moves from tokenisation through attention to sampling without skipping the awkward bits, and crucially it does not pretend the model has any internal reasoning beyond its statistical posture. For a non-research audience that nonetheless makes decisions about LLM deployment, that intellectual honesty is unusually valuable.</p>
+<p>The reason to send this to your leadership team rather than read it alone is that mental models leak into policy. If your CIO believes the model &#x27;thinks&#x27;, the controls they sign off will be the wrong ones. If they understand it is sampling from a learned distribution conditioned on context, conversations about hallucination, prompt injection and data residency all become clearer. A clean foundational read like this earns more downstream alignment than another vendor briefing.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Education</span>
+          <span class="meta-pill meta-score">HN 869</span>
+          <span class="meta-pill meta-source">0xkato.xyz</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.0xkato.xyz/how-llms-actually-work/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48431952" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Workflow Shift</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">I design with Claude more than Figma now</h2>
+      <p class="spread-lede">A Jane Street engineer documents the slow displacement of their Figma-first design loop by a Claude-first one, with the tool now generating, iterating and critiquing UI before a vector ever appears.</p>
+      <div class="spread-body"><p>The piece is interesting not because it is bullish on Claude, but because it is granular about where the workflow actually changes. The author still uses Figma at the end of the process, as a fidelity surface for the final state, but the exploratory loop now lives entirely in code. They describe an iteration cycle measured in seconds rather than minutes, with the model proposing variants the author would not have drawn and rejecting ones they would have. The output is design choices made earlier and on stronger grounds.</p>
+<p>For anyone running an internal tools team or considering Cowork-style integration of agentic assistants, the implicit lesson is the cost of the wrong baseline. Most teams measure AI tools against the question &#x27;does it replace the human designer&#x27;. The honest measurement is &#x27;does it move the bottleneck&#x27;. In this post the bottleneck moves from &#x27;time to first sketch&#x27; to &#x27;time to first usable artefact&#x27; — a smaller, more useful improvement than the discourse usually allows for.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If you are evaluating Claude-based design or prototyping tools for an internal team, set up the comparison around bottleneck movement, not feature parity. Pick three real artefacts your team produced last quarter, time how long they took, then have the same designer rebuild them with the AI loop. The numbers will be more honest than any vendor demo.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Design</span>
+          <span class="meta-pill meta-score">HN 41</span>
+          <span class="meta-pill meta-source">blog.janestreet.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.janestreet.com/i-design-with-claude-code-more-than-figma/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48431981" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Persistent Outage</div>
+      
+      <h2 class="spread-headline">Valve P2P networking broken for more than 2 months</h2>
+      <p class="spread-lede">A two-month-old GitHub issue in Valve&#x27;s open-source networking library has accumulated dozens of reports of broken peer-to-peer connections, and the silence from Valve&#x27;s side is itself starting to read as a story.</p>
+      <div class="spread-body"><p>The technical fault is interesting — a regression in the relay selection logic that fails closed when the chosen relay rejects the session — but the operational story is more instructive. A piece of infrastructure used by every major Steam title for matchmaking has been silently degraded for over sixty days and the vendor&#x27;s public communication has not acknowledged it. Independent developers have shipped patched forks; Valve has not commented.</p>
+<p>It is a reminder that &#x27;open source maintained by a large vendor&#x27; is not a stable category. The code may be open, but the operational state of the upstream is set by a closed organisation that can simply choose not to engage. If your platform depends on a Valve-maintained, Microsoft-maintained or Google-maintained open project, the supply-chain question is not &#x27;can we read the code&#x27;, it is &#x27;what happens when the vendor goes quiet for two months&#x27;.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Infrastructure</span>
+          <span class="meta-pill meta-score">HN 101</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/ValveSoftware/GameNetworkingSockets/issues/342" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48431461" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Sandboxing</div>
+      
+      <h2 class="spread-headline">Running Python code in a sandbox with MicroPython and WASM</h2>
+      <p class="spread-lede">Simon Willison sketches a remarkably small embedded Python runtime, compiled to WebAssembly and run inside a browser tab or a server-side isolate, capable enough for LLM-generated tool execution without the usual containerisation cost.</p>
+      <div class="spread-body"><p>The interesting move is the size: a few hundred kilobytes of WASM, fast cold start, and a memory model the host process can constrain directly. For anyone wiring an LLM to execute arbitrary generated Python — a now-common pattern in agentic systems — this is the cleanest sandboxing primitive that has appeared in months. The traditional answer was a container, but containers were never designed for thousands of short-lived sub-second invocations.</p>
+<p>Watch this lineage. The same pattern shows up in vendor tools (TakoVM appeared on HN today, also pitched as isolated model and tool execution), in browser code (Pyodide and the JS isolate model), and in serverless platforms. The convergence point is clear: LLM-driven code execution will be done in lightweight WASM isolates, not containers, by next year. If your security architecture assumes containers, refresh the picture.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Developer Tools</span>
+          <span class="meta-pill meta-score">HN 91</span>
+          <span class="meta-pill meta-source">simonwillison.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://simonwillison.net/2026/Jun/6/micropython-in-a-sandbox/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48428025" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Infrastructure</div>
+      
+      <h2 class="spread-headline">Google to pay SpaceX $920M a month for compute capacity at xAI data centers</h2>
+      <p class="spread-lede">A reported $920 million per month deal between Google and SpaceX shifts compute capacity at xAI-anchored data centres into Google&#x27;s training pipeline, blurring the line between the two companies&#x27; AI infrastructure positions.</p>
+      <div class="spread-body"><p>Strip out the personality drama and what the deal reveals is that the supply of GPU-grade compute remains tighter than any of the public roadmaps suggested even six months ago. Google is not paying near-billion-dollar monthly carry to a competitor&#x27;s data centres for fun. It is paying because there is no other path to the capacity its training plan assumes, and that plan is locked in by its product commitments through 2027.</p>
+<p>The downstream effect for everyone who isn&#x27;t Google is that compute pricing in the secondary market will harden, capacity for mid-tier customers will tighten, and the gap between hyperscaler-trained models and everyone else widens further. If you have an internal AI roadmap that assumes elasticity in cloud GPU pricing over the next eighteen months, this is the moment to revisit it. The hyperscalers are now paying premium rates to each other for capacity. Your renewal will reflect that.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 214</span>
+          <span class="meta-pill meta-source">cnbc.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.cnbc.com/2026/06/05/google-to-pay-spacex-920-million-monthly-xai-compute.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48424605" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Infrastructure Sabotage</div>
+      
+      <h2 class="spread-headline">An Ohio Valley 100k-Watt FM signal is severed in broad daylight</h2>
+      <p class="spread-lede">A 100,000-watt FM transmitter serving the Ohio Valley was taken off air mid-afternoon by what appears to be a deliberate cut of its tower feed line, with the broadcaster scrambling to restore service while the FCC investigates.</p>
+      <div class="spread-body"><p>Physical attacks on broadcast and telecom infrastructure have ticked up steadily through 2026 and this incident fits the pattern: a daylight, low-sophistication action against an asset that is hard to harden and central to a community&#x27;s information environment. The radio station&#x27;s audience includes the same population that depends on the signal for emergency alerts and severe-weather notifications.</p>
+<p>For a CISO, the lesson is not about radio specifically. It is about the wider category of single-point-of-failure infrastructure your organisation may quietly assume. Anchored physical assets — a transmitter, a sub-station, a fibre cabinet — sit outside the threat model most cyber programmes are built to address. When the same actors find them easier to disrupt than the digital surface, the right answer is not panic. It is to make sure someone, somewhere, has a recovery plan for the assumption you forgot you made.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Physical Security</span>
+          <span class="meta-pill meta-score">HN 92</span>
+          <span class="meta-pill meta-source">radioworld.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.radioworld.com/news-and-business/headlines/an-ohio-valley-100k-watt-fm-signal-is-severed-in-broad-daylight" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48417490" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 7 June 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor advisory pieces dressed as breaking news, routine patch notices without analysis, and the recurring crypto and web3 churn that adds nothing actionable for a security desk.</p>
+    <p>Duplicates excluded against the previous two editions: 0. Every story today is new to the desk.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
