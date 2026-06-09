@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 9 June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 160</span>
+    <span>Tuesday · 9 June 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Signal draws a public line under Westminster&#x27;s latest crack at end-to-end encryption while a fresh Go X.509 confusion bug reminds anyone running cloud infrastructure that trust is still software. Underneath, Apple quietly hands the frontier-model layer to Google, and Let&#x27;s Encrypt redraws part of the sanctions map without anyone noticing.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 9 June 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      3 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+        <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">Fooling Go&#x27;s X.509 Certificate Verification</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Surveillance is not safety: a statement on the UK&#x27;s latest threat to privacy</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Privacy Regulation</span>
+        <span class="toc-title">Massachusetts bans the sale of precise location data</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Tools</span>
+        <span class="toc-title">FrontierCode: Cognition&#x27;s new agentic coding stack</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Industry Analysis</span>
+        <span class="toc-title">xAI is looking more like a datacentre REIT than a frontier lab</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Models</span>
+        <span class="toc-title">MiMo-v2.5-Pro-UltraSpeed: a 1T-parameter model at 1,000 tokens per second</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Trust Infrastructure</span>
+        <span class="toc-title">Let&#x27;s Encrypt bans certificate issuance in US-sanctioned territories</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Platform Strategy</span>
+        <span class="toc-title">Apple unveils an AI architecture built around Google&#x27;s Gemini models</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Markets &amp; Governance</span>
+        <span class="toc-title">OpenAI files a confidential draft S-1 with the SEC</span>
+        
+      </span>
+    </a>
+
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Industry Reflection</span>
+        <span class="toc-title">AI is slowing down</span>
+        
+      </span>
+    </a>
+
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Fooling Go&#x27;s X.509 Certificate Verification</h2>
+      <p class="spread-lede">A security researcher walks through a path-confusion class of bug in Go&#x27;s X.509 verifier that can be coaxed into trusting a certificate it should reject, with knock-on risk for mTLS, code signing and any Go service that gates auth on the chain.</p>
+      <div class="spread-body"><p>The bug class itself is not new — name and SAN handling has tripped up TLS libraries for two decades — but the Go specific twist matters because the standard library&#x27;s crypto/x509 sits underneath an enormous chunk of cloud-native infrastructure. Kubernetes API servers, etcd, Vault, Consul, Cloudflare&#x27;s data plane, and many fintech backends all share that one verifier. A subtle confusion in how chain construction is handled can therefore look local to a single library but propagate across an entire estate&#x27;s trust boundary.</p><p>What makes this worth a Monday morning skim is the exploitation realism. The post is not theory: it walks through an attacker who controls a CA somewhere down the trust path and can use the confusion to escalate from a low-value identity into a workload identity that should be unreachable. For anyone running internal PKI on Go services, the question is not whether the upstream patch lands but whether the supply chain — vendored binaries, sidecars, third-party agents — pulls it in time.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit which production services are built on Go 1.22 or 1.23 and pin them to the patched x509 release the moment it ships, with priority on anything that does mTLS or admission control. Ask your platform team for a bill-of-materials view of the Go crypto/x509 version in every running container; vendored copies of the standard library are the trap.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 52</span>
+          <span class="meta-pill meta-source">danielmangum.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://danielmangum.com/posts/fooling-go-x509-certificate-verification/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48425166" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Surveillance is not safety: a statement on the UK&#x27;s latest threat to privacy</h2>
+      <p class="spread-lede">Signal has gone public with a sharp rejection of the latest Westminster proposal to mandate client-side scanning in encrypted messengers, framing it as a national security own-goal rather than a child-safety measure.</p>
+      <div class="spread-body"><p>The statement is calmly written and brutal in substance. Signal argues that any client-side scanning model — however it is named in the bill text — turns every end-user device into an enforcement endpoint for a state-defined classifier, breaks the threat model the rest of the secure messaging ecosystem assumes, and exports a precedent to every authoritarian regime that has been waiting for a democratic country to legitimise it. The document also reminds the Home Office of the obvious operational point that anyone with a real reason to evade scanning will simply move to a build that does not have it.</p><p>For UK security leaders this is not background noise. The proposals would change what &quot;compliant by default&quot; looks like for any messaging or collaboration tool used by your staff, and they would force a reasoned position from any organisation that handles sensitive client data — legal, medical, journalistic, or financial. Even if the bill is watered down in committee, the direction of travel is now explicit, and the data flow assumptions in your existing DPIAs almost certainly do not survive it.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Read the Signal statement in full and brief your privacy counsel this week. If your organisation uses Signal, Wire, WhatsApp, iMessage, or a Matrix-based deployment for any regulated workflow, draft a one-page position on what you will do if a client-side scanning mandate is enacted — including the option of withdrawing the service from UK staff phones. Decisions like that are easier on paper before a regulator forces the timeline.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 508</span>
+          <span class="meta-pill meta-source">signal.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://signal.org/blog/pdfs/2026-06-08-uk-surveillance-is-not-safety.pdf" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48450646" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Privacy Regulation</div>
+      
+      <h2 class="spread-headline">Massachusetts bans the sale of precise location data</h2>
+      <p class="spread-lede">Massachusetts has passed a privacy bill that outright bans the commercial sale of precise location data, going further than any other US state and lining up uncomfortably with the EU&#x27;s direction on inferred personal data.</p>
+      <div class="spread-body"><p>The law&#x27;s bite is in the definition. Precise location is anything inside a roughly 1,750-foot radius, which is tight enough to catch the SDK telemetry that mobile advertisers and ad-tech aggregators have been quietly reselling for the last decade. Brokers cannot opt out by claiming the data is anonymised; the bill treats geo as identifying by default and pushes the burden of proof onto the seller. That language closely mirrors how the European Data Protection Board has been interpreting the GDPR special-category rules in recent guidance.</p><p>It does not stop at brokers. Any app or SaaS vendor that monetises location data, even indirectly through audience extensions or look-alike models, is now in scope for any user whose state of residence is Massachusetts. Expect a rapid wave of vendor contract amendments and the usual quiet panic in adtech procurement. The relevance for UK and EU buyers is the precedent: this is the first US state law that meaningfully overlaps with how EU regulators already think, and it makes the trans-Atlantic data-flow conversation a little less abstract.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 319</span>
+          <span class="meta-pill meta-source">techcrunch.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://techcrunch.com/2026/06/08/massachusetts-votes-to-pass-new-privacy-rights-bill-that-bans-sale" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=0" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Tools</div>
+      
+      <h2 class="spread-headline">FrontierCode: Cognition&#x27;s new agentic coding stack</h2>
+      <p class="spread-lede">Cognition has launched FrontierCode, a positioning shot at Anthropic&#x27;s Claude Code that bundles a planner, an editor agent and a verifier into one runtime aimed at long-horizon coding tasks rather than one-shot completions.</p>
+      <div class="spread-body"><p>The pitch is structural rather than benchmark-led. FrontierCode treats coding as a workflow with state — a plan, a working tree, a test harness, an iteratively refined diff — and exposes hooks that let teams plug in their own static analysis, secret scanners or policy checks at each step. Cognition is explicitly aiming at the segment that has been pushing Claude Code further than its original UX: engineers running long, multi-file refactors and infra changes that need to survive review.</p><p>The interesting question for anyone already invested in Claude Code or Cowork is whether the abstractions overlap or diverge. FrontierCode&#x27;s verifier-in-the-loop model is closer to what regulated environments actually want than the chat-thread metaphor, and it gives a more obvious surface for audit logging. The downside is that the runtime is tied to Cognition&#x27;s evaluation pipeline, so portability of skills and prompts is less clear than the announcement implies.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 150</span>
+          <span class="meta-pill meta-source">cognition.ai</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://cognition.ai/blog/frontier-code" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48451723" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Industry Analysis</div>
+      
+      <h2 class="spread-headline">xAI is looking more like a datacentre REIT than a frontier lab</h2>
+      <p class="spread-lede">A close reading of xAI&#x27;s recent capital raises and tenant arrangements argues that the company is now best understood as a data-centre landlord with a model-building hobby, not a frontier research lab with a real estate problem.</p>
+      <div class="spread-body"><p>The argument turns on cash flow. xAI&#x27;s growth in revenue is dominated by what is effectively GPU sub-leasing — short and medium-term capacity sold to other AI companies that cannot get hyperscaler quotes at the size and speed they want. That is a respectable business, but it is structurally different from running a model lab: the unit economics, the customer concentration risk, and the regulatory exposure all look like infrastructure rather than software. The piece also notes that the capex profile is now being underwritten on assumptions that resemble industrial real estate more than R&amp;D.</p><p>The strategic read is that the frontier-lab branding has become a marketing wrapper around a co-location business, and that this is a leading indicator for the wider AI market. If even xAI cannot make the lab model pencil without becoming a landlord, the much-discussed thesis that compute is the new oil is being quietly validated, but with the inconvenient implication that most of the value will accrue to whoever builds and runs the buildings.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Markets</span>
+          <span class="meta-pill meta-score">HN 509</span>
+          <span class="meta-pill meta-source">martinalderson.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://martinalderson.com/posts/xais-new-rental-business/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48446428" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Models</div>
+      
+      <h2 class="spread-headline">MiMo-v2.5-Pro-UltraSpeed: a 1T-parameter model at 1,000 tokens per second</h2>
+      <p class="spread-lede">Xiaomi&#x27;s MiMo team has published a trillion-parameter model that ships with 1,000 tokens per second of decode throughput on its inference stack, narrowing the gap between Chinese-hosted models and US frontier latency.</p>
+      <div class="spread-body"><p>The headline number is real but the more interesting detail is the inference architecture behind it. MiMo&#x27;s team have spent the last year tuning a routed mixture-of-experts setup against a custom kernel for their target GPUs, and the result is a deployable artefact rather than a leaderboard trophy. Independent reproductions on third-party hardware will tell us how much of the throughput comes from the model and how much from the rack it was tested on, but even a conservative discount leaves it competitive with Western open-weight releases at the trillion-parameter tier.</p><p>The geopolitical undertone is impossible to ignore. A Chinese consumer-electronics company shipping a trillion-parameter, fast-inference model into the open weights ecosystem complicates the export control framing that has dominated the last eighteen months. Procurement teams considering self-hosted options now have a credible non-US choice, which raises uncomfortable conversations for any organisation whose AI risk register quietly assumed there were only two countries to think about.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 539</span>
+          <span class="meta-pill meta-source">mimo.xiaomi.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://mimo.xiaomi.com/blog/mimo-tilert-1000tps" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48446639" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Trust Infrastructure</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Let&#x27;s Encrypt bans certificate issuance in US-sanctioned territories</h2>
+      <p class="spread-lede">Let&#x27;s Encrypt has updated its subscriber agreement to formally prohibit certificate issuance for any domain operated from a US-sanctioned territory, a quiet but consequential change for anyone whose edge or supply chain touches those regions.</p>
+      <div class="spread-body"><p>Let&#x27;s Encrypt has always reserved the right to refuse service, but the new wording moves the constraint from &quot;we may&quot; to &quot;we will not&quot; and aligns the policy with US OFAC enumerations. The practical effect is that any reseller, CDN, or hosting provider whose underlying operator falls under one of the named jurisdictions can no longer rely on automated ACME issuance — and any subscriber that obscures that operating location is in breach. Given how much of the public web has converged on Let&#x27;s Encrypt over the past decade, this is a non-trivial concentration of policy power.</p><p>The second-order effects matter more than the first. Compliance teams should expect renewal failures in the medium term for any infrastructure that touches the named regions, including failover sites, partner endpoints, and acquisitions inherited without due diligence. The cert lifecycle becomes a sanctions surface, and the surface is bigger than most CISOs assume. Alternatives exist — ZeroSSL, commercial CAs, internal PKI — but each has a different operational shape and none of them are drop-in replacements at scale.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull a list of every public certificate currently issued under a Let&#x27;s Encrypt account in your estate and tag the ones whose underlying operator, hosting provider, or acquired entity has any link to the named territories. Decide now which renewal path you will take when ACME starts refusing — it is much harder to reason about under outage pressure. Also brief procurement: this change quietly redraws part of your vendor risk map.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 29</span>
+          <span class="meta-pill meta-source">letsencrypt.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://letsencrypt.org/documents/LE-SA-v1.7-June-04-2026-diff.pdf" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48453275" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Platform Strategy</div>
+      
+      <h2 class="spread-headline">Apple unveils an AI architecture built around Google&#x27;s Gemini models</h2>
+      <p class="spread-lede">Apple has confirmed that its next-generation on-device and cloud AI architecture will lean on Google&#x27;s Gemini family for the heavy lifting, effectively conceding the frontier-model layer to a competitor while keeping the orchestration and privacy story for itself.</p>
+      <div class="spread-body"><p>The architecture, in broad strokes, splits inference into a small on-device personal model, a privacy-preserving cloud layer Apple still controls, and a Gemini-backed reasoning tier for hard tasks. It is a serious admission that Apple&#x27;s own foundation models are not going to catch the frontier in the near term, and a pragmatic decision to ship a better product faster by buying the capability it cannot build. The design also leaves room to swap providers later, which is presumably the point.</p><p>From a security and compliance angle the change is bigger than the keynote suggested. Any organisation with a managed Apple fleet now has a new data flow to think about: from device, through Apple&#x27;s cloud, into a Google-operated model. The privacy assertions will be loud and detailed, but the contractual chain extends one tier further than it used to. DPIAs and sub-processor lists for any UK or EU regulated organisation should already be on the engineering queue.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Platforms</span>
+          <span class="meta-pill meta-score">HN 506</span>
+          <span class="meta-pill meta-source">macrumors.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.macrumors.com/2026/06/08/apple-reveals-new-ai-architecture/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48450142" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Markets &amp; Governance</div>
+      
+      <h2 class="spread-headline">OpenAI files a confidential draft S-1 with the SEC</h2>
+      <p class="spread-lede">OpenAI has formally filed a confidential draft S-1 with the SEC, kicking off the long expected path to a public listing and forcing the rest of the AI industry to read its disclosure language for clues about the real economics.</p>
+      <div class="spread-body"><p>A confidential draft does not yet reveal the financials, but the filing itself is the news. It commits OpenAI to a structure, a fiscal posture, and a governance arrangement that the company can no longer easily walk back — and it removes a layer of strategic ambiguity that competitors and customers have been pricing in. The S-1 will also be the first time OpenAI&#x27;s customer concentration, hosting arrangements, and Microsoft entanglement are described in language a regulator will read with adversarial intent.</p><p>For any organisation that has placed a serious bet on OpenAI&#x27;s API as critical infrastructure, this is the cue to revisit the dependency. Listed companies have predictable behaviours: quarterly revenue pressure, more conservative product changes, public-investor messaging that occasionally conflicts with what enterprise customers were promised. None of that is bad on its own, but the AI vendor relationship you signed in 2024 is about to become a relationship with a public company, and the assumptions baked into your runbooks deserve a refresh.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Markets</span>
+          <span class="meta-pill meta-score">HN 330</span>
+          <span class="meta-pill meta-source">openai.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openai.com/index/openai-submits-confidential-s-1/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48452317" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Industry Reflection</div>
+      
+      <h2 class="spread-headline">AI is slowing down</h2>
+      <p class="spread-lede">Ed Zitron&#x27;s latest essay argues that the generative AI wave is no longer accelerating in any way that matters to enterprise buyers, and that the gap between marketing claims and delivered capability is widening fast enough to be its own risk.</p>
+      <div class="spread-body"><p>The piece is polemical, as Zitron&#x27;s writing always is, but the underlying observations are harder to dismiss than the tone suggests. Quarter on quarter, frontier model gains are narrowing, the marginal cost of training keeps rising, and the field&#x27;s most visible companies are leaning more on agentic packaging than on raw capability improvement. None of this means the technology is unimportant, but it does mean the pace of change is no longer the dominant variable in any reasonable business case.</p><p>Treat this as a useful counterweight when planning the next twelve months of AI investment. The buy-versus-build, vendor-versus-self-host, and centralised-versus-team-led debates were all framed by the assumption that capability would keep doubling every six months. If that assumption breaks, several of the decisions made in 2025 should be revisited — not undone, but tested against a slower, more boring growth curve. The boring curve is also the more governable one, which is its own quiet good news.</p></div>
+      
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Commentary</span>
+          <span class="meta-pill meta-score">HN 488</span>
+          <span class="meta-pill meta-source">wheresyoured.at</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.wheresyoured.at/ai-is-slowing-down/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48446893" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 9 June 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: a JS component library parody, Apple Music launch-blockers, a nostalgia search engine for the old web, a hiring post for the Head of Stonehenge, OCaml build-system onboarding, and the usual quota of HN meta-discussion about whether anyone should be allowed to ship anything.</p>
+    <p>Duplicates excluded against the previous two editions: 0. The Hacker News front page rotated cleanly overnight.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
