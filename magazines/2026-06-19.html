@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 19 June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 168</span>
+    <span>Friday · 19 June 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A researcher walks into ten thousand booby-trapped repositories and finds malware waiting in plain sight. A privacy campaigner finally collects on a warning he gave five years ago. And a quiet little website invites you to ask whether the machines already remember your name. This morning's front page is mostly about who is watching whom — and who, at last, got caught.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 19 June 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      5 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain Threat</span>
+        <span class="toc-title">10,000 GitHub Repositories Caught Distributing Trojan Malware</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Are You in the Weights?</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Data Protection</span>
+        <span class="toc-title">Forced Consent Was Unlawful — and It Cost Elkjøp €1.8M</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Identity &amp; Access</span>
+        <span class="toc-title">Zero-Touch OAuth Comes to MCP</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Vulnerability Research</span>
+        <span class="toc-title">Greg Kroah-Hartman: AI Tools Are Now Finding Real Kernel Bugs</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Applied AI</span>
+        <span class="toc-title">Midjourney Turns Its Image Models on Medicine</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Cloud &amp; Regulation</span>
+        <span class="toc-title">EU Set to Name AWS and Azure as Gatekeepers</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Infrastructure</span>
+        <span class="toc-title">Ubiquiti Builds an Enterprise NAS on ZFS</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Geopolitics</span>
+        <span class="toc-title">The Korean Telecom at the Centre of Anthropic's Mythos Controversy</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Digital Sovereignty</span>
+        <span class="toc-title">The Theater of European Digital Sovereignty</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain Threat</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">10,000 GitHub Repositories Caught Distributing Trojan Malware</h2>
+      <p class="spread-lede">A single researcher mapped roughly ten thousand GitHub repositories quietly seeded with trojanised code — fake tools, cracked software, and game cheats engineered to look legitimate in search results and pull unsuspecting developers into running malware.</p>
+      <div class="spread-body"><p>The campaign is industrial in scale and depressingly mundane in technique: automated accounts publish plausible-looking projects — password crackers, free game cheats, pirated apps — with polished READMEs and inflated star counts to game both GitHub search and Google. Click through, run the build, and you have invited an infostealer onto your machine. What makes it dangerous is not novelty but volume; ten thousand repos means a long tail that survives takedowns, and the social-engineering layer sits exactly where developers are most trusting: inside their own tooling ecosystem.</p><p>For anyone running an engineering org, this is the supply chain attack that does not need a compromised npm package to work. It only needs one curious developer searching for a shortcut. The lesson from earlier waves — typosquatted packages, poisoned VS Code extensions, fake Stack Overflow answers — is that the perimeter is now the search bar. Reputation signals like stars and forks are cheap to fake and should carry near-zero weight in a sourcing decision.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Remind engineers that GitHub stars and fork counts are trivially botted and are not a trust signal. Steer dependency sourcing to vetted, pinned, and hash-verified packages; treat any "free crack / cheat / unlocker" repo as hostile by default. If you run endpoint detection, confirm infostealer signatures are current, and make sure developer laptops are inside the same monitoring you apply to production.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 861</span>
+          <span class="meta-pill meta-source">orchidfiles.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://orchidfiles.com/github-repositories-distributing-malware/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48583928" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+
+      <h2 class="spread-headline">Are You in the Weights?</h2>
+      <p class="spread-lede">A new site lets you check whether your own writing, name, or personal details appear to have been memorised inside large language models — turning the abstract anxiety about training data into a concrete, searchable question about your own digital footprint.</p>
+      <div class="spread-body"><p>The premise is simple and unsettling: models trained on the open web do not just learn patterns, they sometimes memorise specifics — quotes, biographies, contact details — and will regurgitate them under the right prompt. "Are You in the Weights?" gives ordinary people a way to interrogate that, and the answer for anyone who has published online for years is usually yes. It reframes the training-data debate away from copyright lawsuits and toward something more personal: the model may already know you, and you were never asked.</p><p>For a security leader this is less about novelty than about exposure mapping. Staff who have posted on forums, mailing lists, or social media under their real names are, in effect, indexed inside systems no one controls. That has implications for social-engineering risk, executive-impersonation attacks, and the slow erosion of the assumption that "delete" means gone. The web has always remembered; now it can also synthesise.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 400</span>
+          <span class="meta-pill meta-source">intheweights.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.intheweights.com/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48591348" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Data Protection</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Forced Consent Was Unlawful — and It Cost Elkjøp €1.8M</h2>
+      <p class="spread-lede">A privacy advocate who warned electronics retailer Elkjøp five years ago that bundling marketing consent into a purchase was unlawful has been vindicated: regulators landed a €1.8M fine for exactly the "forced consent" practice he flagged.</p>
+      <div class="spread-body"><p>The case is a clean illustration of a principle GDPR has stated since 2018 but enforcement has been slow to bite: consent must be freely given, which means you cannot make it a condition of a sale or a service. Elkjøp's pattern — collect marketing opt-in as part of completing a transaction — is one that countless retailers and SaaS products still quietly rely on. The five-year gap between warning and penalty is the real story; the rule was never ambiguous, only under-enforced.</p><p>That changes the risk calculus. Regulators across the EEA are increasingly willing to pursue dark-pattern consent flows, and a €1.8M penalty against a regional retailer signals the floor is rising. For any UK or EU organisation, "everyone does it" is no longer a defence, and consent strings buried in checkout flows are now an audit liability rather than a growth tactic.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit every place your organisation collects consent — checkout, signup, account creation — and confirm none of them gate the core service on marketing opt-in. If consent is bundled, unbundle it now. Brief marketing and product that "freely given" is a hard legal test, not a UX preference, and document the lawful basis for each processing purpose before a regulator asks.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 426</span>
+          <span class="meta-pill meta-source">thatprivacyguy.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.thatprivacyguy.com/blog/elkjop-forced-consent-fine/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48589501" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Identity &amp; Access</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Zero-Touch OAuth Comes to MCP</h2>
+      <p class="spread-lede">The Model Context Protocol team has published an enterprise-managed authentication design that lets organisations broker OAuth for MCP servers centrally — so AI agents and their tools authenticate through existing identity providers without users wiring up tokens by hand.</p>
+      <div class="spread-body"><p>As MCP becomes the connective tissue between AI assistants and real systems, its weakest seam has been auth: every server inventing its own token dance, every user pasting credentials into config files. "Zero-touch" enterprise OAuth pushes that into the identity provider, where SSO, conditional access, and revocation already live. The agent gets scoped, auditable access; the admin gets a single place to grant and pull it. For anyone running Claude Code or Cowork against internal tooling, this is the difference between a demo and something a security team will actually sign off on.</p><p>The significance is governance, not plumbing. The moment agents can act on systems, the questions become the old IAM ones — who authorised this, what scope, can we revoke it, is it logged — and answering them through a federated identity provider rather than per-server secrets is the only model that scales. This is MCP growing up to enterprise expectations.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If you are deploying MCP servers internally, plan to front them with your existing IdP rather than per-server tokens, and require scoped, time-bounded, revocable grants. Make sure agent actions land in the same audit trail as human ones. Treat this spec as the reference design when you evaluate any MCP integration touching sensitive systems.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 218</span>
+          <span class="meta-pill meta-source">modelcontextprotocol.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48592163" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Vulnerability Research</div>
+
+      <h2 class="spread-headline">Greg Kroah-Hartman: AI Tools Are Now Finding Real Kernel Bugs</h2>
+      <p class="spread-lede">Linux's stable-kernel maintainer says the era of AI-generated "slop" bug reports is giving way to something more useful — AI tooling is now surfacing genuine, reproducible defects in kernel code that maintainers can act on.</p>
+      <div class="spread-body"><p>For two years the open-source world has groaned under low-quality, machine-generated vulnerability reports — confident, plausible, and wrong — that waste maintainer time. Kroah-Hartman, one of the most exposed maintainers alive, marking a shift is notable precisely because he has every reason to be sceptical. The claim is not that AI replaces review but that, pointed at a codebase this large, it now finds real bugs at a rate worth the triage cost. That is a meaningful inflection for a discipline where signal-to-noise is everything.</p><p>The flip side sits with defenders. If AI can reliably find exploitable defects in the kernel, so can attackers running the same tooling at scale against everything else. The asymmetry that has long favoured well-resourced bug hunters is collapsing, and the practical takeaway is to assume your own dependencies are about to be probed harder than ever — and to get your patch cadence ahead of it.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Security</span>
+          <span class="meta-pill meta-score">HN 6</span>
+          <span class="meta-pill meta-source">theregister.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.theregister.com/software/2026/03/26/linux-kernel-czar-says-ai-bug-reports-arent-slop-anymore/5226256" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48598086" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Applied AI</div>
+
+      <h2 class="spread-headline">Midjourney Turns Its Image Models on Medicine</h2>
+      <p class="spread-lede">The image-generation company best known for dreamlike art has announced a move into medical imaging — applying its generative models to a domain where accuracy, provenance, and regulatory scrutiny matter far more than aesthetics.</p>
+      <div class="spread-body"><p>Midjourney built its reputation on visual flair, so a pivot toward medicine is a deliberate bid for legitimacy in a higher-stakes arena. Generative imaging in healthcare has real uses — augmenting sparse training datasets, simulating rare presentations, anonymising patient scans — but each carries a sharp edge. A synthetic image that looks clinically convincing but is subtly wrong is not a fun artefact; it is a diagnostic hazard. The top-of-front-page score reflects how loaded the combination of "generative AI" and "medicine" has become.</p><p>For security and governance people, the interesting questions are about data and provenance. Where does the training data come from, how is patient information protected, and can a generated image ever be mistaken for a real one in a record? As generative tools push into regulated verticals, the watermarking, audit, and consent problems that the consumer side has shrugged off become non-negotiable compliance requirements.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 1316</span>
+          <span class="meta-pill meta-source">midjourney.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.midjourney.com/medical/blogpost" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48579650" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Cloud &amp; Regulation</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">EU Set to Name AWS and Azure as Gatekeepers</h2>
+      <p class="spread-lede">Reports indicate Brussels is preparing to designate Amazon Web Services and Microsoft Azure as "gatekeepers," bringing the two dominant cloud platforms under the EU's strictest tier of digital-market obligations for the first time.</p>
+      <div class="spread-body"><p>Gatekeeper status — the heavy-duty designation in the EU's digital-markets regime — has so far targeted consumer platforms like app stores and messengers. Extending it to hyperscale cloud is a different order of intervention, because so much of European public and private infrastructure now runs on AWS and Azure. The obligations that follow tend toward interoperability, data portability, and limits on self-preferencing — all aimed at loosening the lock-in that makes leaving a cloud provider so painful.</p><p>For organisations that have standardised on one hyperscaler, this is worth watching closely. In the near term it promises better exit ramps and fairer terms; in practice it may also bring new compliance overhead, contractual churn, and uncertainty about which services change. The wider signal — echoed in this week's separate digital-sovereignty debate — is that Europe is done treating dependence on a handful of US clouds as an acceptable default.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add cloud-gatekeeper designation to your regulatory horizon scan and ask your AWS/Azure account teams what changes they anticipate. Use the moment to revisit exit and portability clauses in your contracts, and to honestly assess how reversible your lock-in really is. Even if you stay put, knowing the cost of leaving is now a governance question, not a hypothetical.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Regulation</span>
+          <span class="meta-pill meta-score">HN 30</span>
+          <span class="meta-pill meta-source">heise.de</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.heise.de/en/news/Report-EU-to-soon-classify-AWS-and-Azure-as-gatekeepers-under-DSA-11337873.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48596622" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Infrastructure</div>
+
+      <h2 class="spread-headline">Ubiquiti Builds an Enterprise NAS on ZFS</h2>
+      <p class="spread-lede">Ubiquiti has introduced an enterprise network-attached storage line built on ZFS, extending its prosumer-friendly UniFi ecosystem into the kind of resilient, checksummed storage that has traditionally meant TrueNAS or a hand-rolled server.</p>
+      <div class="spread-body"><p>ZFS is the quiet hero of trustworthy storage: end-to-end checksumming, snapshots, and self-healing that catch the silent data corruption cheaper filesystems miss. Ubiquiti packaging it behind its familiar UniFi management is a bid to bring enterprise-grade integrity to the mid-market — the small businesses and home labs already running its networking gear. The appeal is integration: storage, network, and access control under one console, with snapshots that double as a ransomware safety net.</p><p>The caution is the same one that follows every vendor consolidation. A single management plane is convenient until it becomes a single point of compromise, and Ubiquiti has had its share of cloud-account and disclosure controversies. Snapshots are a powerful recovery tool against ransomware, but only if they are immutable and the management interface itself is locked down. Convenient infrastructure is still infrastructure that needs a threat model.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Infrastructure</span>
+          <span class="meta-pill meta-score">HN 370</span>
+          <span class="meta-pill meta-source">blog.ui.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.ui.com/article/introducing-enterprise-nas" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48585866" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Geopolitics</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">The Korean Telecom at the Centre of Anthropic's Mythos Controversy</h2>
+      <p class="spread-lede">Wired traces how SK Telecom became the focal point of a dispute over export controls and Anthropic's "Mythos" effort — a window into how AI models, the chips that train them, and national-security policy have become tangled together.</p>
+      <div class="spread-body"><p>The piece pulls apart a knot that increasingly defines frontier AI: compute, export controls, and partnerships that cross geopolitically sensitive borders. A Korean telecom giant sitting at the centre of an Anthropic-linked controversy shows how decisions made in Washington about chip access ripple straight into the commercial and research plans of AI labs and their international partners. For anyone whose stack depends on a particular model provider, the supply chain behind that model is now a political object, not just a technical one.</p><p>For a security leader building on Claude or any frontier model, the lesson is dependency awareness. Model availability, pricing, and even which regions can be served are increasingly subject to forces no vendor fully controls. That argues for understanding your provider's exposure and keeping an honest sense of how portable your AI workflows would be if the geopolitical weather changed.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Map which of your workflows depend on a single AI provider and how hard they would be to move. Keep a light watching brief on export-control developments that affect model and chip availability, and factor provider geopolitical exposure into vendor risk assessments — the same way you would for any critical supplier with concentrated geographic risk.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Policy</span>
+          <span class="meta-pill meta-score">HN 120</span>
+          <span class="meta-pill meta-source">wired.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.wired.com/story/sk-telecom-anthropic-mythos-export-controls/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48584484" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Digital Sovereignty</div>
+
+      <h2 class="spread-headline">The Theater of European Digital Sovereignty</h2>
+      <p class="spread-lede">An essay on "W Social" and the parade of public institutions migrating to European platforms argues that much of the continent's digital-sovereignty drive is performance — gestures that signal independence while the underlying dependence on US infrastructure quietly persists.</p>
+      <div class="spread-body"><p>The author's charge is uncomfortable: European institutions love to announce sovereign alternatives — a public social network here, a national cloud there — while the servers, chips, and core services beneath them remain firmly American. The result is theatre, where the symbolism of independence substitutes for the slow, expensive work of actually building it. It is a sharp counterpoint to this morning's gatekeeper story: regulation and rhetoric both aim at the same dependence, and neither has yet dislodged it.</p><p>For a UK reader watching from outside the EU, the essay is a useful corrective against assuming any of this is simple. Genuine sovereignty means owning the stack down to layers most organisations have never had to think about, and the gap between a press release and a migration is measured in years and budgets few are willing to commit. The honest question is whether sovereignty is a goal or a brand — and the answer, mostly, is still being decided.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Policy</span>
+          <span class="meta-pill meta-score">HN 232</span>
+          <span class="meta-pill meta-source">blog.elenarossini.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.elenarossini.com/w-social-public-institutions-and-the-theater-of-european-digital-sovereignty/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48584497" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 19 June 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor launch posts dressed as news, ZIRP-era startup nostalgia, single-bug patch advisories without operational context, and the usual editor-and-client flame wars (Emacs 31, the new Outlook's latency).</p>
+    <p>Duplicates excluded against the previous two editions: 0. Today's front page shared no original-article links with the 17 and 18 June issues, so the full slate is fresh.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
