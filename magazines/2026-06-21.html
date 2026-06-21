@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 21 June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 170</span>
+    <span>Sunday · 21 June 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Someone seized Brazil's emergency-alert channel and made every phone in the country buzz at once; a small iOS lens shows you exactly what the apps already on your phone can quietly see; and a British citizen has decided the safest response to his own government's online-safety agenda is to route his traffic out of the country. A morning about who gets to speak through your devices — and who is listening back.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 21 June 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      3 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Incident · Public Alerting</span>
+        <span class="toc-title">Unauthorized alert sent to cell phones across Brazil</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Loupe: an iOS app that shows what native apps can see</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Data Protection · UK Policy</span>
+        <span class="toc-title">Routing traffic outside the UK over Online Safety policy</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agent Security · Tooling</span>
+        <span class="toc-title">Temporary Cloudflare accounts for AI agents</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Analysis · Agentic AI</span>
+        <span class="toc-title">Building reliable agentic AI systems</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Research · Anthropic</span>
+        <span class="toc-title">Project Fetch: Phase Two</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Vendor Risk · Litigation</span>
+        <span class="toc-title">Tesco sues VMware for breach of contract</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Memory Safety · Engineering</span>
+        <span class="toc-title">Linux eliminates the strncpy API after six years</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Governance · Election Security</span>
+        <span class="toc-title">White House delays US voting-machine vulnerability report</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Craft &amp; Ethics</span>
+        <span class="toc-title">When I reject AI code even if it works</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Incident · Public Alerting</div>
+
+      <h2 class="spread-headline">Unauthorized alert sent to cell phones across Brazil</h2>
+      <p class="spread-lede">An unauthorised message was pushed to mobile phones nationwide in Brazil, hijacking the kind of cell-broadcast channel normally reserved for governments to warn of floods, fires, and emergencies — and proving the channel can be commandeered.</p>
+      <div class="spread-body"><p>Cell broadcast is the most trusted push surface a population has: it bypasses apps, lands on every handset in a coverage area at once, and arrives with the implicit authority of the state. That is exactly what makes its abuse so corrosive. Whoever sent this message did not need a botnet or a phishing campaign — they needed access to, or a flaw in, the alerting infrastructure that carriers and regulators operate on the public's behalf. A single illegitimate blast trains millions of people to distrust the next genuine warning.</p><p>For a security leader the lesson is not Brazil-specific. The same emergency-alert plumbing exists across the UK and EU, and it sits at the intersection of telecom operators, government agencies, and a long chain of integration vendors — a textbook supply-chain and authorisation problem. The interesting question is not "could this happen here" but "who can prove they authorised the last alert, and how fast would anyone notice a fake one." Trust in public-safety channels is a national-resilience asset, and it degrades the moment authenticity cannot be demonstrated.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 119</span>
+          <span class="meta-pill meta-source">cnn.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.cnn.com/2026/06/20/americas/brazil-hackers-unauthorized-alert-latam" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48612502" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+
+      <h2 class="spread-headline">Loupe: an iOS app that shows what native apps can see</h2>
+      <p class="spread-lede">A research project from Mysk packages a blunt demonstration: open the app and watch, in plain language, the breadth of device signals a perfectly ordinary native iOS app is allowed to read without asking — far beyond the permissions most users imagine they granted.</p>
+      <div class="spread-body"><p>Permission dialogs trained a generation to think privacy is binary: you said yes to the camera, no to location, and that was the deal. Loupe exists to puncture that comfort. Plenty of valuable signal — device model, system settings, network details, sensor metadata, accessibility state — is readable with no prompt at all, and in aggregate it fingerprints a person more reliably than any single identifier the platform pretends to protect. The app's whole point is to make the invisible legible by simply showing you the haul.</p><p>For anyone responsible for a mobile fleet this reframes the threat model. The risk is not only the obviously creepy app demanding location; it is the dozens of mundane apps quietly assembling a fingerprint from data the OS treats as free. That matters for BYOD policy, for vendor app-vetting, and for how much you trust "we don't collect personal data" claims that quietly exclude everything obtained without a prompt. Awareness tools like this are worth handing to staff — seeing the inventory changes behaviour faster than a policy memo.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 190</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/mysk-research/loupe" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48608645" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Data Protection · UK Policy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Routing traffic outside the UK over Online Safety policy</h2>
+      <p class="spread-lede">A UK technologist writes that the trajectory of the Online Safety Act has pushed him to deliberately route more of his personal internet traffic through nodes outside the country — a quiet, individual vote of no confidence in where domestic policy is heading.</p>
+      <div class="spread-body"><p>The post is modest in tone and large in implication. The author is not alleging a single catastrophic measure; he is reacting to a direction of travel — age verification, expanding scope, pressure on encryption and lawful speech — and concluding that the rational personal response is to move trust offshore. When competent, law-abiding technical people start treating their own jurisdiction as a privacy risk to be engineered around, that is a signal about the policy, not the people.</p><p>For a Scotland-based security leader this is close to home in every sense. The same regime that shapes consumer behaviour shapes the obligations on UK organisations: what you must verify, what you must retain, what you can be compelled to hand over. Watching where individuals choose to route, host, and store is a leading indicator of where customers and staff will expect you to as well. The cheap, defensible move is to know precisely which of your services depend on UK-only routing or storage assumptions before policy — or public sentiment — forces the question.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory where your organisation's data actually lives and traverses, flagging anything that assumes UK-only routing, hosting, or retention. Brief whoever owns legal/compliance on the Online Safety Act's current obligations versus your controls, and decide proactively where EU or offshore hosting reduces exposure — before a deadline or an incident makes it a scramble.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 9</span>
+          <span class="meta-pill meta-source">neilzone.co.uk</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://neilzone.co.uk/2026/06/pondering-routing-more-of-my-traffic-via-nodes-outside-the-uk-because-of-the-direction-of-uk-online-safety-policy/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48614309" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agent Security · Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Temporary Cloudflare accounts for AI agents</h2>
+      <p class="spread-lede">Cloudflare introduces short-lived, automatically-scoped accounts designed for AI agents to act on your behalf — so an autonomous workflow gets just enough access to do its job, and that access evaporates instead of lingering as a permanent credential.</p>
+      <div class="spread-body"><p>This is infrastructure catching up with how people actually deploy agents. The naive pattern — hand the agent a long-lived API key with broad scope — is a standing liability: the key outlives the task, sprawls across logs and config, and becomes the single most valuable thing for an attacker to steal. Temporary accounts invert that. The agent is issued ephemeral, narrowly-scoped credentials per task; when the work is done the account is gone, shrinking both the blast radius and the window of exposure.</p><p>For someone building Claude Code and Cowork workflows, this is the operational maturity layer that separates a demo from production. The principle generalises well beyond Cloudflare: every agent you run should answer "what can it touch, for how long, and how do I revoke it instantly." Ephemerality is the cleanest answer. As agentic automation moves from personal tinkering to something colleagues rely on, treating agent identity as disposable-by-default — rather than as another permanent service account to track — is the pattern worth standardising on early.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit the credentials your existing agent workflows hold: any long-lived, broadly-scoped API key is a candidate to replace with short-lived, per-task access. Adopt ephemeral, narrowly-scoped agent identities as the default for new automations, and make instant revocation a tested capability rather than a theoretical one.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Security</span>
+          <span class="meta-pill meta-score">HN 199</span>
+          <span class="meta-pill meta-source">blog.cloudflare.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.cloudflare.com/temporary-accounts/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48608394" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Analysis · Agentic AI</div>
+
+      <h2 class="spread-headline">Building reliable agentic AI systems</h2>
+      <p class="spread-lede">Writing on Martin Fowler's site, a team at Bayer documents what it actually took to make an LLM-driven agent reliable in production — the guardrails, evaluation loops, and engineering discipline that turn a clever prototype into something a business can depend on.</p>
+      <div class="spread-body"><p>The piece is valuable precisely because it is unglamorous. Reliability in agentic systems does not come from a better prompt; it comes from treating the LLM as one unreliable component inside a system engineered to contain it — bounded actions, explicit verification of outputs, retries with judgement, and continuous evaluation against real cases rather than vibes. The authors describe the iteration that production demanded: measuring failure modes, narrowing what the agent is permitted to do, and building the scaffolding that catches its mistakes before users do.</p><p>For anyone shipping AI-assisted workflows, this is the difference between a tool you trust and a tool you babysit. The same discipline that makes agents reliable also makes them auditable and safe — you cannot evaluate what you have not bounded. Read it as a maturity model: the questions Bayer had to answer about evaluation, observability, and failure containment are the same ones any team will face the moment an agent moves from "helps me" to "acts for the organisation." The engineering rigour is the moat, not the model.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Engineering</span>
+          <span class="meta-pill meta-score">HN 46</span>
+          <span class="meta-pill meta-source">martinfowler.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://martinfowler.com/articles/reliable-llm-bayer.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48615680" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Research · Anthropic</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Project Fetch: Phase Two</h2>
+      <p class="spread-lede">Anthropic publishes the next instalment of Project Fetch, its research into how far Claude models can be pushed to operate in the physical and embodied world — extending the experiment from earlier work into more demanding, more autonomous tasks.</p>
+      <div class="spread-body"><p>Project Fetch is one of those research threads that is more interesting for what it reveals about capability boundaries than for any single result. As Anthropic probes how a model reasons, plans, and acts over longer horizons and messier environments, it is implicitly mapping where today's models are genuinely reliable and where they still fall over. For users of Claude, that map is the useful artefact: it tells you which classes of task are crossing from "impressive demo" into "dependable," and which remain firmly in the supervised-experiment column.</p><p>For someone whose daily workflow is built on Anthropic's tools, watching the research directly informs roadmap intuition. The features that ship in Claude Code and Cowork next quarter tend to rhyme with the capabilities being stress-tested in research now. Reading these write-ups is less about the headline and more about calibration — understanding what the underlying models are becoming capable of, so your own automation ambitions stay one step ahead of, rather than behind, what the platform can actually deliver.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Skim Phase Two for the capability boundaries it implies, then sanity-check your own Claude-based workflows against them: where the research shows reliability, you can lean in harder; where it shows brittleness, keep a human in the loop. Treat Anthropic's research cadence as an early-warning signal for what to design for next.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 53</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/research/project-fetch-phase-two" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48614311" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Vendor Risk · Litigation</div>
+
+      <h2 class="spread-headline">Tesco sues VMware for breach of contract</h2>
+      <p class="spread-lede">UK supermarket giant Tesco has taken VMware to court over an alleged breach of contract — a dispute, resurfacing on the front page, that crystallises the licensing and support anxieties many enterprises have felt since VMware's ownership and pricing changed.</p>
+      <div class="spread-body"><p>The specifics matter less than the pattern. A blue-chip customer of a foundational virtualisation vendor concluding that litigation is the rational path is the loud version of a quiet conversation happening in countless IT shops: what happens when a vendor you built your infrastructure around changes the terms, the price, or the support model after you are thoroughly locked in? Tesco has the scale to sue. Most organisations only have the option to grumble, absorb the cost, or undertake a painful migration.</p><p>For a security and risk leader, this is vendor concentration risk made concrete. Virtualisation, like identity or cloud, is the kind of dependency that is invisible until the commercial relationship sours — and then it is everywhere at once. The discipline worth borrowing is to treat critical-vendor contract terms as a security control: know your exit cost, your renewal exposure, and your realistic alternatives before the negotiation, not during it. Lock-in is a risk you accept deliberately or discover painfully.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Vendor Risk</span>
+          <span class="meta-pill meta-score">HN 122</span>
+          <span class="meta-pill meta-source">theregister.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.theregister.com/software/2025/09/03/supermarket-giant-tesco-sues-vmware-for-breach-of-contract/1420651" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48613008" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Memory Safety · Engineering</div>
+
+      <h2 class="spread-headline">Linux eliminates the strncpy API after six years</h2>
+      <p class="spread-lede">After six years and roughly 360 patches, the Linux kernel has finished removing strncpy — a C string function whose quietly dangerous semantics have produced a long tail of buffer bugs — replacing it with safer, clearer alternatives throughout the tree.</p>
+      <div class="spread-body"><p>strncpy is one of those functions that looks safe and is not: it does not guarantee null termination, it pads in surprising ways, and decades of well-meaning code has misused it into subtle memory bugs. Excising it from a codebase the size of the Linux kernel is not glamorous work — it is 360 patches of careful, reviewed, case-by-case replacement, sustained across six years and many contributors. That it is finally done is a small landmark in the long campaign to make systems software memory-safe by construction rather than by vigilance.</p><p>The security lesson is about process, not C trivia. Whole classes of vulnerability are eliminated not by clever exploits or new tools but by patiently removing the dangerous primitive so the bug can never be written again. It is the same philosophy behind memory-safe languages and hardened APIs: make the unsafe thing impossible rather than merely discouraged. For leaders, it is a reminder that the highest-leverage security work is often unglamorous, slow, and structural — and that "we removed the footgun" beats "we got better at not shooting ourselves" every time.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 164</span>
+          <span class="meta-pill meta-source">phoronix.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.phoronix.com/news/Linux-7.2-Drops-strncpy" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48612943" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Governance · Election Security</div>
+
+      <h2 class="spread-headline">White House delays US voting-machine vulnerability report</h2>
+      <p class="spread-lede">Reuters reports that the White House has delayed the release of a study into US voting-machine vulnerabilities as the midterm elections approach — a timing decision that raises uncomfortable questions about transparency precisely when public trust in the process is most fragile.</p>
+      <div class="spread-body"><p>Vulnerability disclosure in election systems is genuinely hard: publish too much detail too publicly and you hand a roadmap to bad actors; publish too little, too late, and you feed the narrative that something is being hidden. But a delay that lands right before an election inevitably reads as political rather than prudent, regardless of intent. The corrosive effect is the same as a fake emergency alert — when people cannot tell whether silence is protecting them or protecting someone else, trust in the machinery itself erodes.</p><p>For a security leader the transferable lesson is about disclosure governance under pressure. Every organisation eventually sits on a finding whose release is inconvenient, and the instinct to delay until a calmer moment is universal and usually wrong. Credibility is built by having a disclosure process you follow consistently — timelines, stakeholders, and criteria agreed in advance — so that decisions are not seen to bend to whatever is politically or commercially convenient that week. Transparency is a control; its value collapses the moment it appears discretionary.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Governance</span>
+          <span class="meta-pill meta-score">HN 96</span>
+          <span class="meta-pill meta-source">reuters.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.reuters.com/world/white-house-delays-release-us-voting-machine-study-midterms-near-2026-06-19/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48614809" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Craft &amp; Ethics</div>
+
+      <h2 class="spread-headline">When I reject AI code even if it works</h2>
+      <p class="spread-lede">A developer makes the case that "it passes the tests" is not enough: code that works but cannot be understood, maintained, or trusted by the humans who own it is a liability — and sometimes the right call is to reject AI-generated code despite a green build.</p>
+      <div class="spread-body"><p>The argument cuts against the grain of pure velocity culture. Working code is necessary but not sufficient; software is read far more than it is written, and AI is very good at producing output that is locally correct and globally inscrutable. The author's standard is comprehension and ownership: if no human on the team can explain why the code does what it does, the organisation has taken on debt that no test suite measures. Rejecting working code is uncomfortable, but it is a deliberate vote for long-term maintainability over short-term throughput.</p><p>For a leader steering teams toward AI-assisted development, this is the cultural guardrail that keeps the productivity real. The danger is not that AI writes bad code; it is that it writes plausible code faster than anyone can meaningfully review it, quietly shifting the bottleneck from writing to understanding. The teams that win with these tools will be the ones that hold the line on review, comprehension, and accountability — treating the model as a fast junior whose work still has to be understood, not an oracle whose output is accepted because it compiles.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Craft</span>
+          <span class="meta-pill meta-score">HN 134</span>
+          <span class="meta-pill meta-source">vinibrasil.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://vinibrasil.com/when-i-reject-ai-code-even-if-it-works/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48614631" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 21 June 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: a viral model-hallucination benchmark blog, a Crunchbase clone, a CSS browser-physics toy, and assorted retro-computing, science, and lifestyle posts that scored well but carried no security or leadership signal.</p>
+    <p>Duplicates excluded against the previous two editions: 0. None of today's front-page candidates had appeared in the prior two issues, so the full pool was available and no stories were dropped as repeats.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
