@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 1 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 180</span>
+    <span>Wednesday · 1 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A hidden signature turns up woven into the requests your coding assistant sends home, just as a fresh flagship model lands and Washington quietly loosens its grip on who may run the frontier abroad. Europe, meanwhile, is told it rents the intelligence it can no longer switch on for itself. A morning for asking who watermarks whom.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 1 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Provenance &amp; Trust</span>
+        <span class="toc-title">Claude Code Is Steganographically Marking Its Requests</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Neural Interfaces &amp; Privacy</span>
+        <span class="toc-title">From Brain Waves to Words, No Surgery Required</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Sovereignty</span>
+        <span class="toc-title">America Can Switch Off the World&#39;s AI. Europe Cannot.</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Model Release</span>
+        <span class="toc-title">Claude Sonnet 5 Ships</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Research &amp; Analysis</span>
+        <span class="toc-title">Scaling Laws, Carefully</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tools</span>
+        <span class="toc-title">Nano Banana 2 Lite Arrives</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Abuse &amp; Defence</span>
+        <span class="toc-title">A Peek Inside Reddit&#39;s Anti-Spam Machine</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Privacy Engineering</span>
+        <span class="toc-title">Run Your Own DNS-over-HTTPS Service</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Governance</span>
+        <span class="toc-title">Washington Lifts Export Controls on Frontier Claude Models</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Work &amp; Ethics</span>
+        <span class="toc-title">How Employment Changes When Firms Adopt Generative AI</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Provenance &amp; Trust</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Claude Code Is Steganographically Marking Its Requests</h2>
+      <p class="spread-lede">A developer disassembling Claude Code&#39;s traffic found the CLI quietly embedding an invisible, request-level signature into the payloads it sends upstream — a steganographic marker that survives copy-paste and rides along with every prompt the tool relays.</p>
+      <div class="spread-body"><p>The finding, which rocketed to the top of Hacker News, is less a smoking gun than a mirror held up to how much trust we extend to agentic tooling. Whether the marker is benign telemetry, an anti-abuse fingerprint, or provenance watermarking, the point stands: the tool on your machine is adding data you did not author and cannot see. For anyone piping proprietary code or customer data through an AI assistant, &ldquo;what exactly leaves my laptop&rdquo; stops being a rhetorical question.</p><p>Treat this as a governance prompt rather than a scandal. Every AI coding tool — Claude Code, Copilot, Cursor — mediates a channel between your source tree and a vendor&#39;s servers, and the contents of that channel are rarely inspected by the teams that adopt them. The lesson is not to rip the tools out but to know what they emit, log it where you can, and fold assistant egress into the same data-flow map you already keep for SaaS.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Capture Claude Code&#39;s outbound traffic in a controlled test — a proxy or egress log on one machine — and document what it sends alongside your prompts. Fold AI coding assistants into your data-flow inventory and DLP scope before they touch regulated code, and raise the provenance question with the vendor directly.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 1714</span>
+          <span class="meta-pill meta-source">thereallo.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://thereallo.dev/blog/claude-code-prompt-steganography" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48734373" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Neural Interfaces &amp; Privacy</div>
+
+      <h2 class="spread-headline">From Brain Waves to Words, No Surgery Required</h2>
+      <p class="spread-lede">Meta&#39;s research arm has demonstrated Brain2Qwerty, a system that decodes typed words from non-invasive brain recordings — no implant, no craniotomy — inching the long-promised thought-to-text interface closer to something that could one day sit on a consumer&#39;s head.</p>
+      <div class="spread-body"><p>The engineering is genuinely impressive and the accuracy still far from a keyboard, but the security leader&#39;s instinct should be to look past the demo to the data. Neural signals are the least revocable biometric imaginable: you can reset a password, reissue a card, even change your face more easily than you can change the electrical signature of your own cortex. A device that reads intention at the source collapses the gap between thinking something and disclosing it.</p><p>This is still a lab result, not a product, and that is precisely when the policy questions are cheapest to ask. Who stores the raw signals, under what retention, and with what legal basis? Existing data-protection law was not written for a sensor that captures pre-verbal intent, and &ldquo;consent&rdquo; means little when the collection surface is a person&#39;s nervous system. File this under trends to watch, not risks to mitigate — but watch it closely.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 140</span>
+          <span class="meta-pill meta-source">ai.meta.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://ai.meta.com/blog/brain2qwerty-brain-ai-human-communication/?_fb_noscript=1" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48739466" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Sovereignty</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">America Can Switch Off the World&#39;s AI. Europe Cannot.</h2>
+      <p class="spread-lede">A pointed Euronews argument lays out an uncomfortable dependency: the frontier models, the chips, and the cloud that Europe runs its AI on are overwhelmingly American, and could in principle be throttled, priced up, or export-controlled out of reach almost overnight.</p>
+      <div class="spread-body"><p>For a UK or EU security leader this is not abstract geopolitics — it is a concentration-risk finding hiding in your architecture diagrams. If your fraud detection, your SOC copilots, or your customer-facing assistants depend on a single foreign provider&#39;s API, you have a supply-chain single point of failure governed by another country&#39;s trade policy. The same week Washington loosened some export controls is a reminder that the tap has a hand on it, and the hand is not yours.</p><p>Sovereignty here does not mean building your own model; it means designing for substitutability. Abstraction layers that let you swap providers, honest classification of which workloads could tolerate a fallback to a European or open-weight model, and contractual clarity on continuity are the practical moves. The alarmist framing is doing a favour by forcing a question most boards have not asked: what happens to our AI-dependent processes if the provider simply stops answering?</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory which business processes now depend on a single US AI provider and rate each for tolerable downtime. For anything critical, prototype a fallback path — an open-weight or EU-hosted model behind the same abstraction — and add provider-continuity and export-control clauses to your next contract review.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 21</span>
+          <span class="meta-pill meta-source">euronews.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.euronews.com/my-europe/2026/06/30/america-can-switch-off-the-worlds-ai-europe-must-switch-gears-before-its-too-late" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48741943" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Model Release</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Claude Sonnet 5 Ships</h2>
+      <p class="spread-lede">Anthropic has released Claude Sonnet 5, the newest mid-tier model in the Claude family, positioned as the workhorse for coding, agentic tasks, and everyday reasoning — the tier most teams actually run in production rather than the flagship they benchmark against.</p>
+      <div class="spread-body"><p>For someone who builds Claude Code and Cowork workflows, a Sonnet-tier bump is the release that matters most, because Sonnet is where cost and latency make automation viable at scale. A new version means re-testing the prompts and agents you have already tuned: capability jumps are welcome, but they also shift model behaviour in ways that can quietly break brittle chains, change refusal boundaries, or alter tool-calling patterns you depend on.</p><p>The disciplined move is to treat a model upgrade like any other dependency bump. Pin the version you validated, run your existing eval set against the new one before switching, and read the model card for changes to context window, tool use, and safety behaviour. The upside is real — cheaper, faster, smarter agents — but assuming it is the same family so it will just work is how a Tuesday deploy becomes a Wednesday incident.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Run your existing Claude Code and Cowork workflows against Sonnet 5 in a sandbox before promoting it. Diff outputs against your current pinned version, watch for changed tool-calling and refusal behaviour, and only roll forward once your evals pass. Keep the old version pinned as a rollback.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 1040</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/news/claude-sonnet-5" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48736605" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Research &amp; Analysis</div>
+
+      <h2 class="spread-headline">Scaling Laws, Carefully</h2>
+      <p class="spread-lede">Lilian Weng returns with a meticulous walk through what scaling laws actually claim, where the empirical curves hold, and where the field&#39;s favourite straight lines on log-log plots quietly mislead — a corrective read for anyone who quotes &ldquo;just add compute&rdquo; as gospel.</p>
+      <div class="spread-body"><p>The essay&#39;s value is in its restraint. Scaling laws have become a rhetorical shortcut — more parameters, more data, more predictable capability — but Weng picks apart the assumptions: which losses scale, over what ranges, and how data quality and architecture bend the curves that headline charts flatten. It is the kind of writing that makes you more careful about the confident extrapolations that fill boardroom AI strategy decks.</p><p>Why should a security leader care about a research explainer? Because the pace and ceiling of model capability is now a planning input for defenders and attackers alike, and decisions about what to build in-house versus buy hinge on beliefs about where the curves go next. Understanding that scaling is real but bounded — not magic, not infinite — is a hedge against both hype-driven over-investment and complacent under-investment.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Research</span>
+          <span class="meta-pill meta-score">HN 53</span>
+          <span class="meta-pill meta-source">lilianweng.github.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://lilianweng.github.io/posts/2026-06-24-scaling-laws/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48689744" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tools</div>
+
+      <h2 class="spread-headline">Nano Banana 2 Lite Arrives</h2>
+      <p class="spread-lede">Google DeepMind has shipped a lighter, faster variant of its Gemini image model — nicknamed Nano Banana — trading some fidelity for speed and cost, and aimed squarely at high-volume, latency-sensitive image generation embedded in real products.</p>
+      <div class="spread-body"><p>The &ldquo;Lite&rdquo; framing is the story. The frontier of generative media is no longer only about the most capable model; it is about the cheapest one that is good enough to run everywhere — in apps, in ad pipelines, in bulk content production. That commoditisation is what turns synthetic imagery from a novelty into infrastructure, and infrastructure is what changes threat models rather than headlines.</p><p>For defenders, cheaper and faster image generation means the marginal cost of convincing fake imagery keeps falling — fraudulent documents, synthetic profile photos, and social-engineering props at scale. None of that is new, but each efficiency step widens the pool of actors who can do it casually. The practical takeaway is to keep pushing identity and content-verification controls that do not assume an image is evidence of anything.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 349</span>
+          <span class="meta-pill meta-source">deepmind.google</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://deepmind.google/models/gemini-image/flash-lite/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48735444" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Abuse &amp; Defence</div>
+
+      <h2 class="spread-headline">A Peek Inside Reddit&#39;s Anti-Spam Machine</h2>
+      <p class="spread-lede">A detailed writeup pulls back the curtain on how Reddit fights spam at scale — the signals, heuristics, and layered defences that decide which of millions of daily submissions are automated abuse and which are merely genuine human noise.</p>
+      <div class="spread-body"><p>Trust-and-safety engineering rarely gets written up honestly, which is what makes this valuable. The piece shows a defence built not on a single clever model but on layers — rate limits, behavioural signals, reputation, and content analysis — each catching what the others miss, and each degrading gracefully when adversaries adapt. That defence-in-depth shape is the same one that works against fraud, account takeover, and bot traffic anywhere.</p><p>The transferable lesson for a security team is that adversarial systems are never solved, only continuously contested. Spam defence is a live example of the attacker-defender loop most organisations experience in their own login and payment flows: every heuristic invites evasion, so the design goal is fast iteration and cheap signal-adding, not a perfect static filter. Read it as a case study in building controls that assume the adversary is watching.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 99</span>
+          <span class="meta-pill meta-source">lyra.horse</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://lyra.horse/blog/2026/06/reddit-spam-internals/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48699010" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Privacy Engineering</div>
+
+      <h2 class="spread-headline">Run Your Own DNS-over-HTTPS Service</h2>
+      <p class="spread-lede">A concise how-to walks through standing up a personal DNS-over-HTTPS resolver — encrypting the name lookups that normally leak in plaintext to whichever network you happen to be on, and putting the query log in your hands instead of a provider&#39;s.</p>
+      <div class="spread-body"><p>DNS is one of the last casually unencrypted layers of everyday traffic, and its metadata is quietly revealing: the domains you resolve sketch a map of the services you use, even under HTTPS. Running your own DoH endpoint moves that visibility from your ISP or a public resolver to infrastructure you control — a meaningful shift for the privacy-conscious, and a genuinely useful exercise for understanding what your devices actually talk to.</p><p>There is a professional angle beyond personal privacy. Standing this up teaches the mechanics of a control that matters at organisational scale — encrypted resolution, resolver policy, and the tension between privacy and the DNS-based visibility that security teams rely on for detection. It is a weekend project that leaves you fluent in a debate — DoH versus network monitoring — that keeps landing on enterprise architecture roadmaps.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 69</span>
+          <span class="meta-pill meta-source">nochan.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://nochan.net/b/Internet-Crap/20260602-Set-Up-Your-Own-DoH-Service/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48702361" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Governance</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Washington Lifts Export Controls on Frontier Claude Models</h2>
+      <p class="spread-lede">The US Department of Commerce has lifted export controls on Claude Fable 5 and Mythos 5, Anthropic announced — loosening the trade restrictions that governed where the company&#39;s frontier models could legally be deployed and who abroad could run them.</p>
+      <div class="spread-body"><p>Export policy on AI has been the quiet lever nobody outside Washington fully controls, and this is a visible tug on it. Lifting controls widens legitimate access to top-tier models internationally, which is good news for global teams standing up compliant deployments — but it also signals just how politically contingent frontier-model availability has become. What one administration loosens, another can tighten, and that variability is now a governance factor in any multinational AI rollout.</p><p>For a security and compliance function, the immediate effect is narrower: fewer legal hoops for cross-border use of these specific models. The strategic effect is larger. Availability of the tools your organisation is building on is now partly a function of trade policy, and prudent planning treats that as a risk-register entry, not a footnote. The direction today is liberalising; the lesson is that direction is not guaranteed.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Confirm with legal whether the lifted controls change what your international entities can deploy, and update your acceptable-use and data-residency guidance accordingly. Add AI export-control posture to your risk register so a future tightening does not catch a cross-border deployment off guard.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 552</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/AnthropicAI/status/2072106151890809341" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48740771" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Work &amp; Ethics</div>
+
+      <h2 class="spread-headline">How Employment Changes When Firms Adopt Generative AI</h2>
+      <p class="spread-lede">Drawing on payments data across thousands of companies, a Ramp analysis traces what actually happens to hiring and headcount after a firm adopts generative AI — an empirical counterweight to both the &ldquo;AI takes every job&rdquo; panic and the &ldquo;nothing will change&rdquo; dismissal.</p>
+      <div class="spread-body"><p>The data-grounded framing is the point: rather than forecasting, it observes real spending and staffing patterns at firms that have already crossed the threshold. The picture is more textured than the slogans — some roles contract, others shift, and adoption reshapes work more than it simply deletes it. For leaders making workforce decisions under genuine uncertainty, evidence beats extrapolation, even when the sample is imperfect.</p><p>The ethical weight sits with the people managing these transitions, security teams included. As AI absorbs routine analysis, triage, and first-draft work, the humane and the strategic move converge: reskill toward judgement, oversight, and the adversarial thinking machines still do poorly. How an organisation treats the people whose work is being reshaped is not an HR footnote — it is a statement of what kind of employer, and defender, it intends to be.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Society</span>
+          <span class="meta-pill meta-score">HN 32</span>
+          <span class="meta-pill meta-source">ramp.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://ramp.com/data/ai-jobs-impact" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48742176" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 1 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor benchmark marketing, routine model-card release notes with no security relevance, crypto and hardware-hobby builds, and the general-interest science and culture pieces that filled much of the front page.</p>
+    <p>Duplicates excluded against the previous two editions: 0. Every story in this issue is new to the week&#39;s run.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
