@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 6 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 184</span>
+    <span>Monday · 6 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Brussels revives its plan to read your messages before you can seal them; Ottawa quietly itemises a surveillance stack it would rather not price out loud; and a well-meaning email-security tag turns out to leave the door ajar. A Monday that rewards the paranoid.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 6 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">EU Council forces &lsquo;Chat Control&rsquo; through on a fast track</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">State Surveillance</span>
+        <span class="toc-title">Canada&rsquo;s AI strategy shouldn&rsquo;t ship with secret Palantir bills</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Email Authentication</span>
+        <span class="toc-title">DMARC&rsquo;s new &lsquo;NP&rsquo; tag can silently break with DNSSEC</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Security Tooling</span>
+        <span class="toc-title">The future of Flipper Zero development</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Research</span>
+        <span class="toc-title">Does code cleanliness affect coding agents?</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling</span>
+        <span class="toc-title">OpenWiki writes and maintains your codebase&rsquo;s agent docs</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Attack Surface</span>
+        <span class="toc-title">An OSINT tool that hunts exposed files across domains</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Privacy Tech</span>
+        <span class="toc-title">Organic Maps: the offline, tracker-free map app</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Governance</span>
+        <span class="toc-title">The private capture of public genius</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Ethics &amp; Society</span>
+        <span class="toc-title">The Power of the Powerless, revisited</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">EU Council Forces &lsquo;Chat Control&rsquo; Through on a Fast Track</h2>
+      <p class="spread-lede">The Council of the EU has pushed its client-side message-scanning proposal onto a fast-track path, reviving a mandate that would have services inspect private messages before they are encrypted &mdash; a design encryption experts have called unworkable for years.</p>
+      <div class="spread-body"><p>The proposal, widely known as Chat Control, would require messaging and hosting providers to scan users&rsquo; content for known and unknown child-abuse material. The politically convenient framing is &lsquo;detection&rsquo;, but the mechanism is mass client-side scanning: software on your device examines messages before end-to-end encryption seals them. That breaks the security guarantee at exactly the point encryption exists to protect, and it builds a general-purpose inspection capability that no future government has ever declined to expand. Germany&rsquo;s position had been the main blocker; the fast-track manoeuvre is an attempt to route around that resistance before opposition consolidates.</p><p>For a security leader, this is not a distant Brussels debate. If it lands, the compliance surface shifts overnight: any provider serving EU users could be compelled to weaken or instrument encrypted channels, and the vendors your organisation relies on for secure comms &mdash; Signal, WhatsApp, Matrix deployments &mdash; may respond by pulling features or exiting the market rather than backdooring their clients. Post-Brexit UK is not bound by the regulation, but Scottish and UK firms with EU operations, data flows, or staff will feel the second-order effects. Treat this as a live regulatory risk, not settled law.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add Chat Control to your regulatory-watch list and brief your leadership that EU-facing secure-messaging assumptions may change. Map which of your comms tools serve EU users, note their vendors&rsquo; public stances on client-side scanning, and prepare a fallback if a provider withdraws E2EE features. If you have a policy voice, national digital-rights coalitions are coordinating responses this week.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 409</span>
+          <span class="meta-pill meta-source">heise.de</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.heise.de/en/news/Chat-Control-1-0-EU-Council-forces-messenger-scans-via-fast-track-11353659.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48793393" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">State Surveillance</div>
+
+      <h2 class="spread-headline">Canada&rsquo;s AI Strategy Shouldn&rsquo;t Ship With Secret Palantir Bills</h2>
+      <p class="spread-lede">A pointed commentary argues that Ottawa is wiring Palantir into its national AI plans without disclosing the costs or the surveillance implications &mdash; the kind of opaque government procurement that security leaders everywhere should learn to recognise.</p>
+      <div class="spread-body"><p>The piece&rsquo;s core complaint is transparency, not technology. When a state adopts a data-integration platform whose whole value proposition is fusing disparate records into a single searchable picture of people, the contract terms, data-sharing scope, and audit provisions are the story &mdash; and here they are largely hidden behind commercial confidentiality. That opacity is the pattern worth flagging: the decision that matters is made once, in procurement, and everything downstream inherits it. By the time the surveillance capability is visible in production, the switching cost is enormous and the vendor lock-in is complete.</p><p>The relevance for a CISO isn&rsquo;t Canada specifically; it&rsquo;s the template. The same dynamic shows up in enterprise deals for &lsquo;AI platforms&rsquo; that quietly centralise identity, telemetry, and third-party data. Ask who can query the fused dataset, what retention applies, and whether your own contracts let a vendor repurpose your data for model training. Procurement is where privacy and security posture are actually decided, and it is chronically under-reviewed by the people who later own the risk.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 135</span>
+          <span class="meta-pill meta-source">readtheline.ca</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.readtheline.ca/p/al-vigier-canadas-ai-strategy-shouldnt" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48799256" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Email Authentication</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">DMARC&rsquo;s New &lsquo;NP&rsquo; Tag Can Silently Break With DNSSEC</h2>
+      <p class="spread-lede">The recently standardised &lsquo;np&rsquo; policy tag, meant to protect non-existent subdomains from spoofing, can fail in surprising ways on DNSSEC-signed domains &mdash; leaving a gap exactly where administrators believe they are covered.</p>
+      <div class="spread-body"><p>The &lsquo;np&rsquo; tag lets a domain owner declare a policy specifically for non-existent subdomains, closing a spoofing avenue where attackers forge mail from subdomains that were never provisioned. The catch, as this write-up details, is how &lsquo;non-existence&rsquo; is proven. On a DNSSEC-signed zone, authenticated denial of existence (NSEC/NSEC3 records) changes what a resolver sees, and the interaction with how mail receivers evaluate &lsquo;np&rsquo; can produce a different verdict than an unsigned zone would. The result is a policy that looks correct in your DNS but does not behave as intended in the wild.</p><p>This is the sort of quiet misconfiguration that never triggers an alert &mdash; your DMARC record parses, your dashboard is green, and yet a spoofing path stays open. It matters because email authentication is one of the few controls a CISO can fully own and measure, and because attackers probe subdomain gaps precisely because defenders assume the apex policy covers everything. If your organisation runs DNSSEC and has adopted the newer DMARC tags, verify the behaviour rather than trusting the syntax.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit your DMARC records for the &lsquo;np&rsquo; tag and cross-check it against your DNSSEC status. Test spoofing resistance for a deliberately non-existent subdomain from an external mailbox rather than assuming the policy applies. If you rely on &lsquo;np&rsquo; on a signed zone, confirm with your mail-security vendor how their receivers evaluate it, and fall back to a strict &lsquo;sp&rsquo; subdomain policy where behaviour is uncertain.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 50</span>
+          <span class="meta-pill meta-source">dmarcwise.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://dmarcwise.io/blog/dmarc-np-incompatibility-with-dnssec" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48794788" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Security Tooling</div>
+
+      <h2 class="spread-headline">The Future of Flipper Zero Development</h2>
+      <p class="spread-lede">Flipper&rsquo;s team lays out where its pocket hacking multitool is headed &mdash; a roadmap worth reading for anyone whose threat model includes cheap, capable, RF-and-NFC gadgets in the hands of curious teenagers and red teams alike.</p>
+      <div class="spread-body"><p>The Flipper Zero is a $169 open-source device that reads and emulates a grab-bag of wireless protocols: sub-GHz radio, NFC, RFID, infrared, iButton. The company&rsquo;s post frames the next phase of development around its firmware, app ecosystem, and hardware line, and the honest subtext is that the platform&rsquo;s momentum comes as much from the community and the meme cycle as from the roadmap. For defenders, the device is a useful reminder that the barrier to entry for physical-layer attacks &mdash; cloning access badges, replaying garage and gate remotes, fuzzing IR &mdash; has collapsed to a consumer price point.</p><p>None of the individual capabilities are new to security professionals; the shift is accessibility and normalisation. A tool that packages a dozen RF attacks behind a friendly UI means your access-control assumptions get tested by people who are not security researchers. The right response is not to fixate on the gadget but to check whether your building entry, asset tags, and legacy remotes still rely on unauthenticated, replayable signals. If a $169 toy can clone it, so can anyone motivated.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Hardware / Security</span>
+          <span class="meta-pill meta-score">HN 283</span>
+          <span class="meta-pill meta-source">blog.flipper.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.flipper.net/future-of-flipper-zero-development/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48796552" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Research</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Does Code Cleanliness Affect Coding Agents?</h2>
+      <p class="spread-lede">A controlled minimal-pair study asks whether the tidiness of a codebase measurably changes how well AI coding agents perform &mdash; and finds that the habits we adopted for human maintainers may matter just as much for the machines now editing our repositories.</p>
+      <div class="spread-body"><p>The study isolates code cleanliness as a variable by comparing near-identical &lsquo;minimal pairs&rsquo; of code that differ only in clarity &mdash; naming, structure, dead code, consistency &mdash; and then measures how coding agents fare on each. The setup matters because most claims about &lsquo;agent-friendly&rsquo; code are folklore; a controlled design lets you attribute performance differences to cleanliness itself rather than to task difficulty. The finding, broadly, is that cleaner code helps: agents make fewer errors and navigate more reliably when the surrounding code is legible, echoing what we already believed about human developers.</p><p>For anyone building AI-assisted workflows, this reframes technical debt as an agent-performance problem, not just a human one. If you are running Claude Code or similar tools against a sprawling, inconsistent repository, the friction you feel is partly self-inflicted: the same ambiguity that confuses a new hire confuses the model. It also suggests a cheap lever &mdash; investing in clarity and structure pays a compounding dividend every time an agent touches the code. The caveat is scope: one study, a bounded task set, and results that will vary by language and model. Treat it as directional evidence, not gospel.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Before pointing agents at a legacy codebase, spend a session on the boring wins: consistent naming, deleting dead code, and splitting oversized files. Treat clean-up as a prerequisite for reliable agent work, not a nice-to-have, and measure whether your own agent success rate improves after a tidy-up pass on one representative module.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Research</span>
+          <span class="meta-pill meta-score">HN 86</span>
+          <span class="meta-pill meta-source">arxiv.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://arxiv.org/abs/2605.20049" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48798815" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling</div>
+
+      <h2 class="spread-headline">OpenWiki Writes and Maintains Your Codebase&rsquo;s Agent Docs</h2>
+      <p class="spread-lede">A new open-source CLI generates and keeps up to date the kind of internal documentation that coding agents rely on &mdash; an attempt to solve the &lsquo;the agent doesn&rsquo;t understand our repo&rsquo; problem at its source.</p>
+      <div class="spread-body"><p>OpenWiki, from the LangChain team, walks a codebase and produces structured documentation aimed at agents rather than humans: architecture summaries, module maps, and the context an AI needs to make sensible edits. The pitch is maintenance &mdash; docs that regenerate as the code changes, so the map does not drift from the territory. It is a natural companion to the cleanliness research above: if legible code helps agents, explicit, current documentation helps them more, and both reduce the tax of re-explaining your system in every prompt.</p><p>The healthy scepticism is whether machine-generated docs stay honest. Auto-summaries can confidently describe how code was supposed to work rather than how it does, and a wrong map is worse than none because it is trusted. The tool is worth a trial on a real project, but treat its output as a draft to review, not authoritative documentation. Watch also for the lock-in question &mdash; documentation formats and conventions that assume one vendor&rsquo;s agent tooling. For a Claude Code user, the interesting test is whether OpenWiki-style docs improve results in a stack you are already invested in.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Dev Tools</span>
+          <span class="meta-pill meta-score">HN 86</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/langchain-ai/openwiki" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48752949" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Attack Surface</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">An OSINT Tool That Hunts Exposed Files Across Domains</h2>
+      <p class="spread-lede">A newly shared reconnaissance service scans domains for inadvertently exposed files &mdash; the backups, configs, and dumps that quietly leak from misconfigured web servers &mdash; and it is a reminder that attackers run this exact search against you every day.</p>
+      <div class="spread-body"><p>Tools like this crawl for the predictable debris of web operations: <em>.env</em> files, database backups, <em>.git</em> directories, log archives, and admin panels left reachable by an over-permissive server or a forgotten deployment. None of it is exotic; the value is aggregation and scale. A defender sees their own estate one project at a time, but a scanner sees the whole exposed surface at once, and so do the opportunistic actors who automate this reconnaissance looking for the easiest way in. Exposed secrets in a stray config file remain one of the most reliable initial-access vectors precisely because they require no exploit &mdash; just a URL.</p><p>The uncomfortable framing is that this capability is neutral: the same query that helps a red team helps a criminal. For a CISO, the correct reaction to any new public exposure-discovery tool is to run it against your own domains before someone else does. Treat external asset visibility as a standing control, not a one-off audit &mdash; new subdomains, staging environments, and third-party deployments appear constantly, and each one is a fresh chance to leak a file you never meant to serve.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Run an external exposure scan against your own domains and subdomains this week, looking specifically for .env, .git, backup, and log files reachable over HTTP. Add attack-surface monitoring to your recurring controls so newly spun-up staging and third-party hosts are caught early, and rotate any credential that a public file may have leaked.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 34</span>
+          <span class="meta-pill meta-source">search.cerast-intelligence.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://search.cerast-intelligence.com/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48797656" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Privacy Tech</div>
+
+      <h2 class="spread-headline">Organic Maps: The Offline, Tracker-Free Map App</h2>
+      <p class="spread-lede">Topping the front page today, Organic Maps offers turn-by-turn navigation built on OpenStreetMap data that works entirely offline and collects no telemetry &mdash; a quietly political alternative to the mapping apps that monetise your location.</p>
+      <div class="spread-body"><p>Organic Maps is a free, open-source navigation app derived from the Maps.me lineage, running on offline OpenStreetMap data with no accounts, no ads, and no location tracking. The appeal is both practical and principled: it works on a plane or in a dead zone, it is fast because it is not phoning home, and it treats your movement history as none of its business. For anyone who has watched mainstream mapping quietly become an advertising and behavioural-data product, it is a reminder that the privacy-respecting option often also happens to be the more robust one.</p><p>For a security-minded reader, the interesting angle is the model rather than the app. Offline-first, telemetry-free software sidesteps an entire category of data-handling and third-party risk simply by not collecting the data in the first place &mdash; the cheapest breach to survive is the one whose data you never held. Organic Maps will not replace a fleet-tracking or logistics platform, but it is a good personal default and a useful proof point when you argue that &lsquo;collect less&rsquo; is a defensible engineering choice, not a compliance burden.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 893</span>
+          <span class="meta-pill meta-source">organicmaps.app</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://organicmaps.app/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48794446" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Governance</div>
+
+      <h2 class="spread-headline">The Private Capture of Public Genius</h2>
+      <p class="spread-lede">An essay on how publicly funded research and open knowledge keep being enclosed by private firms &mdash; a governance question that sits directly beneath today&rsquo;s debates about who owns the AI models trained on the commons.</p>
+      <div class="spread-body"><p>The argument is that much of what powers today&rsquo;s frontier technology &mdash; foundational research, open datasets, decades of freely shared code and writing &mdash; was produced as a public good and is now being fenced off into private, rent-extracting products. The pattern is old (pharmaceuticals, academic publishing) but the AI era makes it acute: models trained on the open web and public research are packaged as proprietary services, while the commons that fed them gets little back and, increasingly, gets scraped into silence.</p><p>This is not idle philosophy for a technology leader. The enclosure debate shapes concrete decisions &mdash; open-weight versus closed models, the licensing terms your vendors impose, and whether your own organisation contributes to or merely consumes the commons it depends on. Security and resilience have a stake too: a stack built entirely on a handful of privately captured platforms is a concentration risk, not just an ethical one. The essay is a prompt to notice where your dependencies came from, and who now controls the gate.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 71</span>
+          <span class="meta-pill meta-source">wysr.xyz</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.wysr.xyz/p/the-private-capture-of-public-genius" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48799178" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Ethics &amp; Society</div>
+
+      <h2 class="spread-headline">The Power of the Powerless, Revisited</h2>
+      <p class="spread-lede">Václav Havel&rsquo;s 1978 essay on living within the truth under a surveillance state resurfaces on the front page &mdash; and reads, uncomfortably, as commentary on the automated inspection regimes being proposed in Europe this very week.</p>
+      <div class="spread-body"><p>Havel&rsquo;s essay dissects how authoritarian systems sustain themselves not mainly through violence but through everyone&rsquo;s quiet complicity &mdash; the greengrocer who puts the regime&rsquo;s slogan in his window because it is easier than not. His famous prescription, &lsquo;living within the truth&rsquo;, is the refusal of that small daily surrender. Written under Czechoslovak communism, it has aged into a general theory of how ordinary people either legitimise or resist systems of control, and why the private act of declining to go along still matters.</p><p>Read alongside today&rsquo;s lead story, the resonance is hard to miss. The technologies of surveillance have changed &mdash; client-side scanning rather than secret police &mdash; but Havel&rsquo;s question is the same one facing anyone who builds or defends information systems: what capabilities are you willing to normalise, and what will you refuse to implement even when it is easier to comply? For a security professional, that is not abstract. The architecture you accept as routine becomes the architecture the next regime inherits.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Ideas</span>
+          <span class="meta-pill meta-score">HN 24</span>
+          <span class="meta-pill meta-source">kamprint.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://kamprint.com/essay/havel.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48798688" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 6 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as reporting, routine patch advisories without context, crypto and web3 noise, and a long tail of charming but non-actionable retrocomputing and hobbyist reads (a DEC Alpha running Windows 2000, NES composite-video quirks, platonic hydrocarbons).</p>
+    <p>Duplicates excluded against the previous two editions: 0. None of today&rsquo;s front-page candidates repeated a story already featured on 4 or 5 July.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
