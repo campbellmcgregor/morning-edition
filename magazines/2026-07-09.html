@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 9 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 187</span>
+    <span>Thursday · 9 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A use-after-free hands root away on the operating system that built its whole brand on hardness, while Strasbourg edges the continent one vote closer to scanning every private message you send. Somewhere in between, a retail t-shirt turns out to be running real code. Ten stories today — four of them land on your desk before the coffee cools.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 9 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">OpenBSD Use-After-Free Escalates Local Users Straight to Root</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">The EU Is One Vote From Reviving Mandatory Private-Message Scanning</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain</span>
+        <span class="toc-title">OpenMandriva Says It Caught an Attempt to Sabotage Its Distribution</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Reverse Engineering</span>
+        <span class="toc-title">Decoding the Obfuscated Bash Script Printed on a Uniqlo T-Shirt</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Trust &amp; Assurance</span>
+        <span class="toc-title">Remote Attestation, Explained From First Principles</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling</span>
+        <span class="toc-title">OpenAI Introduces GPT-Live</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Benchmarks</span>
+        <span class="toc-title">Grok 4.5, GPT-5.5, and Claude Build the Same Apps — Head to Head</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Tools</span>
+        <span class="toc-title">TypeScript 7 Is Here</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Regulation &amp; Governance</span>
+        <span class="toc-title">John Deere Owners Win a Right to Repair in FTC Settlement</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Reflection</span>
+        <span class="toc-title">I Think I Have LLM Burnout</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">OpenBSD Use-After-Free Escalates Local Users Straight to Root</h2>
+      <p class="spread-lede">A newly disclosed use-after-free in the kernel of the operating system built around security-by-default gives any local account a path to full root, and the details are already public on the national vulnerability database.</p>
+      <div class="spread-body"><p>OpenBSD's entire reputation rests on the claim of "only two remote holes in the default install in a heck of a long time." Local privilege escalation is a quieter, different class of bug — and this one, CVE-2026-57589, is a use-after-free reachable by any unprivileged local user that ends in code execution as root. On a multi-user box, a jump host, or any system where you don't fully trust everyone with a shell, that turns a modest foothold into a total takeover. The NVD entry is terse, which is normal for a fresh CVE; the fix and the project's errata are where the operational detail actually lives.</p><p>The practical reading for a security team: OpenBSD tends to sit in the load-bearing, unglamorous parts of an estate — firewalls, VPN endpoints, mail relays, the pf box nobody has logged into in a year. Those are exactly the machines where a local-to-root bug bites, because they quietly host service accounts, cron jobs, and third-party agents that all count as "local." Treat it as a patch-now item on anything OpenBSD-based that is internet-adjacent or shared, and make sure your asset inventory can actually tell you where those boxes are.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull your OpenBSD inventory today and apply the syspatch/errata for CVE-2026-57589 on multi-user and internet-facing systems first — firewalls, VPN concentrators, jump hosts, mail relays. Where you can't patch immediately, tighten who holds local shell access and audit service accounts. Confirm the CVE is tracked in your vulnerability-management queue rather than lost as "just a BSD box."</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 259</span>
+          <span class="meta-pill meta-source">nvd.nist.gov</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://nvd.nist.gov/vuln/detail/cve-2026-57589" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48831658" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">The EU Is One Vote From Reviving Mandatory Private-Message Scanning</h2>
+      <p class="spread-lede">After years of stalled negotiations, the proposal to scan private messages for illegal content has clawed its way back to the edge of becoming law — one procedural step from a mandate that would reach into end-to-end encrypted apps.</p>
+      <div class="spread-body"><p>The proposal, long nicknamed "Chat Control," would require messaging providers to scan the content users send — including in end-to-end encrypted services — for known and novel illegal material, and to report matches. Privacy advocates have fought it to a standstill more than once; this latest movement puts it back within a single step of adoption. The core objection hasn't changed: client-side scanning breaks the security promise of encryption by design, because a system that can inspect "just the bad content" is a general-purpose surveillance capability pointed at everyone's private communication.</p><p>For anyone running security in the UK or EU, this is not abstract. If it lands, it reshapes the threat model for every messaging platform your staff use, stands up a scanning apparatus that becomes an attractive target in its own right, and raises hard questions for data-protection and legal teams about lawful basis and cross-border data flows. The UK now sits outside the EU but built comparable powers into the Online Safety Act, so the direction of travel is regional, not a Brussels-only concern.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Brief your legal/DPO function now on the revived proposal and where it stands, so you're not reacting after a vote. Map which business-critical communications ride on end-to-end encrypted channels and what a client-side-scanning mandate would mean for their confidentiality. Feed a position into any industry body you belong to while a consultation window remains — this is far cheaper to influence before adoption than after.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 395</span>
+          <span class="meta-pill meta-source">cyberinsider.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://cyberinsider.com/eu-now-one-step-away-from-reviving-private-message-scanning-rules/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48834296" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">OpenMandriva Says It Caught an Attempt to Sabotage Its Distribution</h2>
+      <p class="spread-lede">The OpenMandriva project has published a statement describing an attempted sabotage of its distribution infrastructure — a reminder that the trust boundary for a Linux estate runs all the way back to the people and pipelines that build the packages.</p>
+      <div class="spread-body"><p>Details in these situations are always partial while a project protects its investigation, but the shape is familiar and worrying: an attempt to interfere with how a distribution is built and shipped, rather than exploiting a single deployed machine. It lands in the same conceptual bucket as the xz backdoor — the moment an attacker gets inside the build-and-release chain of open-source software, the blast radius becomes every downstream user who trusts the resulting artefacts. A community distro like OpenMandriva has fewer paid eyes than a Debian or a Red Hat, which is exactly why it makes a tempting soft entry point.</p><p>The uncomfortable lesson for defenders is that "we patch promptly" quietly assumes the upstream artefacts are honest. Supply-chain sabotage inverts that: the update itself is the attack. You can't audit every maintainer of every dependency, but you can insist on signed packages, reproducible builds where they exist, and provenance you can actually verify — and you can refuse to pull niche distributions or packages into sensitive systems on nothing more than reputation.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Use this as a prompt to review software provenance for anything you pull from smaller open-source projects. Confirm package-signature verification is enforced, not merely available; prefer distributions with reproducible-build and signed-release practices for sensitive systems; and make sure your SBOM/dependency inventory would let you answer "are we affected?" quickly if a build-chain compromise is confirmed anywhere in your stack.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 90</span>
+          <span class="meta-pill meta-source">forum.openmandriva.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://forum.openmandriva.org/t/statement-regarding-attempted-distribution-sabotage/8997" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48835439" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Reverse Engineering</div>
+
+      <h2 class="spread-headline">Decoding the Obfuscated Bash Script Printed on a Uniqlo T-Shirt</h2>
+      <p class="spread-lede">A curious shopper found that the "code" printed on a retail t-shirt was a real, obfuscated, self-evaluating bash script served through a CDN — and pulled the thread all the way to what it actually does.</p>
+      <div class="spread-body"><p>The story is a delight and a lesson at once. What looks like decorative "hacker" text on a garment turns out to be a genuinely obfuscated shell script — the kind that unpacks and evaluates itself — and the author walks through de-obfuscating it layer by layer. It's the same muscle you use on a malware sample: resist running the thing, understand it statically, and peel each encoding until the intent is legible.</p><p>Why it belongs in a security brief: obfuscated, self-evaluating bash is exactly the pattern that shows up in real-world initial-access payloads and one-liner droppers, and most engineers eyeball it and move on. The discipline of reading rather than executing untrusted code — even when it's printed on cotton — is the whole game. It's also a reminder that "just decorative" strings in your own environment (QR codes, config blobs, marketing assets) deserve a second look before anyone pipes them into a shell.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 1349</span>
+          <span class="meta-pill meta-source">tris.sherliker.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://tris.sherliker.net/blog/obfuscated-self-evaluating-bash-script-by-cdn-akamai-being-supplied-to-consumers-via-retail-stores/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48829312" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Trust &amp; Assurance</div>
+
+      <h2 class="spread-headline">Remote Attestation, Explained From First Principles</h2>
+      <p class="spread-lede">A clear primer on remote attestation — the mechanism by which one machine can cryptographically prove what software it is actually running to another — and why it is quietly becoming load-bearing for confidential computing and zero-trust designs.</p>
+      <div class="spread-body"><p>Remote attestation answers a deceptively hard question: how do you know the machine on the other end of a connection is running the code it claims to be running, and not a tampered or malicious version? The answer chains hardware roots of trust, measured boot, and signed quotes so that a verifier can check a cryptographic report of exactly what booted and what's executing. It's the plumbing beneath confidential-computing enclaves, modern device-integrity checks, and the more ambitious zero-trust architectures.</p><p>The reason it's worth a security leader's attention is that attestation is moving from research curiosity to procurement checkbox. Cloud confidential-VM offerings, hardware-backed device posture, and supply-chain integrity schemes all lean on it — and the guarantees are subtle. Attestation proves what loaded, not that the loaded thing is bug-free, and the verifier's policy is where the real security decisions live. Understanding the shape of it now means you can ask vendors sharper questions than "is it secure?" when these features start appearing in the products you buy.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 68</span>
+          <span class="meta-pill meta-source">liamcvw.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.liamcvw.com/p/remote-attestation" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48839397" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling</div>
+
+      <h2 class="spread-headline">OpenAI Introduces GPT-Live</h2>
+      <p class="spread-lede">OpenAI has launched GPT-Live, a real-time, always-listening conversational mode that pushes its assistant further toward an ambient, continuously available presence rather than a turn-by-turn chat box.</p>
+      <div class="spread-body"><p>The pitch is a shift in interaction model: instead of typing a prompt and waiting, GPT-Live aims to be a live, low-latency conversational layer you can talk to continuously. Whatever the exact feature set, the direction is clear — the big labs are racing to make their models feel present and ambient rather than something you visit. That's genuinely useful for hands-busy work and accessibility, and it's also precisely where the interesting risks live.</p><p>For a security leader the questions write themselves. An always-listening assistant means always-flowing audio and context to a third party; that's a data-governance and confidentiality problem before it's a productivity win. If staff start leaving a live model running in meetings, you now have an uncontrolled recording-and-transcription pipeline touching potentially sensitive conversation. The right response isn't a blanket ban — it's deciding, deliberately, where ambient AI is allowed and writing that into acceptable-use policy before someone else decides for you.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 669</span>
+          <span class="meta-pill meta-source">openai.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openai.com/index/introducing-gpt-live/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48834405" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Benchmarks</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Grok 4.5, GPT-5.5, and Claude Build the Same Apps — Head to Head</h2>
+      <p class="spread-lede">A developer handed the same real build tasks to Grok 4.5, GPT-5.5, and Claude, then compared what each produced — a rare like-for-like look at how the current frontier models actually behave on practical software work.</p>
+      <div class="spread-body"><p>Head-to-head "build the same thing" comparisons are more useful than leaderboard scores because they show behaviour, not just benchmarks — how each model scopes a task, where it hallucinates an API, how it recovers from its own mistakes. With Grok 4.5, GPT-5.5, and Claude all in the frame, this is a snapshot of a fast-moving field where the practical gaps between frontier models are narrowing on many everyday tasks even as they diverge on the hard ones.</p><p>The honest caveat is that a single developer's app-build is an anecdote, not a benchmark — prompt style, task choice, and personal familiarity all skew the results, so read the reasoning rather than the scoreboard. But for anyone who has standardised a team on one assistant, comparisons like this are a useful periodic gut-check: the model you picked six months ago may no longer be the best fit for a given workflow, and switching costs are lower than they feel.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Since your team's AI-assisted workflows run on Claude, use comparisons like this as a periodic sanity check rather than a reason to churn tools. Note where a rival model appears to pull ahead on a specific task type you rely on, but weight that against the anecdotal nature of one-off build-offs — look for repeated, structured evaluations before moving anything production-critical. Track capability, not marketing.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 138</span>
+          <span class="meta-pill meta-source">tryai.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.tryai.dev/blog/grok-4.5-vs-gpt-5.5-vs-claude-build-off" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48838772" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Tools</div>
+
+      <h2 class="spread-headline">TypeScript 7 Is Here</h2>
+      <p class="spread-lede">Microsoft has announced TypeScript 7, the milestone that brings the compiler's native, Go-based rewrite into a headline release and promises dramatically faster type-checking for large codebases.</p>
+      <div class="spread-body"><p>TypeScript 7 is the release where the long-trailed native compiler rewrite becomes real for most teams. The headline is speed: a port of the toolchain to a compiled, concurrent implementation targeting order-of-magnitude improvements in cold type-checking and editor responsiveness on big projects. For anyone who has watched a large monorepo's tsc runs and IDE latency creep from annoying to painful, that's the kind of quality-of-life change that actually changes how people work.</p><p>The security-adjacent angle is boring but real: major version bumps of a core build dependency are exactly where supply-chain and compatibility risk sneaks in. A compiler rewrite can surface subtle behavioural differences, and a rushed upgrade across every repo at once is how you get a bad week. Treat it like any other critical toolchain change — pin versions, upgrade a non-critical project first, watch for type-checking behaviour changes, and only then roll it out broadly.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Developer Tools</span>
+          <span class="meta-pill meta-score">HN 554</span>
+          <span class="meta-pill meta-source">devblogs.microsoft.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48833715" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Regulation &amp; Governance</div>
+
+      <h2 class="spread-headline">John Deere Owners Win a Right to Repair in FTC Settlement</h2>
+      <p class="spread-lede">Under a settlement with the US Federal Trade Commission, John Deere must give equipment owners genuine access to the tools, parts, and software needed to repair their own machines — a landmark moment for the right-to-repair movement.</p>
+      <div class="spread-body"><p>The John Deere fight has been the symbolic front line of right-to-repair for years: farmers locked out of fixing tractors they own by software authentication and dealer-only diagnostics. The FTC settlement forcing genuine access to repair tools and software is a concrete win, and it sets a precedent that reaches well beyond agriculture into any industry that uses software locks to control who is allowed to service hardware.</p><p>For a security leader the interesting tension is that repairability and security are often framed as opposites — vendors argue that locking down diagnostics protects safety and integrity, while owners argue that dependence on a single vendor is its own risk. The truth is that "you can't fix it, only we can" is also a single point of failure and a supply-chain dependency. As right-to-repair rules spread, expect more scrutiny of the software-lock justifications in the products your own organisation both buys and sells.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Governance</span>
+          <span class="meta-pill meta-score">HN 627</span>
+          <span class="meta-pill meta-source">apnews.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://apnews.com/article/john-deere-right-to-repair-agriculture-equipment-cb7514ffedb95c130a976af661f2bc02" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48838876" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Reflection</div>
+
+      <h2 class="spread-headline">I Think I Have LLM Burnout</h2>
+      <p class="spread-lede">An engineer's honest reflection on the low-grade exhaustion of a workflow now saturated with language models — the erosion of flow, the constant second-guessing, and the quiet cost of always having an eager, confident assistant in the loop.</p>
+      <div class="spread-body"><p>The piece names something a lot of heavy AI users feel but rarely articulate: a fatigue that comes not from too much work but from a constant, low-level cognitive tax of prompting, reviewing, and distrusting output. When every task can be handed to a confident model, the human role shifts toward perpetual editor and fact-checker — and that is its own kind of tiring, without the satisfaction of having built the thing yourself.</p><p>It's worth sitting with, precisely because the productivity narrative around AI leaves no room for it. For a leader rolling AI tooling out across a team, burnout of this shape is a real operational risk: reviewer fatigue leads to rubber-stamping, which is exactly how AI-generated errors and insecure code slip through. The lesson isn't to abandon the tools — it's to design workflows that preserve human judgement and flow rather than grinding them down, and to treat "our reviewers are exhausted" as a security signal, not just a wellbeing one.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Culture</span>
+          <span class="meta-pill meta-score">HN 279</span>
+          <span class="meta-pill meta-source">alecscollon.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.alecscollon.com/blog/llm-burnout/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48839984" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 9 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor-marketing benchmark posts dressed as research, routine framework and language releases with no security relevance, and the usual front-page diversions — hobby web toys, transit visualisers, and Show HN side projects.</p>
+    <p>Duplicates excluded against the previous two editions: 0. No article URL repeated, though the EU message-scanning story returns as a topic through a fresh source and a new procedural development.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
