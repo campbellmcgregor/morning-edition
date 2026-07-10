@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 10 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 188</span>
+    <span>Friday · 10 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Brussels reaches for the scanner while insisting your messages stay private; a cloud giant hands you the blueprint to break your own code before someone else does; and the model odometer ticks over once more. A morning of watchers, of builders, and of the plumbing we only notice when it snaps.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 10 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">EU Parliament Greenlights Chat Control 1.0</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Offensive Security</span>
+        <span class="toc-title">Build Your Own Vulnerability Harness</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Infrastructure Security</span>
+        <span class="toc-title">TLS Certificates for Internal Services, Done Right</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Models</span>
+        <span class="toc-title">GPT-5.6</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Media</span>
+        <span class="toc-title">AI Content Is Everywhere, Especially on LinkedIn</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tools</span>
+        <span class="toc-title">ChatGPT for Your Most Ambitious Work</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Geopolitics</span>
+        <span class="toc-title">DeepSeek Aims to Make Its Own AI Chip</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Databases</span>
+        <span class="toc-title">Postgres, Rewritten in Rust</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Governance</span>
+        <span class="toc-title">Ben Bernanke Joins Anthropic&#39;s Oversight Trust</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Infrastructure &amp; Resilience</span>
+        <span class="toc-title">The Glass Backbone</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">EU Parliament Greenlights Chat Control 1.0</h2>
+      <p class="spread-lede">The European Parliament has waved through &quot;Chat Control 1.0&quot;, extending the regime that lets messaging platforms voluntarily scan private communications for illegal material — a legal scaffold that privacy campaigners warn is being quietly load-bearing for the mandatory scanning still on the table.</p>
+      <div class="spread-body"><p>The framing matters. This is the &quot;voluntary&quot; derogation that permits providers to run client- and server-side scanning of private messages, sold as a child-protection measure and kept alive while the far more contentious mandatory version grinds through the Council. MEP and long-time opponent Patrick Breyer calls it a defeat: the Parliament has normalised the machinery of message scanning rather than dismantling it, and each renewal makes the eventual mandate easier to justify. For anyone who has watched this file since 2022, the pattern is depressingly legible — the &quot;temporary&quot; becomes the baseline.</p><p>The security objection has not changed and has not been answered. There is no way to scan the contents of an end-to-end encrypted conversation without breaking the &quot;end-to-end&quot; part — client-side scanning simply moves the interception point onto the device, creating a surveillance capability that any sufficiently motivated actor will eventually repurpose. For a UK reader the twist is jurisdictional: post-Brexit Britain sits outside this vote but inside the Online Safety Act&#39;s own scanning ambitions, so the two regimes now pull in uncomfortable parallel.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If your organisation processes EU-resident communications or ships a messaging feature into the bloc, get ahead of the compliance question now — map where any content-scanning obligation would land and whether your encryption story survives it. Brief your DPO and legal counsel on the divergence between the EU regime and the UK Online Safety Act; the two are close enough to conflate and different enough to trip you up. Treat &quot;voluntary scanning&quot; as a signal of where mandatory is heading.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 1214</span>
+          <span class="meta-pill meta-source">patrick-breyer.de</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.patrick-breyer.de/en/eu-parliament-greenlights-chat-control-1-0-breyer-our-children-lose-out/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48843923" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Offensive Security</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Build Your Own Vulnerability Harness</h2>
+      <p class="spread-lede">Cloudflare walks through building a lightweight harness that exercises your own code paths against real-world inputs — turning fuzzing and vulnerability discovery from a specialist black art into something a normal engineering team can stand up and run continuously.</p>
+      <div class="spread-body"><p>The premise is refreshingly unglamorous: instead of waiting for a researcher, a bug bounty, or an incident to tell you where your code breaks, you build a repeatable rig that hammers the exact surfaces you care about and surfaces crashes, memory errors, and logic faults before they ship. Cloudflare&#39;s write-up is a practical blueprint — how to define the input space, wire up instrumentation, and fold the results back into CI so the harness earns its keep rather than becoming shelfware. It is the sort of internal capability that separates teams that find their own bugs from teams that read about them in someone else&#39;s disclosure.</p><p>For a security leader the value is organisational, not just technical. A vulnerability harness is a forcing function: it makes &quot;we test for this&quot; a demonstrable artefact rather than an assurance in a slide deck. It also shifts cost left — a fuzzer that flags a parser crash in a pull request is orders of magnitude cheaper than the same defect found in production by an adversary. The barrier has never been tooling; it is deciding the discipline is worth owning.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pick your single most exposed parsing or deserialisation path — the code that eats untrusted input — and task a senior engineer with standing up a harness against it this quarter. Wire it into CI so regressions are caught automatically, and make the crash count a metric you actually review. Use Cloudflare&#39;s guide as the reference implementation rather than starting from a blank page.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 36</span>
+          <span class="meta-pill meta-source">blog.cloudflare.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.cloudflare.com/build-your-own-vulnerability-harness/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48854681" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Infrastructure Security</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">TLS Certificates for Internal Services, Done Right</h2>
+      <p class="spread-lede">A clear-eyed guide to issuing and rotating TLS certificates for internal services — the unglamorous plumbing that quietly decays into self-signed sprawl, expired-cert outages, and the &quot;just click through the warning&quot; habits that hollow out your whole trust model.</p>
+      <div class="spread-body"><p>Internal TLS is where good intentions go to rot. Teams stand up a service, generate a self-signed certificate, teach everyone to ignore the browser warning, and congratulate themselves on &quot;encryption in transit&quot; — while training their entire workforce to disregard exactly the signal that would catch a man-in-the-middle. The write-up makes the case for treating internal certificates with the same rigour as public ones: a real internal certificate authority, automated issuance, short lifetimes, and rotation that happens without a human remembering to do it. The alternative is the 3am outage when a forgotten cert expires, or the breach nobody sees because the trust chain was theatre.</p><p>The actionable core is automation and a private CA whose root you actually control and distribute to your fleet. Once issuance is automated — short-lived certs, renewed by machines, distributed by config management — the failure modes that plague internal PKI simply stop happening. This is textbook zero-trust hygiene, and it is exactly the kind of foundational control that is invisible when it works and career-defining when it doesn&#39;t.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit where your teams are using self-signed certs or teaching users to bypass TLS warnings — every instance is a normalised-deviance risk. Stand up (or consolidate onto) an internal CA with automated, short-lived issuance so no human is in the renewal loop. Add certificate expiry to your monitoring before the next silent outage finds it for you.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 144</span>
+          <span class="meta-pill meta-source">tuxnet.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://tuxnet.dev/posts/tls-for-internal-services/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48846995" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Models</div>
+
+      <h2 class="spread-headline">GPT-5.6</h2>
+      <p class="spread-lede">OpenAI ships another incremental point release, and the interval between them keeps shrinking — the cadence itself is now the story, a reminder that frontier models are becoming a rolling utility rather than a series of named events.</p>
+      <div class="spread-body"><p>There is a grim comedy to the version number. GPT-5.6 arrives close on the heels of its predecessors, and the marginal capability gain per release is harder and harder to feel from the outside — yet the drumbeat continues, because in a market this competitive, being seen to iterate is itself a moat. For practitioners the meaningful questions are no longer &quot;is it smarter&quot; but the boring, load-bearing ones: what changed in the pricing, the context window, the tool-calling behaviour, the rate limits, and the deprecation schedule that will quietly break something you built six months ago.</p><p>For a security leader running AI-assisted workflows, the risk lives in that churn. Every point release is a supply-chain event: prompts drift, outputs shift, guardrails behave differently, and anything you shipped against the old model&#39;s quirks needs re-validation. Treat model upgrades the way you treat any dependency bump — pinned, tested, and rolled forward deliberately, not because a version number ticked over and the vendor blog told you to.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 1185</span>
+          <span class="meta-pill meta-source">openai.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openai.com/index/gpt-5-6/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48849066" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Media</div>
+
+      <h2 class="spread-headline">AI Content Is Everywhere, Especially on LinkedIn</h2>
+      <p class="spread-lede">AI-detection firm Pangram put a number on a feeling everyone already had: machine-generated text now saturates social feeds, and LinkedIn is the epicentre — a platform where the incentive to post has fully decoupled from the incentive to think.</p>
+      <div class="spread-body"><p>Pangram&#39;s analysis quantifies the vibe shift: a large and rising share of posts, especially on LinkedIn, carry the tell-tale signatures of large-language-model prose. The mechanism is obvious once stated — engagement is rewarded, generating engagement-shaped text is now free, and so the feed fills with fluent, confident, faintly hollow content that says less the more of it there is. The interesting wrinkle is second-order: as the synthetic share grows, human readers start pattern-matching genuine writing as fake, and the whole medium loses signal in both directions.</p><p>For a security-minded reader the implications run past aesthetics. A world where cheap, fluent, plausible text is infinite is also a world where social-engineering lures, fake personas, and astroturfed narratives scale to match — the same fluency that pollutes LinkedIn also sands the rough edges off phishing. Detection tools like Pangram&#39;s are one countermeasure, but they are locked in the same arms race as every other classifier, and the honest posture is to assume that &quot;sounds human&quot; is no longer evidence of anything.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Media</span>
+          <span class="meta-pill meta-score">HN 210</span>
+          <span class="meta-pill meta-source">pangram.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.pangram.com/blog/ai-in-your-feed" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48847940" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tools</div>
+
+      <h2 class="spread-headline">ChatGPT for Your Most Ambitious Work</h2>
+      <p class="spread-lede">OpenAI repositions ChatGPT from a chat box toward an agentic work platform — deeper into documents, tasks, and long-running projects — as the assistant vendors race to own the whole knowledge-worker surface rather than a single prompt.</p>
+      <div class="spread-body"><p>The pitch is the direction of travel for the entire category: less &quot;ask a question, get an answer&quot; and more &quot;hand off a project and check on it.&quot; That means persistent context, connections into your files and tools, and workflows that run across many steps rather than a single turn. It is the same bet Anthropic is making with Claude and Cowork, and Microsoft with Copilot — the assistant becomes a coworker with access, and the differentiator shifts from raw model quality to integration depth and trust.</p><p>Which is precisely where the security questions land. An assistant that can read your documents, act on your behalf, and reach into connected systems is an enormously convenient tool and an enormously attractive attack surface. Data-egress boundaries, prompt-injection via the documents it ingests, and the blast radius of an over-permissioned agent all move from theoretical to operational. The productivity case is real; so is the need to govern what these tools can see and do before they are wired into everything.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 333</span>
+          <span class="meta-pill meta-source">openai.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openai.com/index/chatgpt-for-your-most-ambitious-work/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48849059" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Geopolitics</div>
+
+      <h2 class="spread-headline">DeepSeek Aims to Make Its Own AI Chip</h2>
+      <p class="spread-lede">Reports say DeepSeek is moving to design its own AI accelerator — a vertical-integration play that, if it lands, chips away at the assumption that frontier AI runs on a single Western silicon supply chain.</p>
+      <div class="spread-body"><p>The strategic logic writes itself. Export controls have made access to top-tier accelerators the binding constraint on Chinese AI ambition, so a lab that can pair competitive models with domestically fabricated silicon buys itself insulation from Washington&#39;s next tightening. Whether DeepSeek can actually deliver performant chips at scale is a very open question — designing an accelerator and manufacturing one at a competitive node are different orders of difficulty — but the intent alone reshapes the board.</p><p>For anyone thinking about technology supply chains, this is the macro trend made concrete: the AI stack is bifurcating along geopolitical lines, and &quot;which silicon, from whose fab, under whose export regime&quot; is becoming a first-class procurement and risk question rather than an abstraction. A more fragmented hardware landscape means more model providers, more heterogeneity, and a harder job reasoning about the provenance and trustworthiness of the compute underneath your AI dependencies.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Hardware</span>
+          <span class="meta-pill meta-score">HN 51</span>
+          <span class="meta-pill meta-source">proactiveinvestors.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.proactiveinvestors.com/companies/news/1095178/deepseek-makes-pivot-that-should-put-silicon-valley-on-high-alert-1095178.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48846708" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Databases</div>
+
+      <h2 class="spread-headline">Postgres, Rewritten in Rust</h2>
+      <p class="spread-lede">A from-scratch reimplementation of Postgres in Rust now passes 100% of the upstream regression suite — a striking technical milestone, and a live test of whether memory-safe systems languages can inherit the crown jewels of infrastructure.</p>
+      <div class="spread-body"><p>Passing the full Postgres regression test suite is not a toy achievement; it means the reimplementation reproduces an enormous amount of subtle, hard-won behaviour that decades of C code encode. The project, pgrust, is a demonstration that Rust&#39;s memory-safety guarantees can be brought to one of the most battle-tested pieces of database software in existence — the sort of software where a use-after-free is not a crash but a data-integrity or security incident. Whether it ever approaches production readiness is a separate and much longer road, but the proof of concept is real.</p><p>The security subtext is the whole point. Entire classes of vulnerability — buffer overflows, use-after-free, the CVE staples of C infrastructure — are structurally much harder to write in safe Rust. As the industry slowly re-lays its foundational software in memory-safe languages, projects like this map how far that migration can plausibly reach. It is worth watching not because you should deploy it tomorrow, but because it signals where durable infrastructure is heading.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Engineering</span>
+          <span class="meta-pill meta-score">HN 570</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/malisper/pgrust" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48841676" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Governance</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Ben Bernanke Joins Anthropic&#39;s Oversight Trust</h2>
+      <p class="spread-lede">Anthropic has appointed former Federal Reserve chair Ben Bernanke to its Long-Term Benefit Trust — the governance body that sits above the company&#39;s board — a signal about how seriously the maker of Claude wants its guardrails to be taken.</p>
+      <div class="spread-body"><p>The Long-Term Benefit Trust is Anthropic&#39;s structural answer to a hard question: who checks the people building frontier AI when commercial pressure and safety pull in opposite directions. Seating a figure of Bernanke&#39;s stature — a central banker who steered monetary policy through the 2008 crisis — is a deliberate statement that the trust is meant to carry real institutional weight, not serve as decorative ethics-washing. It is also a bet that credibility borrowed from the world of macroeconomic stewardship transfers to the governance of a very different kind of systemic risk.</p><p>For a reader who builds daily on Claude and Cowork, this is not abstract corporate news. The governance and incentive structure of your AI vendor is part of your own risk surface: it shapes how the company weighs safety against shipping, how it responds when a model behaves badly, and how stable a foundation you are building on. Vendor governance belongs in your due-diligence checklist alongside uptime and pricing — and appointments like this are the evidence you weigh.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add AI-vendor governance to how you assess the tools you depend on — Claude and Cowork included. Note who sits on the oversight bodies, what powers they actually hold, and how the vendor has behaved in past safety incidents. When you brief leadership on AI adoption, treat the provider&#39;s governance maturity as a real input, not a footnote.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 58</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/news/ben-bernanke" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48855112" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Infrastructure &amp; Resilience</div>
+
+      <h2 class="spread-headline">The Glass Backbone</h2>
+      <p class="spread-lede">A West Point essay argues the US Army&#39;s logistics network — dependent, brittle, and quietly digitised — will shatter in the next major war, a meditation on how the systems we trust most are the ones we have least stress-tested against a determined adversary.</p>
+      <div class="spread-body"><p>The &quot;glass backbone&quot; is the essay&#39;s image for a supply and logistics apparatus that looks robust in peacetime and is in fact fragile under contested conditions — reliant on connectivity, commercial infrastructure, and assumptions that hold right up until an adversary decides they shouldn&#39;t. The argument is military, but the shape of it is universal: complex systems optimised for efficiency shed their slack, and slack is exactly what you need when things break. We build backbones of glass because glass is cheap and clear and works beautifully until the first real impact.</p><p>Read from a security chair, it is a parable about dependency and resilience. Every organisation runs on its own glass backbone — cloud regions, a handful of SaaS providers, an undersea cable, a single identity provider — infrastructure that has never been tested against a genuinely hostile actor rather than a bad afternoon. The uncomfortable question the essay poses is not whether your systems work today, but whether you have ever honestly modelled the day someone is actively trying to break them.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Infrastructure</span>
+          <span class="meta-pill meta-score">HN 351</span>
+          <span class="meta-pill meta-source">mwi.westpoint.edu</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://mwi.westpoint.edu/the-glass-backbone-why-the-armys-logistics-will-break-in-the-next-war/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48845442" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 10 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as launches, routine patch advisories and CVE-database drama, crypto/web3 hype, and high-scoring general-interest tech (a one-person train sim, watch-face toys, a Ruby meetup guide) with no security or leadership bearing.</p>
+    <p>Duplicates excluded against the previous two editions: 1. The John Deere right-to-repair FTC settlement — the day&#39;s single highest-scoring item — was dropped because it already featured in a recent edition, and its slot went to the next-best CISO-relevant story.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
