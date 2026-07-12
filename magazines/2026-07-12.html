@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 12 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 190</span>
+    <span>Sunday · 12 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">This morning, a look under the hood of an AI coding agent that phones home more than you would like, and the uncomfortable question of what your tools carry back when no one is watching the wire. Elsewhere, the quiet art of vanishing from a drone&#39;s camera, and why letting a model write your database queries still demands a human&#39;s suspicion. The machines are eager to help; the discipline is knowing what leaves the room.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 12 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      2 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain &amp; Telemetry</span>
+        <span class="toc-title">What xAI&#39;s Grok Build CLI Actually Sends to xAI</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Countermeasures</span>
+        <span class="toc-title">How to Hide from Killer Drones</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Code Governance</span>
+        <span class="toc-title">Sqlsure: Deterministic Semantic Checks for AI-Generated SQL</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Distributed Inference</span>
+        <span class="toc-title">Mesh LLM: Distributed AI Computing on Iroh</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Economics</span>
+        <span class="toc-title">Inside the Circular Financing of the GPU Boom</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agent Engineering</span>
+        <span class="toc-title">An Agent in 100 Lines of Lisp</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Payments Architecture</span>
+        <span class="toc-title">UPI: Anatomy of a Payment Transaction</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Data Integrity</span>
+        <span class="toc-title">Prefer Strict Tables in SQLite</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Software Craft</span>
+        <span class="toc-title">Why Write Code in 2026</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Medicine &amp; Mortality</span>
+        <span class="toc-title">Doctors Die. It&#39;s Not Like the Rest of Us, but It Should Be</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain &amp; Telemetry</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">What xAI&#39;s Grok Build CLI Actually Sends to xAI</h2>
+      <p class="spread-lede">A developer instrumented xAI&#39;s Grok Build command-line agent and documented exactly which files, environment variables, and shell context it ships back to xAI — a rare, concrete look at what an agentic coding tool quietly exfiltrates the moment you run it.</p>
+      <div class="spread-body"><p>The write-up is the kind of primary evidence security teams rarely get: someone actually traced the network calls and dumped the payloads. Grok&#39;s Build CLI, like most agentic coding assistants, needs broad context to be useful — so it reads your project files, shell environment, and command history and forwards chunks of them to xAI for inference. The uncomfortable part is not that this happens, but how little of it is disclosed up front, and how much lands in a third party&#39;s logs before you have decided the tool deserves that trust.</p><p>For anyone running these agents inside a regulated environment, this is the whole ballgame. Environment variables routinely hold API keys, database URLs, and cloud credentials; a coding agent that vacuums them into a prompt has quietly become an unmanaged data-egress channel. The lesson generalises well beyond Grok — Claude Code, Copilot, Cursor, and every other CLI agent deserve the same scrutiny. Assume nothing about what leaves the machine until you have watched the wire yourself.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Before approving any agentic CLI for your engineers, run it through a logging proxy and capture exactly what it transmits. Scrub secrets out of the shell environments where these tools run, prefer per-project scoped credentials over global ones, and add &quot;what does this agent exfiltrate by default?&quot; to your AI-tool intake checklist. Where possible, route inference through an enterprise endpoint with a data-retention agreement rather than a consumer default.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 226</span>
+          <span class="meta-pill meta-source">gist.github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://gist.github.com/cereblab/dc9a40bc26120f4540e4e09b75ffb547" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48877371" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Countermeasures</div>
+
+      <h2 class="spread-headline">How to Hide from Killer Drones</h2>
+      <p class="spread-lede">A field guide to the drone age: cheap autonomous quadcopters with thermal eyes have compressed reconnaissance and strike into a single expendable airframe, and this survey catalogues the low-tech discipline soldiers now use to avoid being seen — and hit — from above.</p>
+      <div class="spread-body"><p>The Economist&#39;s survey of drone countermeasures reads like a field manual for a war that has quietly arrived. Cheap quadcopters with thermal cameras and increasingly autonomous targeting have collapsed the gap between spotting a target and killing it, and the piece catalogues the improvised responses: thermal blankets, decoy heat signatures, movement discipline, and terrain that breaks a machine&#39;s line of sight. It is a sobering reminder that the frontier of surveillance is no longer a satellite overhead but a hobbyist airframe hovering at rooftop height.</p><p>For a security leader the relevance is not battlefield tactics but the trajectory of cheap autonomous sensing. The same components that make a killer drone make a patient, persistent surveillance platform — and they get cheaper and more capable every quarter. Physical security, executive protection, and site monitoring all inherit this problem. The countermeasures described here are analog and unglamorous, which is precisely why they hold up: when the threat is an automated eye in the sky, the answer often begins with simply not being visible to it.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Surveillance</span>
+          <span class="meta-pill meta-score">HN 118</span>
+          <span class="meta-pill meta-source">economist.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.economist.com/science-and-technology/2026/07/08/how-to-hide-from-killer-drones" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48874357" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Code Governance</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Deterministic Semantic Checks for AI-Generated SQL</h2>
+      <p class="spread-lede">A tool that treats an AI model as a fast but untrustworthy junior, wrapping its generated SQL in deterministic checks so that a hallucinated join or an inverted filter fails loudly in testing instead of silently corrupting a report someone downstream will believe.</p>
+      <div class="spread-body"><p>Sqlsure attacks a problem everyone shipping AI-generated queries has felt but few have named: a model can produce SQL that parses, runs, and returns something plausible while quietly meaning the wrong thing. The tool wraps generated queries in deterministic semantic checks — asserting shapes, constraints, and invariants — so that a hallucinated join or an inverted filter fails loudly at test time rather than silently in a dashboard a stakeholder trusts. It treats the model as a fast but unreliable junior and puts a rigid gate in front of production.</p><p>This is the shape of governance that actually scales for AI-assisted development. You do not stop engineers from using models; you constrain the blast radius with checks a machine cannot charm its way past. The pattern generalises beyond SQL to anywhere a model emits something executable — infrastructure config, access policies, data transforms. The sharp question for a security leader is whether your organisation has any deterministic backstop at all between &quot;the AI wrote it&quot; and &quot;it touched customer data.&quot;</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory where AI-generated code already reaches your data layer, then insist on a deterministic verification step in front of it — schema assertions, policy linting, or query fuzzing in CI. Treat model output as untrusted input to your pipeline, not as a trusted colleague&#39;s work, and make the checks a hard gate rather than an advisory warning.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Data</span>
+          <span class="meta-pill meta-score">HN 29</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/sqlsure/sqlsure" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48875342" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Distributed Inference</div>
+
+      <h2 class="spread-headline">Mesh LLM: Distributed AI Computing on Iroh</h2>
+      <p class="spread-lede">An early experiment stitches ordinary machines into one distributed inference fabric over a peer-to-peer network, running large models on hardware you already own — part cost play, part quiet rebellion against shipping every prompt to someone else&#39;s cloud.</p>
+      <div class="spread-body"><p>Mesh LLM stitches multiple machines into a single distributed inference fabric over iroh, the peer-to-peer networking layer, so a large model can run across hardware you already own instead of a rented GPU cluster. It is early and rough, but the direction is notable: inference is migrating outward from centralised clouds toward local and federated arrangements, pushed by cost, latency, and a growing wariness about sending sensitive prompts to a third party.</p><p>For security architects this is a double-edged development. On one hand it offers a path to keeping data on-premises — a genuine privacy win for organisations that cannot ship prompts to a hyperscaler. On the other, a peer-to-peer mesh spreading model weights and inference traffic across nodes is a new and poorly understood attack surface: trust between peers, integrity of returned results, and the confidentiality of what crosses the mesh all become your problem to reason about. Worth watching closely, not yet worth betting production on.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Infrastructure</span>
+          <span class="meta-pill meta-score">HN 182</span>
+          <span class="meta-pill meta-source">iroh.computer</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.iroh.computer/blog/mesh-llm" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48876505" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Economics</div>
+
+      <h2 class="spread-headline">Inside the Circular Financing of the GPU Boom</h2>
+      <p class="spread-lede">A close reading of the money flowing between Nvidia, CoreWeave, and Nebius finds a loop where the chipmaker helps fund the customers who buy its chips — momentum on the way up, and a concentrated fault line if the GPU boom ever cools.</p>
+      <div class="spread-body"><p>The io-fund analysis pulls at a thread that has been making investors uneasy: Nvidia invests in CoreWeave and Nebius, those firms buy Nvidia GPUs, and the revenue loops back to Nvidia&#39;s books. Layer in the debt these neoclouds take on to fund the purchases and you get a financing structure where demand and supply partly share the same balance sheets. The piece stops short of calling it a bubble, but the circularity it documents is the kind of pattern that reads as momentum on the way up and contagion on the way down.</p><p>Why should a security leader care about GPU capital structure? Because concentration risk in your AI supply chain is a governance issue, not just a market one. If a handful of interlinked providers underpin the models and infrastructure your organisation is coming to depend on, a financial wobble in that cluster becomes an availability and continuity risk for you. The strategic move is to understand those dependencies now, while switching costs are still low, rather than after they have quietly become load-bearing.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Markets</span>
+          <span class="meta-pill meta-score">HN 220</span>
+          <span class="meta-pill meta-source">io-fund.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://io-fund.com/ai-stocks/nvidia-coreweave-nebius-circular-financing-gpu-boom" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48873836" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agent Engineering</div>
+
+      <h2 class="spread-headline">An Agent in 100 Lines of Lisp</h2>
+      <p class="spread-lede">A fully working autonomous agent in about a hundred lines of Lisp, stripping the pattern to its essentials and quietly exposing how little the pattern really is — a loop that lets a model pick tools and act, with all the safety living in what you let it touch.</p>
+      <div class="spread-body"><p>A working autonomous agent in roughly a hundred lines of Lisp is a useful antidote to the mystique around &quot;agentic AI.&quot; The loop is genuinely simple: send the model a goal and a list of tools, let it choose a tool, execute it, feed the result back, and repeat until done. The author&#39;s implementation strips the pattern to its essentials and, in doing so, makes clear that the frameworks selling agents as elaborate products are mostly packaging convenience, not fundamental capability.</p><p>The security implication of that simplicity is the part worth dwelling on. If an agent is just a loop that lets a language model call tools with real-world effects, then the entire safety story lives in which tools you expose and what guardrails wrap them. There is no magic layer protecting you — a compromised or manipulated model driving a well-provisioned tool set can do real damage. Understanding how little code stands between a prompt and an action should change how carefully you scope agent permissions.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 102</span>
+          <span class="meta-pill meta-source">thebeach.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://thebeach.dev/posts/lisp-agent/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48823981" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Payments Architecture</div>
+
+      <h2 class="spread-headline">UPI: Anatomy of a Payment Transaction</h2>
+      <p class="spread-lede">A clear teardown of what actually happens in the seconds after you tap &quot;pay&quot; on India&#39;s UPI network — the bank handshakes, the switch, and the authentication and idempotency layers that keep tens of billions of monthly transactions from turning a double-tap into a double-charge.</p>
+      <div class="spread-body"><p>India&#39;s Unified Payments Interface moves tens of billions of transactions a month, and this teardown walks through what really happens in the seconds after you tap &quot;pay&quot; — the handshake between banks, the payment service providers, the central switch that routes and settles, and the layers of authentication and idempotency that keep a double-tap from becoming a double-charge. It is a clear, unhyped look at real-world payment infrastructure operating at a scale most Western systems never approach.</p><p>The security value here is in seeing a mature, high-volume system&#39;s design choices laid bare. UPI&#39;s fraud controls, its handling of failed and retried transactions, and its trust boundaries between participants are a case study in building resilience into money movement. For anyone designing or auditing financial flows, the anatomy is instructive precisely because the stakes are so unforgiving: at this volume a subtle race condition or a weak authentication step is not a bug, it is a headline.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Fintech</span>
+          <span class="meta-pill meta-score">HN 149</span>
+          <span class="meta-pill meta-source">timeseriesofindia.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://timeseriesofindia.com/economy/reads/upi-architecture/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48873457" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Data Integrity</div>
+
+      <h2 class="spread-headline">Prefer Strict Tables in SQLite</h2>
+      <p class="spread-lede">SQLite will cheerfully store the word &quot;banana&quot; in a column you declared an integer; strict tables turn that leniency off. A small, boring setting that quietly eliminates a whole class of silent data-corruption bugs — turn it on almost everywhere.</p>
+      <div class="spread-body"><p>SQLite&#39;s famous flexibility with types — where a column declared as an integer will happily store the string &quot;banana&quot; — is a feature that quietly becomes a liability at scale. Strict tables, added in recent versions, switch that leniency off and enforce declared types the way most databases do by default. Evan Hahn&#39;s argument is straightforward: the convenience of loose typing is rarely worth the class of silent data-corruption bugs it enables, and you should opt into strictness on almost every table.</p><p>This is a small setting with an outsized reliability payoff, and it belongs on a security team&#39;s radar more than it might seem. Data-integrity assumptions are the bedrock under access decisions, audit logs, and anything you later have to prove in an investigation. A table that silently coerces or accepts malformed values is a table whose contents you cannot fully trust. Turning on strict typing is the kind of cheap, boring hardening that pays for itself the first time it catches a bad write before it spreads.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Engineering</span>
+          <span class="meta-pill meta-score">HN 254</span>
+          <span class="meta-pill meta-source">evanhahn.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://evanhahn.com/prefer-strict-tables-in-sqlite/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48873940" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Software Craft</div>
+
+      <h2 class="spread-headline">Why Write Code in 2026</h2>
+      <p class="spread-lede">A pointed argument that writing code is how you build the mental model that lets you catch an AI when it is subtly wrong — and that outsourcing all the typing to a model risks trading real understanding for fluent, shallow prompting.</p>
+      <div class="spread-body"><p>Doug Turnbull&#39;s essay pushes back on the fashionable claim that hand-writing code is becoming obsolete in the age of capable models. His point is not nostalgic: writing code, he argues, is how you build and maintain an accurate mental model of a system, and that model is what lets you make good decisions when the AI&#39;s output is subtly wrong. Outsource all the typing and you gradually lose the understanding that made you valuable in the first place.</p><p>For leaders steering teams through AI-assisted development, this is the tension of the moment stated plainly. The productivity gains from models are real, but so is the risk of a workforce that can prompt fluently and comprehend shallowly. The essay is a case for using AI to accelerate people who understand their systems, not to replace the understanding itself. That distinction — augmentation versus abdication — is one every engineering organisation is now quietly deciding, whether it means to or not.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Opinion</span>
+          <span class="meta-pill meta-score">HN 27</span>
+          <span class="meta-pill meta-source">softwaredoug.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://softwaredoug.com/blog/2026/07/09/write-code.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48878195" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Medicine &amp; Mortality</div>
+
+      <h2 class="spread-headline">Doctors Die. It&#39;s Not Like the Rest of Us, but It Should Be</h2>
+      <p class="spread-lede">A quiet observation that doctors, who know precisely what aggressive end-of-life care buys and costs, often choose far less of it for themselves — informed refusal grounded in having watched the machines up close, and a lesson in honesty about limits.</p>
+      <div class="spread-body"><p>This much-circulated essay observes a quiet pattern: doctors, who know exactly what aggressive end-of-life intervention buys and costs, frequently choose far less of it for themselves than they administer to their patients. Having watched the machines, the codes, and the diminishing returns up close, many opt for comfort and time at home over one more procedure. It is not resignation but informed refusal — a choice grounded in seeing the full picture rather than the hopeful sliver most patients are shown.</p><p>It earns its place here as a meditation on expertise and honesty about limits, a discipline any leader can borrow. The doctors&#39; edge is not secret knowledge but the willingness to act on what the evidence plainly says, even when it is unwelcome. In a field like security, where the temptation is always to do more — more tooling, more controls, more theatre — there is hard-won wisdom in knowing what genuinely helps, what only looks like help, and when the honest answer is to stop.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Ethics</span>
+          <span class="meta-pill meta-score">HN 126</span>
+          <span class="meta-pill meta-source">archive.cancerworld.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://archive.cancerworld.net/featured/how-doctors-die/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48876741" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 12 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: GPU-stock and crypto hype without security substance, single-vendor language and runtime launches, database-tuning deep-dives with no governance angle, and human-interest pieces — a solo Pacific row, an iron-lung obituary, Long Covid research — that fell outside the cybersecurity and AI brief.</p>
+    <p>Duplicates excluded against the previous two editions: 1. The &quot;GLM 5.2 on a slow computer&quot; Show HN (github.com/JustVugg/colibri) topped today&#39;s front page but already featured in a recent edition, so it was dropped to keep the issue fresh.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
