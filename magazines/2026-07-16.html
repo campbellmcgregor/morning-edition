@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 16 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 193</span>
+    <span>Thursday · 16 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">This morning, a frontier model you can download and own reopens the argument over where AI should live; a quiet secure messenger that shielded activists slips into maintenance mode; and a $53-billion bid would fold PayPal into Stripe's orbit. Control, custody and consolidation — three ways of asking who holds the keys.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 16 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      3 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open-Weights Frontier AI</span>
+        <span class="toc-title">Inkling: An Open-Weights Model from Thinking Machines</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">Briar, the Off-Grid Secure Messenger, Enters Maintenance Mode</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Payments &amp; Vendor Risk</span>
+        <span class="toc-title">Stripe and Advent Make a $53B Joint Offer for PayPal</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open Source Tooling</span>
+        <span class="toc-title">xAI Open-Sources Grok Build</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Research · Longevity</span>
+        <span class="toc-title">Sleep Regularity Beats Sleep Duration as a Mortality Predictor</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Interfaces</span>
+        <span class="toc-title">Brainless: Shadcn Components Styled Like Claude Code, Codex and Grok</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agent Architecture</span>
+        <span class="toc-title">Designing APIs for Agents</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Browser Engineering</span>
+        <span class="toc-title">Firefox, Compiled to WebAssembly, Running in a Browser</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Policy &amp; Governance</span>
+        <span class="toc-title">The Case for Public Investment in Open Source AI</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Ethics</span>
+        <span class="toc-title">Stop Saying AI Is &#39;Just a Tool&#39;</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open-Weights Frontier AI</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Inkling: An Open-Weights Model from Thinking Machines</h2>
+      <p class="spread-lede">Thinking Machines Lab has released Inkling, a capable open-weights model you can download, inspect and run on your own hardware — no API, no gatekeeper and no telemetry flowing back to a vendor. For security teams, that quietly changes the calculus on where sensitive inference can happen.</p>
+      <div class="spread-body"><p>Open weights are not the same as open source, but for a CISO the distinction that matters is control. A downloadable, frontier-class model means teams can run inference inside your own boundary — air-gapped if needed — without shipping prompts and documents to someone else's servers. That removes a whole class of data-residency and third-party-processing worries. It also removes the vendor's safety scaffolding: no server-side content filtering, no abuse monitoring, no ability for the provider to patch a jailbreak on your behalf. Whatever guardrails you want, you now own building and maintaining them.</p><p>The release lands amid a broader push — echoed elsewhere on today's front page — to treat open models as public infrastructure rather than proprietary product. That is good for resilience and awkward for anyone hoping shadow AI stays contained. Once a competent model runs on a laptop, "just block the SaaS tools" stops being a strategy. The realistic posture is to assume employees can and will run local models, and to govern the data and the endpoints around them rather than the model itself.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add open-weights local models to your AI acceptable-use policy and DLP scope now — don't wait for one to appear on an unmanaged laptop. Decide which data classes may touch self-hosted inference, require it to run on managed, logged endpoints, and pilot one sanctioned local deployment so "no" comes with a supported "yes, here instead."</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 872</span>
+          <span class="meta-pill meta-source">thinkingmachines.ai</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://thinkingmachines.ai/news/introducing-inkling/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48924912" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Briar, the Off-Grid Secure Messenger, Enters Maintenance Mode</h2>
+      <p class="spread-lede">Briar — the peer-to-peer messenger built for activists, journalists and anyone operating under surveillance, working over Tor, Wi-Fi and even Bluetooth when the internet is cut — has announced it is dropping to maintenance mode as funding and active development wind down.</p>
+      <div class="spread-body"><p>Briar was never a mass-market app; it was a lifeline tool for high-risk users in exactly the situations where mainstream messengers fail — protests, blackouts, hostile networks. Maintenance mode does not mean it stops working tomorrow, but it does mean no new features, slower security fixes and an uncertain long tail. For a threat model that assumes a capable state adversary, "slower security fixes" is not a minor caveat; it is the whole ballgame.</p><p>The wider signal is more uncomfortable. Privacy-preserving infrastructure keeps arriving as underfunded volunteer projects while the surveillance side is a well-capitalised industry. Tools like this quietly underpin duty-of-care for journalists, NGOs and researchers your organisation may work with. When one enters maintenance mode, the risk does not disappear — it transfers to whoever was relying on it, often without them noticing until a fix that never comes.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If anyone in your orbit — field staff, journalists, at-risk partners — depends on Briar, treat this as a planned-obsolescence notice. Inventory who uses it and for what, document a migration path to an actively maintained alternative before you need one, and fold "is this security tool actually funded and maintained?" into your open-source dependency reviews more broadly.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 158</span>
+          <span class="meta-pill meta-source">briarproject.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://briarproject.org/news/2026-maintenance-mode/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48919869" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Payments &amp; Vendor Risk</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Stripe and Advent Make a $53B Joint Offer for PayPal</h2>
+      <p class="spread-lede">Stripe, backed by private-equity firm Advent, has reportedly made a joint offer north of $53 billion to acquire PayPal — a deal that would fold two of the largest payment rails, plus Braintree and Venmo, under a single owner.</p>
+      <div class="spread-body"><p>If it closes, this is one of the biggest concentrations of payment infrastructure in years. For merchants and finance teams, a competitor buying your payment provider raises immediate questions: pricing power, contract continuity, roadmap changes, and where your cardholder data and transaction flows ultimately sit. Regulators on both sides of the Atlantic will scrutinise it, so nothing happens fast — but M&amp;A of this size reliably drags integration work, API deprecations and re-papered data-processing agreements in its wake.</p><p>This is a third-party-risk story dressed as a business headline. Payment providers are among the most sensitive vendors most organisations have, and consolidation reduces your ability to walk away. The security-relevant part is not the price tag; it is that a critical dependency may soon answer to a new owner with new incentives, new sub-processors and a new security posture you have not assessed.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull your payment-stack exposure now: which providers you use directly and via partners, what data they process, and what your exit options are. If PayPal, Braintree or Venmo sit anywhere in your flows, flag the deal to procurement and legal, and diarise a fresh due-diligence and DPA review for if and when ownership changes.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Fintech</span>
+          <span class="meta-pill meta-score">HN 414</span>
+          <span class="meta-pill meta-source">reuters.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.reuters.com/business/finance/stripe-advent-offer-buy-paypal-more-than-53-billion-sources-say-2026-07-15/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48915953" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open Source Tooling</div>
+
+      <h2 class="spread-headline">xAI Open-Sources Grok Build</h2>
+      <p class="spread-lede">xAI has published Grok Build as open source on GitHub, putting the scaffolding behind its coding-agent workflow into the open for anyone to read, fork and self-host.</p>
+      <div class="spread-body"><p>Open-sourcing agent tooling is becoming table stakes — Grok Build joins a crowded field of coding agents and harnesses. The value for engineering teams is transparency: you can see how the agent plans, what it sends where, and which permissions it assumes, rather than trusting a black box. That is genuinely useful for anyone weighing whether to let an autonomous agent touch a real codebase.</p><p>The flip side is the usual open-source supply-chain caveat. A public repo invites forks, typosquats and unofficial builds, and an agent framework by definition wants broad access to files, shells and credentials. Read the permission model before you run it, and treat a well-starred GitHub repo as a starting point for review, not a trust signal in itself.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tools</span>
+          <span class="meta-pill meta-score">HN 373</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/xai-org/grok-build" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48926590" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Research · Longevity</div>
+
+      <h2 class="spread-headline">Sleep Regularity Beats Sleep Duration as a Mortality Predictor</h2>
+      <p class="spread-lede">A large study resurfacing on the front page finds that the consistency of your sleep schedule predicts mortality risk more strongly than how many hours you actually sleep — regular beats long.</p>
+      <div class="spread-body"><p>The finding is counterintuitive if you have spent years chasing an eight-hour target. Using objective accelerometer data from tens of thousands of people, the researchers found that irregular sleep-and-wake timing tracked with higher all-cause mortality more tightly than short duration did. In other words, a steady six-and-a-half hours may serve you better than a chaotic eight.</p><p>For anyone running on the ragged edges of an on-call rotation or a security incident that ate the weekend, this is a pointed reminder. The most controllable variable is often not total sleep — that is hostage to the job — but the regularity of your rhythm. Protecting a consistent wake time, even when bedtime slips, is close to the cheapest longevity intervention on offer, and it costs nothing but discipline.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Research</span>
+          <span class="meta-pill meta-score">HN 680</span>
+          <span class="meta-pill meta-source">academic.oup.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://academic.oup.com/sleep/article/47/1/zsad253/7280269" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48919363" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Interfaces</div>
+
+      <h2 class="spread-headline">Brainless: Shadcn Components Styled Like Claude Code, Codex and Grok</h2>
+      <p class="spread-lede">Brainless is an open component library that recreates the look and feel of the popular coding-agent CLIs — Claude Code, Codex, Grok — as drop-in Shadcn/React pieces for building your own agent interfaces.</p>
+      <div class="spread-body"><p>There is a clear aesthetic converging across agentic dev tools: monospace panels, streaming output, tool-call chips, inline diff views. Brainless packages that visual language so teams building internal agent UIs do not have to reinvent it. If you are wiring Claude or another model into a bespoke internal workflow, a ready-made, familiar-looking front end lowers the effort of shipping something your engineers will actually trust and use.</p><p>It is worth being clear about what this is and is not. Brainless mimics the interface, not the underlying agent — the intelligence still comes from whatever model you connect. That is a feature: it lets you present a consistent, recognisable experience over your own governed backend rather than pushing people toward unmanaged third-party tools. For a leader trying to keep AI use inside sanctioned rails, a familiar internal UI is a quietly effective nudge.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tools</span>
+          <span class="meta-pill meta-score">HN 120</span>
+          <span class="meta-pill meta-source">brainless.swerdlow.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://brainless.swerdlow.dev" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48926085" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agent Architecture</div>
+
+      <h2 class="spread-headline">Designing APIs for Agents</h2>
+      <p class="spread-lede">As software increasingly gets called by autonomous agents rather than humans, this piece argues that our API conventions — built for developers who read documentation — need rethinking for consumers that never read anything.</p>
+      <div class="spread-body"><p>The core argument is that agents fail differently from human developers. They do not skim documentation, they hallucinate endpoints, they retry aggressively, and they chain calls in ways no product manager anticipated. APIs built for agents therefore need to be more self-describing, more forgiving of malformed requests, and far more explicit about side effects and permissions. It is a design discipline still being invented in real time.</p><p>From a security seat, this is the attack-surface conversation nobody scheduled. An API an agent can drive is an API a compromised or manipulated agent can drive — at machine speed, without a human in the loop to add friction. Rate limits, scoped credentials, idempotency and clear authorisation boundaries stop being nice-to-haves and become the difference between a helpful automation and an automated incident. Designing for agents means designing for adversarial ones too.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Engineering</span>
+          <span class="meta-pill meta-score">HN 65</span>
+          <span class="meta-pill meta-source">freestyle.sh</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.freestyle.sh/blog/opinion/designing-apis-for-agents" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48894874" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Browser Engineering</div>
+
+      <h2 class="spread-headline">Firefox, Compiled to WebAssembly, Running in a Browser</h2>
+      <p class="spread-lede">A Puter Labs demo runs a full Firefox build compiled to WebAssembly inside another browser tab — a browser within a browser, executing entirely client-side.</p>
+      <div class="spread-body"><p>It is a technical flex with real implications. WebAssembly has quietly become capable enough to host enormous, complex applications — an entire browser engine — with no server round-trips. That points toward a future where heavyweight desktop software ships as a sandboxed WASM bundle you open like a web page, portable across any platform with a modern browser.</p><p>The security angle cuts both ways. WASM's sandbox is a genuine containment boundary, which is attractive for running untrusted code. But "a full browser inside your browser" is also a novel way to nest network access and slip past naive content controls, and the sheer capability of the runtime widens what a malicious payload can do once it lands. Impressive engineering usually arrives before the corresponding defensive playbook.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Web / Tech</span>
+          <span class="meta-pill meta-score">HN 176</span>
+          <span class="meta-pill meta-source">developer.puter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://developer.puter.com/labs/firefox-wasm/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48926939" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Policy &amp; Governance</div>
+
+      <h2 class="spread-headline">The Case for Public Investment in Open Source AI</h2>
+      <p class="spread-lede">In a Fortune essay, David Siegel argues that governments, companies and nonprofits should fund free, open-source AI as shared public infrastructure — rather than leaving frontier capability concentrated in a handful of private labs.</p>
+      <div class="spread-body"><p>The thesis rhymes with the Inkling release at the top of today's edition: open models as a commons, not a product. Siegel's framing is strategic — concentration of AI in a few closed providers is a resilience and competition risk, and public investment could keep capable models freely available and auditable. For anyone in Europe watching the sovereignty and dependence debates, the argument has obvious political traction.</p><p>For security leaders the governance implication is concrete. If open, auditable models become the default baseline, you gain the ability to inspect and self-host what you deploy — but you also inherit responsibility for the safety layers a closed vendor would otherwise run. "Open and public" shifts capability toward you and liability with it. The organisations that benefit will be the ones that build the governance muscle to use open models responsibly, not merely the ones that download them.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Policy</span>
+          <span class="meta-pill meta-score">HN 149</span>
+          <span class="meta-pill meta-source">siegelendowment.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.siegelendowment.org/wp-content/uploads/2026/07/fortune-david-siegel-open-source-ai.pdf" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48927095" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Ethics</div>
+
+      <h2 class="spread-headline">Stop Saying AI Is &#39;Just a Tool&#39;</h2>
+      <p class="spread-lede">This essay pushes back on the comforting line that AI is merely a neutral instrument whose morality depends entirely on the user — arguing the framing lets both builders and deployers off the hook too easily.</p>
+      <div class="spread-body"><p>"It's just a tool, it only matters how you use it" is the reflexive defence whenever a technology causes harm. The author's point is that tools are not neutral: they embed the values, incentives and blind spots of the people who built them, and they shape behaviour by making some actions easy and others hard. A system that makes surveillance frictionless or disinformation cheap is not a passive object; it has a thumb on the scale.</p><p>For a security leader, this is more than philosophy. It reframes responsibility: if the tools you procure and deploy shape what your people do, then choosing, configuring and governing them is a moral act, not just a technical one. "The user is responsible" is a poor answer when you designed the default. The uncomfortable, useful conclusion is that neutrality is not something you get to claim by default.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Ethics</span>
+          <span class="meta-pill meta-score">HN 35</span>
+          <span class="meta-pill meta-source">frank.computer</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.frank.computer/blog/2025/05/just-a-tool.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48930363" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 16 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as news, routine patch advisories, crypto and web3 hype, and lighter front-page fare — restored 19th-century wildlife prints, a gallery of digital-clock designs, a modded-Corolla midlife-crisis essay — with no bearing on a security leader's morning.</p>
+    <p>Duplicates excluded against the previous two editions: 0. Ten article URLs from the 14–15 July issues were checked against today's candidate pool and none recurred, so every story here is fresh.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
