@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 19 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 196</span>
+    <span>Sunday · 19 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A monitor maker slips its own software onto your PC through the update channel you were told to trust; New York tells landlords their too-good-to-be-true listings can't be AI confections; and GitHub quietly closes a long-standing door to repository hijacking. Three reminders that the plumbing you never think about is exactly where the risk lives.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 19 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      3 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain</span>
+        <span class="toc-title">LG Monitors Silently Install Software Through Windows Update</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Deception</span>
+        <span class="toc-title">New York Tells Landlords: No Secret AI Images in Listings</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Supply Chain</span>
+        <span class="toc-title">How GitHub Gave Every Repository a Durable Owner</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agentic Workflows</span>
+        <span class="toc-title">Setting Up a Spare Mac for Claude Code to Control</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Security Research</span>
+        <span class="toc-title">Qubes OS Security in the Public Record</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Edge AI</span>
+        <span class="toc-title">Speech Recognition and Text-to-Speech in Under 500KB</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Cloud Ops</span>
+        <span class="toc-title">AWS Warns of Inaccurate Estimated Billing — a $1.7 Billion Glitch</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Breakthrough</span>
+        <span class="toc-title">GPT-5.6 Closes a 30-Year Gap in Convex Optimization</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Governance</span>
+        <span class="toc-title">AI Mania Is Eviscerating Global Decision-Making</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">The Commons</span>
+        <span class="toc-title">What AI Did to Stack Overflow, in One Graph</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">LG Monitors Silently Install Software Through Windows Update</h2>
+      <p class="spread-lede">LG shipped its "Display Companion" as a driver package delivered over Windows Update, installing a background app on users' PCs with no prompt, no consent, and no obvious way to know it had happened.</p>
+      <div class="spread-body"><p>The mechanism matters more than the app. Windows Update is the one channel every security team tells users to trust implicitly — patches flow through it, and blocking it is a compliance finding. By shipping user-space software inside a signed driver bundle, LG turned that trust into a distribution pipe for whatever it wants on the endpoint. The software reportedly runs in the background and reinstalls itself if removed. Nobody clicked "agree," and nobody was asked.</p><p>For a security leader this is the supply-chain problem in miniature: the risk isn't LG specifically, it's that update infrastructure you can't switch off can carry code you never evaluated. If a monitor vendor can do this, so can a compromised one. It reframes "trusted publisher" from a guarantee into an attack surface, and argues for endpoint controls that watch what optional driver updates actually install — not merely whether they carry a valid signature.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Set managed endpoints to exclude driver updates from Windows Update (Group Policy: "Do not include drivers with Windows Updates"), and inventory which optional updates your fleet accepts automatically. Hunt for the LG Display Companion process across managed devices and treat unexpected vendor "companion" apps as unapproved software to be removed and blocked.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 1084</span>
+          <span class="meta-pill meta-source">videocardz.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://videocardz.com/newz/lg-monitors-silently-install-software-through-windows-update-without-user-consent" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48956688" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Deception</div>
+
+      <h2 class="spread-headline">New York Tells Landlords: No Secret AI Images in Listings</h2>
+      <p class="spread-lede">New York City Mayor Mamdani says landlords advertising rentals will be barred from using AI-generated or materially altered images without disclosure, after listings surfaced showing apartments that don't exist as pictured.</p>
+      <div class="spread-body"><p>This is a small rule with a large signal. Synthetic imagery has quietly crossed from novelty to default in consumer marketing, and housing — where a photo is a promise — is where the deception becomes concrete harm. The city treats undisclosed AI imagery as a species of false advertising rather than a creative flourish, which is exactly the framing regulators everywhere will reach for as generated content saturates the commercial web.</p><p>For anyone building or governing AI systems, disclosure-by-default is the direction of travel. Expect provenance and labelling obligations to spread from elections and deepfakes into ordinary commerce. The practical question shifts from "can we generate this" to "can we prove what's real" — which is why content-provenance standards like C2PA suddenly look less like a nice-to-have and more like a compliance substrate you will eventually be asked to support.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Legal</span>
+          <span class="meta-pill meta-score">HN 401</span>
+          <span class="meta-pill meta-source">petapixel.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://petapixel.com/2026/07/16/mayor-mamdani-says-landlords-cant-secretly-use-ai-images-to-advertise-properties/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48962983" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Supply Chain</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">How GitHub Gave Every Repository a Durable Owner</h2>
+      <p class="spread-lede">GitHub detailed how it re-architected repository identity so a repo keeps a stable, unforgeable owner even after renames and transfers — closing the namespace gaps that made "repojacking" possible.</p>
+      <div class="spread-body"><p>Repojacking works because package ecosystems trust names, not identities. When a user renames or deletes an account, the old owner/repo path can become claimable, and an attacker who grabs it can serve malicious code to everything still pointing there. It has been used against real dependency chains. GitHub's fix anchors repositories to durable internal owners, so a freed-up name can't be silently repurposed to hijack downstream trust.</p><p>The engineering write-up is worth reading precisely because it's unglamorous plumbing — exactly the layer where supply-chain attacks live. For defenders it's a reminder that "the URL in my lockfile" is an identity claim, and identity claims need to be anchored to something an attacker can't re-register. It also models the right response to a whole class of bug: fix the namespace, not each individual incident as it lands.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit dependency manifests and CI configs for GitHub repos referenced by owner/name that could be re-registered, and pin to commit SHAs or verified releases wherever you can. Re-check any dependency whose upstream org was renamed, transferred, or archived — those are the paths repojacking targets first.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 80</span>
+          <span class="meta-pill meta-source">github.blog</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.blog/security/application-security/how-github-gave-every-repository-a-durable-owner/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48852151" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agentic Workflows</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Setting Up a Spare Mac for Claude Code to Control</h2>
+      <p class="spread-lede">A step-by-step guide walks through handing an old Mac to Claude Code as a fully controllable machine — remote access, permissions, and guardrails — so an agent can run real tasks on dedicated hardware instead of your daily driver.</p>
+      <div class="spread-body"><p>The interesting part isn't the novelty, it's the operational pattern. Giving an agent its own machine — isolated, disposable, observable — is how you get the benefit of autonomous execution without letting it loose on the environment you actually depend on. It is the agentic equivalent of a jump box, and this guide is a practical recipe for standing one up rather than a thought experiment.</p><p>For someone building AI-assisted workflows, that isolation model is the whole game. A dedicated, monitored host bounds the blast radius when an agent does something unexpected, makes its actions auditable after the fact, and lets you grant real permissions without betting production on them. The security lens on "an agent controls a computer" should always start with the same two questions: whose computer, and what can it reach.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">If you run Claude Code agentically, prefer a dedicated or VM'd host over your primary machine, scope its network and credential access tightly, and log what it does. Treat the agent host like any other privileged endpoint — inventoried, patched, segmented, and revocable — not a trusted extension of your workstation.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 214</span>
+          <span class="meta-pill meta-source">ykdojo.github.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://ykdojo.github.io/claude-controls-mac/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48959392" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Security Research</div>
+
+      <h2 class="spread-headline">Qubes OS Security in the Public Record</h2>
+      <p class="spread-lede">A new paper assembles the public evidence on Qubes OS — the compartmentalisation-by-virtualisation operating system — into a structured account of how its security model has actually held up against disclosed attacks and audits.</p>
+      <div class="spread-body"><p>Qubes has always been the reference implementation of "security through isolation": each activity runs in its own lightweight VM, so a compromise in one domain doesn't automatically become a compromise of everything. The paper's value is in moving that reputation from folklore to citation — collecting what the public record actually shows about where the model succeeded and where the seams are, rather than repeating the marketing.</p><p>Most of us won't deploy Qubes, but its design questions transfer. The industry trend — per-app sandboxing, hardware-backed enclaves, agent hosts in their own VMs — is Qubes' thesis arriving by other routes. Reading how a rigorously compartmentalised system fares against real attackers is a useful calibration exercise for anyone deciding how much isolation is actually enough for the risk they carry.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 86</span>
+          <span class="meta-pill meta-source">arxiv.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://arxiv.org/abs/2607.14587" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48956307" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Edge AI</div>
+
+      <h2 class="spread-headline">Speech Recognition and Text-to-Speech in Under 500KB</h2>
+      <p class="spread-lede">Moonshine's "micro" release fits usable speech recognition and text-to-speech into less than half a megabyte, small enough to run entirely on-device — no cloud call, no audio ever leaving the hardware.</p>
+      <div class="spread-body"><p>The headline is the size, but the consequence is privacy. Voice has been one of the most cloud-dependent modalities precisely because good models were large; shrinking them to run locally means the audio — and everything inferable from it — can stay on the device. For a lot of use cases that flips the default from "stream my voice to a server" to "process it where it was captured," which is a meaningful change in exposure.</p><p>Tiny, capable models are quietly the most important AI trend for security and privacy. On-device inference removes an entire category of data-in-transit and third-party-processor risk, and it makes voice features viable in environments where sending audio off-box is a non-starter — clinical, legal, classified. Expect "runs locally" to become a procurement checkbox rather than just an engineering flex worth bragging about.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 389</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/moonshine-ai/moonshine/tree/main/micro" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48911793" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Cloud Ops</div>
+
+      <h2 class="spread-headline">AWS Warns of Inaccurate Estimated Billing — a $1.7 Billion Glitch</h2>
+      <p class="spread-lede">AWS disclosed that its estimated-billing data was showing wildly inaccurate figures — with some customers reportedly seeing phantom totals reaching into the billions — before the numbers were corrected.</p>
+      <div class="spread-body"><p>The dollar figure is eye-catching, but the real lesson is dependency on a vendor's own telemetry. Estimated billing is the signal many teams use to catch runaway spend and, indirectly, anomalies like crypto-mining or a misconfigured job that suddenly scales. When that signal is unreliable, the tripwire you were counting on to notice something wrong is itself broken, and you may not know for hours.</p><p>For a leader this is a governance point dressed as an outage. Cost anomalies are frequently the first visible symptom of a security or operational incident, so a broken billing view has blast radius well beyond finance. It argues for independent cost monitoring and alerting that doesn't rely solely on the console's estimates — and for treating "the dashboard looked fine" as an insufficient control when the dashboard is the thing that failed.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cloud</span>
+          <span class="meta-pill meta-score">HN 1279</span>
+          <span class="meta-pill meta-source">news.ycombinator.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://news.ycombinator.com/item?id=48945241" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48945241" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Breakthrough</div>
+
+      <h2 class="spread-headline">GPT-5.6 Closes a 30-Year Gap in Convex Optimization</h2>
+      <p class="spread-lede">A widely-shared report claims that, prompted the right way, GPT-5.6 produced a result closing a three-decade-old gap in convex optimization — an example of a frontier model contributing genuine mathematical progress rather than just recall.</p>
+      <div class="spread-body"><p>Treat the specifics with appropriate caution — extraordinary claims about AI-derived proofs deserve independent verification before anyone celebrates. But the pattern is what's notable. The interesting frontier isn't the model answering known questions faster; it's the model, steered by an expert's prompt, doing a piece of the reasoning that advances a field. The human framing of the problem did real work in getting there.</p><p>That's the useful mental model for AI in expert domains: not oracle, but a very strong collaborator whose output still needs a domain expert to pose the problem and check the result. For anyone deploying these tools on genuinely hard problems, the takeaway is that prompt design and verification are the skill that scales — the raw capability is increasingly something you can just assume is present.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 543</span>
+          <span class="meta-pill meta-source">old.reddit.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://old.reddit.com/r/math/comments/1uxj3cy/after_openais_cdc_proof_announcement_gpt56_used_a/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48957779" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Governance</div>
+
+      <h2 class="spread-headline">AI Mania Is Eviscerating Global Decision-Making</h2>
+      <p class="spread-lede">A pointed essay argues that the rush to insert AI into consequential decisions — hiring, policy, procurement — is degrading their quality, as institutions outsource judgement to systems whose reasoning nobody actually inspects.</p>
+      <div class="spread-body"><p>The polemic lands because it names a real failure mode: not that AI is used, but that it's used as an alibi. When a model produces a recommendation, the human in the loop is increasingly there to ratify it rather than interrogate it, and the organisational incentive is to trust the machine so responsibility can be diffused. The tool quietly becomes a way to launder accountability out of the process.</p><p>For a security and governance leader this is directly on point. "The system flagged it" and "the model approved it" are becoming load-bearing phrases in exactly the processes — access decisions, risk scoring, vendor vetting — where a wrong answer is expensive and slow to surface. The antidote isn't Luddism; it's insisting that automated decisions stay contestable, logged, and owned by a named human who can be asked why.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 139</span>
+          <span class="meta-pill meta-source">ludic.mataroa.blog</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://ludic.mataroa.blog/blog/ai-mania-is-eviscerating-global-decision-making/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48964185" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">The Commons</div>
+
+      <h2 class="spread-headline">What AI Did to Stack Overflow, in One Graph</h2>
+      <p class="spread-lede">A single query against Stack Overflow's own data shows question volume falling off a cliff since capable coding assistants arrived — a stark picture of a knowledge commons emptying out as developers ask the machine instead.</p>
+      <div class="spread-body"><p>The graph is a quiet eulogy. Stack Overflow was the place a generation of programmers learned in public, and its answers — written, edited, and voted on by humans — are a large part of what trained the very models now replacing it. Traffic and new questions are collapsing as people route around it, and the flywheel that produced all that knowledge is visibly winding down.</p><p>There's a supply-chain-of-knowledge problem lurking here. If new human answers stop being written because everyone asks a model, the models eventually train on a world their predecessors hollowed out. The convenience is real and individual; the cost is collective and deferred. Worth sitting with the next time an assistant saves you a search you would once have contributed an answer back to.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Industry</span>
+          <span class="meta-pill meta-score">HN 396</span>
+          <span class="meta-pill meta-source">data.stackexchange.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://data.stackexchange.com/stackoverflow/query/1953768#graph" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48956949" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 19 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as news, routine patch advisories without context, crypto/web3 hype, and the day's deep bench of retro-computing and hobbyist posts (Amiga freeware, the Z80 at 50, netbook revivals) that were fun but not on-brief.</p>
+    <p>Duplicates excluded against the previous two editions: 1. The TP-Link Kasa camera GPS-leak story remained on the front page but was featured in a recent edition, so it was dropped to keep the selection fresh.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
