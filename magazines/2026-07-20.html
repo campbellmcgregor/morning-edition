@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 20 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 197</span>
+    <span>Monday · 20 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A manifesto against the surveillance industry lands the same morning a study finds that AI advice makes people wronger and surer of themselves. Between them sits the quieter story: the tools you depend on keep changing shape underneath you, and nobody sends a memo. Today is about noticing the ground moving.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 20 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      5 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Power</span>
+        <span class="toc-title">The Anti-Palantir Manifesto</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">We want Texans to know their rights</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Risk &amp; Judgement</span>
+        <span class="toc-title">AI advice made people less accurate but more confident — study</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Tooling</span>
+        <span class="toc-title">Claude Code uses Bun written in Rust now</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Vendor Lock-In</span>
+        <span class="toc-title">How proprietary formats have become Microsoft&#39;s main tool for lock-in</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Model Release</span>
+        <span class="toc-title">Qwen 3.8</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Silent Downgrade</span>
+        <span class="toc-title">OpenAI reduces Codex model context size from 372k to 272k</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Local-First Tooling</span>
+        <span class="toc-title">Transcribe.cpp</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Infrastructure Governance</span>
+        <span class="toc-title">Power companies are using eminent domain to seize land for data centers</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Ethics &amp; Consequence</span>
+        <span class="toc-title">Big Tech is now targeting Native American land for data centers</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Power</div>
+
+      <h2 class="spread-headline">The Anti-Palantir Manifesto</h2>
+      <p class="spread-lede">A long, deliberately unsubtle argument that the data-fusion industry has quietly become critical national infrastructure without ever being treated as such — and that the people building it have no serious theory of what happens when it is misused.</p>
+      <div class="spread-body"><p>The piece is a polemic, and it does not pretend otherwise. But strip the rhetoric and the structural claim is one security leaders should sit with: the value proposition of data-fusion platforms is precisely that they dissolve the boundaries organisations spent decades building. Every siloed dataset that a governance regime deliberately kept apart — health, movement, employment, financial — becomes a join key. The security controls around each individual source can be immaculate and the aggregate can still be catastrophic, because the risk was never in any single store. It was in the correlation.</p><p>What makes this more than an ideological complaint is the procurement angle. These platforms are sold on operational efficiency to buyers who evaluate them like any other enterprise tool, with a questionnaire and a pen-test summary. Almost nobody models the second-order question: what does this system make possible for whoever controls it in five years, under a different government, a different board, or a different threat model? That is a governance gap, not a technical one, and it is not going to be closed by a vendor security review.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 44</span>
+          <span class="meta-pill meta-source">nonogra.ph</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://nonogra.ph/the-anti-palantir-manifesto-07-20-2026" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48973293" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+
+      <h2 class="spread-headline">We want Texans to know their rights</h2>
+      <p class="spread-lede">The EFF interviews Mayday Health about operating a health information service under a surveillance regime designed to deter it, and the answer turns out to be a masterclass in threat modelling for an adversary who is a state.</p>
+      <div class="spread-body"><p>Set aside the American politics and read it as an operational security case study, because that is what it is. Here is an organisation whose threat model includes subpoenas, civil enforcement, hostile domain seizure, and users who cannot afford to leave a trace. The mitigations they describe — minimising what is collected in the first place, assuming logs will eventually be compelled, treating the domain name itself as a revocable asset — are the controls you reach for when you accept that legal process is part of your attack surface.</p><p>That framing travels. UK and EU organisations increasingly operate services where the sensitive fact is not the content of a record but its mere existence: that this person contacted this service on this date. Most enterprise logging strategies are built on the opposite instinct — retain everything, decide later. The lesson here is that data you never collected cannot be compelled, leaked, or subpoenaed, and that retention minimisation is a security control and not merely a compliance chore.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 170</span>
+          <span class="meta-pill meta-source">eff.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.eff.org/deeplinks/2026/07/we-want-texans-know-their-rights-qa-mayday-health-impact-surveillance-abortion" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48972062" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Risk &amp; Judgement</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">AI advice made people less accurate but more confident</h2>
+      <p class="spread-lede">A study finds that participants given AI assistance produced worse answers than those working unaided, while reporting substantially higher confidence in those answers — the exact failure mode that makes AI-assisted work dangerous rather than merely imperfect.</p>
+      <div class="spread-body"><p>Accuracy going down is a tractable problem; you measure it and you correct it. Confidence going up while accuracy goes down is a different animal, because it removes the signal that would have prompted the correction. The person who is unsure double-checks. The person who has been reassured by a fluent, well-structured, plausible-sounding answer does not. In an organisation, that compounds: the confidently wrong output gets passed upward with fewer caveats at each hop until it arrives at a decision-maker as settled fact.</p><p>For anyone building AI-assisted workflows — and that is the entire point of the Claude Code and Cowork pipelines behind this magazine — the honest reading is uncomfortable. The productivity gain is real and the calibration cost is also real, and they do not cancel out neatly. The mitigation is not to stop using the tools; it is to design the workflow so that verification is a structural step rather than a matter of the operator remembering to be sceptical on a busy morning.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit your own AI-assisted outputs for where a human verification step actually exists versus where you assumed one did. For anything that feeds a decision — risk ratings, incident summaries, board material — require the source to be checked, not just the conclusion read. If you are rolling AI tooling out to a wider team, pair it with explicit guidance that fluency is not evidence, because the study suggests people will not arrive at that on their own.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Risk</span>
+          <span class="meta-pill meta-score">HN 325</span>
+          <span class="meta-pill meta-source">thenextweb.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://thenextweb.com/news/ai-advice-suppresses-critical-thinking-wrong-answers-study" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48971738" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Claude Code uses Bun written in Rust now</h2>
+      <p class="spread-lede">Simon Willison unpicks a quiet but consequential change in how Claude Code ships: the runtime underneath the CLI has moved, which affects startup behaviour, distribution, and the assumptions anyone scripting around it may have baked in.</p>
+      <div class="spread-body"><p>Runtime swaps in a tool you use daily are the kind of change that is invisible until it is not. Most of the time it means faster cold starts and a cleaner install story. Occasionally it means a native module you relied on no longer resolves, a path assumption breaks, or a hook that shelled out to the old runtime silently stops firing. If you have automation wrapped around the CLI — scheduled tasks, hooks, wrapper scripts — the change is worth a deliberate look rather than a shrug.</p><p>The broader point is about dependency posture on fast-moving AI tooling. These products iterate at a pace that makes traditional change management look geological, and the supply chain underneath them shifts with them. That is a reasonable trade if you have made it consciously and you have a way to pin, test, and roll back. It is a poor trade if your production workflow depends on a tool that can change its runtime between two Tuesdays and you find out from a blog post.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Run your existing Claude Code automations — the scheduled morning-edition and youtube-wisdom tasks especially — and confirm the hooks and helper scripts still behave. Check whether anything in your setup assumes the previous runtime or its module resolution. If it all passes, note the version you are on so a future breakage has a known-good reference point to bisect against.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 468</span>
+          <span class="meta-pill meta-source">simonwillison.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48966569" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Vendor Lock-In</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">How proprietary formats became Microsoft&#39;s main tool for lock-in</h2>
+      <p class="spread-lede">The Document Foundation argues that format complexity — not licensing, not pricing — is now the primary mechanism keeping organisations inside the Microsoft estate, and that the nominal openness of OOXML has not meaningfully changed that.</p>
+      <div class="spread-body"><p>There is obvious self-interest in the source, and the argument survives it. A format standardised on paper but implemented in practice as whatever the dominant application does is not portable in any way that matters operationally. The test is not whether a competitor can open the file; it is whether a thousand of your files round-trip through a competitor without a single one of them quietly losing a formula, a comment thread, or a permission attached to a protected section. That bar is rarely met, and it is the bar that decides whether an exit is real.</p><p>For a CISO this is a resilience question wearing a procurement costume. Concentration risk in a productivity suite is not just a bill you cannot negotiate; it is a single vendor whose availability, security posture, and strategic direction your organisation cannot separate from. UK and EU public bodies in particular are under increasing pressure to demonstrate digital sovereignty, and &quot;we could migrate in principle&quot; is not a defensible answer when the format itself makes migration a data-loss exercise.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Ask a concrete question of your own estate: if you had to leave the suite in twelve months, what would break and who would notice? Identify the document classes where fidelity actually matters — contracts, regulatory submissions, board packs — and test a sample round-trip rather than assuming it works. Feed the answer into your concentration-risk register, where it belongs, rather than treating it as a procurement footnote.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Governance</span>
+          <span class="meta-pill meta-score">HN 15</span>
+          <span class="meta-pill meta-source">blog.documentfoundation.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.documentfoundation.org/blog/2026/07/17/microsofts-main-tool-for-lock-in/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48974476" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Model Release</div>
+
+      <h2 class="spread-headline">Qwen 3.8</h2>
+      <p class="spread-lede">Alibaba ships another Qwen iteration to the front page&#39;s loudest reception of the day, continuing a release cadence that has made open-weight Chinese models a permanent fixture of the capability conversation rather than a curiosity.</p>
+      <div class="spread-body"><p>The interesting thing about the Qwen line is no longer whether it is good — it demonstrably is, at sizes that run on hardware people actually own. The interesting thing is what its existence does to the deployment calculus. When a capable open-weight model can be run entirely inside your own perimeter, the argument for sending sensitive data to a third-party API becomes a cost-and-convenience argument rather than a capability one. That is a materially different negotiation than the one available two years ago.</p><p>The governance wrinkle is provenance. Open weights are not open training data, and an organisation adopting a model still inherits whatever is baked into it without a practical way to audit it. Security teams should resist both reflexes here: the reflex to ban on the basis of country of origin without a threat model, and the reflex to wave it through because it runs locally. The right posture is the same one you would apply to any unauditable dependency — scope what it touches, and assume you cannot inspect its interior.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 843</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/Alibaba_Qwen/status/2078759124914098291" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48966120" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Silent Downgrade</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">OpenAI reduces Codex context from 372k to 272k</h2>
+      <p class="spread-lede">A pull request, not an announcement, is how users discovered that the usable context window in Codex had been cut by roughly a quarter — a change with direct consequences for anyone whose workflow was tuned to the previous ceiling.</p>
+      <div class="spread-body"><p>The substance of the change is arguable; the delivery mechanism is not. A capability reduction that reaches customers via a diff in a public repository is a change-management failure regardless of whether the underlying decision was sound. Users who built around the larger window — long-file refactors, whole-repository reasoning, document pipelines — will discover the new limit as a truncation or a degraded result, not as a notice they could plan around.</p><p>This is the recurring lesson of depending on hosted AI capability: the thing you bought is not a fixed artefact, and the vendor is under no contractual obligation to keep it the shape it was when you designed against it. Treat context window, rate limits, and model version as variables that can move without warning. If a business process depends on a specific capability threshold, that dependency belongs in a risk register with an owner, not in an engineer&#39;s memory of what worked last quarter.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory where your workflows assume a specific context window or model behaviour, and add a cheap canary — a scheduled job that asserts the capability you depend on still holds — so a silent downgrade surfaces as an alert rather than as a mysteriously worse output weeks later. Where a vendor capability is load-bearing for a business process, make sure someone owns watching it.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Vendor Risk</span>
+          <span class="meta-pill meta-score">HN 337</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/openai/codex/pull/33972/files" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48965850" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Local-First Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Transcribe.cpp</h2>
+      <p class="spread-lede">A local transcription implementation that runs entirely on your own machine, drawing a large front-page reception and quietly making the case that a whole category of sensitive audio never needs to leave the building at all.</p>
+      <div class="spread-body"><p>Transcription is one of the most under-examined data flows in most organisations. Meeting recordings, incident bridge calls, interviews, voice notes — these routinely contain the most candid material anyone produces, and they are habitually shipped to whichever cloud service the calendar integration defaulted to. The data protection assessment, if one was ever done, usually predates the point at which everyone started recording everything by reflex.</p><p>Local transcription changes the shape of that problem rather than merely reducing it. If the audio never leaves the device, there is no processor agreement to negotiate, no cross-border transfer question, no retention policy at a third party to audit, and no breach notification exposure from a vendor you did not choose. The trade is operational — you own the compute and the setup — but for the specific class of recordings that are genuinely sensitive, that is a trade worth making deliberately rather than by default.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Map where audio actually goes today: which meeting recorder, which note-taking bot, which vendor holds the transcripts and for how long. For the sensitive tier — incident calls, HR matters, board discussions, anything privileged — evaluate a local-only path like this one and set an explicit policy that those recordings do not go to a cloud transcription service. Your own Plaud and voice-note pipelines are the obvious first place to check.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 734</span>
+          <span class="meta-pill meta-source">workshop.cjpais.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://workshop.cjpais.com/projects/transcribe-cpp" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48963879" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Infrastructure Governance</div>
+
+      <h2 class="spread-headline">Power companies are using eminent domain to seize land for data centers</h2>
+      <p class="spread-lede">Utilities are invoking compulsory purchase powers — granted on the premise of public benefit — to acquire land whose ultimate beneficiary is a private data centre, and courts are only beginning to test whether that premise holds.</p>
+      <div class="spread-body"><p>The legal question is whether infrastructure serving a single private customer counts as public use. The practical question is more immediate: AI capacity build-out has reached the scale where it is reshaping land law, grid planning, and local politics simultaneously. That is the point at which compute stops being a line item in a cloud bill and becomes a physical, contested, politically exposed supply chain with all the fragility that implies.</p><p>Security leaders should care because concentration risk has a geography. The compute your organisation depends on sits in specific buildings, drawing power from specific grids, in jurisdictions where the social licence for these facilities is visibly eroding. Planning refusals, water disputes, and legal challenges to the land acquisition itself are now credible sources of capacity constraint. Resilience planning that models provider outage but not provider expansion being blocked is modelling last decade&#39;s risk.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Governance</span>
+          <span class="meta-pill meta-score">HN 63</span>
+          <span class="meta-pill meta-source">fortune.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://fortune.com/2026/07/19/data-center-eminent-domain-public-use/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48974292" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Ethics &amp; Consequence</div>
+
+      <h2 class="spread-headline">Big Tech is now targeting Native American land for data centers</h2>
+      <p class="spread-lede">The New York Times reports on data centre developers turning to tribal land, where a distinct regulatory posture and acute economic need combine to make siting easier — and the asymmetry of that bargain harder to look at directly.</p>
+      <div class="spread-body"><p>Read alongside the previous story, a pattern emerges that has nothing to do with technology. Capacity build-out flows toward the path of least resistance, and least resistance correlates with least power. Communities with the fewest resources to litigate, the greatest need for revenue, and the least ability to absorb a bad water or power outcome are precisely the ones being approached. Nobody designed that as policy; it is simply what optimisation produces when the constraint being optimised against is opposition.</p><p>There is no action item here, and it would be dishonest to invent one. But the compute underneath every AI workflow — including the one that assembles this magazine each morning — lands somewhere physical, and the choice of where is being made by people who will not bear its consequences. Knowing that does not resolve it. It does make the abstraction of &quot;the cloud&quot; harder to hide behind, which is probably the least a reader owes the story.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Ethics</span>
+          <span class="meta-pill meta-score">HN 43</span>
+          <span class="meta-pill meta-source">nytimes.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.nytimes.com/2026/07/09/us/data-centers-native-american-tribes.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48973782" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 20 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: retro-computing and hobbyist hardware threads, a synthesiser reissue, several home-lab and self-hosting write-ups, and the day&#39;s general-interest miscellany — none of which carried a security, privacy, or governance angle worth a reader&#39;s morning.</p>
+    <p>Duplicates excluded against the previous two editions: 0. No story on today&#39;s front page had already been featured, so the full candidate pool was available for curation.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
