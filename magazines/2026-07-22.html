@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 22 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 199</span>
+    <span>Wednesday · 22 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A security scare at the seam where two of the biggest names in machine learning hand models back and forth is a reminder that the AI supply chain is now just the supply chain. Elsewhere a television maker declares war on the proxies quietly renting out your living room, and a French regulator sets a 2027 clock ticking on any product that still can't survive a quantum computer. The theme of the day is provenance — who touched your model, who's routing through your network, and whether your cryptography has an expiry date.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 22 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Supply-Chain Security</span>
+        <span class="toc-title">OpenAI and Hugging Face address security incident during model evaluation</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Network Abuse</span>
+        <span class="toc-title">LG to ban residential proxies from smart TV apps</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Post-Quantum Deadline</span>
+        <span class="toc-title">France's ANSSI will block PQC-free products from certification starting 2027</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Model Release</span>
+        <span class="toc-title">Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Confidential Compute</span>
+        <span class="toc-title">Apple Private Cloud Compute SoC 3 audit reports</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Advertising</span>
+        <span class="toc-title">Advertise in ChatGPT</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Privacy &amp; Law</span>
+        <span class="toc-title">Apple defeats liability for not scanning iCloud for CSAM</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Generative Imaging</span>
+        <span class="toc-title">Qwen-Image-3.0: Rich Content, Authentic Details, Deep Knowledge</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Copyright</span>
+        <span class="toc-title">Judge approves $1.5B Anthropic settlement for pirated books used to train Claude</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Digital Rights</span>
+        <span class="toc-title">&#39;VPNs are lawful technical tools,&#39; says EU Court in landmark copyright ruling</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Supply-Chain Security</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">OpenAI and Hugging Face address security incident during model evaluation</h2>
+      <p class="spread-lede">OpenAI and Hugging Face have jointly disclosed a security incident uncovered while evaluating a model — a rare public glimpse into what can go wrong when weights, datasets and evaluation harnesses move between the two organisations that most of the AI ecosystem depends on.</p>
+      <div class="spread-body"><p>Details are still thin, but the shape is familiar to anyone who has run a software supply chain: an artefact — in this case a model or its evaluation tooling — passed between trusted parties, and somewhere in that handoff a control failed. What makes it notable is not the severity but the venue. Hugging Face is the de facto package registry for open weights, and OpenAI is the reference vendor for frontier capability. When those two coordinate a disclosure, it signals that model distribution is being treated with the same seriousness as an npm or PyPI compromise.</p><p>For defenders the lesson is that "download a model and run it" is now an untrusted-code problem. Model files can carry pickled payloads, evaluation scripts execute with real privileges, and the provenance chain from research lab to your GPU is longer than most inventories capture. The reassuring part is that both parties caught it during evaluation rather than in production — evidence the industry is building the muscle for this. The unreassuring part is that most organisations pulling models off the Hub have no equivalent gate.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Treat model artefacts as third-party code. Pin the specific model revision hashes you deploy, run untrusted weights and eval scripts in sandboxed, network-isolated environments, and prefer safetensors over pickle formats. Add Hugging Face and your model vendors to the supplier list your vulnerability-disclosure process actually watches.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 967</span>
+          <span class="meta-pill meta-source">openai.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openai.com/index/hugging-face-model-evaluation-security-incident/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48997548" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Network Abuse</div>
+
+      <h2 class="spread-headline">LG to ban residential proxies from smart TV apps</h2>
+      <p class="spread-lede">LG will start blocking residential-proxy software from its smart-TV app platform, cutting off a channel that quietly conscripts consumer devices into networks sold to whoever wants to route traffic through a real home connection — including fraudsters and scrapers.</p>
+      <div class="spread-body"><p>Residential proxy networks are one of the least understood pieces of internet plumbing. They resell the IP addresses of ordinary people's devices — phones, routers, and increasingly smart TVs — so that traffic appears to originate from a genuine home rather than a data centre. That legitimacy is exactly what makes them valuable to credential-stuffing operators, ad-fraud rings and scrapers dodging rate limits. LG banning the SDKs that enable this on its platform removes one large, always-on, rarely-patched population of devices from the supply.</p><p>The move matters for defenders on both sides of the connection. If you run consumer-facing services, residential proxies are why "block the data-centre ranges" stopped working years ago — abuse now arrives from the same ASNs as your real customers. And if you own the endpoints, a smart TV silently proxying strangers' traffic is a device on your network making unattributable outbound connections. Krebs framing this as a vendor finally taking responsibility is fair, but one manufacturer acting doesn't shrink a market this profitable for long.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 188</span>
+          <span class="meta-pill meta-source">krebsonsecurity.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://krebsonsecurity.com/2026/07/lg-to-ban-residential-proxies-from-smart-tv-apps/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49000864" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Post-Quantum Deadline</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">France's ANSSI will block PQC-free products from certification starting 2027</h2>
+      <p class="spread-lede">France's cybersecurity agency ANSSI will refuse certification to products that lack post-quantum cryptography from 2027 — the first hard regulatory deadline turning "harvest now, decrypt later" from a slide-deck threat into a procurement gate with teeth.</p>
+      <div class="spread-body"><p>For years post-quantum migration has been the security topic everyone agrees is important and nobody funds, because the threat is dated "sometime in the 2030s." ANSSI is collapsing that timeline by attacking the incentive rather than the physics: if a product cannot demonstrate PQC support, it will not clear France's certification regime, and in regulated European sectors certification is the price of doing business. That reframes quantum readiness from a research curiosity into a near-term commercial requirement for anyone selling into government, defence or critical infrastructure.</p><p>The subtext is "harvest now, decrypt later": adversaries recording encrypted traffic today to break once a cryptographically relevant quantum computer exists. Long-lived secrets — health records, state communications, anything with a decade-plus confidentiality horizon — are already exposed to that patience. ANSSI's 2027 line is aggressive by design, and where France leads on certification the rest of the EU tends to follow. Buyers who assumed they had until the 2030s to think about hybrid key exchange now have a much shorter fuse.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory where you rely on classical public-key crypto for data that must stay secret past 2030 — VPNs, TLS termination, code signing, archival encryption. Ask your key suppliers for their PQC and hybrid-key-exchange roadmaps now, and make "PQC by 2027" a written requirement in procurement for anything touching the French or wider EU public sector.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 92</span>
+          <span class="meta-pill meta-source">postquantum.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://postquantum.com/security-pqc/anssi-pqc-certification-2027/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48994116" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Model Release</div>
+
+      <h2 class="spread-headline">Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber</h2>
+      <p class="spread-lede">Google has shipped Gemini 3.6 Flash, 3.5 Flash-Lite, and a purpose-built 3.5 Flash Cyber variant — the notable one being a fast, cheap model tuned specifically for security workloads rather than general chat.</p>
+      <div class="spread-body"><p>The headline for most people is another round of cheaper, faster Flash models, but the interesting entry is "Flash Cyber." A model explicitly positioned for security work — triage, log analysis, detection engineering, threat-intel summarisation — signals that vendors now see the SOC as a distinct market worth a dedicated SKU. Fast and inexpensive matters more than raw intelligence here: security automation runs at volume, over noisy data, where a model that is 90% as capable but a tenth of the cost changes what you can afford to inspect at all.</p><p>The caution is that a "cyber" label is marketing until proven otherwise. The questions that decide whether it belongs in a pipeline are unglamorous: what was it trained and evaluated on, how does it handle adversarial or poisoned inputs buried in logs, and what happens to your telemetry once it leaves your tenancy. A model reading your security events is itself a sensitive data flow. Still, the direction is real — the near future of detection engineering is a lot of cheap model calls over data no human was ever going to read.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 660</span>
+          <span class="meta-pill meta-source">blog.google</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48993414" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Confidential Compute</div>
+
+      <h2 class="spread-headline">Apple Private Cloud Compute SoC 3 audit reports</h2>
+      <p class="spread-lede">Apple has published SOC 3 audit reports for the silicon behind Private Cloud Compute, its attempt to extend on-device privacy guarantees into the data centre — and the paperwork itself is a small landmark in how AI infrastructure gets held accountable.</p>
+      <div class="spread-body"><p>Private Cloud Compute is Apple's answer to an awkward truth: some AI requests are too heavy for a phone, but sending them to an ordinary cloud dissolves the privacy story. PCC's pitch is that server-side inference can be made verifiable — hardware-attested, stateless, with no persistent access even for Apple. Publishing third-party SOC 3 audit reports for the SoC underpinning it is the part that turns architectural claims into something an auditor, and eventually a regulator, can point at. It is the difference between "trust us" and "here is an independent examination."</p><p>For a security leader evaluating where sensitive workloads can run, this is a useful reference model. The value is less in Apple's specific implementation and more in the pattern: attestable hardware, a narrowly scoped trusted computing base, and external attestation of the controls. That is roughly the bar confidential-computing offerings from other clouds will be measured against. The honest caveat is that a SOC 3 is a summary report — reassuring, but lighter than the SOC 2 Type II detail a due-diligence process should ask for before betting regulated data on any of it.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 123</span>
+          <span class="meta-pill meta-source">support.apple.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://support.apple.com/guide/certifications/apple-private-cloud-compute-soc-3-audit-apc95a31b9d8/web" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48995796" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Advertising</div>
+
+      <h2 class="spread-headline">Advertise in ChatGPT</h2>
+      <p class="spread-lede">OpenAI has opened an advertising portal for ChatGPT, and the quiet significance is bigger than the banner: the most-used AI assistant on earth is becoming an ad-supported surface, with all the attention-and-data incentives that business model drags behind it.</p>
+      <div class="spread-body"><p>Search taught a generation what happens when a free information tool monetises through ads: the answer starts optimising for the advertiser as much as the asker. Bringing that model into a conversational assistant is a sharper version of the same trade. A chatbot doesn't return ten blue links you can weigh; it returns one confident paragraph, and if commercial placement quietly shapes that paragraph, the influence is far harder to see than a labelled ad slot. The launch is small today, but the direction of travel is unmistakable.</p><p>For anyone whose staff paste work context into ChatGPT — which by now is nearly everyone — an ad-funded assistant raises the stakes on what the conversation is worth commercially. Targeting is only as good as the data behind it, and the richest signal is what users type. None of this is disqualifying, but it changes the risk calculus: the free tier's incentives are no longer neutral. The enterprise and API tiers, with contractual data boundaries, look more clearly worth paying for than they did a week ago.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 609</span>
+          <span class="meta-pill meta-source">ads.openai.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://ads.openai.com/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48996571" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Privacy &amp; Law</div>
+
+      <h2 class="spread-headline">Apple defeats liability for not scanning iCloud for CSAM</h2>
+      <p class="spread-lede">A US court has cleared Apple of liability for declining to scan iCloud for child-sexual-abuse material — a ruling that hands privacy advocates a win on client-side scanning, even as the judge made plain how uncomfortable the outcome was.</p>
+      <div class="spread-body"><p>The case sat on the fault line that has defined the encryption debate for a decade: the same scanning infrastructure that could detect abuse material is the infrastructure that could scan for anything. Apple famously proposed, then abandoned, on-device CSAM detection after security researchers showed how a scanning system, once built, invites mission creep and coerced expansion. This ruling effectively backs the position that a platform is not negligent for choosing not to build that surveillance capability — a meaningful precedent for the "don't build the backdoor" camp.</p><p>The judge's evident discomfort is the honest heart of it. Nobody wants a legal framework that reads as indifference to genuine harm, and the ruling is not a statement that the harm doesn't matter — it's a statement that mandating mass scanning is the wrong remedy. For security leaders the relevance is the principle: a capability you build for a good reason becomes a capability others can compel for bad ones. It's the same logic that governs lawful-intercept features, master keys, and every "just this once" exception to end-to-end encryption.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 399</span>
+          <span class="meta-pill meta-source">blog.ericgoldman.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.ericgoldman.org/archives/2026/07/apple-defeats-liability-for-not-scanning-icloud-for-csam-but-the-judge-was-not-pleased-amy-v-apple.htm" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48992870" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Generative Imaging</div>
+
+      <h2 class="spread-headline">Qwen-Image-3.0: Rich Content, Authentic Details, Deep Knowledge</h2>
+      <p class="spread-lede">Alibaba's Qwen team has released Qwen-Image-3.0, an open image model promising richer content, more authentic detail and stronger world knowledge — another data point in the steady erosion of the gap between open and proprietary generative imaging.</p>
+      <div class="spread-body"><p>The technical claims — better fine detail, more accurate rendering of text and real-world knowledge baked into generation — matter less than the fact that they're arriving in an openly available model from a major lab. Each release like this compresses the distance between what you can run yourself and what you'd previously have rented from a closed API. For teams that care about keeping image generation in-house for confidentiality or cost reasons, the open frontier moving up is straightforwardly good news.</p><p>The flip side is the one security teams have to keep repeating: every jump in fidelity is also a jump in the plausibility of synthetic media. Photorealistic generation with accurate text rendering is exactly what makes fake invoices, forged documents and convincing impersonation cheaper. The defensive posture doesn't change so much as intensify — assume any image or document can be fabricated at near-zero cost, and lean on provenance, signing and out-of-band verification rather than the human eye, which lost this contest a while ago.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 554</span>
+          <span class="meta-pill meta-source">qwen.ai</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://qwen.ai/blog?id=qwen-image-3.0" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48989701" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Copyright</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Judge approves $1.5B Anthropic settlement for pirated books used to train Claude</h2>
+      <p class="spread-lede">A US judge has approved a $1.5 billion settlement over Anthropic's use of pirated books to train Claude — one of the largest reckonings yet for how frontier models were built, and a direct signal to everyone who relies on those models.</p>
+      <div class="spread-body"><p>The number is the headline, but the precedent is the substance. Approving a settlement of this size establishes that using pirated copyrighted material as training data carries real, quantifiable liability — not a theoretical risk to be litigated indefinitely, but a bill that comes due. For Anthropic it's a costly line drawn under the training practices of the early frontier era. For the wider industry it puts a price tag on data provenance that every lab now has to factor into how, and on what, the next generation of models is trained.</p><p>For anyone building on Claude — as Euan does daily — the practical read is reassuring rather than alarming: this resolves a liability hanging over the model you already depend on rather than threatening its availability. But it's a reminder that "where did the training data come from" is now a supplier-risk question, not an academic one. Expect procurement and legal teams to start asking AI vendors for data-provenance assurances the way they already ask SaaS vendors about sub-processors. The era of not asking is over.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Nothing operationally changes about your Claude workflows today. But fold model-provider data provenance into your AI vendor assessments — ask for written assurances on training-data sourcing and indemnification for IP claims. If you're standardising on a model for anything client-facing, that indemnity clause is worth more than a benchmark score.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Legal</span>
+          <span class="meta-pill meta-score">HN 266</span>
+          <span class="meta-pill meta-source">apnews.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://apnews.com/article/ai-anthropic-copyright-settlement-claude-books-bartz-74b140444023898aeba8579b6e9f0d63" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48996652" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Digital Rights</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">&#39;VPNs are lawful technical tools,&#39; says EU Court in landmark copyright ruling</h2>
+      <p class="spread-lede">In a landmark copyright case, the EU's top court has ruled that VPNs are lawful technical tools that cannot be treated as inherently infringing — a quietly important line drawn in favour of the everyday privacy technology that underpins remote work and secure browsing.</p>
+      <div class="spread-body"><p>The case arrived through copyright — a dispute touching the Anne Frank works — but the principle the court settled reaches far wider. Rightsholders and some regulators have long argued that because VPNs can be used to evade geographic or copyright controls, the tools themselves are suspect. The court rejected that framing: a VPN is neutral infrastructure, lawful to build and use, and cannot be presumed illegitimate because some people misuse it. It's the encryption debate in a different costume, and the tool-neutrality side won.</p><p>For any organisation operating in Europe this is welcome clarity. VPNs are not a fringe privacy gadget; they are load-bearing infrastructure for remote access, site-to-site connectivity and protecting traffic on untrusted networks. A legal environment that treated them as presumptively dodgy would have been a slow poison for ordinary security practice. The ruling doesn't grant immunity for what people do over a VPN — misuse is still misuse — but it protects the tool, and by extension the millions of legitimate uses that vastly outnumber the illicit ones.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">No change to your VPN deployments — this is legal cover, not a new obligation. Keep it in your back pocket for the recurring conversations where VPNs get lumped in with "tools criminals use": the EU's highest court has now formally endorsed their legitimacy, a useful citation when defending privacy-preserving tooling to boards, auditors or regulators.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 485</span>
+          <span class="meta-pill meta-source">techradar.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.techradar.com/vpn/vpn-privacy-security/vpns-are-lawful-technical-tools-says-eu-court-in-landmark-anne-frank-copyright-ruling" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48997221" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 22 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: benchmark-leaderboard jostling between rival model labs, GPU-rental and compute-marketplace launches, a founder's new chat-plus-git product pitch, and the usual front-page detours into castles, coral reefs and radio nostalgia.</p>
+    <p>Duplicates excluded against the previous two editions: 0. None of today's ten selections appeared in the 20 or 21 July issues.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
