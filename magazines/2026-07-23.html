@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 23 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 200</span>
+    <span>Wednesday · 23 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A take-home interview project turns out to be a staffed malware operation with a division of labour. A White House official accuses a Chinese frontier lab of building its flagship by distilling Anthropic&#39;s. And the trade says farewell to the most productively wrong columnist it ever had. Today&#39;s front page is about trust — in recruiters, in benchmarks, and in models.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 23 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      2 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Social Engineering</span>
+        <span class="toc-title">I Inspected My Take-Home Interview Project. It Was a Whole Operation</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Regulation &amp; Privacy</span>
+        <span class="toc-title">Macron backs effort to ban under-15s from social media</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Supply Chain</span>
+        <span class="toc-title">&ldquo;We have information that Moonshot distilled Fable for the development of K3&rdquo;</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Tooling</span>
+        <span class="toc-title">GigaToken: ~1000x faster language model tokenization</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Research</span>
+        <span class="toc-title">Terence Tao&#39;s ChatGPT conversation about the Jacobian Conjecture counterexample</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">On-Device AI</span>
+        <span class="toc-title">Cactus Hybrid: We taught Gemma 4 to know when it&#39;s wrong</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Benchmark Integrity</span>
+        <span class="toc-title">Are AI labs pelicanmaxxing?</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Systems Engineering</span>
+        <span class="toc-title">Everyone should know SIMD</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Security Governance</span>
+        <span class="toc-title">Restructuring GitHub&#39;s bug bounty program</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">In Memoriam</span>
+        <span class="toc-title">John C. Dvorak has died</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Social Engineering</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">I Inspected My Take-Home Interview Project. It Was a Whole Operation</h2>
+      <p class="spread-lede">A developer handed a take-home coding exercise by a &ldquo;recruiter&rdquo; did what almost nobody does — read the repository before running it — and found malware wired into git hooks, backed by what looks like an organised, multi-person operation rather than a lone scammer.</p>
+      <div class="spread-body"><p>The lure is depressingly efficient: a plausible job, a friendly recruiter, and a repository the candidate is expected to clone and run within days. The malicious payload hides in places code review habitually skips — git hooks, build scripts, obfuscated dependencies — and fires the moment the project is executed. The author&#39;s forensic walkthrough shows infrastructure, task-division, and reuse across victims: this is a production line, in the same family as the DPRK-linked &ldquo;Contagious Interview&rdquo; campaigns that have been quietly harvesting developer machines and credentials for two years.</p><p>The uncomfortable part for security teams is that the victim profile is exactly the person with the most access: engineers, often senior, often job-curious, running untrusted code on the same laptop that holds SSH keys, cloud sessions, and a password manager. Interview exercises sit in a blind spot — they arrive through personal channels, outside email gateways and EDR-monitored download paths, and they come with built-in social pressure to execute quickly.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Brief engineering staff — including anyone quietly interviewing — that take-home projects are untrusted code: run them in a disposable VM or container, never on a corp-credentialed machine. Set <code>core.hooksPath</code> to a safe default on managed devices, and add fake-recruiter lures to your phishing awareness material; this campaign targets exactly your team&#39;s profile.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 346</span>
+          <span class="meta-pill meta-source">citizendot.github.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://citizendot.github.io/articles/fake-job-interview-git-hook-malware/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49013036" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Regulation &amp; Privacy</div>
+
+      <h2 class="spread-headline">Macron backs effort to ban under-15s from social media</h2>
+      <p class="spread-lede">The French president is throwing his weight behind lawmakers pushing a national ban on social media for children under 15 — the strongest signal yet that Europe&#39;s age-verification wave is moving from rhetoric to statute.</p>
+      <div class="spread-body"><p>France has flirted with this for years, but presidential backing changes the calculus: a national bill becomes a template other EU capitals can copy, and pressure mounts on Brussels to harmonise rather than let 27 age-check regimes bloom. Australia&#39;s under-16 ban gave political cover; the UK&#39;s Online Safety Act age-assurance rollout this summer showed the mechanics — and the backlash. The unresolved question is the same everywhere: you cannot verify a child&#39;s age without verifying everyone&#39;s, and every verification scheme is a new honeypot of identity data attached to browsing behaviour.</p><p>For privacy watchers the second-order effects matter more than the headline. Expect accelerated demand for &ldquo;privacy-preserving&rdquo; age-estimation vendors, device-level age APIs from Apple and Google, and VPN usage spikes of the sort the UK saw in July. And expect the compliance burden to fall on platforms mid-sized and down — the giants can build verification infrastructure; smaller communities will simply geo-block or shut, as some already have under the OSA.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 11</span>
+          <span class="meta-pill meta-source">fortune.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://fortune.com/2026/07/20/french-president-social-media-ban-lawmakers/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49017277" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Supply Chain</div>
+
+      <h2 class="spread-headline">&ldquo;We have information that Moonshot distilled Fable for the development of K3&rdquo;</h2>
+      <p class="spread-lede">A senior US administration official publicly alleges that Chinese lab Moonshot AI built its acclaimed K3 model by distilling Anthropic&#39;s Fable — an unproven claim, but one that drags model provenance squarely into geopolitics.</p>
+      <div class="spread-body"><p>Be precise about what this is: a tweet, from a government official, asserting &ldquo;information&rdquo; without evidence. No methodology, no logs, no Anthropic confirmation. Distillation — training a new model on another model&#39;s outputs — violates every frontier lab&#39;s terms of service, and accusations have flown before: OpenAI made similar noises about DeepSeek in 2025, and nothing public ever settled it. What is new is the source. When a White House official makes the allegation, it stops being a commercial ToS dispute and becomes an instrument of AI export-control politics, landing just as Washington debates chip flows and API access restrictions for Chinese labs.</p><p>If substantiated, it would validate a real security concern: API access as an exfiltration channel, where a competitor&#39;s crown-jewel capability leaks one completion at a time through ordinary-looking traffic. Detection of distillation-scale scraping is exactly the kind of abuse-monitoring problem frontier labs are still maturing. If unsubstantiated, it is a preview of how easily &ldquo;model provenance&rdquo; claims can be weaponised — worth remembering the next time a procurement questionnaire asks where a model&#39;s weights came from and everyone simply believes the vendor&#39;s answer.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Security</span>
+          <span class="meta-pill meta-score">HN 232</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/mkratsios47/status/2079933645888880708" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49007610" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Tooling</div>
+
+      <h2 class="spread-headline">GigaToken: ~1000x faster language model tokenization</h2>
+      <p class="spread-lede">A new open-source tokenizer claims roughly three orders of magnitude speed-up over standard BPE implementations — the kind of unglamorous infrastructure win that quietly changes what&#39;s affordable in data pipelines.</p>
+      <div class="spread-body"><p>Tokenization is the boring tollbooth every LLM workload pays: pre-training corpora, RAG ingestion, evaluation harnesses, log analysis — all of it passes through a tokenizer, usually a Python-wrapped BPE that nobody has profiled since they installed it. GigaToken&#39;s pitch is that the algorithmic and implementation headroom was enormous, and the ~1000x figure — even if real-world workloads land at a tenth of that — moves tokenization from &ldquo;overnight batch job&rdquo; to &ldquo;interactive&rdquo;. At 451 points, HN clearly believes the itch is real.</p><p>The practical relevance is wider than pre-training labs. Anyone chunking documents for retrieval, computing token counts for cost estimation, or running dedup over large text stores has tokenizer throughput on the critical path. Fast, exact tokenization also makes security-adjacent work cheaper: scanning prompt logs, measuring context-window abuse, or re-tokenizing corpora to hunt injected content stops being a compute line-item. Worth an eval if any of your AI tooling batch jobs are measured in hours.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 451</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/marcelroed/gigatoken/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49010167" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Research</div>
+
+      <h2 class="spread-headline">Terence Tao&#39;s ChatGPT conversation about the Jacobian Conjecture counterexample</h2>
+      <p class="spread-lede">The world&#39;s most celebrated living mathematician shared a raw ChatGPT transcript from his work examining a claimed counterexample to the decades-old Jacobian Conjecture — and 768 upvotes say the interesting artefact is the workflow, not the verdict.</p>
+      <div class="spread-body"><p>Tao has been the field&#39;s most credible experimentalist in AI-assisted mathematics, and what the shared conversation shows is neither oracle nor stochastic parrot. It is a competent, occasionally wrong research assistant being steered by someone who knows exactly what to ask, what to distrust, and how to convert a vague hunch into checkable sub-claims. The model retrieves, reformulates, and stress-tests; Tao supplies taste and judgement. That division of labour — machine breadth, human depth — is the honest version of the &ldquo;AI does maths now&rdquo; headline.</p><p>The meta-story is transparency. By publishing the transcript itself, Tao lets everyone audit how the sausage was made — where the model helped, where it confidently misfired, and how much expert scaffolding was required. Compare that with vendor demos of benchmark scores on closed problems. If AI is going to participate in serious intellectual work, this is the disclosure norm worth importing into every technical field, security research included: show the conversation, not just the conclusion.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Research</span>
+          <span class="meta-pill meta-score">HN 768</span>
+          <span class="meta-pill meta-source">chatgpt.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://chatgpt.com/share/6a5fdc7a-d6f8-83e8-bbea-8deb42cfed56" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49010345" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">On-Device AI</div>
+
+      <h2 class="spread-headline">Cactus Hybrid: We taught Gemma 4 to know when it&#39;s wrong</h2>
+      <p class="spread-lede">A small open-source project trains an on-device Gemma model to estimate its own uncertainty and escalate to a bigger cloud model only when it&#39;s likely to be wrong — a routing pattern with obvious cost and privacy appeal.</p>
+      <div class="spread-body"><p>The hybrid architecture is the practical answer to a question every AI deployment eventually asks: why pay frontier-model prices for queries a 4B-parameter model answers correctly? Cactus&#39;s contribution is calibration — teaching the small model to recognise the boundary of its own competence, so the escalation decision is made by measured confidence rather than crude keyword rules. When it works, the majority of traffic stays on-device: faster, cheaper, and never leaving the user&#39;s hardware.</p><p>The privacy framing deserves the attention here. On-device-first routing means sensitive queries — health questions, personal documents, internal business content — get answered locally by default, with only the hard residue going to the cloud. For anyone building AI features under GDPR constraints, &ldquo;the data stays on the device unless confidence drops&rdquo; is a genuinely useful posture, provided the escalation path is visible to the user. The catch is equally instructive: calibration is fragile out-of-distribution, and a model that is confidently wrong routes nothing anywhere. Verify before trusting the router.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tools</span>
+          <span class="meta-pill meta-score">HN 110</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/cactus-compute/cactus-hybrid" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49010782" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Benchmark Integrity</div>
+
+      <h2 class="spread-headline">Are AI labs pelicanmaxxing?</h2>
+      <p class="spread-lede">Simon Willison&#39;s whimsical &ldquo;pelican riding a bicycle&rdquo; SVG test has become so famous that new models are suspiciously good at it — prompting a data-driven investigation into whether labs are now training to the meme.</p>
+      <div class="spread-body"><p>The pelican test worked precisely because it was silly: an informal probe no lab would bother optimising, so it measured something honest about a model&#39;s spatial reasoning and code generation. This analysis compares pelican-drawing performance against similar off-benchmark drawing tasks and finds the gap you would predict if the test had leaked into training priorities — recent models draw conspicuously better pelicans-on-bicycles than equally difficult flamingos-on-skateboards. It is Goodhart&#39;s Law with feathers: the moment a measure becomes a target, it stops measuring.</p><p>The serious point survives the joke. Every public benchmark — MMLU, SWE-bench, the arena leaderboards — faces the same contamination pressure, which is why lab-reported scores keep drifting away from practitioners&#39; lived experience. The defence is unchanged: private evals on your own tasks, rotated regularly, never published. If your organisation selects models for anything that matters, treat public leaderboards as marketing and your own held-out test set as the only score with integrity. The pelican was a canary.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Analysis</span>
+          <span class="meta-pill meta-score">HN 468</span>
+          <span class="meta-pill meta-source">dylancastillo.co</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://dylancastillo.co/posts/pelicanmaxxing.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49010129" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Systems Engineering</div>
+
+      <h2 class="spread-headline">Everyone should know SIMD</h2>
+      <p class="spread-lede">Mitchell Hashimoto argues that single-instruction-multiple-data programming — long treated as specialist wizardry — is now table stakes for any engineer who cares about performance, and shows how approachable modern SIMD actually is.</p>
+      <div class="spread-body"><p>Hashimoto&#39;s post does what his writing reliably does: takes a topic with an intimidating reputation and walks through it with working code until the mystique evaporates. The pitch is that the free lunch of general-purpose CPU scaling is over, but the vector units shipping in every modern chip — NEON on Apple silicon, AVX-512 on x86 — sit idle in most software. Meanwhile the tooling has matured: portable SIMD abstractions in Zig, Rust, and C++ mean you no longer hand-write intrinsics per architecture to get 4–16x on data-parallel loops.</p><p>The reason this matters beyond systems nerdery is that SIMD literacy explains the current performance renaissance — the reason tools like ripgrep, simdjson, and today&#39;s GigaToken (story 04) embarrass their predecessors by orders of magnitude. Parsing, hashing, scanning, filtering: the workloads that dominate security tooling are exactly the workloads SIMD accelerates. Understanding it, even at reading level, recalibrates your sense of what &ldquo;fast enough&rdquo; software should look like — and how much waste you are currently accepting.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Engineering</span>
+          <span class="meta-pill meta-score">HN 354</span>
+          <span class="meta-pill meta-source">mitchellh.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://mitchellh.com/writing/everyone-should-know-simd" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49010648" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Security Governance</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Restructuring GitHub&#39;s bug bounty program</h2>
+      <p class="spread-lede">GitHub announces a &ldquo;next chapter&rdquo; restructuring of one of the industry&#39;s longest-running bug bounty programmes — a bellwether worth reading closely by anyone who runs, funds, or depends on coordinated vulnerability disclosure.</p>
+      <div class="spread-body"><p>When a platform that hosts most of the world&#39;s source code reshapes its bounty programme, the details are less interesting than the direction: what scope gets promoted, what gets carved out, and how researcher incentives shift. Mature programmes restructure for predictable reasons — triage load from low-quality AI-generated submissions, reward tables that no longer match where real risk lives, and the need to steer researchers toward the assets that matter. GitHub&#39;s choices tend to propagate; its programme has been a reference design since 2014, and platform-scale changes ripple into what researchers expect from everyone else&#39;s.</p><p>The AI-slop problem deserves particular attention. Every major programme is now drowning in plausible-sounding, machine-written vulnerability reports that cost real triage hours to dismiss — curl&#39;s maintainers have been loudly public about it. How GitHub restructures around that pressure — submission friction, reputation gating, reward rebalancing — is a preview of coordinated disclosure&#39;s next decade, and of whether the economics of bounty programmes survive contact with generative tooling.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Read the announcement and note what GitHub changed and why. If you operate or are planning a VDP or bounty, benchmark your scope, reward logic, and AI-submission policy against theirs; if your organisation&#39;s code lives on GitHub, confirm the restructured scope still covers the platform features you depend on, and fold the changes into your supply-chain assurance notes.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 32</span>
+          <span class="meta-pill meta-source">github.blog</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.blog/security/next-chapter-restructuring-githubs-bug-bounty-program/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49016099" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">In Memoriam</div>
+
+      <h2 class="spread-headline">John C. Dvorak has died</h2>
+      <p class="spread-lede">The tech press loses its longest-serving contrarian: columnist, broadcaster, and professional sceptic John C. Dvorak, whose five decades of opinionated, frequently wrong, always readable commentary shaped how the industry argues with itself.</p>
+      <div class="spread-body"><p>Dvorak wrote about personal computing before it was an industry, and kept writing — PC Magazine, InfoWorld, MarketWatch, and nearly two decades co-hosting the No Agenda podcast — long after most of his contemporaries retired or pivoted to punditry-by-press-release. He is remembered, affectionately, for spectacular wrongness: the 1984 column dismissing the mouse, the 2007 prediction that Apple should kill the iPhone before launch. He owned every miss with a shrug, which is precisely why he was trusted. A critic who is sometimes wrong in public is a critic who is actually making calls.</p><p>The 691 points on a death announcement measure something real: the trade press he embodied — adversarial, technically literate, financially independent of the companies it covered — has mostly evaporated, replaced by access journalism and content marketing. An industry now marinating in AI-generated engagement copy could use more writers whose job description was telling readers the product was bad. Pour one out, and read one of his old columns; the wrongness aged better than most people&#39;s rightness.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Culture</span>
+          <span class="meta-pill meta-score">HN 691</span>
+          <span class="meta-pill meta-source">twitter.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://twitter.com/na_announce/status/2079952538040672302" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49012070" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 23 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as security tooling, a Show HN slide-deck builder, retro-computing anniversaries, Postgres operations guides, and general-interest science and culture stories without security or AI relevance.</p>
+    <p>Duplicates excluded against the previous two editions: 2. The OpenAI/Hugging Face model-evaluation security incident and the LG residential-proxy ban both featured in yesterday&#39;s issue and were still riding today&#39;s front page.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
