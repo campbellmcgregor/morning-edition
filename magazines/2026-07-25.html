@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 25 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 202</span>
+    <span>Saturday · 25 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A live admin credential ships inside a security camera&#39;s own login page — the failure mode every CISO quietly dreads. Governments now aim takedown orders at the code itself, not just the app, as a mesh chat tool that works without a network becomes a problem worth suppressing. And two national safety institutes start grading, in the open, exactly how good a frontier model has become at breaking in.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 25 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      4 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Credential Exposure</span>
+        <span class="toc-title">My Security Camera Shipped a GitHub Admin Token in Its Login Page</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Censorship</span>
+        <span class="toc-title">India Orders GitHub to Remove Bluetooth Chat App Bitchat</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Cyber Capability</span>
+        <span class="toc-title">UK and US Safety Institutes Assess Kimi K3&#39;s Cyber Capabilities</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Tooling</span>
+        <span class="toc-title">Anthropic Publishes the Claude Cookbook</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Analysis</span>
+        <span class="toc-title">Be Skeptical of OpenAI&#39;s Rogue Hacker Agent Story</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Model Release</span>
+        <span class="toc-title">Anthropic Releases Claude Opus 5</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Infrastructure Incident</span>
+        <span class="toc-title">IRGC Claims It Destroyed Amazon&#39;s Bahrain Data Centre</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Privacy Tooling</span>
+        <span class="toc-title">Firefox Ships a Containers Preview</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Governance</span>
+        <span class="toc-title">Nvidia, Microsoft and Meta Warn Against Overregulating Open-Weight Models</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Reflection</span>
+        <span class="toc-title">If Coding Has Been Solved, Why Does Software Keep Getting Worse?</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Credential Exposure</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">My Security Camera Shipped a GitHub Admin Token in Its Login Page</h2>
+      <p class="spread-lede">A researcher pulling apart a Hanwha security camera found something no vendor should ever ship: a live GitHub admin token, embedded in the device&#39;s own login page and readable by anyone who viewed the source.</p>
+      <div class="spread-body"><p>The token wasn&#39;t buried in firmware or prised out of a debug port — it sat in the HTML served to every browser that loaded the camera&#39;s web interface. With admin scope on the vendor&#39;s GitHub organisation, whoever found it could read private repositories, push code, and potentially poison the firmware supply chain feeding thousands of deployed devices. This is the failure mode security leaders quietly dread: not a clever exploit, but a secret checked into a build and never rotated, hiding in plain sight until someone bothered to look.</p><p>Physical security cameras are among the most under-governed devices on any corporate network — bought by facilities, installed by contractors, and rarely enrolled in vulnerability management. A leaked admin credential turns a passive surveillance appliance into a pivot straight into the vendor&#39;s development pipeline. The lesson isn&#39;t Hanwha-specific; it&#39;s that any internet-adjacent appliance you did not write is a place secrets go to leak. Vendor GitHub hygiene belongs in your third-party risk assessment, not in the footnotes.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory the IP cameras, badge readers, and other &ldquo;facilities&rdquo; IoT on your network and confirm they sit behind segmentation rather than flat VLANs. Ask camera and appliance vendors, in writing, how they scan for committed secrets and how quickly they rotate leaked tokens. Where firmware auto-updates from a vendor pipeline, treat that pipeline as part of your own supply-chain attack surface.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 554</span>
+          <span class="meta-pill meta-source">hhh.hn</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://hhh.hn/hanwha-github-token/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49034292" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Censorship</div>
+
+      <h2 class="spread-headline">India Orders GitHub to Remove Bluetooth Chat App Bitchat</h2>
+      <p class="spread-lede">India has ordered GitHub to take down Bitchat, Jack Dorsey&#39;s Bluetooth-mesh messaging app that works without internet or cell service — the exact property that makes it useful during shutdowns, and the exact property governments dislike.</p>
+      <div class="spread-body"><p>Bitchat routes messages device-to-device over Bluetooth, forming an ad-hoc mesh that needs no servers, SIM cards, or network operator. That design makes it resilient to internet blackouts, which is precisely why authorities framing it as a &ldquo;security concern&rdquo; want it gone. Ordering removal at the source-code host, rather than blocking an app-store listing, is an escalation: it targets the distribution of the code itself, not merely its availability to end users on one platform.</p><p>For anyone tracking the direction of digital-rights regulation, the mechanism matters more than the app. Pressuring code-hosting platforms to delist projects sets a template other states will copy, and it collapses the line between &ldquo;moderating a service&rdquo; and &ldquo;suppressing a tool.&rdquo; Mesh and offline-first messaging exist because centralised networks are a chokepoint that can be switched off; the response to that resilience is now takedown orders aimed at the repository where the code lives.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 444</span>
+          <span class="meta-pill meta-source">thehindu.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.thehindu.com/news/national/government-orders-github-to-remove-bluetooth-based-chat-app-bitchat-over-security-concerns-jack-dorsey/article71262049.ece" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49036433" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Cyber Capability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">UK and US Safety Institutes Assess Kimi K3&#39;s Cyber Capabilities</h2>
+      <p class="spread-lede">A joint preliminary assessment from the UK AI Safety Institute and the US CAISI, published via NIST, evaluates how far the open-weight Kimi K3 model can go on offensive cyber tasks — the first such government read on this generation of frontier models.</p>
+      <div class="spread-body"><p>Government safety institutes running structured evaluations of a model&#39;s hacking ability is itself the signal. It tells you &ldquo;can this model meaningfully assist an attacker&rdquo; has moved from speculation to something regulators measure and publish. For an open-weight model in particular, capability is not gated behind an API you can revoke — once the weights are released, whatever offensive capacity they hold is in the wild permanently. That the assessment is &ldquo;preliminary&rdquo; matters far less than the fact that it exists at all.</p><p>The practical takeaway for defenders is that the floor on attacker capability keeps rising. Tasks that once required a skilled operator — reconnaissance, exploit adaptation, phishing at scale — increasingly fall within reach of anyone who can run a model locally. This does not mean autonomous cyberweapons overnight, but it does mean your threat model should assume commodity access to competent AI assistance on the offensive side. Read the assessment for the capabilities the institutes actually confirmed, not the headline abstraction of them.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Read the NIST/UK-AISI assessment directly to see which offensive tasks Kimi K3 measurably assisted with, and brief your detection team on those specific stages. Assume adversaries have local access to comparable open-weight capability and re-check that your controls — phishing resistance, exploit detection, anomalous-recon alerting — don&#39;t quietly rely on attacker unsophistication. Add UK AISI outputs to your recurring intelligence sources.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Security</span>
+          <span class="meta-pill meta-score">HN 22</span>
+          <span class="meta-pill meta-source">nist.gov</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.nist.gov/news-events/news/2026/07/uk-aisi-caisi-preliminary-assessment-kimi-k3s-cyber-capabilities" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49044492" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Anthropic Publishes the Claude Cookbook</h2>
+      <p class="spread-lede">Anthropic has released a Claude Cookbook — a collected set of runnable recipes and patterns for building with its models — consolidating the scattered examples developers have been piecing together into one first-party reference.</p>
+      <div class="spread-body"><p>A first-party cookbook matters because it encodes the vendor&#39;s own view of how their tools should be used: retrieval patterns, tool-use loops, agent scaffolding, evaluation approaches. For anyone building AI-assisted workflows, that is faster and safer than reverse-engineering behaviour from third-party blog posts. It also signals maturity — the ecosystem around Claude is stable enough that Anthropic is investing in canonical documentation rather than shipping features and moving on to the next thing.</p><p>The security-minded reading is that reference implementations shape how thousands of teams wire models into production, including the mistakes. If the cookbook demonstrates good patterns for handling untrusted input, scoping tool permissions, and validating model output, those defaults propagate quietly across the industry. If it glosses over them, so does everyone copying it. Worth skimming not just for what to build, but for whether the recommended patterns bake in the guardrails your own deployments will need.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Skim the cookbook for the tool-use and agent recipes you actually run, and check whether the patterns you&#39;ve copied handle untrusted input and permission scoping the way you&#39;d want in production. Use it as a shared baseline to standardise how your team wires Claude into pipelines, rather than each engineer improvising their own scaffolding.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 304</span>
+          <span class="meta-pill meta-source">platform.claude.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://platform.claude.com/cookbook/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49031409" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Analysis</div>
+
+      <h2 class="spread-headline">Be Skeptical of OpenAI&#39;s Rogue Hacker Agent Story</h2>
+      <p class="spread-lede">The Guardian pushes back on a widely-shared narrative that an OpenAI agent &ldquo;went rogue&rdquo; and started hacking, arguing the account owes more to marketing theatre than to any genuine loss of control.</p>
+      <div class="spread-body"><p>Stories about AI systems autonomously attacking things travel fast because they flatter everyone: the vendor looks powerful, the critics look vindicated, and the reader gets a frisson of science fiction. The Guardian&#39;s argument is that the specifics rarely survive scrutiny — what gets described as an agent &ldquo;deciding&rdquo; to hack is usually a scripted evaluation, a sandboxed task, or an operator&#39;s prompt, dressed up as emergent behaviour. Capability demonstrations are not the same thing as agents slipping their leash.</p><p>For a security leader the discipline is to separate the real trendline from the hype wrapped around it. AI genuinely is lowering the cost of offensive tooling — that is worth planning for. But conflating that with anthropomorphic &ldquo;rogue agent&rdquo; stories corrodes your ability to reason about actual risk, and makes it harder to get boards to fund the boring controls that matter. Demand the mechanism behind any such claim before you let it anywhere near your threat model.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Security</span>
+          <span class="meta-pill meta-score">HN 474</span>
+          <span class="meta-pill meta-source">theguardian.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.theguardian.com/technology/2026/jul/24/openai-rogue-hacker" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49038060" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Model Release</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Anthropic Releases Claude Opus 5</h2>
+      <p class="spread-lede">Anthropic has shipped Claude Opus 5, the newest and most capable model in its flagship line — topping independent intelligence leaderboards on release and immediately relevant to anyone whose daily workflow runs on Claude.</p>
+      <div class="spread-body"><p>Opus 5 landing at number one on the Artificial Analysis leaderboard is the headline, but the practical story is capability compounding inside tools people already use. For a leader running Claude Code and agentic workflows, a frontier step-change means the assistant handling your research, drafting, and code review just got materially better at all three — and so did everyone else&#39;s assistant, on both sides of the security line.</p><p>Every capability gain is dual-use. The same model that accelerates your defensive tooling accelerates reconnaissance, social engineering, and exploit development for attackers on the same subscription. The right posture isn&#39;t alarm, it&#39;s parity: assume adversaries have the same frontier model you do, and make sure your advantage comes from context, data, and integration they don&#39;t have — not from a capability gap that closes the morning a new model ships.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Re-baseline the AI-assisted workflows you run on Claude against Opus 5 — the tasks worth delegating shift each time the frontier moves. In the same breath, update your threat assumptions: treat adversaries as having equivalent frontier capability, and locate your edge in proprietary context and integration rather than model access. Review anywhere a model touches sensitive data before upgrading in production.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 1454</span>
+          <span class="meta-pill meta-source">anthropic.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.anthropic.com/news/claude-opus-5" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49038433" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Infrastructure Incident</div>
+
+      <h2 class="spread-headline">IRGC Claims It Destroyed Amazon&#39;s Bahrain Data Centre</h2>
+      <p class="spread-lede">Iran&#39;s Revolutionary Guard has claimed responsibility for destroying an Amazon data centre in Bahrain — a claim that is unverified and should be read with heavy skepticism, but that points at a real category of risk to cloud infrastructure.</p>
+      <div class="spread-body"><p>Treat the specific claim as unconfirmed: attribution statements from state military bodies are propaganda instruments as much as facts, and &ldquo;destroyed a data centre&rdquo; is the kind of assertion that tends to shrink under verification. What the story usefully surfaces is that the physical and geopolitical layer of cloud is not abstract. Regions map to real buildings in real jurisdictions, and those buildings sit inside regional tensions your architecture diagram never mentions.</p><p>Most resilience planning stops at &ldquo;the provider handles availability,&rdquo; which is true right up until a region becomes a target of state conflict. Concentration in a single cloud region — especially one in a geopolitically exposed location — is a risk that a multi-AZ deployment does not address. Whether or not this particular claim holds, it is a prompt to ask where your critical workloads physically live, and what happens if an entire region goes dark for reasons no SLA was ever written to cover.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 278</span>
+          <span class="meta-pill meta-source">houseofsaud.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://houseofsaud.com/irgc-claims-destroyed-amazon-bahrain-data-center/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49033240" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Privacy Tooling</div>
+
+      <h2 class="spread-headline">Firefox Ships a Containers Preview</h2>
+      <p class="spread-lede">Mozilla is previewing a refreshed take on Firefox Containers, the feature that isolates browsing into separate coloured contexts so trackers and logins from one part of your life can&#39;t bleed into another.</p>
+      <div class="spread-body"><p>Containers partition cookies, storage, and session state per context, so your work Google account, your personal shopping, and that sketchy vendor portal never share a cookie jar. It is one of the few genuinely usable answers to cross-site tracking that doesn&#39;t require living in a permanent private window. A polished, first-class version lowers the friction enough that non-experts might actually adopt compartmentalisation instead of admiring it in theory.</p><p>For security teams, browser compartmentalisation is quietly one of the higher-leverage controls available — it limits the blast radius of a phished session and frustrates the cross-context tracking that fuels targeted social engineering. Mozilla investing here is also a small counter-current to a browser market consolidating around a single engine. Worth trialling as a recommended pattern for staff who juggle many accounts, particularly those with access to sensitive systems.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 283</span>
+          <span class="meta-pill meta-source">blog.mozilla.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.mozilla.org/en/firefox/firefox-containers-preview/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=48995409" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Governance</div>
+
+      <h2 class="spread-headline">Nvidia, Microsoft and Meta Warn Against Overregulating Open-Weight Models</h2>
+      <p class="spread-lede">Three of the largest names in computing have jointly cautioned regulators against clamping down too hard on open-weight AI models, framing openness as essential to competition — and, not incidentally, to their own strategic positions.</p>
+      <div class="spread-body"><p>The argument on its face is reasonable: open weights drive research, let smaller players compete, and prevent capability concentrating in a handful of API gatekeepers. But read the coalition. Nvidia sells the hardware every open model runs on, Meta has staked its AI strategy on open releases, and Microsoft plays both sides of the fence. &ldquo;Don&#39;t overregulate&rdquo; is a principled position and a commercial one simultaneously, and pretending otherwise makes for poor policy analysis.</p><p>For a security leader the tension is concrete. Open weights are exactly what the UK and US safety institutes are now evaluating for offensive capability — and once released, they cannot be recalled, patched, or access-revoked. The policy question isn&#39;t &ldquo;open versus closed&rdquo; as a slogan; it&#39;s who bears the downstream security cost when a capable model is permanently in the wild. Watch this debate, because its outcome shapes what your adversaries will freely have.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Policy</span>
+          <span class="meta-pill meta-score">HN 576</span>
+          <span class="meta-pill meta-source">cnbc.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.cnbc.com/2026/07/24/nvidia-microsoft-meta-open-weight-ai-models.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49035303" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Reflection</div>
+
+      <h2 class="spread-headline">If Coding Has Been Solved, Why Does Software Keep Getting Worse?</h2>
+      <p class="spread-lede">A widely-shared essay sits with an uncomfortable contradiction: we are told AI has all but solved programming, yet the software people actually use feels slower, buggier, and more broken than it has in years.</p>
+      <div class="spread-body"><p>The piece argues the euphoria around AI coding assistants obscures a decline in the things that make software good — coherence, restraint, care about the parts users never see. Generating more code faster does not fix a discipline whose failures were never about typing speed. They were about judgement, ownership, and the willingness to say no to complexity. A tool that lowers the cost of producing code lowers the cost of producing bad code just as efficiently.</p><p>For anyone accountable for systems, this is not nostalgia — it is a security argument in disguise. Software that &ldquo;keeps getting worse&rdquo; is software with more surface area, more dependencies, and more unexamined behaviour, which is to say more attack surface. If AI assistance multiplies output without multiplying scrutiny, the gap between what your systems do and what anyone actually understands them to do widens. The antidote is the least glamorous one going: review, ownership, and caring about the boring parts.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Engineering Culture</span>
+          <span class="meta-pill meta-score">HN 701</span>
+          <span class="meta-pill meta-source">ptrchm.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://ptrchm.com/posts/nothing-works-and-everyone-is-euphoric/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49033004" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 25 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as news, routine patch advisories, crypto and web3 hype, and the day&#39;s many fine but non-security diversions — a private rocket reaching orbit, sleeping sperm whales, a three-sided zipper, and an ode to the em dash.</p>
+    <p>Duplicates excluded against the previous two editions: 1. The recurring Kimi K3 Redis-exploit thread was dropped; today&#39;s separate UK/US safety-institute assessment of the same model is a distinct, official source and was kept.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
