@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 26 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 203</span>
+    <span>Sunday · 26 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">Google reaches for the kill switch on a developer backdoor even as ordinary citizens take crowbars to the cameras watching their streets. Meanwhile the rules for talking to the newest machines are quietly rewritten. A Sunday of tightening perimeters — some corporate, some improvised.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 26 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      3 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Mobile Security</span>
+        <span class="toc-title">Android May Soon Restrict On-Device ADB</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">The Vigilante Movement Knocking Out Flock's Cameras</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Data Control</span>
+        <span class="toc-title">Cloudflare Hands Customers a Switch for AI Crawlers</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Edge AI</span>
+        <span class="toc-title">A 28.9M-Parameter LLM Running on an $8 Microcontroller</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agentic Coding</span>
+        <span class="toc-title">Field Notes on Agentic Coding, Benchmarks, and What Actually Works</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Tooling</span>
+        <span class="toc-title">The New Rules of Context Engineering for Claude 5</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Leaked Transcript</span>
+        <span class="toc-title">DeepSeek Pauses Fundraising After Leaked Compute-Gap Remarks</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open-Weight AI</span>
+        <span class="toc-title">Open-Weight AI Is Having Its Kubernetes Moment</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI Governance</span>
+        <span class="toc-title">Debian Puts LLM Usage to a Vote</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Censorship Resistance</span>
+        <span class="toc-title">Bitchat Finds a Home on Radicle</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Mobile Security</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Android May Soon Restrict On-Device ADB</h2>
+      <p class="spread-lede">A quiet change buried in Android's developer options could close one of the most abused social-engineering pathways on the platform: the on-device debugging bridge that scammers routinely talk victims into enabling to seize control of a phone.</p>
+      <div class="spread-body"><p>Android Debug Bridge has always been a power tool — the same interface developers use to sideload builds and read logs also grants near-total control over a device once activated. For years, fraud rings have exploited that duality, coaching victims over the phone to switch on wireless debugging and hand attackers a remote foothold without a single malicious app being installed. The reported change would gate on-device ADB behind stronger friction, narrowing a gap that no antivirus signature ever caught because nothing about it was, technically, malware.</p><p>For anyone running a mobile fleet, this is a reminder that the softest attacks bypass software controls entirely. MDM policies can disable developer options on managed devices, but the sprawling BYOD estate most organisations actually carry is where the risk lives. Google tightening the default is welcome, yet it is still "may soon" — a signal, not a shipped mitigation. The lesson for defenders is that user-walkthrough fraud has matured to the point where platform vendors are re-architecting around it, and awareness training should now name ADB and "developer mode" explicitly.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit your MDM baseline now: confirm developer options and USB/wireless debugging are disabled on all managed Android devices, and add a specific "never enable developer mode when a caller asks you to" line to security-awareness material. Treat this as a coming default, not a mitigation you can yet rely on.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 902</span>
+          <span class="meta-pill meta-source">kitsumed.github.io</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://kitsumed.github.io/blog/posts/android-may-soon-restrict-on-device-adb/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49045159" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+
+      <h2 class="spread-headline">The Vigilante Movement Knocking Out Flock's Cameras</h2>
+      <p class="spread-lede">Across American towns, a loose network of residents has begun physically disabling the automatic licence-plate readers that Flock Safety has quietly bolted to street corners — a grassroots revolt against a surveillance grid few communities ever voted for.</p>
+      <div class="spread-body"><p>Flock's cameras log the movements of every passing vehicle, building a searchable history of where people go that police departments can query — and, as reporting has repeatedly shown, that data gets shared far beyond the local force. The Guardian's account traces the counter-movement: people cutting cables, bagging lenses, and mapping camera locations, framing it as civil disobedience against warrantless mass tracking. Whatever one makes of the tactics, the story marks a shift from abstract privacy debate to physical confrontation with the hardware itself.</p><p>The security-leadership read here is about the normalisation of pervasive sensor networks and the backlash they eventually provoke. Automatic plate readers are a data-broker business wrapped in a public-safety pitch, and the same pattern — cheap sensors, centralised retention, opaque sharing agreements — is spreading into corporate physical security. Anyone deploying camera analytics on their own estate should study how quickly community consent evaporates when retention and sharing are left undefined, because the reputational blast radius is not theoretical.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 224</span>
+          <span class="meta-pill meta-source">theguardian.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.theguardian.com/us-news/ng-interactive/2026/jul/25/flock-surveillance-cameras" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49050538" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Data Control</div>
+
+      <h2 class="spread-headline">Cloudflare Hands Customers a Switch for AI Crawlers</h2>
+      <p class="spread-lede">Cloudflare is giving the sites behind its network granular control over how AI companies scrape their content — block it, meter it, or charge for it — turning what was an invisible extraction into a policy decision that site owners actually get to make.</p>
+      <div class="spread-body"><p>The announcement extends Cloudflare's "content independence" push: operators can now distinguish training crawlers from search and answer-engine bots and apply different rules to each, including pay-per-crawl arrangements. For years the default was that anything public was fair game for model training, with no consent step and no compensation. Putting the toggle in the customer's hands reframes AI scraping as a negotiable relationship rather than a silent tax on everyone who publishes on the open web.</p><p>For a security and data-governance owner, this is a control worth wiring into policy, not just skimming as marketing. If your organisation publishes anything — documentation, research, customer-facing content — you now have a lever over whether it feeds third-party models, which matters for both IP posture and data-leakage risk. The flip side is dependency: relying on a single intermediary to arbitrate AI access concentrates real power in Cloudflare's hands. Useful today, but note the leverage you are handing over.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Infrastructure</span>
+          <span class="meta-pill meta-score">HN 89</span>
+          <span class="meta-pill meta-source">blog.cloudflare.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.cloudflare.com/content-independence-day-ai-options/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49052564" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Edge AI</div>
+
+      <h2 class="spread-headline">A 28.9M-Parameter LLM Running on an $8 Microcontroller</h2>
+      <p class="spread-lede">A developer has squeezed a small language model onto an ESP32-class chip costing a few dollars, running inference entirely on-device with no cloud round-trip — a proof that useful language models are escaping the datacentre.</p>
+      <div class="spread-body"><p>The project fits a 28.9-million-parameter model into the tight memory of a cheap microcontroller, trading raw capability for total locality. It will not draft your email, but it demonstrates that constrained, single-purpose language models can live at the very edge — in sensors, appliances, and toys — where connectivity is optional and latency is measured in the silicon, not the network. The engineering is as much about quantisation and careful memory layout as it is about the model itself.</p><p>The security implication of on-device inference cuts both ways. On the upside, data that never leaves the chip cannot be intercepted in transit or harvested by a cloud provider — a genuine privacy win for edge deployments. On the downside, a fleet of tiny models embedded in physical devices becomes a new, hard-to-patch attack surface, and "the AI runs locally" is already becoming a marketing claim that obscures firmware you cannot inspect. Watch this space: edge LLMs will land in procurement long before governance catches up.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Hardware</span>
+          <span class="meta-pill meta-score">HN 144</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/slvDev/esp32-ai" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49050512" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agentic Coding</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Field Notes on Agentic Coding, Benchmarks, and What Actually Works</h2>
+      <p class="spread-lede">Dan Luu turns his characteristically sceptical eye on agentic coding — the LLM benchmarks that mislead, the test processes that hold up, and the gap between demo-day claims and what survives contact with a real codebase.</p>
+      <div class="spread-body"><p>Luu's notes push against the hype cycle without dismissing the tools. His argument is that headline benchmarks tell you little about production usefulness, and that the teams extracting real value from agentic coding are the ones who invest in test harnesses, verification, and process discipline rather than trusting model output at face value. It is a practitioner's account: less about which model tops a leaderboard and more about the scaffolding that makes any of them safe to lean on.</p><p>For anyone building AI-assisted workflows — exactly the ground you work on with Claude Code — this is the counterweight to vendor decks. The takeaway is that the agent is only as trustworthy as the tests around it, and that "the model did it" is not a control. Treat generated code as untrusted input, gate it behind the same review and CI you would apply to a junior engineer, and measure outcomes on your own repositories rather than on synthetic benchmarks. The discipline is the product.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Before scaling any agentic coding pattern, define the verification loop first: which tests must pass, what a human reviews, and what metric proves it is actually working on your codebase. Adopt Luu's framing — benchmarks are marketing; your own regression suite is the ground truth.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Engineering</span>
+          <span class="meta-pill meta-score">HN 11</span>
+          <span class="meta-pill meta-source">danluu.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://danluu.com/ai-coding/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49054268" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">The New Rules of Context Engineering for Claude 5</h2>
+      <p class="spread-lede">Anthropic has published a reworked playbook for feeding context to its Claude 5-generation models, shifting the craft away from prompt tricks and toward the deliberate management of what the model sees, remembers, and retrieves.</p>
+      <div class="spread-body"><p>The guidance reflects how much has changed as context windows have grown and models have become better at using long inputs: the bottleneck is no longer fitting information in but curating it well. The new rules emphasise structuring context, managing memory across a session, and being intentional about what you retrieve rather than dumping everything and hoping. For heavy users of Claude, it is a direct update to daily practice — the difference between a model that flails and one that performs is increasingly in the context engineering, not the prompt wording.</p><p>This sits squarely in the toolkit you build on. Anyone running Claude Code or Cowork workflows should read the source rather than a summary, because the specifics — how to lay out context, when to summarise, how memory is handled — translate straight into better, cheaper, more reliable runs. It also signals where Anthropic thinks the skill ceiling is moving: away from clever one-shot prompts and toward engineering the whole information environment the model operates in.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Read the primary guidance and revisit your Claude Code and Cowork setups against it — particularly how you structure long context, manage session memory, and control retrieval. Small changes here compound across every automated workflow you run.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI Tooling</span>
+          <span class="meta-pill meta-score">HN 262</span>
+          <span class="meta-pill meta-source">claude.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49051361" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Leaked Transcript</div>
+
+      <h2 class="spread-headline">DeepSeek Pauses Fundraising After Leaked Compute-Gap Remarks</h2>
+      <p class="spread-lede">A leaked transcript of DeepSeek founder Liang Wenfeng candidly conceding how far Chinese labs trail the US on compute has reportedly forced the company to pause a fundraise — an unusually raw admission escaping into public view.</p>
+      <div class="spread-body"><p>The document, circulating as a translated PDF, captures investor-meeting remarks in which the compute gap between DeepSeek and its American rivals is discussed with more honesty than the usual public posture. Whether the pause stems from the leak's substance or simply the embarrassment of private candour becoming public, the episode is a reminder that the most damaging disclosures are often not stolen credentials but stolen candour — words meant for a closed room.</p><p>The information-security angle is the leak itself. Investor meetings, board decks, and executive calls are among the highest-value targets precisely because they contain unguarded strategic truth, and they are frequently the least protected. The controls that matter — who can record, how transcripts are stored, what is permitted to leave the room — are governance questions, not firewall questions. DeepSeek's discomfort is a case study in why executive communications deserve the same data-classification rigour as any customer database.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Security</span>
+          <span class="meta-pill meta-score">HN 121</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/demo-zexuan/liang-wenfeng-investor-meeting-2026-7-22/blob/master/%E6%A2%81%E6%96%87%E9%94%8B%E6%8A%95%E8%B5%84%E8%80%85%E4%BA%A4%E6%B5%81%E4%BC%9A-%E6%96%87%E5%AD%97%E7%A8%BF_1_18_translate_20260723201651.pdf" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49052912" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open-Weight AI</div>
+
+      <h2 class="spread-headline">Open-Weight AI Is Having Its Kubernetes Moment</h2>
+      <p class="spread-lede">The argument that open-weight models are following the same trajectory Kubernetes took — from scrappy alternative to default infrastructure — is gaining traction, and it reframes the closed-versus-open debate as a question of where the ecosystem's gravity finally settles.</p>
+      <div class="spread-body"><p>The comparison is deliberate: Kubernetes won not because it was the best single product but because an open standard attracted an ecosystem that proprietary offerings could not match. The thesis holds that open-weight models are on the same path, with tooling, fine-tuning, and deployment coalescing around freely available weights. If it plays out, the strategic centre of gravity in AI shifts from a handful of API providers toward whoever builds the best infrastructure around open models.</p><p>For a security leader, the appeal of open weights is control: models you can run in your own environment, inspect, and keep off third-party servers. The cost is that you inherit the full supply-chain and patching burden — provenance of weights, poisoned fine-tunes, and the operational weight of running inference yourself. The Kubernetes analogy cuts here too: powerful, open, and notoriously easy to misconfigure straight into a breach. Plan for the governance, not just the download.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Strategy</span>
+          <span class="meta-pill meta-score">HN 360</span>
+          <span class="meta-pill meta-source">tobi.knaup.me</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://tobi.knaup.me/2026-07-25-open-weight-ai-is-having-its-kubernetes-moment/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49048034" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI Governance</div>
+
+      <h2 class="spread-headline">Debian Puts LLM Usage to a Vote</h2>
+      <p class="spread-lede">Debian, one of the oldest and most consensus-driven open-source projects, is formally voting on how — and whether — large language models may be used in its work, a governance experiment the rest of the software world should watch closely.</p>
+      <div class="spread-body"><p>The ballot puts three proposals to the project's developers, ranging in how permissively they treat AI-generated contributions. Debian doing this in the open, through its established voting process, is itself the story: rather than letting policy emerge ad hoc from individual maintainers, the project is trying to set a collective, documented position on provenance, licensing, and acceptable use. It is slow, procedural, and exactly the kind of deliberate governance most organisations skip.</p><p>Every organisation now faces the same question Debian is voting on — what are the rules for AI-generated code and content — and most have answered it by default, which is to say not at all. Debian's proposals are a useful template precisely because they force the trade-offs into the open: licensing exposure, contribution provenance, and the risk of ingesting output whose training data you cannot vouch for. Borrow the discipline even if you do not borrow the specific rules: write the policy down before practice sets it for you.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Governance</span>
+          <span class="meta-pill meta-score">HN 126</span>
+          <span class="meta-pill meta-source">debian.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.debian.org/vote/2026/vote_002" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49050859" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Censorship Resistance</div>
+
+      <h2 class="spread-headline">Bitchat Finds a Home on Radicle</h2>
+      <p class="spread-lede">After a government order pushed the Bluetooth mesh-messaging app Bitchat off GitHub, its code has resurfaced on Radicle, a peer-to-peer, sovereign-less code-hosting network — a quiet demonstration that removal from one platform is no longer removal from the internet.</p>
+      <div class="spread-body"><p>Bitchat, associated with Jack Dorsey, drew official pressure over its offline, infrastructure-independent messaging. Its move to Radicle — where repositories live across a distributed network rather than on a single company's servers — closes a loop that has been forming for years: as takedowns become a routine instrument of control, the tools being suppressed migrate to substrates that have no takedown button to press. The code is not hidden; it is simply hosted somewhere no single authority can reach.</p><p>The reflective point is about the shifting terrain under content control. Centralised platforms gave governments and companies a single lever; decentralised hosting removes it, for better and worse. The same properties that protect a censored messaging app also shelter genuinely harmful projects, and there is no version of this technology that serves only the sympathetic case. For anyone who thinks about trust, resilience, and control, Radicle is worth understanding not as a novelty but as a preview of where the fight over who can erase what is heading.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 231</span>
+          <span class="meta-pill meta-source">radicle.network</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://radicle.network/nodes/rosa.radicle.network/rad%3Az2v9tRJz1oknFAqCSY5W5c76nVvm6" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49047365" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 26 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: hobbyist hardware builds, a US golf-course map, meteorite chemistry, and the usual crop of Show HN toys — along with vendor-flavoured AI announcements that carried no security substance.</p>
+    <p>Duplicates excluded against the previous two editions: 0. Today's front page shared no original-article URLs with the last two issues, so the full candidate pool was in play.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
