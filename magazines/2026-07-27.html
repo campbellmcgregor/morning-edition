@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 27 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 204</span>
+    <span>Monday · 27 July 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A phone that defended itself is now the evidence in a federal case — and the operating system at the centre of it has just published exactly how it beats the tools in the property room. Elsewhere, a quiet grey market resells the API credentials your finance team is already paying for. Ten stories from the front page; five of them land on your desk.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 27 July 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      5 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Border Search &amp; Device Policy</span>
+        <span class="toc-title">US citizen charged after GrapheneOS phone wipes during airport search</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Mobile Forensics</span>
+        <span class="toc-title">GrapheneOS protections against data extraction from locked devices</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Credential Abuse</span>
+        <span class="toc-title">The relay market powering token resellers and fraud</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Build Toolchain</span>
+        <span class="toc-title">Scriptc by Vercel: TypeScript-to-Native compiler, no JavaScript engine in binary</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Formal Verification</span>
+        <span class="toc-title">We have proof automation now</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Frontier Models</span>
+        <span class="toc-title">Kimi-K3 releases on Hugging Face</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Regulation &amp; Antitrust</span>
+        <span class="toc-title">EU fines Google $1.02B for favouring its own services</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Static Analysis</span>
+        <span class="toc-title">Go Analysis Framework: modular static analysis by the Go team</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">ePrivacy Reform</span>
+        <span class="toc-title">Kill the Cookie Banner</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">AI &amp; Culture</span>
+        <span class="toc-title">Meta launched a new AI optimism ad set to a song about human extinction</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Border Search &amp; Device Policy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">US citizen charged after GrapheneOS phone wipes during airport search</h2>
+      <p class="spread-lede">An Atlanta man is facing federal charges after his GrapheneOS handset wiped itself during an airport border inspection — turning a phone&#39;s own anti-forensics default into the alleged act, and putting duress-resistant device design in front of a US court.</p>
+      <div class="spread-body"><p>The mechanism matters more than the drama. GrapheneOS ships features specifically designed to return a device to its most protected state without user intervention — auto-reboot after a period without unlock, and duress credentials that wipe on entry. A device doing what it was configured to do, hours or days earlier, is a very different thing from a person destroying evidence at the counter. Prosecutors appear to be arguing otherwise. That is a meaningful escalation: the question at the border has always been whether you can be compelled to unlock. This case asks whether a security default, chosen in advance, can itself be criminal.</p><p>For anyone responsible for a travelling workforce this is not an abstraction. Executives and engineers cross borders carrying source code, customer data, incident notes and privileged legal correspondence, and the legal protections at a frontier are thinner than almost anywhere else in the estate. Most corporate travel policies address laptops and say nothing about phones, and almost none of them consider that a hardened configuration might be read as obstruction. The safest posture has always been to carry nothing worth taking; this case adds a second reason, which is that carrying a device that protects itself may now carry its own risk.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Pull your international travel standard and check whether it covers mobile devices at all. The workable pattern is clean loaner phones and laptops for high-risk destinations, enrolled fresh, with no cached mail archive and no persistent VPN credentials. Agree with legal counsel now — not at the airport — what staff should do when asked to unlock, and document that any auto-wipe behaviour is a pre-set fleet-wide default rather than an individual decision. That documentation is the difference between a policy setting and an accusation.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy / Legal</span>
+          <span class="meta-pill meta-score">HN 732</span>
+          <span class="meta-pill meta-source">techspot.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.techspot.com/news/113236-us-prosecutors-charge-atlanta-man-after-grapheneos-phone.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49063022" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Mobile Forensics</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">GrapheneOS protections against data extraction from locked devices</h2>
+      <p class="spread-lede">The GrapheneOS project has published a detailed account of how its hardening is meant to defeat the commercial forensic kit sitting in police property rooms — auto-reboot timers, USB port restrictions, memory handling and second-factor unlock protections, explained rather than marketed.</p>
+      <div class="spread-body"><p>The central concept is the difference between a phone that has been unlocked since boot and one that has not. In the after-first-unlock state, decryption keys live in memory and a large share of user data is reachable by an attacker with physical access and the right exploit; before first unlock, most of it is genuinely inert. Almost every commercial extraction capability depends on catching a device in the weaker state. Hence the auto-reboot timer, which quietly forces a device back to its hardest configuration after a period of inactivity — the single highest-value setting on the list, and the one that requires no user discipline at all.</p><p>The write-up is worth reading even if you will never deploy GrapheneOS, because the same primitives exist in weaker form on stock iOS and Android and most enterprise baselines leave them on the table. Corporate MDM profiles routinely tune passcode complexity and remote wipe, and routinely ignore restart intervals, USB accessory restrictions and lock-screen data exposure. Those are the controls that actually matter when a device is seized, lost or stolen rather than phished. Pairing this with the prosecution in the previous story is instructive: one piece explains the capability, the other shows what happens when it works.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Ask your endpoint team for the current mobile baseline and check three specific settings: whether devices are forced to restart on a timer, whether USB data transfer is blocked while locked, and how much data notifications leak on the lock screen. Compare that against what your incident and legal teams assume is protected when a device goes missing. If the assumptions and the settings disagree, fix the settings — they are configuration changes, not a procurement cycle.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 410</span>
+          <span class="meta-pill meta-source">discuss.grapheneos.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://discuss.grapheneos.org/d/40700-grapheneos-protections-against-data-extraction-from-locked-devices" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49055169" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Credential Abuse</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">The relay market powering token resellers and fraud</h2>
+      <p class="spread-lede">An investigation into the grey market that resells access to paid AI and API accounts: relay services that launder stolen, leaked or shared credentials into cheap metered access, sold on to buyers who neither know nor care whose bill it lands on.</p>
+      <div class="spread-body"><p>The economics are unpleasantly elegant. A relay sits between a buyer and a provider, holding a pool of credentials it did not pay for, and sells inference at a fraction of list price. The keys come from the usual places — committed to public repositories, lifted from developer machines, harvested from misconfigured environments, or simply resold by someone with legitimate access and a side hustle. The victim is the account holder, who sees usage that looks like their own application because it arrives over the same API with the same key, and who often discovers the problem only when a monthly invoice arrives with an extra digit.</p><p>What makes this a security problem rather than a finance problem is the detection profile. Leaked API keys do not trigger the alerts that leaked passwords do: there is no login event, no impossible-travel signal, no MFA prompt to fail. Traffic from a relay is well-formed, authenticated and indistinguishable from your own workloads unless you are watching volume, geography and model mix. And the same plumbing that resells inference cheaply also gives fraud operations a laundered, attributable-to-someone-else route to capability they would otherwise have to buy in their own name.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory every AI and SaaS API key your organisation holds, including the ones an engineer created on a personal card and expensed. Scope each key to the narrowest permission set the workload needs, rotate anything older than your policy allows, and put hard spend caps and anomaly alerts on every provider console — most now support both. Turn on secret scanning and push protection across your repositories if you have not already; a key that never reaches a public commit cannot be relayed.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 192</span>
+          <span class="meta-pill meta-source">vectoral.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://vectoral.com/blog/token-relay-market" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49058993" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Build Toolchain</div>
+
+      <h2 class="spread-headline">Scriptc by Vercel: TypeScript-to-Native compiler, no JavaScript engine in binary</h2>
+      <p class="spread-lede">Vercel Labs has released Scriptc, a compiler that turns TypeScript into a native executable with no JavaScript engine embedded in the output — trading a dynamic runtime for a smaller, more predictable and considerably more inspectable artefact.</p>
+      <div class="spread-body"><p>The interesting claim is the absence, not the presence. Shipping TypeScript today normally means shipping V8 or an equivalent engine alongside it, which drags in a JIT compiler, a garbage collector and a decade of accumulated engine CVEs into every container you deploy. Compiling ahead of time to a native binary removes all of that. It also removes dynamic evaluation as a category: no eval, no runtime code generation, and a much smaller set of things an attacker can persuade the process to do that were not in the source. For workloads at the edge of a network, that is a genuinely different risk profile.</p><p>The caution is the usual one for a new toolchain from a large vendor. A compiler is the most trusted component in a build pipeline — everything downstream inherits whatever it emits — and a first release has neither the audit history nor the reproducibility story of the ecosystem it is replacing. Language subsets also tend to be where the sharp edges live: what works and what silently does not is rarely obvious from the README. Worth tracking and worth an experiment on something non-critical; not yet worth a migration plan.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Supply Chain</span>
+          <span class="meta-pill meta-score">HN 168</span>
+          <span class="meta-pill meta-source">github.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://github.com/vercel-labs/scriptc" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49063175" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Formal Verification</div>
+
+      <h2 class="spread-headline">We have proof automation now</h2>
+      <p class="spread-lede">Adam Langley reports on applying automated proof tooling to a lean zstd implementation — evidence that formal methods have finally crossed from research curiosity into something a working engineer can point at real, ugly, performance-sensitive parsing code.</p>
+      <div class="spread-body"><p>For most of their history, formal methods carried a brutal exchange rate: enormous specialist effort for a small, brittle guarantee, on code that had to be written for the prover rather than for the machine. What has changed is automation. Solvers are strong enough, and the surrounding tooling ergonomic enough, that a competent systems programmer can obtain real proofs about real code without a doctorate in the subject. Langley picking zstd is not incidental — decompressors are the archetypal dangerous component, parsing wholly attacker-controlled input at high speed in a memory-unsafe language, and they have the CVE history to prove it.</p><p>The relevance for a security leader is in what it does to the conversation about memory safety. The standard vendor response to secure-by-design pressure has been that rewriting critical parsers is impossible and that fuzzing is good enough. Fuzzing finds bugs; it never demonstrates their absence. If proof automation is now tractable for something as gnarly as a compression format, the honest answer to "we cannot verify this" moves from "correct" to "expensive" — and expensive is a budget argument rather than a physics one. That is a useful shift when you are the person asking a supplier why their parser is still unverified C.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Security Engineering</span>
+          <span class="meta-pill meta-score">HN 164</span>
+          <span class="meta-pill meta-source">imperialviolet.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.imperialviolet.org/2026/07/26/zstd-lean.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49062291" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Frontier Models</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Kimi-K3 releases on Hugging Face</h2>
+      <p class="spread-lede">Moonshot AI has put the Kimi-K3 weights on Hugging Face — an open-weight frontier release arriving days after the UK AI Security Institute and its US counterpart published a preliminary assessment of exactly this model&#39;s cyber capabilities.</p>
+      <div class="spread-body"><p>The sequencing is the story. A capability assessment from national safety institutes normally trails a release by weeks or arrives never; here it lands alongside, on a model whose weights anyone can now download and run without a terms-of-service check, a rate limit or a usage log. Whatever the assessment concluded about offensive cyber uplift, the mitigation options for an open-weight release are structurally different from those for an API: there is no provider-side filter to strengthen, no account to suspend, and no telemetry to inspect. The control surface moves entirely to the people running the weights.</p><p>Two consequences follow for a security function. The first is threat modelling: any assumption that meaningful capability requires a commercial account, and therefore leaves a billing trail, should be retired. The second is closer to home — open weights are trivially easy for an engineer to pull onto a workstation or an unmanaged GPU box, which turns a model release into a data-governance question about what gets fed into it. Neither is a reason for panic, and open-weight models have real defensive value, but both belong in a policy rather than in nobody&#39;s inbox.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Decide explicitly whether locally-run open-weight models are permitted in your environment, and write it down — silence is currently being read as permission. If they are allowed, require them to be registered like any other system, hosted on managed infrastructure, and covered by the same data-classification rules as a SaaS provider. Then read the AISI assessment itself rather than the coverage of it, and use its capability findings to sanity-check the assumptions in your current threat model.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Risk</span>
+          <span class="meta-pill meta-score">HN 259</span>
+          <span class="meta-pill meta-source">huggingface.co</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49065752" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Regulation &amp; Antitrust</div>
+
+      <h2 class="spread-headline">EU fines Google $1.02B for favouring its own services</h2>
+      <p class="spread-lede">Brussels has issued a $1.02 billion penalty against Google for self-preferencing under its tech antitrust regime — another ten-figure number in a sequence that has stopped being remarkable and started being a line item.</p>
+      <div class="spread-body"><p>The pattern by now is familiar: an investigation into whether a dominant platform ranked its own services above rivals, a finding that it did, and a fine calibrated to be painful in the press release if not on the balance sheet. What has changed since the earlier rounds is the enforcement architecture. The bloc&#39;s newer rules impose conduct obligations up front rather than adjudicating harm after the fact, which shortens the cycle from complaint to consequence and makes behavioural remedies — changes to how a product actually works in Europe — the substantive outcome rather than the cash.</p><p>The angle for anyone running a European technology estate is dependency, not schadenfreude. Remedies mean product changes, and product changes mean defaults, rankings, data flows and integrations shifting for users inside the EU and often the UK by default. Organisations that have quietly built processes on top of one vendor&#39;s search, identity or advertising surfaces inherit that churn without a say in it. Concentration risk in this market is usually discussed as an outage or a price problem; regulatory remedy is the third variant, and it arrives on a timetable set by a regulator.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Regulation</span>
+          <span class="meta-pill meta-score">HN 72</span>
+          <span class="meta-pill meta-source">wsj.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.wsj.com/tech/google-fined-1-02-billion-under-eus-tech-antitrust-rules-7e8ae1fb" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49065498" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Static Analysis</div>
+
+      <h2 class="spread-headline">Go Analysis Framework: modular static analysis by the Go team</h2>
+      <p class="spread-lede">The Go team&#39;s analysis package exposes the machinery behind go vet as composable units — each check a small, independent analyzer with declared dependencies, runnable across a whole module or wired into a build.</p>
+      <div class="spread-body"><p>The design is the appealing part. An analyzer declares what facts it needs and what facts it produces, and the framework handles scheduling, caching and the traversal, so writing a new check means writing the check rather than a compiler front end. That composability is why the ecosystem around it works: dozens of third-party analyzers run under the same driver, on the same type information, at close to the cost of a build. It is a rare piece of infrastructure that is genuinely pleasant to extend.</p><p>For application security teams the value is in custom rules, not the stock ones. Generic commercial scanners produce volume; what changes behaviour is a small set of checks encoding decisions your organisation actually made — this crypto helper and not that one, no raw SQL outside the data layer, no logging of these struct fields, context deadlines on every outbound call. Those rules are unenforceable in review and trivially enforceable in CI, and a targeted analyzer that fails a build with one clear message will do more for your codebase than another dashboard of severity-medium findings nobody triages.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AppSec</span>
+          <span class="meta-pill meta-score">HN 207</span>
+          <span class="meta-pill meta-source">pkg.go.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://pkg.go.dev/golang.org/x/tools/go/analysis" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49057398" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">ePrivacy Reform</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Kill the Cookie Banner</h2>
+      <p class="spread-lede">A European campaign — the day&#39;s highest-scoring story by a wide margin — is pushing to end the consent-banner regime, arguing that a decade of click-through pop-ups delivered friction instead of privacy and that the fix belongs in the browser and the statute, not on every page.</p>
+      <div class="spread-body"><p>The argument is hard to rebut on the evidence. Consent banners came from the ePrivacy Directive rather than the GDPR, and the interaction between the two produced the worst of both: a legal requirement to ask, no requirement to ask well, and an industry that optimised the asking into a dark pattern. The result is a population trained to click accept without reading, which is the precise opposite of informed consent, plus a measurable tax on every page load in Europe. The reform case is that machine-readable preferences expressed once in a browser would deliver more actual privacy than a billion individual dialogues.</p><p>Whether or not reform lands, the enforcement direction is already clear and it is unkind to the current implementations. European regulators have spent the last few years ruling against banners where rejecting is harder than accepting, where legitimate interest is used to smuggle advertising trackers past the consent gate, and where the recorded consent does not match what actually fires. Those are findings about the banner most organisations deployed once in 2018 and have not looked at since. The cheap move is to fix that now, on your own schedule, rather than in response to a complaint.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Load your own public sites in a clean browser and check the basics yourself: reject-all must be as prominent and as few clicks as accept-all, nothing beyond strictly necessary should fire before consent, and the tracker inventory in your consent management platform should match what the network tab actually shows. Those three checks find most of what regulators have been fining people for. Then ask marketing when the tracker list was last reviewed — the answer is usually instructive.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy / Legal</span>
+          <span class="meta-pill meta-score">HN 1006</span>
+          <span class="meta-pill meta-source">killthecookiebanner.eu</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://killthecookiebanner.eu/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49057175" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">AI &amp; Culture</div>
+
+      <h2 class="spread-headline">Meta launched a new AI optimism ad set to a song about human extinction</h2>
+      <p class="spread-lede">Meta&#39;s new advertisement for an optimistic AI future is scored to a song whose lyrics are about the end of the human species — a licensing choice that either nobody checked or somebody found funny, and which is revealing either way.</p>
+      <div class="spread-body"><p>Soundtracking a campaign without reading the words is an old advertising failure; doing it on this particular subject is a special case. The industry is spending heavily to persuade a sceptical public that this technology is a straightforward good, and the persuasion keeps colliding with a register problem. Grand claims about transforming humanity sit uncomfortably close to the anxieties they are meant to dispel, and the closer the marketing gets to the sublime the easier it is for a single tone-deaf detail to tip the whole thing into unintentional comedy. This is not the first time and will not be the last.</p><p>There is a quieter lesson for anyone selling AI adoption inside an organisation. The instinct is to borrow the vendor register — transformation, inevitability, a new era — and it lands about as well internally as it does in a television advert, particularly with staff who suspect the transformation includes them. What actually works is smaller and duller: this specific task, this measured saving, this is what happens to the work you do today, this is what we will not do with it. Boring specificity buys more trust than optimism, and it does not need a soundtrack.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Ethics</span>
+          <span class="meta-pill meta-score">HN 12</span>
+          <span class="meta-pill meta-source">techcrunch.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://techcrunch.com/2026/07/23/meta-launched-a-new-ai-optimism-ad-set-to-a-song-about-human-extinction/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49066519" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 27 July 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: vendor marketing dressed as research, routine patch advisories without context, crypto and web3 promotion, and a second write-up of the border-wipe prosecution already carried at position one.</p>
+    <p>Duplicates excluded against the previous two editions: 0. Today&#39;s front page shared no article URLs with the 25 or 26 July issues, so the full top-fifty pool was eligible.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
