@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 2 August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 209</span>
+    <span>Sunday · 2 August 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">A federal alert points at the programmable logic sitting between a pump and the open internet. A treaty sold as cooperation turns out to be a lawful-access pipe with a friendly name. And somewhere in a codebase, a function that promises randomness is quietly returning nothing at all.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 2 August 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      6 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Infrastructure</span>
+        <span class="toc-title">CISA Alert: Water Sector PLC Targeting</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Surveillance &amp; Privacy</span>
+        <span class="toc-title">A Surveillance Treaty in Disguise: Canada Signs UN Cybercrime Convention</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Cryptographic Failure</span>
+        <span class="toc-title">When random.bytes() runs but doesn&#39;t work</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Protocol Hygiene</span>
+        <span class="toc-title">RFC 10015: Deprecating Obsolete Key Exchange Methods in TLS 1.2 and DTLS 1.2</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Security Research</span>
+        <span class="toc-title">The Cipher Behind QSYRUPWD: Reconstructing IBM i Password Hashes</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Synthetic Media</span>
+        <span class="toc-title">Seedance 2.5</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Hardware Supply Chain</span>
+        <span class="toc-title">China begins producing advanced chipmaking deep-ultraviolet lithography machines</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Platform &amp; Systems</span>
+        <span class="toc-title">NetBSD 11.0</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Vendor Governance</span>
+        <span class="toc-title">Cursor removed cost information from the usage page and CSV export</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">The Open Web</span>
+        <span class="toc-title">How Google helped destroy adoption of RSS feeds</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Infrastructure</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">CISA Alert: Water Sector PLC Targeting</h2>
+      <p class="spread-lede">A federal advisory and an internet-scanning writeup converge on the same uncomfortable finding: programmable logic controllers running water treatment and distribution are reachable from the open internet, and someone is looking for them.</p>
+      <div class="spread-body"><p>Water is the sector where the gap between regulatory expectation and operational reality is widest. Treatment works and distribution networks were automated over decades by small engineering teams on tight capital budgets, with remote access bolted on so a duty engineer could check a pump at 2am without driving forty miles. That remote access almost never went through anything a security team would recognise as a boundary. The result is a long tail of PLCs and HMIs answering on the public internet, many with default or trivially guessable credentials, many running firmware that has no patch path because the vendor is gone or the controller is welded into a fifteen-year maintenance contract.</p><p>What makes this class of alert different from the usual OT hand-wringing is that the reconnaissance is cheap and the targeting is indiscriminate. Internet-wide scanning finds these devices in hours, not weeks, and the attacker does not need to know or care whose water supply they are touching. The UK picture is not obviously better than the North American one — the same automation vendors, the same asset ages, the same fragmented ownership across water companies and local authorities. If your organisation touches any physical process control at all, the honest first question is not "are we patched" but "do we actually know what of ours is reachable".</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Read the CISA advisory directly rather than relying on secondary coverage, then run an external attack-surface pass over every netblock you own, specifically looking for industrial protocols and web interfaces on non-standard ports. Anything control-related that answers from the internet should be behind an authenticated VPN boundary by the end of the week, with default credentials rotated and remote access logged. If you do not own OT yourself, ask the same question of any supplier whose service depends on physical process control.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 86</span>
+          <span class="meta-pill meta-source">censys.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://censys.com/blog/cisa-alert-water-tower-plc-targeting/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49137228" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Surveillance &amp; Privacy</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">A Surveillance Treaty in Disguise: Canada Signs UN Cybercrime Convention</h2>
+      <p class="spread-lede">Michael Geist argues that Canada&#39;s quiet signature on the UN Cybercrime Convention commits it to a cross-border evidence-sharing regime whose obligations reach well past cybercrime, with thin safeguards and almost no domestic debate.</p>
+      <div class="spread-body"><p>The critique is structural rather than partisan. Instruments framed as cybercrime cooperation tend to define "electronic evidence" broadly enough that the mutual-assistance machinery applies to any offence where a computer was involved — which, in 2026, is every offence. Once a state has signed, the practical effect is a standing obligation to help other signatories collect and preserve data held by companies in its jurisdiction, including states whose definitions of criminal speech would not survive a day in a Canadian or Scottish court. The safeguards that would make this tolerable are typically discretionary, and discretion exercised under diplomatic pressure has a poor track record.</p><p>For a security leader this is not abstract civics. Treaty-level data-access regimes are the upstream cause of the compliance questions that eventually land on your desk: which jurisdiction can compel our processor, what does a preservation request oblige us to do before we can tell counsel, whether our GDPR transfer assessment survives a new lawful-access channel that did not exist when it was written. The UK and EU are already inside overlapping arrangements. The right posture is to treat this as a slow-moving change to your legal threat model rather than a headline that concerns Canadians only.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Ask legal or your DPO for a one-page view of which lawful-access routes currently reach your data — direct compulsion, processor jurisdiction, and treaty-based mutual assistance — and note where the answer is "we have not looked". Re-check that transfer impact assessments for non-UK/EU processors name the actual government access mechanisms rather than gesturing at them, and make sure your incident playbook says who gets called first when a preservation demand arrives.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Privacy</span>
+          <span class="meta-pill meta-score">HN 286</span>
+          <span class="meta-pill meta-source">michaelgeist.ca</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.michaelgeist.ca/2026/07/a-surveillance-treaty-in-disguise-the-trouble-with-canadas-quiet-decision-to-sign-the-un-cybercrime-convention/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49134694" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Cryptographic Failure</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">When random.bytes() runs but doesn&#39;t work</h2>
+      <p class="spread-lede">A short, unsettling writeup about the worst category of cryptographic bug: the call that returns successfully, throws no exception, passes every test you wrote, and hands back entropy that is not there.</p>
+      <div class="spread-body"><p>Cryptography fails loudly when a signature does not verify and silently when the randomness underneath it is weak. That asymmetry is the whole problem. A key generation routine that draws from a degraded or unseeded source still produces a key of the right length, in the right format, that encrypts and decrypts perfectly. Nothing in the happy path tells you anything is wrong. The defect only surfaces when someone with the same insight — or the same scanning tool — enumerates the reduced keyspace and walks straight in, often years after the affected keys were minted and distributed.</p><p>The uncomfortable corollary for anyone running a security programme is that this class of bug is essentially invisible to the controls we are proud of. It does not show up in a vulnerability scan, it does not produce a CVE against something in your SBOM, and it does not fail a pen test scoped to endpoints and inputs. It lives in the interaction between a language runtime, a platform entropy source, and an environment — containers, embedded devices, early boot, restored VM images — where the assumptions that made the API safe quietly stopped holding. You find it by reading code and reasoning about the environment, or you do not find it.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Ask your engineers a specific question rather than a general one: where do we generate long-lived secrets, and what is the entropy source at the moment of generation? Pay particular attention to key material minted during container start, in embedded or IoT firmware, or in cloned VM images. Where the answer is uncertain, treat rotation as cheaper than investigation, and make "verified CSPRNG source" an explicit line in your secure-development standard rather than an assumption.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 23</span>
+          <span class="meta-pill meta-source">insider.btcpp.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://insider.btcpp.dev/p/when-randombytes-runs-but-doesnt" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49140405" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Protocol Hygiene</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">RFC 10015: Deprecating Obsolete Key Exchange Methods in TLS 1.2 and DTLS 1.2</h2>
+      <p class="spread-lede">The IETF has published a standards-track document formally retiring a set of legacy key exchange mechanisms in TLS 1.2 and DTLS 1.2 — the paperwork that turns "you probably should not still be doing that" into "you must not".</p>
+      <div class="spread-body"><p>RFCs of this kind are not news in the dramatic sense and they matter more than most things that are. Deprecation is how the ecosystem coordinates: once a mechanism is formally obsolete, library maintainers get cover to remove it, scanners get a defensible rule to flag it, and auditors get a citation. The gap between publication and reality is where the pain lives. Somewhere in every estate of reasonable size there is a load balancer, a payment terminal, a mainframe gateway or a supplier API that negotiates exactly the thing being retired, and it will keep working right up until the day a client library drops support and something stops.</p><p>Treat this as a scheduling problem rather than a security incident. The failure mode is not compromise next week, it is an unplanned outage in six months when a dependency upgrade quietly removes the suite your oldest integration relies on. The organisations that handle this well are the ones that can answer, from data rather than memory, which of their listeners and outbound clients still negotiate deprecated exchanges — and which of those they own versus which belong to a third party who will need considerably more notice.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Run a TLS inventory across external and internal listeners and capture the negotiated key exchange, not just the protocol version — most dashboards report "TLS 1.2, fine" and stop there. Cross-reference the results against the mechanisms this RFC retires, split the list into things you control and things a supplier controls, and get the supplier conversations started now. Add the deprecated exchanges to your build-time and scanning rules so the estate does not regrow them.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 51</span>
+          <span class="meta-pill meta-source">rfc-editor.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.rfc-editor.org/rfc/rfc10015.html" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49139711" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Security Research</div>
+
+      <h2 class="spread-headline">The Cipher Behind QSYRUPWD: Reconstructing IBM i Password Hashes</h2>
+      <p class="spread-lede">Silent Signal reverse-engineers how IBM i stores password material, a patient piece of research into a platform that quietly underpins a great deal of banking, insurance and manufacturing while remaining almost invisible to mainstream security tooling.</p>
+      <div class="spread-body"><p>Work like this is valuable precisely because the platform is unfashionable. IBM i — the system most people still call AS/400 — runs core ledgers and order processing in organisations that have modernised everything around it and nothing inside it. Its security model is coherent and, in places, genuinely ahead of its contemporaries, but it is also idiosyncratic enough that generic tooling cannot reason about it. Password storage is the canonical example: understanding the derivation lets a defender judge offline cracking risk honestly, and lets an attacker who has reached a backup or a system value do the same arithmetic.</p><p>The broader lesson is about where residual risk actually accumulates. Modern programmes are excellent at the surfaces that generate telemetry — endpoints, cloud, identity — and weak at the systems that predate the telemetry. Those systems tend to hold the most consequential data, are administered by a shrinking population of specialists, and are frequently excluded from testing scope because nobody on the panel knows how to test them. Research that demystifies the internals is what makes it possible to bring them inside the programme rather than leaving them as a permanent asterisk in the risk register.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 4</span>
+          <span class="meta-pill meta-source">blog.silentsignal.eu</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.silentsignal.eu/2026/07/28/the-cipher-behind-qsyrupwd-reconstructing-ibm-i-password-hashes/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49090268" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Synthetic Media</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Seedance 2.5</h2>
+      <p class="spread-lede">ByteDance ships another generation of its video model, pitching one-take generation and flexible referencing — the ability to carry a specific person or object faithfully from a reference image into new footage.</p>
+      <div class="spread-body"><p>Read the feature list through a fraud lens rather than a creative one. "Flexible referencing" is the capability that matters: consistent identity across shots is what separates a novelty clip from something that survives a video call or a WhatsApp message from the finance director. Each generation of these models narrows the gap between what a motivated attacker can produce in an afternoon and what a mid-level employee treats as sufficient proof of who they are talking to. The tooling is consumer-priced, requires no expertise, and improves on a cadence that no security awareness programme can match.</p><p>The defensive answer is not detection. Detection of synthetic media is a losing arms race and, worse, an unfair thing to delegate to a person under time pressure being told the payment is urgent. The answer is to make identity assertions over video and voice worthless for authorising anything, which means process design rather than technology: named callback numbers, out-of-band confirmation for payment and credential changes, and an explicit organisational norm that no one is ever embarrassed for refusing to act on a face on a screen. That norm has to come from the top or it does not hold.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Re-test your payment and credential-reset processes against a scenario where the attacker has a convincing live video of a named executive, not just a spoofed email. Anywhere the control relies on recognising a voice or face, replace it with an out-of-band callback to a directory-held number. Then say publicly, in your own voice, that refusing an urgent request pending verification is the expected behaviour — the control only works if declining is socially safe.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI</span>
+          <span class="meta-pill meta-score">HN 274</span>
+          <span class="meta-pill meta-source">seed.bytedance.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49138302" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Hardware Supply Chain</div>
+
+      <h2 class="spread-headline">China begins producing advanced chipmaking deep-ultraviolet lithography machines</h2>
+      <p class="spread-lede">Reuters reports that domestic production of immersion DUV lithography tools has started in China — a milestone in the long project of removing a single chokepoint that export controls were designed to hold shut.</p>
+      <div class="spread-body"><p>Immersion DUV is not the frontier that EUV represents, but it is the workhorse that produces the overwhelming majority of chips in actual use: controllers, power management, networking silicon, the microcontrollers embedded in every industrial device you own. A credible domestic supply of these tools does not close the gap at the leading edge; it does substantially reduce the leverage that export controls provide over everything else. Whether the machines match incumbent yield and throughput is the question that determines how much this matters, and that answer will not be public for some time.</p><p>The security consequence is a slower kind of risk than the ones that fill an incident queue. Over a five-year horizon, a more bifurcated semiconductor supply chain means more of the components in commodity hardware arrive through paths your assurance process has never modelled, with firmware provenance that is harder to establish and lifecycle support that may be governed by geopolitics rather than contract. None of that changes what you do on Monday. It does change what belongs in a three-year technology strategy, and it strengthens the case for hardware attestation and firmware integrity controls that many programmes still treat as optional.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Supply Chain</span>
+          <span class="meta-pill meta-score">HN 85</span>
+          <span class="meta-pill meta-source">reuters.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.reuters.com/world/china/china-starts-production-home-grown-immersion-duv-chipmaking-tools-source-2026-07-28/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49110319" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Platform &amp; Systems</div>
+
+      <h2 class="spread-headline">NetBSD 11.0</h2>
+      <p class="spread-lede">A new major release of the most portable of the BSDs — an unglamorous, decades-long exercise in making one clean codebase run correctly on an absurd range of hardware, and in shipping releases that do not surprise anyone.</p>
+      <div class="spread-body"><p>NetBSD earns its place in a security-minded reading list by demonstration rather than argument. A project sustained for over thirty years on portability as an organising principle has to keep its abstractions honest; you cannot paper over a leaky layer when the same code must work on hardware nobody at the project has physically seen. That discipline produces a system whose behaviour is comprehensible, whose release notes are legible, and whose defaults do not change underneath you between versions. Those are security properties, even though no framework has a control that names them.</p><p>There is also a practical niche. Long-lived appliances, network gear, research instruments and industrial equipment need an operating system that will still build and still receive fixes when the vendor of the fashionable alternative has pivoted twice. The BSD licence and the conservative release cadence make NetBSD a genuine option for that role, and it is worth knowing exists the next time someone proposes shipping a ten-year-lifecycle device on a distribution whose support window is measured in months.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Technology</span>
+          <span class="meta-pill meta-score">HN 255</span>
+          <span class="meta-pill meta-source">blog.netbsd.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.netbsd.org/tnf/entry/netbsd_11_0_released" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49136736" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Vendor Governance</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Cursor removed cost information from the usage page and CSV export</h2>
+      <p class="spread-lede">Users report that Cursor&#39;s usage page and CSV export no longer show cost figures, leaving token counts without the pricing needed to reconcile them — a small change to a dashboard, and a large change to what a customer can independently verify.</p>
+      <div class="spread-body"><p>Every AI coding tool sits on the same economics: opaque per-token costs, aggressive plan changes, and consumption that varies by an order of magnitude between a careful user and an agent left running. The one thing that made that tolerable for a buyer was an exportable record they could reconcile against the invoice themselves. Removing the cost column does not change what you are charged; it changes whether you can check. That distinction is the entire content of the complaint, and the vendor community reaction reflects a well-founded instinct that visibility withdrawn is rarely restored voluntarily.</p><p>For anyone running AI-assisted engineering at organisational scale — and increasingly that is everyone — this is a procurement lesson arriving cheaply. Usage telemetry and cost attribution are contractual features, not UI conveniences, and they are load-bearing for chargeback, for capacity forecasting, and for detecting the runaway agent loop that quietly spends four figures overnight. If your ability to answer "what did we spend, on what, by whom" depends entirely on a page the vendor can redesign without notice, you do not have a control. You have a courtesy.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">For each AI tool in your estate, check whether you can currently export per-user, per-workload cost data and whether that export is written into the contract or merely present in the product. Where it is only in the product, ask for it in the renewal and set a spend alert at the payment-method level as a backstop. For your own Claude Code and Cowork workflows, capture a monthly cost baseline now so a future pricing or reporting change is measurable rather than felt.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Governance</span>
+          <span class="meta-pill meta-score">HN 319</span>
+          <span class="meta-pill meta-source">forum.cursor.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://forum.cursor.com/t/usage-page-to-token-amount-what/167153" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49135257" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">The Open Web</div>
+
+      <h2 class="spread-headline">How Google helped destroy adoption of RSS feeds</h2>
+      <p class="spread-lede">An argument, revived on the front page today, that RSS did not fade on its merits but was hollowed out by a dominant intermediary that first absorbed the audience and then withdrew — leaving a standard that still works and a habit that mostly does not.</p>
+      <div class="spread-body"><p>The mechanism described is familiar enough to be a pattern. A platform builds the best client for an open protocol, becomes the default way almost everyone experiences it, and in doing so relieves every publisher and browser vendor of the need to invest in alternatives. When the platform loses interest, the protocol is technically unharmed and practically orphaned: the ecosystem that would have sustained it has spent years atrophying. Whether the intent was strategic or merely indifferent is the part people argue about, and it is also the least important part.</p><p>It is worth sitting with as a governance parable rather than nostalgia. The same shape is visible now in identity providers, in package registries, in model APIs, and in the developer tooling that a whole industry has quietly standardised on. Each is an open-ish protocol with one overwhelmingly dominant implementation, and each carries the same latent risk: the standard survives the sponsor&#39;s departure, but the ecosystem may not. Asking which of your dependencies would still have a living community if its main backer walked away is a cheap question with an uncomfortable answer.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Technology</span>
+          <span class="meta-pill meta-score">HN 487</span>
+          <span class="meta-pill meta-source">openrss.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://openrss.org/blog/how-google-helped-destroy-adoption-of-rss-feeds" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49136821" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 2 August 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: recruitment posts, hobbyist hardware and retrocomputing builds, food and travel writing, popular-science items with no security or governance angle, and the usual crop of high-scoring novelty submissions that reward a click but not a briefing.</p>
+    <p>Duplicates excluded against the previous two editions: 0. Today&#39;s front page shared no original article URLs with the 31 July or 1 August editions, so the full candidate pool was available for curation.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
