@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Edition — 5 August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e10;
+  --paper: #f7f4ee;
+  --muted: #8a8378;
+  --rule: #d5cec0;
+  --accent: #c01818;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+/* SPREAD BASE — full-bleed coloured panels, centred text column */
+.spread {
+  min-height: 100vh;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.spread-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.spread-numeral {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(18rem, 40vw, 38rem);
+  line-height: 0.85;
+  opacity: 0.06;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+.spread-kicker {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.spread-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+  line-height: 1.02;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+.spread-lede {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  margin: 0 0 2.5rem;
+  max-width: 780px;
+}
+.spread-body {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+.spread-body p { margin: 0 0 1.4rem; }
+.applies-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+.action-section {
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.75rem;
+  margin: 0 0 2.5rem;
+  max-width: 720px;
+  background: rgba(192, 24, 24, 0.05);
+  padding-right: 1.5rem;
+}
+.action-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.action-body {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid currentColor;
+  border-top-color: rgba(0,0,0,0.18);
+  font-size: 0.95rem;
+}
+.meta-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.meta-pill {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.meta-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.meta-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+.meta-link:hover { opacity: 0.7; }
+.meta-link-secondary { opacity: 0.7; border-bottom-style: dashed; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0d 0%, #1c1820 50%, #2b1418 100%);
+  color: #f5ebd9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -10%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(192,24,24,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(245,235,217,0.25);
+  padding-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.cover-main { position: relative; z-index: 2; max-width: 1100px; }
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.92;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+.cover-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.45;
+  max-width: 620px;
+  margin-top: 2rem;
+  color: rgba(245,235,217,0.86);
+}
+.cover-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+.cover-foot-block { max-width: 320px; }
+.cover-foot-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+
+/* TOC */
+.toc {
+  background: var(--paper);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+}
+.toc-inner { max-width: 1000px; margin: 0 auto; }
+.toc-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.toc-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.toc-row:hover { background: rgba(0,0,0,0.03); }
+.toc-row:last-child { border-bottom: 1px solid var(--rule); }
+.toc-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.toc-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.toc-title {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+.toc-applies {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+/* SPREAD VARIANTS */
+/* 1. HERO */
+.spread-hero {
+  background: linear-gradient(135deg, #110404 0%, #2a0808 50%, #4a0d0d 100%);
+  color: #f5e6d3;
+}
+.spread-hero .spread-numeral { color: #f5e6d3; right: -2vw; bottom: -8vw; }
+.spread-hero .spread-kicker { color: #ff8888; }
+.spread-hero .meta-bar { border-top-color: rgba(245,230,211,0.25); }
+.spread-hero .applies-badge { background: #ff5050; color: #1a0202; }
+.spread-hero .action-section { border-left-color: #ff5050; background: rgba(255,80,80,0.08); }
+.spread-hero .action-label { color: #ff8888; }
+
+/* 2. MIDNIGHT */
+.spread-midnight {
+  background: linear-gradient(160deg, #06101e 0%, #0c1c36 50%, #122845 100%);
+  color: #d8e3f4;
+}
+.spread-midnight .spread-numeral { color: #d8e3f4; left: -3vw; top: -5vw; }
+.spread-midnight .spread-kicker { color: #6da7ff; }
+.spread-midnight .meta-bar { border-top-color: rgba(216,227,244,0.22); }
+.spread-midnight .applies-badge { background: #6da7ff; color: #06101e; }
+.spread-midnight .action-section { border-left-color: #6da7ff; background: rgba(109,167,255,0.08); }
+.spread-midnight .action-label { color: #6da7ff; }
+
+/* 3. ROSE ALERT */
+.spread-rose {
+  background: #fef0f3;
+  color: #1a0510;
+  border-top: 14px solid #c01818;
+  border-bottom: 14px solid #c01818;
+}
+.spread-rose .spread-numeral { color: #c01818; right: -2vw; top: 5vw; opacity: 0.08; }
+.spread-rose .spread-kicker { color: #c01818; }
+.spread-rose::before {
+  content: 'ALERT';
+  position: absolute;
+  top: 4rem;
+  right: clamp(2rem, 5vw, 5rem);
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  letter-spacing: 0.3em;
+  color: #c01818;
+  border: 4px solid #c01818;
+  padding: 0.5rem 1rem;
+  transform: rotate(8deg);
+  z-index: 3;
+  background: #fef0f3;
+}
+
+/* 4. TERMINAL */
+.spread-terminal {
+  background: #0a0f0a;
+  color: #6affa1;
+  font-family: 'JetBrains Mono', monospace;
+}
+.spread-terminal .spread-numeral { color: #6affa1; left: -2vw; bottom: -8vw; opacity: 0.05; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-kicker { color: #6affa1; font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .spread-headline { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.01em; }
+.spread-terminal .spread-lede { font-family: 'JetBrains Mono', monospace; font-style: normal; opacity: 0.9; font-size: 1.2rem; }
+.spread-terminal .spread-body { font-family: 'JetBrains Mono', monospace; font-size: 1rem; line-height: 1.7; }
+.spread-terminal .meta-bar { border-top-color: rgba(106,255,161,0.25); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .applies-badge { background: #6affa1; color: #0a0f0a; }
+.spread-terminal .action-section { border-left-color: #6affa1; background: rgba(106,255,161,0.06); font-family: 'JetBrains Mono', monospace; }
+.spread-terminal .action-label { color: #6affa1; }
+.spread-terminal::before {
+  content: '$ cat morning-edition/04.txt';
+  position: absolute;
+  top: 2rem;
+  left: clamp(1.5rem, 5vw, 5rem);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* 5. ACADEMIC */
+.spread-academic {
+  background: #f7f1e3;
+  color: #1c1610;
+}
+.spread-academic .spread-numeral { color: #1c1610; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-academic .spread-kicker { color: #6a4318; }
+.spread-academic .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+}
+.spread-academic .spread-body p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 5rem;
+  float: left;
+  line-height: 0.9;
+  margin: 0.4rem 0.6rem -0.5rem 0;
+  color: #6a4318;
+}
+@media (max-width: 760px) {
+  .spread-academic .spread-body { column-count: 1; }
+}
+
+/* 6. GRADIENT */
+.spread-gradient {
+  background: linear-gradient(135deg, #2a1245 0%, #4a1a78 40%, #5b2bb0 70%, #2c4ed1 100%);
+  color: #f1ecff;
+}
+.spread-gradient .spread-numeral { color: #f1ecff; right: -3vw; top: -6vw; opacity: 0.07; }
+.spread-gradient .spread-kicker { color: #d4baff; }
+.spread-gradient .meta-bar { border-top-color: rgba(241,236,255,0.25); }
+.spread-gradient .applies-badge { background: #ffd86a; color: #2a1245; }
+.spread-gradient .action-section { border-left-color: #ffd86a; background: rgba(255,216,106,0.1); }
+.spread-gradient .action-label { color: #ffd86a; }
+
+/* 7. NEWSPAPER */
+.spread-newspaper {
+  background: #faf8f3;
+  color: #0a0a0a;
+  border-top: 4px double #0a0a0a;
+  border-bottom: 4px double #0a0a0a;
+}
+.spread-newspaper .spread-inner {
+  border-left: 1px solid #0a0a0a;
+  border-right: 1px solid #0a0a0a;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.spread-newspaper .spread-numeral { color: #0a0a0a; right: -2vw; bottom: -10vw; opacity: 0.05; }
+.spread-newspaper .spread-kicker { color: #0a0a0a; border-bottom: 2px solid #0a0a0a; padding-bottom: 0.5rem; display: inline-block; }
+.spread-newspaper .spread-headline { text-align: center; }
+.spread-newspaper .spread-body {
+  column-count: 2;
+  column-gap: 2.5rem;
+  max-width: none;
+  font-size: 1.05rem;
+}
+@media (max-width: 760px) {
+  .spread-newspaper .spread-body { column-count: 1; }
+}
+
+/* 8. CLEAN */
+.spread-clean {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+.spread-clean .spread-numeral { color: #0a0a0a; right: -1vw; top: -4vw; opacity: 0.05; }
+.spread-clean .spread-kicker {
+  color: transparent;
+  background: linear-gradient(90deg, #0066ff 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.spread-clean .spread-headline {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0066ff 60%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 9. EDITORIAL */
+.spread-editorial {
+  background: linear-gradient(135deg, #2a1a06 0%, #6e3f0e 40%, #c2761c 100%);
+  color: #fdf2dc;
+}
+.spread-editorial .spread-numeral { color: #fdf2dc; right: -2vw; bottom: -6vw; opacity: 0.08; }
+.spread-editorial .spread-kicker { color: #ffcd7a; }
+.spread-editorial .meta-bar { border-top-color: rgba(253,242,220,0.3); }
+.spread-editorial .applies-badge { background: #ffcd7a; color: #2a1a06; }
+.spread-editorial .action-section { border-left-color: #ffcd7a; background: rgba(255,205,122,0.1); }
+.spread-editorial .action-label { color: #ffcd7a; }
+
+/* 10. MEMORIAL */
+.spread-memorial {
+  background: #1a1d1e;
+  color: #b8b3a8;
+}
+.spread-memorial .spread-numeral { color: #b8b3a8; left: -2vw; top: -8vw; opacity: 0.06; }
+.spread-memorial .spread-kicker { color: #8a8378; }
+.spread-memorial .spread-headline { font-style: italic; font-weight: 400; }
+.spread-memorial .meta-bar { border-top-color: rgba(184,179,168,0.2); }
+
+/* FOOTER */
+.foot {
+  background: #0e0e10;
+  color: #b8b3a8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.foot-inner { max-width: 920px; margin: 0 auto; }
+.foot-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #f5ebd9;
+  margin: 0 0 1rem;
+}
+.foot p { margin: 0 0 0.85rem; }
+.foot a { color: #f5ebd9; }
+
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .toc-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .toc-num { font-size: 1.8rem; }
+  .toc-title { font-size: 1.2rem; }
+  .meta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top">
+    <span>Vol. 2026 · No. 212</span>
+    <span>Wednesday · 5 August 2026</span>
+  </div>
+  <div class="cover-main">
+    <h1 class="cover-title">Morning<br>Edition</h1>
+    <p class="cover-tagline">The privacy features you bought to hide your address are handing it out anyway. Interpol counts the machines now writing the fraud. And Apple's lawyers say the leak wasn't a system at all — it was people, walking out with what they knew.</p>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">For</div>
+      Euan McGregor · Scotland
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Source</div>
+      Hacker News front page · 5 August 2026
+    </div>
+    <div class="cover-foot-block">
+      <div class="cover-foot-label">Flagged</div>
+      5 of 10 stories directly apply
+    </div>
+  </div>
+</header>
+
+<section class="toc">
+  <div class="toc-inner">
+    <h2 class="toc-heading">In this edition</h2>
+    <p class="toc-sub">Ten stories from the front page, curated and annotated.</p>
+    <a class="toc-row" href="#story-1">
+      <span class="toc-num">01</span>
+      <span class="toc-content">
+        <span class="toc-tag">Critical Vulnerability</span>
+        <span class="toc-title">IP and DNS Leaks in WebKit Affecting Proxy Browsers and iCloud Private Relay</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-2">
+      <span class="toc-num">02</span>
+      <span class="toc-content">
+        <span class="toc-tag">Threat Landscape</span>
+        <span class="toc-title">AI fuels more than half of cybercrime in Africa as scams surge — Interpol</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-3">
+      <span class="toc-num">03</span>
+      <span class="toc-content">
+        <span class="toc-tag">Insider Risk</span>
+        <span class="toc-title">Apple says more ex-employees may have taken confidential data to OpenAI</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-4">
+      <span class="toc-num">04</span>
+      <span class="toc-content">
+        <span class="toc-tag">Agent Tooling</span>
+        <span class="toc-title">Stateless MCP has recaptured my interest</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-5">
+      <span class="toc-num">05</span>
+      <span class="toc-content">
+        <span class="toc-tag">Research &amp; Analysis</span>
+        <span class="toc-title">Eight Myths on Software Engineering and GenAI</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-6">
+      <span class="toc-num">06</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open-Weights AI</span>
+        <span class="toc-title">Mistral's Shieldstral: 3B open-weights model for multimodal moderation</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-7">
+      <span class="toc-num">07</span>
+      <span class="toc-content">
+        <span class="toc-tag">Phishing &amp; Brand Hygiene</span>
+        <span class="toc-title">Thanks FedEx, This Is Why We Keep Getting Phished (2024)</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-8">
+      <span class="toc-num">08</span>
+      <span class="toc-content">
+        <span class="toc-tag">Developer Tools</span>
+        <span class="toc-title">The Warp Agent CLI</span>
+
+      </span>
+    </a>
+    <a class="toc-row" href="#story-9">
+      <span class="toc-num">09</span>
+      <span class="toc-content">
+        <span class="toc-tag">Open Source Supply Chain</span>
+        <span class="toc-title">libexpat now funded by the City of Munich for up to 6 months</span>
+        <span class="toc-applies">DIRECTLY APPLIES</span>
+      </span>
+    </a>
+    <a class="toc-row" href="#story-10">
+      <span class="toc-num">10</span>
+      <span class="toc-content">
+        <span class="toc-tag">Reflection</span>
+        <span class="toc-title">In Memory of My Wife, Elise Cawley, with Thanks for 36 Wonderful Years</span>
+
+      </span>
+    </a>
+  </div>
+</section>
+
+  <section class="spread spread-hero" id="story-1">
+    <div class="spread-numeral">01</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Critical Vulnerability</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">IP and DNS Leaks in WebKit Affecting Proxy Browsers and iCloud Private Relay</h2>
+      <p class="spread-lede">Researchers at Mysk found that WebKit sends DNS queries and connections outside the configured proxy tunnel in several conditions, exposing the real IP address of users who deliberately chose a privacy browser or turned on iCloud Private Relay.</p>
+      <div class="spread-body"><p>The failure mode here matters more than the bug count. A proxy browser is a control that users and organisations adopt precisely because they assume it is total: every request goes through the tunnel, or the tool is worthless. What Mysk documents is a platform-level leak — WebKit, the engine Apple forces every iOS browser to use, resolving names and opening connections on paths that bypass the app's own proxy configuration. The browser vendor cannot fix it. The user cannot see it. The only signal is a packet capture that most people will never run.</p><p>For a security leader the immediate question is where this control appears in your own assumptions. If any part of your remote-access story, journalist-or-researcher protection, investigative workflow, or executive-travel guidance rests on "use Private Relay" or "use a proxy browser on iPhone", that guidance is now conditional rather than absolute. This is also a reminder about the shape of Apple's ecosystem risk: single-engine mandates mean a single defect has no competitive escape hatch. When one engine leaks, everything downstream leaks with it.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Inventory where privacy-browser or Private Relay guidance appears in your policies, travel briefings, and journalist/whistleblower handling procedures, and add an explicit caveat that IP masking on iOS is not guaranteed. If you protect high-risk users, move them to a device-level VPN with a kill switch rather than an in-browser proxy, and verify with a capture rather than trusting the toggle.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 83</span>
+          <span class="meta-pill meta-source">mysk.blog</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://mysk.blog/2026/08/04/webkit-proxy-icloud-private-relay-ip-leak/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49176697" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-midnight" id="story-2">
+    <div class="spread-numeral">02</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Threat Landscape</div>
+
+      <h2 class="spread-headline">AI fuels more than half of cybercrime in Africa as scams surge — Interpol</h2>
+      <p class="spread-lede">Interpol's latest assessment puts AI-assisted techniques behind the majority of cybercrime activity tracked across African member states, with generative tooling driving a sharp rise in scam volume, quality, and the speed at which campaigns are spun up.</p>
+      <div class="spread-body"><p>Regional threat reports are easy to file away as somebody else's problem, and that instinct is wrong here. Fraud infrastructure is not regional. The techniques Interpol is describing — synthetic voice for pretexting, generated documents that survive casual verification, translated lures that no longer carry the grammatical fingerprints defenders were trained to spot — are portable the moment they work. What a report like this really measures is the maturity of a toolchain, and toolchains migrate to wherever the payouts are richest.</p><p>The number worth holding onto is not "more than half" but what it implies about cost. When generation is cheap, attackers stop selecting targets and start covering them. The old assumption that a small organisation is beneath notice, or that a poorly written email is a reliable tell, has an expiry date on it. Awareness training built around spelling mistakes and odd phrasing is training people to fail confidently. The durable controls are procedural: callback verification on payment changes, out-of-band confirmation for anything involving money or credentials, and no exceptions for senior people in a hurry.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 190</span>
+          <span class="meta-pill meta-source">africanews.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.africanews.com/2026/08/04/ai-fuels-more-than-half-of-cybercrime-in-africa-as-digital-scams-surge-interpol/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49175826" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-rose" id="story-3">
+    <div class="spread-numeral">03</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Insider Risk</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Apple says more ex-employees may have taken confidential data to OpenAI</h2>
+      <p class="spread-lede">In an expanding legal filing, Apple alleges that additional former staff carried confidential material with them when they left for OpenAI, widening a dispute that started with a single departure into a broader claim about systematic trade-secret movement.</p>
+      <div class="spread-body"><p>Strip away the two famous names and this is the most ordinary security incident there is: people leave, and knowledge leaves with them. What makes it worth your attention is the detection story. Apple is not describing an intrusion, a malware family, or an exploited CVE. It is describing document access that looked entirely legitimate at the time it happened and only became suspicious in hindsight, once the destination was known. That is the hardest class of event to catch, and the class most organisations are least instrumented for.</p><p>The talent-war context also matters. When an entire sector is bidding aggressively for the same few hundred specialists, the volume of departures rises, and with it the volume of quiet exfiltration that never registers as an incident. Most leaver processes are built for access removal, not for retrospective review of what someone touched in their final weeks. If your offboarding checklist ends at disabling SSO and collecting a laptop, you have a control that satisfies audit and detects nothing.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Add a data-movement review to offboarding for anyone with access to sensitive IP: a 60-day look-back on bulk downloads, repository clones, and export activity, run at notice rather than at exit. Make sure your DLP and cloud audit logs retain long enough to support that review, and confirm your employment contracts and confidentiality terms are enforceable under Scots and UK law, not just copied from a US template.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 355</span>
+          <span class="meta-pill meta-source">techcrunch.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://techcrunch.com/2026/08/04/apple-says-more-ex-employees-may-have-taken-confidential-data-to-openai/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49170479" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-terminal" id="story-4">
+    <div class="spread-numeral">04</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Agent Tooling</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Stateless MCP has recaptured my interest</h2>
+      <p class="spread-lede">Simon Willison revisits the Model Context Protocol and argues that the stateless transport mode — no long-lived session, no persistent process, just a plain HTTP request carrying everything the call needs — is the version worth building on.</p>
+      <div class="spread-body"><p>You run MCP servers daily inside Claude Code, so this is a direct read on your own stack. The stateless shape removes the piece that made MCP awkward to deploy and audit: a stateful session between an agent and a long-running local process, holding context that nothing outside the pair can inspect. A stateless call is just a request. It can sit behind a normal gateway, be logged by normal infrastructure, be rate-limited, be authenticated per call, and be scaled or killed without anyone losing state they cared about.</p><p>The security consequence is worth stating plainly. Stateless makes MCP look like every other API you already know how to govern, which means the controls you already own start applying — authentication, per-call authorisation, request logging, egress restriction. Stateful sessions, by contrast, tend to accumulate implicit trust: the server remembers what it was told, and the audit trail lives in a process nobody is watching. If you are formalising how AI tooling gets approved for use, "does it work statelessly?" is a genuinely useful gate question.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit which MCP servers your Claude Code workflows depend on and note which run stateful local processes with ambient credentials. Prefer stateless HTTP servers where a choice exists, put per-call auth in front of anything that touches production data, and make sure your MCP calls land in a log you would actually be able to review after an incident.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 80</span>
+          <span class="meta-pill meta-source">simonwillison.net</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://simonwillison.net/2026/Jul/31/stateless-mcp/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49131438" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-academic" id="story-5">
+    <div class="spread-numeral">05</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Research &amp; Analysis</div>
+
+      <h2 class="spread-headline">Eight Myths on Software Engineering and GenAI</h2>
+      <p class="spread-lede">ACM Queue takes eight widely repeated claims about generative AI in software engineering — from productivity multipliers to the imminent obsolescence of junior developers — and tests each against what the evidence actually supports.</p>
+      <div class="spread-body"><p>The value of a piece like this is not that it is sceptical; plenty of writing is sceptical for sport. It is that it separates claims that have measurement behind them from claims that are extrapolations dressed as findings. Anyone running an engineering function is currently being asked to make budget and headcount decisions on the basis of numbers whose provenance nobody checks. A structured myth-by-myth treatment in a venue with editorial standards is a better input to those conversations than another vendor benchmark.</p><p>For a security leader the relevant myths are the ones about review and quality. If generated code is produced faster than it can be meaningfully read, the bottleneck moves to review, and review is where vulnerabilities are caught. The organisations getting this wrong are the ones that measured the acceleration and quietly let the verification step absorb the difference. Worth reading before your next conversation about what AI-assisted development should do to your secure-development lifecycle, because the honest answer is that it puts more weight on it, not less.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Engineering</span>
+          <span class="meta-pill meta-score">HN 167</span>
+          <span class="meta-pill meta-source">queue.acm.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://queue.acm.org/detail.cfm?id=3807963" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49176830" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-gradient" id="story-6">
+    <div class="spread-numeral">06</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open-Weights AI</div>
+
+      <h2 class="spread-headline">Mistral's Shieldstral: 3B open-weights model for multimodal moderation</h2>
+      <p class="spread-lede">Mistral has released Shieldstral, a three-billion-parameter open-weights model built specifically for moderating text and image content, small enough to run as a guardrail alongside a larger model rather than as a hosted service call.</p>
+      <div class="spread-body"><p>Guardrail models are becoming their own product category, and the size is the point. At 3B, this runs on modest hardware, which means content classification can happen inside your own boundary instead of being shipped to a third-party moderation API. For any organisation with data-residency constraints, that is the difference between a control you can deploy and a control your legal team blocks. Open weights also mean you can evaluate it against your own definitions of harm rather than accepting a vendor's taxonomy and hoping it maps.</p><p>The honest caveat is that a small model doing moderation will have failure modes on both edges, and adversarial input is precisely the case where small models struggle most. Treat it as a filter with known leakage, not a gate. Where it earns its place is in front of user-generated content pipelines and agent outputs, catching the obvious volume cheaply so human review capacity goes to the ambiguous cases. Its European provenance also makes the procurement conversation shorter for UK and EU deployments.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Safety</span>
+          <span class="meta-pill meta-score">HN 365</span>
+          <span class="meta-pill meta-source">mistral.ai</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://mistral.ai/news/shieldstral/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49171268" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-newspaper" id="story-7">
+    <div class="spread-numeral">07</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Phishing &amp; Brand Hygiene</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">Thanks FedEx, This Is Why We Keep Getting Phished (2024)</h2>
+      <p class="spread-lede">Troy Hunt dissects a legitimate FedEx communication that is indistinguishable from a phishing attempt — unfamiliar sending domain, tracking redirects, urgent payment demand — and argues that large brands train their own customers to click on exactly the wrong things.</p>
+      <div class="spread-body"><p>This is an older post that keeps resurfacing because nothing has been fixed. The argument is uncomfortable for defenders: we tell people to check the sender domain, hover the link, and be suspicious of urgency, and then the real companies send mail from marketing subdomains nobody recognises, wrap every link in a redirect service, and demand immediate payment of a customs charge. The advice and the reality contradict each other, and users resolve the contradiction by ignoring the advice.</p><p>The lesson for a CISO points inward before it points outward. Your own organisation almost certainly sends mail that would fail the tests you ask staff to apply — HR notifications from a SaaS domain, security alerts routed through a click-tracker, finance requests with deadlines attached. Every one of those is a live training exercise teaching people that suspicious-looking mail is normal. Fixing your own sending practices does more for phishing resistance than another awareness module, and it is measurable.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Audit outbound mail from your own organisation the way an attacker would read it: list every domain that sends staff or customer email, kill click-wrapping where it obscures the destination, and enforce DMARC at reject on all of them. Then make one rule staff can actually apply — real payment or credential requests never arrive by unsolicited email — and hold every internal team to it.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Cybersecurity</span>
+          <span class="meta-pill meta-score">HN 272</span>
+          <span class="meta-pill meta-source">troyhunt.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.troyhunt.com/thanks-fedex-this-is-why-we-keep-getting-phished/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49175192" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-clean" id="story-8">
+    <div class="spread-numeral">08</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Developer Tools</div>
+
+      <h2 class="spread-headline">The Warp Agent CLI</h2>
+      <p class="spread-lede">Warp, best known for its reimagined terminal, has released a standalone agent CLI — a coding agent that runs as a command-line tool rather than inside the Warp application, putting it in direct competition with the established terminal-native agents.</p>
+      <div class="spread-body"><p>The terminal has become the contested surface for coding agents, and the reason is architectural rather than aesthetic. An agent in the shell inherits the developer's actual environment: their credentials, their repositories, their cloud sessions, their production access. That is what makes these tools powerful and what makes them a governance problem. Every new entrant expands the set of things running with a developer's full authority, and the approval process at most organisations has not caught up with the pace of releases.</p><p>Whether Warp's version is better than what you already use is a matter of taste and workflow. The more useful question is whether your organisation has a position at all. If developers can install any agent CLI they like, you have an unmanaged population of tools with shell access and network egress, differing wildly in how they handle secrets, what they transmit, and where they send it. Pick a small set, document why, and make the criteria explicit rather than leaving it to whoever read Hacker News that morning.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">AI / Tooling</span>
+          <span class="meta-pill meta-score">HN 98</span>
+          <span class="meta-pill meta-source">warp.dev</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://www.warp.dev/blog/introducing-the-warp-agent-cli-coding-agent" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49171766" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-editorial" id="story-9">
+    <div class="spread-numeral">09</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Open Source Supply Chain</div>
+      <div class="applies-badge">Directly applies to you</div>
+      <h2 class="spread-headline">libexpat now funded by the City of Munich for up to 6 months</h2>
+      <p class="spread-lede">The City of Munich is funding a six-month sabbatical for the maintainer of libexpat, the XML parser embedded in an enormous swathe of software, in what amounts to a municipal government directly underwriting a piece of global critical infrastructure.</p>
+      <div class="spread-body"><p>libexpat is the kind of dependency that never appears in a procurement conversation and sits inside almost everything — language runtimes, browsers, package managers, embedded firmware. Its maintenance has, for years, rested on a very small number of people doing it around their day jobs. When a parser that ubiquitous has a serious defect, the blast radius is measured in ecosystems. That a city council is the entity stepping in says something unflattering about how the rest of us fund the software we depend on.</p><p>The European angle is worth noting for UK and EU organisations specifically, because it sits alongside the Cyber Resilience Act's steady march toward making software producers accountable for the components they ship. Regulators are converging on the position that "we just imported it" is not a defence. If your SBOM programme currently produces a list nobody reads, the useful upgrade is to identify which of your critical dependencies have a bus factor of one — and then decide whether you contribute, sponsor, or accept the risk explicitly.</p></div>
+      <div class="action-section"><div class="action-label">What to do</div><p class="action-body">Take your SBOM and score the top twenty components by how few people maintain them, not by CVE count. For anything with a bus factor of one that sits on a critical path, put a named owner on it and a decision: sponsor, vendor-support, or document as accepted risk with a fallback plan. This is exactly the evidence a CRA-aligned audit will ask you to produce.</p></div>
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Supply Chain</span>
+          <span class="meta-pill meta-score">HN 238</span>
+          <span class="meta-pill meta-source">blog.hartwork.org</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://blog.hartwork.org/posts/libexpat-city-of-munich-open-source-sabbatical/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49176606" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="spread spread-memorial" id="story-10">
+    <div class="spread-numeral">10</div>
+    <div class="spread-inner">
+      <div class="spread-kicker">Reflection</div>
+
+      <h2 class="spread-headline">In Memory of My Wife, Elise Cawley, with Thanks for 36 Wonderful Years</h2>
+      <p class="spread-lede">Stephen Wolfram writes at length about his wife Elise Cawley, who died this year — a personal account of a thirty-six-year partnership that sat quietly behind a very public career, and the front page's most-read item by a wide margin.</p>
+      <div class="spread-body"><p>It is unusual for a personal memorial to top Hacker News, and the response tells you something about a readership that mostly talks about systems. Wolfram writes about a life that was not lived in public and was, by his account, structurally necessary to the work that was. The comment thread is full of people saying versions of the same thing: that the person who made the career possible is almost never the person the career is attributed to.</p><p>There is no action item here and it would be crass to invent one. It is included because it was the day's most-read piece and because the reason it resonated is worth sitting with for a minute. Careers in this industry are built on long hours and absorbed stress, and the cost of that is carried by people who do not appear in the org chart. Read it on the way in, or don't read it at work at all.</p></div>
+
+      <div class="meta-bar">
+        <div class="meta-pills">
+          <span class="meta-pill">Culture</span>
+          <span class="meta-pill meta-score">HN 1209</span>
+          <span class="meta-pill meta-source">writings.stephenwolfram.com</span>
+        </div>
+        <div class="meta-links">
+          <a class="meta-link" href="https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/" target="_blank" rel="noopener">Read original →</a>
+          <a class="meta-link meta-link-secondary" href="https://news.ycombinator.com/item?id=49173165" target="_blank" rel="noopener">HN discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h3 class="foot-title">Colophon</h3>
+    <p>Stories sourced from the <a href="https://news.ycombinator.com/" target="_blank" rel="noopener">Hacker News front page</a> on 5 August 2026. The top 50 items were considered; ten were selected on the editorial brief of cybersecurity, AI tooling, privacy, and CISO-relevant action.</p>
+    <p>Skipped during curation: leveraged-ETF retail trading news, a programmable crypto wallet launch, hardware and camera product announcements, gaming industry M&amp;A, and the usual run of language-benchmark and micro-optimisation posts with no security or governance angle.</p>
+    <p>Duplicates excluded against the previous two editions: 1. Sean Goedecke's "LLMs reward expertise" was the day's highest-scoring technical essay but ran in a recent edition, so it was dropped rather than repeated.</p>
+    <p>Typeset in Fraunces and Inter via Google Fonts. Built by Cowork running on Claude. The HTML is self-contained and travels well — save the file, mail it, archive it.</p>
+  </div>
+</footer>
+
+</body>
+</html>
